@@ -52,63 +52,147 @@
     </div>
   </header>
 
-  <main>
-    <section class="page-hero">
-      <div class="container fade-up">
-        <h1>Recent claim recoveries</h1>
-        <p>Examples of outcomes we’ve pursued for policyholders. Every claim is different; past results do not guarantee future results.</p>
+  <main class="results-page">
+    <section class="page-hero page-hero--photo page-hero--results">
+      <div class="container page-hero__inner">
+        <h1>Real results for real homeowners</h1>
+        <p class="page-hero__lead">
+          Every dollar listed below was recovered by our team on behalf of Florida policyholders.
+        </p>
+        <div class="hero__trust-row" aria-label="Trust highlights">
+          <span class="hero__trust-pill">★ 4.9 Google Rating</span>
+          <span class="hero__trust-pill">Licensed &amp; Insured</span>
+          <span class="hero__trust-pill">$0 Upfront</span>
+        </div>
       </div>
     </section>
 
-    <section class="section section-alt">
+    <div class="section-curve section-curve--to-cream" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="var(--cream)"></path>
+      </svg>
+    </div>
+
+    <section class="section results-stat-section" aria-labelledby="results-stat-main">
       <div class="container fade-up">
-        <div class="grid-3">
-          <article class="card">
+        <p class="section-label">Proven results</p>
+        <p id="results-stat-main" class="results-stat-hero">
+          <span class="results-stat-hero__amount">
+            <span class="results-stat-hero__currency">$</span><span class="js-results-total-m" data-target="4">0</span><span class="results-stat-hero__unit">M+</span>
+          </span>
+          <span class="results-stat-hero__label"> Total Recovered</span>
+        </p>
+        <p class="results-stat-hero__sub">for Florida homeowners since 2015</p>
+      </div>
+    </section>
+
+    <div class="section-curve section-curve--to-white" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="#ffffff"></path>
+      </svg>
+    </div>
+
+    <section class="section section-alt">
+      <div class="container">
+        <p class="section-label">Case studies</p>
+        <h2 class="section-title">Recent recoveries</h2>
+        <p class="section-lead">
+          Examples of outcomes we’ve pursued for policyholders. Every claim is different; past results do not guarantee future results.
+        </p>
+        <div class="results-page-grid">
+          <article class="card card--result">
+            <div class="case-card-icon" aria-hidden="true">🌪️</div>
             <p class="case-amount">$145,000</p>
             <p class="case-type">Hurricane damage</p>
-            <p class="case-compare">Initial offer: ~$32,000 → Final recovery: $145,000</p>
+            <p class="case-compare case-compare--split">
+              <span class="case-compare__initial">Initial offer: $32,000</span>
+              <span class="case-compare__sep" aria-hidden="true"> → </span>
+              <span class="case-compare__final">Final recovery: $145,000</span>
+            </p>
             <p>
               After full documentation and negotiation, the settlement reflected a more realistic scope for roof and interior repairs.
             </p>
           </article>
-          <article class="card">
+          <article class="card card--result">
+            <div class="case-card-icon" aria-hidden="true">💧</div>
             <p class="case-amount">$85,000</p>
             <p class="case-type">Cast iron pipe leak</p>
-            <p class="case-compare">Initial offer: Denied → Final recovery: $85,000</p>
+            <p class="case-compare case-compare--split">
+              <span class="case-compare__initial">Initial offer: Denied</span>
+              <span class="case-compare__sep" aria-hidden="true"> → </span>
+              <span class="case-compare__final">Final recovery: $85,000</span>
+            </p>
             <p>
               We developed causation evidence and policy support to secure recovery for tear-out, drying, and rebuild.
             </p>
           </article>
-          <article class="card">
+          <article class="card card--result">
+            <div class="case-card-icon" aria-hidden="true">🔥</div>
             <p class="case-amount">$62,000</p>
             <p class="case-type">Fire &amp; smoke</p>
-            <p class="case-compare">Initial offer: ~$18,000 → Final recovery: $62,000</p>
+            <p class="case-compare case-compare--split">
+              <span class="case-compare__initial">Initial offer: $18,000</span>
+              <span class="case-compare__sep" aria-hidden="true"> → </span>
+              <span class="case-compare__final">Final recovery: $62,000</span>
+            </p>
             <p>
               Kitchen and adjacent rooms affected by smoke and heat. The first estimate overlooked code upgrades and contents;
               we aligned the file with actual repair bids.
             </p>
           </article>
-          <article class="card">
+          <article class="card card--result">
+            <div class="case-card-icon" aria-hidden="true">🏠</div>
             <p class="case-amount">$38,500</p>
             <p class="case-type">Roof &amp; wind-driven rain</p>
-            <p class="case-compare">Initial offer: ~$9,500 → Final recovery: $38,500</p>
+            <p class="case-compare case-compare--split">
+              <span class="case-compare__initial">Initial offer: $9,500</span>
+              <span class="case-compare__sep" aria-hidden="true"> → </span>
+              <span class="case-compare__final">Final recovery: $38,500</span>
+            </p>
             <p>
               Insurer scoped only cosmetic repairs. Supplemental testing and moisture mapping supported a broader replacement and
               interior dry-out.
             </p>
           </article>
         </div>
-        <p class="results-disclaimer">
-          Results may vary. Every claim depends on policy terms, damage facts, and carrier behavior. Past recoveries are not a guarantee of future outcomes.
-        </p>
       </div>
     </section>
 
-    <section class="cta-band">
-      <div class="container fade-up">
-        <h2>Want a professional review?</h2>
-        <p>Tell us what happened — we’ll help you understand your options.</p>
-        <a class="btn" href="contact.html">Contact us</a>
+    <div class="section-curve section-curve--to-cream" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="var(--cream)"></path>
+      </svg>
+    </div>
+
+    <section class="section section-alt results-transparency-section">
+      <div class="container">
+        <p class="section-label">Transparency</p>
+        <div class="results-transparency">
+          <p>
+            Every claim is different. The numbers on this page reflect real work we’ve done — but your outcome will always depend on your policy,
+            the scope of damage, documentation, and how the carrier responds. We share that openly because trust matters more than hype.
+            If something doesn’t sound right on your claim, we’re happy to take an honest look and tell you what we think.
+          </p>
+          <p class="results-transparency__note">Past recoveries are not a guarantee of future results.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-curve section-curve--to-navy" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="var(--navy)"></path>
+      </svg>
+    </div>
+
+    <section class="cta-band cta-band--impact" aria-labelledby="cta-results-heading">
+      <div class="container">
+        <p class="section-label">Take action</p>
+        <h2 id="cta-results-heading" class="cta-band__title">Think your claim was <em>underpaid</em>?</h2>
+        <p class="cta-band__lead">We’ll review it for free — no obligation, no pressure.</p>
+        <div class="cta-band__actions">
+          <a class="btn" href="contact.html">Get a Free Review</a>
+          <a class="btn btn-outline-cream" href="tel:+17862237867">Call (786) 223-7867</a>
+        </div>
       </div>
     </section>
   </main>
@@ -127,5 +211,65 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="../js/main.js"></script>
+  <script>
+    (function () {
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      var numEl = document.querySelector('.js-results-total-m');
+      if (numEl) {
+        var target = parseFloat(numEl.getAttribute('data-target') || '4');
+        var proxy = { v: 0 };
+        gsap.to(proxy, {
+          v: target,
+          duration: 1.85,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: numEl.closest('.results-stat-section') || numEl,
+            start: 'top 75%',
+            toggleActions: 'play none none none',
+          },
+          onUpdate: function () {
+            numEl.textContent = String(Math.round(proxy.v));
+          },
+        });
+      }
+
+      var grid = document.querySelector('.results-page-grid');
+      if (grid) {
+        var cards = grid.querySelectorAll('.card--result');
+        if (cards.length) {
+          gsap.from(cards, {
+            y: 40,
+            opacity: 0,
+            duration: 0.7,
+            stagger: 0.15,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: grid,
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+          });
+        }
+      }
+
+      var ctaEl = document.querySelector('main.results-page .cta-band--impact');
+      if (ctaEl) {
+        gsap.from(ctaEl.querySelectorAll('.section-label, .cta-band__title, .cta-band__lead, .cta-band__actions'), {
+          y: 24,
+          opacity: 0,
+          duration: 0.55,
+          stagger: 0.08,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: ctaEl,
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

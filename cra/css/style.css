@@ -1002,6 +1002,10 @@ textarea {
   pointer-events: none;
 }
 
+.page-hero--photo.page-hero--results::before {
+  background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=2000&q=80');
+}
+
 .page-hero--photo::after {
   content: '';
   position: absolute;
@@ -1478,6 +1482,115 @@ textarea {
   margin: 2rem auto 0;
   max-width: 52ch;
   line-height: 1.5;
+}
+
+/* --- Results page: stat hero, case grid, transparency --- */
+.results-stat-section .section-label {
+  margin-bottom: 0.65rem;
+}
+
+.results-stat-hero {
+  margin: 0;
+  text-align: center;
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+.results-stat-hero__currency,
+.results-stat-hero__unit {
+  font-weight: inherit;
+}
+
+.results-stat-hero__sub {
+  text-align: center;
+  margin: 1rem 0 0;
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.results-page-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 36px;
+  margin-top: 0.5rem;
+}
+
+.card--result {
+  border-left: 3px solid var(--gold);
+  border-top: 3px solid transparent;
+  text-align: left;
+}
+
+.case-card-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  margin: 0 0 0.45rem;
+}
+
+.card--result .case-amount {
+  font-size: clamp(1.85rem, 3.8vw, 2.65rem);
+  margin: 0 0 0.35rem;
+  line-height: 1.05;
+}
+
+.card--result .case-type {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 0.65rem;
+}
+
+.card--result .case-compare--split {
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0 0 0.9rem;
+}
+
+.case-compare--split .case-compare__initial {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.case-compare--split .case-compare__sep {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.case-compare--split .case-compare__final {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.results-transparency-section .section-label {
+  margin-bottom: 1rem;
+}
+
+.results-transparency {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.results-transparency p {
+  margin: 0 0 1rem;
+}
+
+.results-transparency p:last-child {
+  margin-bottom: 0;
+}
+
+.results-transparency__note {
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
 /* --- Mobile sticky CTA (Phase 4) --- */
