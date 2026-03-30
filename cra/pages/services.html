@@ -53,26 +53,95 @@
   </header>
 
   <main>
-    <section class="page-hero">
-      <div class="container fade-up">
+    <section class="page-hero page-hero--photo">
+      <div class="page-hero__bg" aria-hidden="true"></div>
+      <div class="container page-hero__inner">
         <h1>Our services</h1>
-        <p>
+        <p class="page-hero__lead">
           A <strong>public adjuster</strong> works for you — not the insurance company. Serving <strong>Miami</strong>,
           <strong>Broward</strong>, <strong>Palm Beach</strong>, and surrounding counties, we document damage, interpret your
           policy, prepare estimates, and negotiate your claim so you can focus on your family and property.
         </p>
+        <div class="hero__trust-row" aria-label="Trust highlights">
+          <span class="hero__trust-pill">★ 4.9 Google Rating</span>
+          <span class="hero__trust-pill">Licensed &amp; Insured</span>
+          <span class="hero__trust-pill">No Upfront Cost</span>
+        </div>
       </div>
     </section>
 
+    <div class="section-curve section-curve--to-cream" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="var(--cream)"></path>
+      </svg>
+    </div>
+
     <section class="section">
       <div class="container fade-up">
+        <p class="section-label">What we handle</p>
         <h2 class="section-title">Claim types we handle</h2>
         <p class="section-lead">
           From wind-driven rain to hidden plumbing failures, we build thorough claim files aligned with Florida’s weather and building realities.
         </p>
-        <div class="grid-3">
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">🌪️</div>
+      </div>
+    </section>
+
+    <div class="section-curve section-curve--to-white" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="#ffffff"></path>
+      </svg>
+    </div>
+
+    <section class="section section-alt process-section" aria-labelledby="process-heading">
+      <div class="container">
+        <p class="section-label">Our process</p>
+        <h2 id="process-heading" class="section-title">How we work</h2>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="process-step__num">1</div>
+            <div class="process-step__body">
+              <h3>Free Inspection</h3>
+              <p>We assess your property damage at no cost</p>
+            </div>
+          </div>
+          <div class="process-connector" aria-hidden="true"><span class="process-connector__line"></span></div>
+          <div class="process-step">
+            <div class="process-step__num">2</div>
+            <div class="process-step__body">
+              <h3>Claim Preparation</h3>
+              <p>We document, estimate, and file your claim</p>
+            </div>
+          </div>
+          <div class="process-connector" aria-hidden="true"><span class="process-connector__line"></span></div>
+          <div class="process-step">
+            <div class="process-step__num">3</div>
+            <div class="process-step__body">
+              <h3>Negotiation &amp; Recovery</h3>
+              <p>We fight for your maximum settlement</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-curve section-curve--to-cream" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="var(--cream)"></path>
+      </svg>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <p class="section-label">By claim type</p>
+        <h2 class="section-title">Expert support for every loss type</h2>
+        <p class="section-lead">
+          From wind-driven rain to coastal flood scenarios — here is how we help on each claim.
+        </p>
+        <div class="services-page-grid">
+          <article class="card card--service">
+            <div class="card-icon-wrap" aria-hidden="true">
+              <span class="card-icon">🌪️</span>
+            </div>
             <h3>Hurricane &amp; wind damage</h3>
             <p>
               As a <strong>hurricane damage public adjuster in Miami</strong> and across South Florida, we handle roof lifts,
@@ -80,8 +149,10 @@
               under-scoped repairs.
             </p>
           </article>
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">💧</div>
+          <article class="card card--service">
+            <div class="card-icon-wrap" aria-hidden="true">
+              <span class="card-icon">💧</span>
+            </div>
             <h3>Water damage &amp; plumbing leaks</h3>
             <p>
               Burst pipes, cast iron failures, slab leaks, and long-term moisture issues. If you need
@@ -89,32 +160,40 @@
               damage the first walkthrough can miss.
             </p>
           </article>
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">🔥</div>
+          <article class="card card--service">
+            <div class="card-icon-wrap" aria-hidden="true">
+              <span class="card-icon">🔥</span>
+            </div>
             <h3>Fire &amp; smoke damage</h3>
             <p>
               Structure fires, electrical fires, and heavy smoke — we help with <strong>fire damage insurance claims in South Florida</strong>
               by addressing structure, contents, and code-related rebuild costs where policies allow.
             </p>
           </article>
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">🏠</div>
+          <article class="card card--service">
+            <div class="card-icon-wrap" aria-hidden="true">
+              <span class="card-icon">🏠</span>
+            </div>
             <h3>Roof damage claims</h3>
             <p>
               Missing shingles, storm-related openings, and aging assemblies. From Miami Lakes to Palm Beach, we align scope with
               manufacturer specs and local building requirements so your roof claim reflects real repair costs.
             </p>
           </article>
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">🦠</div>
+          <article class="card card--service">
+            <div class="card-icon-wrap" aria-hidden="true">
+              <span class="card-icon">🦠</span>
+            </div>
             <h3>Mold remediation claims</h3>
             <p>
               Mold resulting from leaks or flooding. We tie remediation to covered water events and document testing and removal
               where appropriate — critical for Florida homeowners dealing with humidity and repeat moisture.
             </p>
           </article>
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">🌊</div>
+          <article class="card card--service">
+            <div class="card-icon-wrap" aria-hidden="true">
+              <span class="card-icon">🌊</span>
+            </div>
             <h3>Flood damage</h3>
             <p>
               NFIP and private flood coverages, rising water, and storm surge scenarios. We help Monroe and coastal clients
@@ -125,11 +204,21 @@
       </div>
     </section>
 
-    <section class="cta-band">
-      <div class="container fade-up">
-        <h2>Think you have a claim?</h2>
-        <p>Let us review your situation — at no upfront cost to you.</p>
-        <a class="btn" href="contact.html">Get a free claim evaluation</a>
+    <div class="section-curve section-curve--to-navy" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="var(--navy)"></path>
+      </svg>
+    </div>
+
+    <section class="cta-band cta-band--impact" aria-labelledby="cta-services-heading">
+      <div class="container">
+        <p class="section-label">Get started</p>
+        <h2 id="cta-services-heading" class="cta-band__title">Think you have a <em>claim</em>?</h2>
+        <p class="cta-band__lead">Most homeowners are entitled to more than they think.</p>
+        <div class="cta-band__actions">
+          <a class="btn" href="contact.html">Get a Free Evaluation</a>
+          <a class="btn btn-outline-cream" href="tel:+17862237867">Call (786) 223-7867</a>
+        </div>
       </div>
     </section>
   </main>
@@ -148,5 +237,91 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="../js/main.js"></script>
+  <script>
+    (function () {
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      var grid = document.querySelector('.services-page-grid');
+      if (grid) {
+        var cards = grid.querySelectorAll('.card');
+        if (cards.length) {
+          gsap.from(cards, {
+            y: 40,
+            opacity: 0,
+            duration: 0.65,
+            stagger: 0.12,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: grid,
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+          });
+        }
+      }
+
+      var proc = document.querySelector('.process-section');
+      if (proc) {
+        var nums = proc.querySelectorAll('.process-step__num');
+        var lines = proc.querySelectorAll('.process-connector__line');
+        var bodies = proc.querySelectorAll('.process-step__body');
+        var tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: proc,
+            start: 'top 75%',
+            toggleActions: 'play none none none',
+          },
+        });
+        tl.from(nums, {
+          scale: 0,
+          opacity: 0,
+          duration: 0.45,
+          stagger: 0.12,
+          ease: 'back.out(1.35)',
+        });
+        if (lines.length) {
+          tl.from(
+            lines,
+            {
+              scaleX: 0,
+              opacity: 0.35,
+              duration: 0.5,
+              stagger: 0.1,
+              ease: 'power2.out',
+            },
+            '-=0.2'
+          );
+        }
+        tl.from(
+          bodies,
+          {
+            y: 28,
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: 'power2.out',
+          },
+          lines.length ? '-=0.35' : '-=0.15'
+        );
+      }
+
+      var cta = document.querySelector('.cta-band--impact');
+      if (cta) {
+        gsap.from(cta.querySelectorAll('.section-label, .cta-band__title, .cta-band__lead, .cta-band__actions'), {
+          y: 24,
+          opacity: 0,
+          duration: 0.55,
+          stagger: 0.08,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: cta,
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
