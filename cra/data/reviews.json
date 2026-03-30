@@ -1,24 +1,24 @@
 {
-  "_comment": "Fallback when /api/google-reviews is unavailable. Production: set GOOGLE_PLACES_API_KEY + GOOGLE_PLACE_ID on Vercel for live Google reviews.",
+  "_comment": "Fallback when /api/google-reviews is unavailable. Match index.html illustrative tone; set GOOGLE_* env on Vercel for live Google reviews.",
   "updated": "2026-03-30",
   "reviews": [
     {
       "rating": 5,
-      "quote": "They handled our hurricane damage claim when the insurance company tried to lowball us. Professional from start to finish.",
-      "author": "Maria S., Miami",
-      "claimType": "Hurricane damage claim"
+      "quote": "Illustrative example: we document storm and wind damage and policy terms to support a fair scope when carriers undervalue the loss.",
+      "author": "—",
+      "claimType": "Hurricane & storm claims"
     },
     {
       "rating": 5,
-      "quote": "Absolute lifesavers. They documented water damage the carrier's adjuster missed entirely.",
-      "author": "David L., Fort Lauderdale",
-      "claimType": "Water damage claim"
+      "quote": "Illustrative example: we identify missed water and mold-related damage that initial carrier estimates often overlook.",
+      "author": "—",
+      "claimType": "Water & mold damage"
     },
     {
       "rating": 5,
-      "quote": "Clear communication and a much stronger settlement — roughly three times what was first offered.",
-      "author": "Sarah J., Boca Raton",
-      "claimType": "Underpaid claim dispute"
+      "quote": "Illustrative example: we help policyholders respond to underpayment and dispute resolution with organized evidence and clear communication.",
+      "author": "—",
+      "claimType": "Underpaid & disputed claims"
     }
   ]
 }

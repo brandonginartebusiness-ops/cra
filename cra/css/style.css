@@ -462,6 +462,20 @@ textarea {
 }
 
 /* --- Testimonials (home) --- */
+.reviews-fallback-note {
+  margin: 0 auto 1.25rem;
+  max-width: 42rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: center;
+}
+
+.reviews-fallback-note strong {
+  color: var(--dark-text);
+  font-weight: 600;
+}
+
 .testimonials .card.testimonial-card {
   border-left: 4px solid var(--gold);
   padding-left: 1.35rem;

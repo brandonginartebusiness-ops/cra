@@ -108,31 +108,34 @@
     <section class="section section-alt testimonials">
       <div class="container fade-up">
         <h2 class="section-title">What Our Clients Say</h2>
-        <!-- Testimonials: main.js tries /api/google-reviews (Google Places), then data/reviews.json, else static cards. -->
-        <div class="grid-3" id="reviews-grid">
+        <p id="reviews-fallback-note" class="reviews-fallback-note" hidden>
+          The examples below are <strong>illustrative</strong>, not live Google reviews. When Google Business is connected, verified reviews replace this section automatically.
+        </p>
+        <!-- Testimonials: main.js → /api/google-reviews, then data/reviews.json, else static cards. data-max-reviews caps how many cards render (Google returns up to 5). -->
+        <div class="grid-3" id="reviews-grid" data-max-reviews="3">
           <article class="card testimonial-card">
             <p class="stars">★★★★★</p>
             <blockquote class="testimonial-quote">
-              They handled our hurricane damage claim when the insurance company tried to lowball us. Professional from start to finish.
+              Illustrative example: we document storm and wind damage and policy terms to support a fair scope when carriers undervalue the loss.
             </blockquote>
-            <p class="testimonial-attrib">Maria S., Miami</p>
-            <span class="claim-type">Hurricane damage claim</span>
+            <p class="testimonial-attrib">—</p>
+            <span class="claim-type">Hurricane &amp; storm claims</span>
           </article>
           <article class="card testimonial-card">
             <p class="stars">★★★★★</p>
             <blockquote class="testimonial-quote">
-              Absolute lifesavers. They documented water damage the carrier’s adjuster missed entirely.
+              Illustrative example: we identify missed water and mold-related damage that initial carrier estimates often overlook.
             </blockquote>
-            <p class="testimonial-attrib">David L., Fort Lauderdale</p>
-            <span class="claim-type">Water damage claim</span>
+            <p class="testimonial-attrib">—</p>
+            <span class="claim-type">Water &amp; mold damage</span>
           </article>
           <article class="card testimonial-card">
             <p class="stars">★★★★★</p>
             <blockquote class="testimonial-quote">
-              Clear communication and a much stronger settlement — roughly three times what was first offered.
+              Illustrative example: we help policyholders respond to underpayment and dispute resolution with organized evidence and clear communication.
             </blockquote>
-            <p class="testimonial-attrib">Sarah J., Boca Raton</p>
-            <span class="claim-type">Underpaid claim dispute</span>
+            <p class="testimonial-attrib">—</p>
+            <span class="claim-type">Underpaid &amp; disputed claims</span>
           </article>
         </div>
         <p id="reviews-google-attribution" class="reviews-google-attribution" hidden></p>

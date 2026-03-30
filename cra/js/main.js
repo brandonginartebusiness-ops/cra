@@ -99,10 +99,25 @@
     return new Array(r + 1).join('★');
   }
 
-  function renderReviewCards(reviewsGrid, list) {
+  function getMaxReviews(reviewsGrid) {
+    var a = reviewsGrid.getAttribute('data-max-reviews');
+    if (a === null || a === '') return 3;
+    var n = parseInt(a, 10);
+    if (isNaN(n) || n < 1) return 3;
+    if (n > 10) return 10;
+    return n;
+  }
+
+  function renderReviewCards(reviewsGrid, list, maxReviews) {
+    if (maxReviews == null || !isFinite(maxReviews) || maxReviews < 1) {
+      maxReviews = Infinity;
+    }
     var filtered = (list || []).filter(function (r) {
       return String(r.quote || '').trim().length > 0;
     });
+    if (filtered.length > maxReviews) {
+      filtered = filtered.slice(0, maxReviews);
+    }
     if (!filtered.length) return false;
     reviewsGrid.innerHTML = filtered
       .map(function (r) {
@@ -178,9 +193,17 @@
     attrEl.removeAttribute('hidden');
   }
 
+  function setFallbackNoteVisible(visible) {
+    var n = document.getElementById('reviews-fallback-note');
+    if (!n) return;
+    if (visible) n.removeAttribute('hidden');
+    else n.setAttribute('hidden', '');
+  }
+
   var reviewsGrid = document.getElementById('reviews-grid');
   var attrEl = document.getElementById('reviews-google-attribution');
   if (reviewsGrid) {
+    var maxReviews = getMaxReviews(reviewsGrid);
     fetch('/api/google-reviews', { headers: { Accept: 'application/json' } })
       .then(function (res) {
         if (!res.ok) throw new Error('api');
@@ -190,10 +213,11 @@
         if (
           !data ||
           data.source !== 'google' ||
-          !renderReviewCards(reviewsGrid, data.reviews)
+          !renderReviewCards(reviewsGrid, data.reviews, maxReviews)
         ) {
           throw new Error('no google');
         }
+        setFallbackNoteVisible(false);
         applyGoogleAttribution(attrEl, data);
       })
       .catch(function () {
@@ -209,10 +233,11 @@
             if (
               !Array.isArray(list) ||
               !list.length ||
-              !renderReviewCards(reviewsGrid, list)
+              !renderReviewCards(reviewsGrid, list, maxReviews)
             ) {
               throw new Error('empty');
             }
+            setFallbackNoteVisible(true);
             if (attrEl) {
               attrEl.innerHTML = '';
               attrEl.setAttribute('hidden', '');
@@ -220,6 +245,7 @@
           });
       })
       .catch(function () {
+        setFallbackNoteVisible(true);
         if (attrEl) {
           attrEl.innerHTML = '';
           attrEl.setAttribute('hidden', '');
