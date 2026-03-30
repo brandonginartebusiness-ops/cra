@@ -1,314 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Claim Remedy Adjusters | Florida's Public Adjusters</title>
-<meta name="description" content="Florida's most trusted public adjusters. We fight for the insurance payout you truly deserve — storm, water, roof & fire damage claims. No upfront cost." />
-<link rel="stylesheet" href="css/style.css" />
-<style>
-/* ── HERO ── */
-.hero {
-  min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
-  padding-top: 72px;
-}
-.hero-left {
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 6rem 3.5rem 6rem 4rem;
-  animation: fadeUp 0.9s 0.2s ease both;
-}
-.hero-kicker {
-  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;
-  display: flex; align-items: center; gap: 0.75rem;
-}
-.hero-kicker::before { content:''; width:2rem; height:1px; background:var(--gold); }
-.hero h1 {
-  font-family: var(--serif); font-size: clamp(2.8rem,4.5vw,4rem);
-  line-height: 1.07; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 1.5rem;
-}
-.hero h1 em { font-style: italic; color: var(--accent); }
-.hero-sub {
-  font-size: 1.05rem; color: var(--mid); line-height: 1.75; max-width: 44ch;
-  margin-bottom: 2.5rem; font-weight: 300;
-}
-.hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
-.btn-ghost {
-  color: var(--ink); text-decoration: none; font-size: 0.9rem;
-  display: flex; align-items: center; gap: 0.4rem;
-  border-bottom: 1px solid var(--border); padding-bottom: 0.1rem;
-  transition: border-color 0.2s, gap 0.2s;
-}
-.btn-ghost:hover { border-color: var(--ink); gap: 0.65rem; }
-.hero-stats {
-  margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--border);
-  display: flex; gap: 2.5rem;
-}
-.stat-num {
-  font-family: var(--serif); font-size: 2rem; color: var(--ink);
-  line-height: 1; letter-spacing: -0.02em;
-}
-.stat-label { font-size: 0.75rem; color: var(--mid); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.3rem; }
-
-.hero-right { position: relative; overflow: hidden; animation: fadeIn 1.1s 0.1s ease both; }
-.hero-right::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--accent) 0%, #0D2E45 100%); z-index: 0;
-}
-.hero-lines {
-  position: absolute; inset: 0; z-index: 1;
-  background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 4px);
-}
-.hero-quote-card {
-  position: absolute; bottom: 3rem; left: -2rem; z-index: 2;
-  background: var(--cream); padding: 1.5rem 1.75rem; border-radius: 2px;
-  max-width: 280px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-  animation: slideIn 1s 0.7s ease both;
-}
-.hero-quote-card blockquote {
-  font-family: var(--serif); font-style: italic;
-  font-size: 0.92rem; line-height: 1.55; color: var(--ink); margin-bottom: 0.7rem;
-}
-.hero-quote-card cite { font-size: 0.7rem; color: var(--mid); text-transform: uppercase; letter-spacing: 0.08em; font-style: normal; }
-.hero-badge {
-  position: absolute; top: 3rem; right: 2.5rem; z-index: 2;
-  width: 88px; height: 88px;
-  display: flex; align-items: center; justify-content: center;
-  border: 1px solid rgba(255,255,255,0.2); border-radius: 50%;
-  animation: spin 22s linear infinite;
-}
-.hero-badge-inner {
-  display: flex; flex-direction: column; align-items: center;
-}
-.badge-num { font-family: var(--serif); font-size: 1.6rem; color: #fff; line-height: 1; }
-.badge-txt { font-size: 0.52rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.2rem; }
-
-/* ── HOW IT WORKS ── */
-.how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-.how-body { font-size: 1rem; color: var(--mid); line-height: 1.75; font-weight: 300; max-width: 44ch; margin: 1.25rem 0 2rem; }
-.steps { display: flex; flex-direction: column; }
-.step {
-  display: flex; gap: 1.5rem; padding: 1.5rem 0;
-  border-bottom: 1px solid var(--border); align-items: flex-start;
-}
-.step:first-child { border-top: 1px solid var(--border); }
-.step-num { font-family: var(--serif); font-size: 2.2rem; color: rgba(17,17,16,0.12); line-height: 1; width: 2.5rem; flex-shrink: 0; }
-.step-content h3 { font-family: var(--serif); font-size: 1.08rem; margin-bottom: 0.3rem; }
-.step-content p { font-size: 0.85rem; color: var(--mid); line-height: 1.65; font-weight: 300; }
-
-/* ── SERVICES GRID ── */
-.services-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5px; background: rgba(255,255,255,0.06); margin-top: 3rem; }
-.service-card {
-  background: var(--ink); padding: 2rem 1.75rem; cursor: default;
-  transition: background 0.25s; position: relative; overflow: hidden;
-}
-.service-card:hover { background: var(--accent); }
-.service-icon { font-size: 1.5rem; margin-bottom: 1.25rem; display: block; }
-.service-card h3 { font-family: var(--serif); font-size: 1.08rem; color: var(--cream); margin-bottom: 0.5rem; line-height: 1.2; }
-.service-card p { font-size: 0.82rem; color: rgba(245,241,235,0.5); line-height: 1.65; font-weight: 300; }
-.service-card a { display:block; margin-top:1.25rem; font-size:0.78rem; color:rgba(245,241,235,0.4); text-decoration:none; text-transform:uppercase; letter-spacing:0.06em; transition:color 0.2s; }
-.service-card:hover a { color:rgba(245,241,235,0.8); }
-
-/* ── WHY US ── */
-.why-header { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: flex-end; margin-bottom: 3rem; }
-.why-sub { font-size: 1rem; color: var(--mid); line-height: 1.75; font-weight: 300; }
-.why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--border); }
-.why-item { background: var(--cream); padding: 2.5rem 2rem; }
-.why-icon { font-size: 1.3rem; margin-bottom: 1rem; }
-.why-item h3 { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.5rem; }
-.why-item p { font-size: 0.84rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
-
-/* ── TESTIMONIAL BAND ── */
-.testimonial-band {
-  background: var(--accent); padding: 6rem 4rem;
-  display: flex; align-items: center; justify-content: center; text-align: center;
-}
-.t-inner { max-width: 660px; }
-.stars { display:flex; gap:0.25rem; justify-content:center; margin-bottom:1.75rem; color:var(--gold); font-size:0.85rem; }
-.t-inner blockquote { font-family:var(--serif); font-style:italic; font-size:clamp(1.3rem,2.2vw,1.85rem); line-height:1.4; color:#fff; margin-bottom:1.25rem; }
-.t-inner cite { font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); font-style:normal; }
-
-/* ── CTA ── */
-.cta-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
-.cta-right { display:flex; flex-direction:column; gap:1.25rem; }
-.cta-actions { display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
-.link-light { color:rgba(245,241,235,0.55); font-size:0.88rem; text-decoration:none; display:flex; align-items:center; gap:0.35rem; transition:color 0.2s; }
-.link-light:hover { color:#fff; }
-
-@media(max-width:960px){
-  .hero{grid-template-columns:1fr;min-height:auto;}
-  .hero-left{padding:5rem 1.5rem 3rem;}
-  .hero-right{min-height:55vw;}
-  .hero-quote-card{left:1rem;bottom:1.5rem;}
-  .how-grid{grid-template-columns:1fr;gap:3rem;}
-  .services-grid{grid-template-columns:1fr 1fr;}
-  .why-grid{grid-template-columns:1fr 1fr;}
-  .why-header{grid-template-columns:1fr;}
-  .cta-grid{grid-template-columns:1fr;}
-  .testimonial-band{padding:4rem 1.5rem;}
-}
-@media(max-width:600px){
-  .services-grid,.why-grid{grid-template-columns:1fr;}
-  .hero-stats{flex-direction:column;gap:1.5rem;}
-}
-</style>
-</head>
-<body>
-
-<nav>
-  <a href="index.html" class="nav-logo">Claim <span>Remedy</span> Adjusters</a>
-  <ul class="nav-links">
-    <li><a href="pages/about.html">About</a></li>
-    <li><a href="pages/services.html">Services</a></li>
-    <li><a href="pages/results.html">Results</a></li>
-    <li><a href="pages/faq.html">FAQ</a></li>
-    <li><a href="pages/contact.html">Contact</a></li>
-    <li><a href="tel:7862237867" class="nav-cta">Call (786) 223-7867</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section class="hero" style="padding-top:72px;">
-  <div class="hero-left">
-    <p class="hero-kicker">Licensed Florida Public Adjusters</p>
-    <h1>Your insurance company has a team.<br><em>Now you do too.</em></h1>
-    <p class="hero-sub">When a storm, flood, or fire damages your home, we inspect, document, and negotiate your claim — so you get every dollar you're owed. No upfront cost, ever.</p>
-    <div class="hero-actions">
-      <a href="tel:7862237867" class="btn btn-dark">Call for a Free Review</a>
-      <a href="#how" class="btn-ghost">See how it works →</a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-num">$4M+</div><div class="stat-label">Recovered for clients</div></div>
-      <div><div class="stat-num">500+</div><div class="stat-label">Claims settled</div></div>
-      <div><div class="stat-num">0%</div><div class="stat-label">Upfront cost</div></div>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-lines"></div>
-    <div class="hero-badge"><div class="hero-badge-inner"><div class="badge-num">A+</div><div class="badge-txt">Rated</div></div></div>
-    <div class="hero-quote-card">
-      <blockquote>"They recovered 3× what the insurance company initially offered us after the hurricane."</blockquote>
-      <cite>— Maria R., Tampa FL</cite>
-    </div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-band" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">Storm Damage</span><span class="marquee-item">Water Damage</span><span class="marquee-item">Roof Damage</span><span class="marquee-item">Fire Damage</span><span class="marquee-item">Mold Claims</span><span class="marquee-item">Hurricane Claims</span><span class="marquee-item">Denied Claims</span><span class="marquee-item">Underpaid Claims</span>
-    <span class="marquee-item">Storm Damage</span><span class="marquee-item">Water Damage</span><span class="marquee-item">Roof Damage</span><span class="marquee-item">Fire Damage</span><span class="marquee-item">Mold Claims</span><span class="marquee-item">Hurricane Claims</span><span class="marquee-item">Denied Claims</span><span class="marquee-item">Underpaid Claims</span>
-  </div>
-</div>
-
-<!-- HOW IT WORKS -->
-<section class="section" id="how">
-  <div class="how-grid">
-    <div>
-      <p class="label">How it works</p>
-      <h2 class="heading">Simple, transparent,<br><em>on your side</em></h2>
-      <p class="how-body">From your first call to your final payout, we handle every detail. No jargon, no runaround — just results.</p>
-      <a href="tel:7862237867" class="btn btn-dark">Start your free review</a>
-    </div>
-    <div class="steps">
-      <div class="step reveal" data-delay="0"><div class="step-num">01</div><div class="step-content"><h3>Free Claim Review</h3><p>We review your policy and damage details at zero cost. You'll know exactly where you stand before we start.</p></div></div>
-      <div class="step reveal" data-delay="100"><div class="step-num">02</div><div class="step-content"><h3>On-Site Inspection</h3><p>Our licensed adjusters document every inch of damage — thoroughly, professionally, and with your best interests in mind.</p></div></div>
-      <div class="step reveal" data-delay="200"><div class="step-num">03</div><div class="step-content"><h3>Claim Filing & Negotiation</h3><p>We prepare and submit the claim, then negotiate directly with your insurer to maximize your settlement.</p></div></div>
-      <div class="step reveal" data-delay="300"><div class="step-num">04</div><div class="step-content"><h3>You Get Paid</h3><p>Our fee is a small percentage of your settlement — meaning we're 100% motivated to get you the most possible.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="section section-dark" id="services" style="padding-bottom:4rem;">
-  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;">
-    <div>
-      <p class="label label-dark">What we handle</p>
-      <h2 class="heading heading-light">Every type of <em>property damage</em></h2>
-    </div>
-    <a href="pages/services.html" class="btn btn-outline">View all services →</a>
-  </div>
-  <div class="services-grid">
-    <div class="service-card"><span class="service-icon">🌪️</span><h3>Storm & Hurricane</h3><p>Wind, hail, and hurricane damage — we counter lowball offers with airtight documentation.</p><a href="pages/services.html#storm">Learn more →</a></div>
-    <div class="service-card"><span class="service-icon">💧</span><h3>Water & Flood</h3><p>Hidden moisture, structural damage, mold risk — we document the full scope insurers minimize.</p><a href="pages/services.html#water">Learn more →</a></div>
-    <div class="service-card"><span class="service-icon">🏠</span><h3>Roof Damage</h3><p>Roof claims are routinely underpaid. We fight for full replacement value on every inspection.</p><a href="pages/services.html#roof">Learn more →</a></div>
-    <div class="service-card"><span class="service-icon">🔥</span><h3>Fire & Smoke</h3><p>From structural loss to smoke contamination, we capture damage that's easy to miss.</p><a href="pages/services.html#fire">Learn more →</a></div>
-  </div>
-</section>
-
-<!-- WHY US -->
-<section class="section">
-  <div class="why-header">
-    <div>
-      <p class="label">Why Claim Remedy</p>
-      <h2 class="heading">We work for <em>you</em> — not your insurer</h2>
-    </div>
-    <p class="why-sub">Your insurance company has staff adjusters whose job is to minimize your payout. A public adjuster levels the playing field — we're your expert, your advocate, your voice.</p>
-  </div>
-  <div class="why-grid" data-stagger>
-    <div class="why-item"><div class="why-icon">⚖️</div><h3>Licensed & Regulated</h3><p>Fully licensed Florida public adjusters — held to state standards and committed to ethical, transparent practice.</p></div>
-    <div class="why-item"><div class="why-icon">💼</div><h3>No Upfront Cost</h3><p>You pay nothing until we win your claim. Our fee is a percentage of your settlement — aligning our success with yours.</p></div>
-    <div class="why-item"><div class="why-icon">⚡</div><h3>Fast Response</h3><p>We move quickly because timing matters. The sooner we're involved, the stronger your claim will be.</p></div>
-    <div class="why-item"><div class="why-icon">📋</div><h3>Meticulous Documentation</h3><p>We photograph, measure, and record everything — building an evidence-backed file that's hard to dispute.</p></div>
-    <div class="why-item"><div class="why-icon">🗣️</div><h3>Direct Negotiation</h3><p>We communicate with your insurer on your behalf — eliminating confusion and keeping nothing on the table.</p></div>
-    <div class="why-item"><div class="why-icon">🌊</div><h3>Florida Expertise</h3><p>10+ years in Florida's unique insurance landscape — we know the tactics insurers use and how to counter them.</p></div>
-  </div>
-</section>
-
-<!-- TESTIMONIAL -->
-<div class="testimonial-band">
-  <div class="t-inner reveal">
-    <div class="stars">★★★★★</div>
-    <blockquote>"I had no idea how much I was leaving on the table. Claim Remedy turned a denied claim into a full settlement. I can't recommend them enough."</blockquote>
-    <cite>— Carlos M., Miami-Dade FL · Water Damage Claim</cite>
-  </div>
-</div>
-
-<!-- CTA -->
-<section class="section section-dark">
-  <div class="cta-grid">
-    <h2 class="heading heading-light">Don't settle for less than you <em>deserve.</em></h2>
-    <div class="cta-right">
-      <p class="body-text body-text-light">Most homeowners are shocked to learn how much more they're entitled to. Find out where you stand — completely free, no obligation.</p>
-      <div class="cta-actions">
-        <a href="tel:7862237867" class="btn btn-light">Call (786) 223-7867</a>
-        <a href="pages/contact.html" class="link-light">Send a message →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <a href="index.html" class="nav-logo">Claim <span style="color:var(--accent-light)">Remedy</span> Adjusters</a>
-      <p>Licensed Florida public adjusters fighting for the payout homeowners truly deserve. No upfront cost. No risk.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <a href="pages/about.html">About Us</a>
-      <a href="pages/results.html">Results</a>
-      <a href="pages/contact.html">Contact</a>
-    </div>
-    <div class="footer-col">
-      <h4>Services</h4>
-      <a href="pages/services.html#storm">Storm & Hurricane</a>
-      <a href="pages/services.html#water">Water & Flood</a>
-      <a href="pages/services.html#roof">Roof Damage</a>
-      <a href="pages/services.html#fire">Fire & Smoke</a>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <a href="tel:7862237867">(786) 223-7867</a>
-      <a href="mailto:office@cradjusters.com">office@cradjusters.com</a>
-      <a href="https://maps.app.goo.gl/q3hukF8AL637JsX49" target="_blank">7900 Oak Ln #400, Miami Lakes FL</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 Claim Remedy Adjusters. Licensed Florida Public Adjusters.</span>
-    <span><a href="pages/faq.html">FAQ</a> &nbsp;·&nbsp; <a href="pages/contact.html">Contact</a></span>
-  </div>
-</footer>
-
-<script src="js/main.js"></script>
-</body>
-</html>
+PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRh
+IGNoYXJzZXQ9IlVURi04IiAvPjxtZXRhIG5hbWU9InZpZXdwb3J0IiBjb250
+ZW50PSJ3aWR0aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MS4wIiAv
+Pgo8dGl0bGU+Q2xhaW0gUmVtZWR5IEFkanVzdGVycyB8IEZsb3JpZGEncyBQ
+dWJsaWMgQWRqdXN0ZXJzPC90aXRsZT4KPG1ldGEgbmFtZT0iZGVzY3JpcHRp
+b24iIGNvbnRlbnQ9IkZsb3JpZGEncyBtb3N0IHRydXN0ZWQgcHVibGljIGFk
+anVzdGVycy4gV2UgZmlnaHQgZm9yIHRoZSBpbnN1cmFuY2UgcGF5b3V0IHlv
+dSB0cnVseSBkZXNlcnZlIOKAlCBzdG9ybSwgd2F0ZXIsIHJvb2YgJiBmaXJl
+IGRhbWFnZSBjbGFpbXMuIE5vIHVwZnJvbnQgY29zdC4iIC8+CjxsaW5rIHJl
+bD0ic3R5bGVzaGVldCIgaHJlZj0iY3NzL3N0eWxlLmNzcyIgLz4KPHN0eWxl
+PgovKiDilIDilIAgSEVSTyDilIDilIAgKi8KLmhlcm8gewogIG1pbi1oZWln
+aHQ6IDEwMHZoOyBkaXNwbGF5OiBncmlkOyBncmlkLXRlbXBsYXRlLWNvbHVt
+bnM6IDFmciAxZnI7CiAgcGFkZGluZy10b3A6IDcycHg7Cn0KLmhlcm8tbGVm
+dCB7CiAgZGlzcGxheTogZmxleDsgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsg
+anVzdGlmeS1jb250ZW50OiBjZW50ZXI7CiAgcGFkZGluZzogNnJlbSAzLjVy
+ZW0gNnJlbSA0cmVtOwogIGFuaW1hdGlvbjogZmFkZVVwIDAuOXMgMC4ycyBl
+YXNlIGJvdGg7Cn0KLmhlcm8ta2lja2VyIHsKICBmb250LXNpemU6IDAuNzJy
+ZW07IGZvbnQtd2VpZ2h0OiA1MDA7IGxldHRlci1zcGFjaW5nOiAwLjE0ZW07
+CiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsgY29sb3I6IHZhcigtLWdv
+bGQpOyBtYXJnaW4tYm90dG9tOiAxLjVyZW07CiAgZGlzcGxheTogZmxleDsg
+YWxpZ24taXRlbXM6IGNlbnRlcjsgZ2FwOiAwLjc1cmVtOwp9Ci5oZXJvLWtp
+Y2tlcjo6YmVmb3JlIHsgY29udGVudDonJzsgd2lkdGg6MnJlbTsgaGVpZ2h0
+OjFweDsgYmFja2dyb3VuZDp2YXIoLS1nb2xkKTsgfQouaGVybyBoMSB7CiAg
+Zm9udC1mYW1pbHk6IHZhcigtLXNlcmlmKTsgZm9udC1zaXplOiBjbGFtcCgy
+LjhyZW0sNC41dncsNHJlbSk7CiAgbGluZS1oZWlnaHQ6IDEuMDc7IGxldHRl
+ci1zcGFjaW5nOiAtMC4wMjVlbTsgY29sb3I6IHZhcigtLWluayk7IG1hcmdp
+bi1ib3R0b206IDEuNXJlbTsKfQouaGVybyBoMSBlbSB7IGZvbnQtc3R5bGU6
+IGl0YWxpYzsgY29sb3I6IHZhcigtLWFjY2VudCk7IH0KLmhlcm8tc3ViIHsK
+ICBmb250LXNpemU6IDEuMDVyZW07IGNvbG9yOiB2YXIoLS1taWQpOyBsaW5l
+LWhlaWdodDogMS43NTsgbWF4LXdpZHRoOiA0NGNoOwogIG1hcmdpbi1ib3R0
+b206IDIuNXJlbTsgZm9udC13ZWlnaHQ6IDMwMDsKfQouaGVyby1hY3Rpb25z
+IHsgZGlzcGxheTogZmxleDsgZ2FwOiAxcmVtOyBhbGlnbi1pdGVtczogY2Vu
+dGVyOyBmbGV4LXdyYXA6IHdyYXA7IH0KLmJ0bi1naG9zdCB7CiAgY29sb3I6
+IHZhcigtLWluayk7IHRleHQtZGVjb3JhdGlvbjogbm9uZTsgZm9udC1zaXpl
+OiAwLjlyZW07CiAgZGlzcGxheTogZmxleDsgYWxpZ24taXRlbXM6IGNlbnRl
+cjsgZ2FwOiAwLjRyZW07CiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkIHZh
+cigtLWJvcmRlcik7IHBhZGRpbmctYm90dG9tOiAwLjFyZW07CiAgdHJhbnNp
+dGlvbjogYm9yZGVyLWNvbG9yIDAuMnMsIGdhcCAwLjJzOwp9Ci5idG4tZ2hv
+c3Q6aG92ZXIgeyBib3JkZXItY29sb3I6IHZhcigtLWluayk7IGdhcDogMC42
+NXJlbTsgfQouaGVyby1zdGF0cyB7CiAgbWFyZ2luLXRvcDogMy41cmVtOyBw
+YWRkaW5nLXRvcDogMnJlbTsgYm9yZGVyLXRvcDogMXB4IHNvbGlkIHZhcigt
+LWJvcmRlcik7CiAgZGlzcGxheTogZmxleDsgZ2FwOiAyLjVyZW07Cn0KLnN0
+YXQtbnVtIHsKICBmb250LWZhbWlseTogdmFyKC0tc2VyaWYpOyBmb250LXNp
+emU6IDJyZW07IGNvbG9yOiB2YXIoLS1pbmspOwogIGxpbmUtaGVpZ2h0OiAx
+OyBsZXR0ZXItc3BhY2luZzogLTAuMDJlbTsKfQouc3RhdC1sYWJlbCB7IGZv
+bnQtc2l6ZTogMC43NXJlbTsgY29sb3I6IHZhcigtLW1pZCk7IHRleHQtdHJh
+bnNmb3JtOiB1cHBlcmNhc2U7IGxldHRlci1zcGFjaW5nOiAwLjA2ZW07IG1h
+cmdpbi10b3A6IDAuM3JlbTsgfQoKLmhlcm8tcmlnaHQgeyBwb3NpdGlvbjog
+cmVsYXRpdmU7IG92ZXJmbG93OiBoaWRkZW47IGFuaW1hdGlvbjogZmFkZUlu
+IDEuMXMgMC4xcyBlYXNlIGJvdGg7IH0KLmhlcm8tcmlnaHQ6OmJlZm9yZSB7
+CiAgY29udGVudDogJyc7IHBvc2l0aW9uOiBhYnNvbHV0ZTsgaW5zZXQ6IDA7
+CiAgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KDEzNWRlZywgdmFyKC0t
+YWNjZW50KSAwJSwgIzBEMkU0NSAxMDAlKTsgei1pbmRleDogMDsKfQouaGVy
+by1saW5lcyB7CiAgcG9zaXRpb246IGFic29sdXRlOyBpbnNldDogMDsgei1p
+bmRleDogMTsKICBiYWNrZ3JvdW5kOiByZXBlYXRpbmctbGluZWFyLWdyYWRp
+ZW50KDBkZWcsIHRyYW5zcGFyZW50LCB0cmFuc3BhcmVudCAzcHgsIHJnYmEo
+MCwwLDAsMC4wNCkgM3B4LCByZ2JhKDAsMCwwLDAuMDQpIDRweCk7Cn0KLmhl
+cm8tcXVvdGUtY2FyZCB7CiAgcG9zaXRpb246IGFic29sdXRlOyBib3R0b206
+IDNyZW07IGxlZnQ6IC0ycmVtOyB6LWluZGV4OiAyOwogIGJhY2tncm91bmQ6
+IHZhcigtLWNyZWFtKTsgcGFkZGluZzogMS41cmVtIDEuNzVyZW07IGJvcmRl
+ci1yYWRpdXM6IDJweDsKICBtYXgtd2lkdGg6IDI4MHB4OyBib3gtc2hhZG93
+OiAwIDIwcHggNjBweCByZ2JhKDAsMCwwLDAuMik7CiAgYW5pbWF0aW9uOiBz
+bGlkZUluIDFzIDAuN3MgZWFzZSBib3RoOwp9Ci5oZXJvLXF1b3RlLWNhcmQg
+YmxvY2txdW90ZSB7CiAgZm9udC1mYW1pbHk6IHZhcigtLXNlcmlmKTsgZm9u
+dC1zdHlsZTogaXRhbGljOwogIGZvbnQtc2l6ZTogMC45MnJlbTsgbGluZS1o
+ZWlnaHQ6IDEuNTU7IGNvbG9yOiB2YXIoLS1pbmspOyBtYXJnaW4tYm90dG9t
+OiAwLjdyZW07Cn0KLmhlcm8tcXVvdGUtY2FyZCBjaXRlIHsgZm9udC1zaXpl
+OiAwLjdyZW07IGNvbG9yOiB2YXIoLS1taWQpOyB0ZXh0LXRyYW5zZm9ybTog
+dXBwZXJjYXNlOyBsZXR0ZXItc3BhY2luZzogMC4wOGVtOyBmb250LXN0eWxl
+OiBub3JtYWw7IH0KLmhlcm8tYmFkZ2UgewogIHBvc2l0aW9uOiBhYnNvbHV0
+ZTsgdG9wOiAzcmVtOyByaWdodDogMi41cmVtOyB6LWluZGV4OiAyOwogIHdp
+ZHRoOiA4OHB4OyBoZWlnaHQ6IDg4cHg7CiAgZGlzcGxheTogZmxleDsgYWxp
+Z24taXRlbXM6IGNlbnRlcjsganVzdGlmeS1jb250ZW50OiBjZW50ZXI7CiAg
+Ym9yZGVyOiAxcHggc29saWQgcmdiYSgyNTUsMjU1LDI1NSwwLjIpOyBib3Jk
+ZXItcmFkaXVzOiA1MCU7CiAgYW5pbWF0aW9uOiBzcGluIDIycyBsaW5lYXIg
+aW5maW5pdGU7Cn0KLmhlcm8tYmFkZ2UtaW5uZXIgewogIGRpc3BsYXk6IGZs
+ZXg7IGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47IGFsaWduLWl0ZW1zOiBjZW50
+ZXI7Cn0KLmJhZGdlLW51bSB7IGZvbnQtZmFtaWx5OiB2YXIoLS1zZXJpZik7
+IGZvbnQtc2l6ZTogMS42cmVtOyBjb2xvcjogI2ZmZjsgbGluZS1oZWlnaHQ6
+IDE7IH0KLmJhZGdlLXR4dCB7IGZvbn
