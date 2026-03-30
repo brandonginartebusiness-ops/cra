@@ -93,6 +93,140 @@
     });
   }
 
+  // Testimonials: /api/google-reviews (Google Places, Vercel env) → data/reviews.json → static HTML
+  function starsStr(n) {
+    var r = Math.min(5, Math.max(0, Math.round(Number(n) || 5)));
+    return new Array(r + 1).join('★');
+  }
+
+  function renderReviewCards(reviewsGrid, list) {
+    var filtered = (list || []).filter(function (r) {
+      return String(r.quote || '').trim().length > 0;
+    });
+    if (!filtered.length) return false;
+    reviewsGrid.innerHTML = filtered
+      .map(function (r) {
+        var claim = String(r.claimType || '').trim();
+        var claimHtml = claim
+          ? '<span class="claim-type">' + escapeHtml(claim) + '</span>'
+          : '';
+        var maps = r.googleMapsUri
+          ? '<p class="testimonial-maps-link"><a href="' +
+            escapeHtml(String(r.googleMapsUri)) +
+            '" target="_blank" rel="noopener noreferrer">View on Google Maps</a></p>'
+          : '';
+        return (
+          '<article class="card testimonial-card">' +
+          '<p class="stars">' +
+          starsStr(r.rating) +
+          '</p>' +
+          '<blockquote class="testimonial-quote">' +
+          escapeHtml(String(r.quote || '')) +
+          '</blockquote>' +
+          '<p class="testimonial-attrib">' +
+          escapeHtml(String(r.author || '')) +
+          '</p>' +
+          maps +
+          claimHtml +
+          '</article>'
+        );
+      })
+      .join('');
+    return true;
+  }
+
+  function applyGoogleAttribution(attrEl, data) {
+    if (!attrEl || !data) return;
+    var html = '';
+    var attrs = data.attributions;
+    if (attrs && attrs.length) {
+      var parts = [];
+      for (var i = 0; i < attrs.length; i++) {
+        var a = attrs[i];
+        if (!a.provider) continue;
+        var p = escapeHtml(a.provider);
+        var u = a.providerUri && String(a.providerUri).trim();
+        if (u && /^https?:\/\//i.test(u)) {
+          parts.push(
+            '<a href="' +
+              escapeHtml(u) +
+              '" target="_blank" rel="noopener noreferrer">' +
+              p +
+              '</a>'
+          );
+        } else {
+          parts.push(p);
+        }
+      }
+      if (parts.length) {
+        html = parts.join(' · ') + '.';
+      }
+    }
+    if (!html && data.googleMapsUri) {
+      var g = String(data.googleMapsUri);
+      if (/^https?:\/\//i.test(g)) {
+        html =
+          'Reviews from <a href="' +
+          escapeHtml(g) +
+          '" target="_blank" rel="noopener noreferrer">Google Maps</a>.';
+      }
+    }
+    if (!html) {
+      html = 'Reviews from Google Maps.';
+    }
+    attrEl.innerHTML = html;
+    attrEl.removeAttribute('hidden');
+  }
+
+  var reviewsGrid = document.getElementById('reviews-grid');
+  var attrEl = document.getElementById('reviews-google-attribution');
+  if (reviewsGrid) {
+    fetch('/api/google-reviews', { headers: { Accept: 'application/json' } })
+      .then(function (res) {
+        if (!res.ok) throw new Error('api');
+        return res.json();
+      })
+      .then(function (data) {
+        if (
+          !data ||
+          data.source !== 'google' ||
+          !renderReviewCards(reviewsGrid, data.reviews)
+        ) {
+          throw new Error('no google');
+        }
+        applyGoogleAttribution(attrEl, data);
+      })
+      .catch(function () {
+        return fetch('data/reviews.json', {
+          headers: { Accept: 'application/json' },
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error('json');
+            return res.json();
+          })
+          .then(function (data) {
+            var list = data && data.reviews;
+            if (
+              !Array.isArray(list) ||
+              !list.length ||
+              !renderReviewCards(reviewsGrid, list)
+            ) {
+              throw new Error('empty');
+            }
+            if (attrEl) {
+              attrEl.innerHTML = '';
+              attrEl.setAttribute('hidden', '');
+            }
+          });
+      })
+      .catch(function () {
+        if (attrEl) {
+          attrEl.innerHTML = '';
+          attrEl.setAttribute('hidden', '');
+        }
+      });
+  }
+
   // Formspree AJAX + success message
   var form = document.getElementById('contact-form');
   var statusEl = document.getElementById('form-status');
