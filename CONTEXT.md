@@ -55,18 +55,21 @@ cra/
 ## Tech Stack
 
 - Vanilla HTML / CSS / JS — no frameworks, no build tools
+- **[GSAP](https://greensock.com/gsap/) 3.12.5** + **[ScrollTrigger](https://greensock.com/docs/v3/Plugins/ScrollTrigger)** (CDN on all pages, before `main.js`) — hero intro timeline, hero background parallax (~`yPercent: 10`, scrub; disabled ≤768px), stats count-up on scroll, `.grid-3` card stagger, section label/title reveals + animated underline (`cra/js/main.js`). Fade-up still uses `IntersectionObserver` for `.fade-up` elements.
 - Hosted on Vercel (auto-deploys from GitHub on push)
 - Forms via Formspree (ID needs to be set in contact.html)
-- Testimonials: main.js tries `/api/google-reviews` first → falls back to `data/reviews.json` → falls back to static HTML cards
+- Testimonials: main.js tries `/api/google-reviews` first → falls back to `data/reviews.json` → falls back to static carousel slides in HTML
 
 ## Current State (What's Built)
 
 ### Homepage (index.html)
 - ✅ Sticky header with mobile hamburger nav
-- ✅ Hero with Unsplash bg, Ken Burns animation, navy overlay at 75%
-- ✅ Trust stats bar (overlapping hero) with count-up animation — values: $4M+, 500+, $0, 10+
-- ✅ Service areas (county pill chips)
-- ✅ Testimonials section with Google Reviews API integration + static fallback
+- ✅ Hero: word-by-word GSAP reveal, subtitle/CTA/trust-pill sequence, scroll hint; `.hero__bg` + Ken Burns + navy overlay; ScrollTrigger parallax (subtle; off on small screens)
+- ✅ Marquee strip (services keywords) between hero and stats
+- ✅ SVG curved section dividers between major bands
+- ✅ Trust stats bar (glass) overlapping hero area — ScrollTrigger count-up — values: $4M+, 500+, $0, 10+
+- ✅ Service areas (county chips + map pin, navy band)
+- ✅ Testimonials carousel (single slide, dots, crossfade, Google API + JSON + static)
 - ✅ Instagram grid (6 placeholders linking to @claimremedyadjusters)
 - ✅ Mobile sticky CTA bar (Call Now / Free Review) — hidden on contact page
 - ✅ Footer (navy bg, address, phone)

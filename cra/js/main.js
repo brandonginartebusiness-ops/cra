@@ -1,10 +1,18 @@
 (function () {
   'use strict';
 
+  var prefersMobile =
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(max-width: 768px)').matches;
+
   function escapeHtml(s) {
     var d = document.createElement('div');
     d.textContent = s;
     return d.innerHTML;
+  }
+
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
   }
 
   // Mobile nav toggle
@@ -17,7 +25,7 @@
     });
   }
 
-  // Fade-up on scroll
+  // Fade-up on scroll (non-.grid-3 cards; grids use GSAP stagger)
   var fadeEls = document.querySelectorAll('.fade-up');
   if (fadeEls.length) {
     var obs = new IntersectionObserver(
@@ -36,7 +44,7 @@
     });
   }
 
-  // Trust stats count-up (homepage)
+  // Trust stats count-up (GSAP ScrollTrigger)
   function renderStatValue(t, format) {
     if (format === 'dollarM') {
       return '$' + Math.round(t) + 'M+';
@@ -54,61 +62,275 @@
   }
 
   var countEls = document.querySelectorAll('.js-count-up');
-  if (countEls.length) {
-    var countObs = new IntersectionObserver(
-      function (entries, o) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          var el = entry.target;
-          o.unobserve(el);
-          var target = parseFloat(el.getAttribute('data-target') || '0');
-          var format = el.getAttribute('data-format') || 'plus';
-          var duration = 1500;
-          var start = null;
 
-          if (format === 'zero') {
-            el.textContent = '$0';
-            return;
-          }
-
-          function step(ts) {
-            if (!start) start = ts;
-            var p = Math.min((ts - start) / duration, 1);
-            var eased = 1 - Math.pow(1 - p, 3);
-            var current = target * eased;
-            el.textContent = renderStatValue(current, format);
-            if (p < 1) {
-              requestAnimationFrame(step);
-            } else {
-              el.textContent = renderStatValue(target, format);
-            }
-          }
-          requestAnimationFrame(step);
-        });
-      },
-      { threshold: 0.35 }
-    );
+  function runStatCountUps() {
     countEls.forEach(function (el) {
-      countObs.observe(el);
+      var target = parseFloat(el.getAttribute('data-target') || '0');
+      var format = el.getAttribute('data-format') || 'plus';
+      if (format === 'zero') {
+        el.textContent = '$0';
+        return;
+      }
+      var proxy = { v: 0 };
+      gsap.to(proxy, {
+        v: target,
+        duration: 1.5,
+        ease: 'power3.out',
+        onUpdate: function () {
+          el.textContent = renderStatValue(proxy.v, format);
+        },
+        onComplete: function () {
+          el.textContent = renderStatValue(target, format);
+        },
+      });
     });
   }
 
-  // Testimonials: /api/google-reviews (Google Places, Vercel env) → data/reviews.json → static HTML
+  var statsBar = document.querySelector('.trust-stats-bar');
+  if (statsBar && countEls.length) {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      var stCountDone = false;
+      ScrollTrigger.create({
+        trigger: statsBar,
+        start: 'top 80%',
+        once: true,
+        onEnter: function () {
+          if (stCountDone) return;
+          stCountDone = true;
+          runStatCountUps();
+        },
+      });
+    } else {
+      var countObs = new IntersectionObserver(
+        function (entries, o) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var el = entry.target;
+            o.unobserve(el);
+            var target = parseFloat(el.getAttribute('data-target') || '0');
+            var format = el.getAttribute('data-format') || 'plus';
+            var duration = 1500;
+            var start = null;
+
+            if (format === 'zero') {
+              el.textContent = '$0';
+              return;
+            }
+
+            function step(ts) {
+              if (!start) start = ts;
+              var p = Math.min((ts - start) / duration, 1);
+              var eased = 1 - Math.pow(1 - p, 3);
+              var current = target * eased;
+              el.textContent = renderStatValue(current, format);
+              if (p < 1) {
+                requestAnimationFrame(step);
+              } else {
+                el.textContent = renderStatValue(target, format);
+              }
+            }
+            requestAnimationFrame(step);
+          });
+        },
+        { threshold: 0.35 }
+      );
+      countEls.forEach(function (el) {
+        countObs.observe(el);
+      });
+    }
+  }
+
+  // Homepage hero — word reveal, parallax, sequencing
+  var heroBg = document.querySelector('.hero__bg');
+  var heroWords = document.querySelectorAll('.hero__word');
+  var heroSubtitle = document.querySelector('.hero__subtitle');
+  var heroCta = document.querySelector('.hero__cta');
+  var heroPills = document.querySelectorAll('.hero__trust-pill');
+
+  if (
+    typeof gsap !== 'undefined' &&
+    heroWords.length &&
+    heroSubtitle &&
+    heroCta
+  ) {
+    gsap.set([heroSubtitle, heroCta].concat(Array.from(heroPills)), {
+      opacity: 0,
+    });
+    if (heroPills.length) {
+      gsap.set(heroPills, { y: 20 });
+    }
+    gsap.set(heroCta, { y: 24 });
+
+    var heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl.from(heroWords, {
+      y: 60,
+      opacity: 0,
+      rotateX: -15,
+      duration: 0.9,
+      stagger: 0.08,
+    });
+    var headEnd = (heroWords.length - 1) * 0.08 + 0.9;
+    heroTl.to(
+      heroSubtitle,
+      { opacity: 1, duration: 0.65, ease: 'power2.out' },
+      headEnd + 0.3
+    );
+    heroTl.to(
+      heroCta,
+      { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out' },
+      '>+=0.2'
+    );
+    if (heroPills.length) {
+      heroTl.to(
+        heroPills,
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'power2.out' },
+        '>'
+      );
+    }
+  }
+
+  if (
+    typeof gsap !== 'undefined' &&
+    heroBg &&
+    !prefersMobile &&
+    typeof ScrollTrigger !== 'undefined'
+  ) {
+    // Parallax: ~0.4× apparent motion vs a stronger baseline (tune yPercent if needed)
+    gsap.to(heroBg, {
+      yPercent: 10,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+  }
+
+  // Section headings: underline span + reveal
+  function setupSectionTitleLines() {
+    document.querySelectorAll('.section-title').forEach(function (h) {
+      if (h.closest('.page-hero')) return;
+      if (h.querySelector('.section-title__line')) return;
+      h.classList.add('section-title--gsap');
+      var line = document.createElement('span');
+      line.className = 'section-title__line';
+      line.setAttribute('aria-hidden', 'true');
+      h.appendChild(line);
+      gsap.set(line, { width: 0 });
+      gsap.to(line, {
+        width: 60,
+        duration: 0.55,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: h,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      });
+    });
+  }
+
+  function setupSectionHeadingReveals() {
+    document
+      .querySelectorAll(
+        'main .section .section-label, main .section .section-title'
+      )
+      .forEach(function (el) {
+        if (el.closest('.page-hero')) return;
+        if (el.closest('.hero')) return;
+        gsap.from(el, {
+          y: 30,
+          opacity: 0,
+          duration: 0.65,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          },
+        });
+      });
+  }
+
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    setupSectionTitleLines();
+    setupSectionHeadingReveals();
+  }
+
+  // Grid-3 card stagger
+  var gridStagger = prefersMobile ? 0.08 : 0.15;
+  var gridDuration = prefersMobile ? 0.5 : 0.7;
+
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    document.querySelectorAll('.grid-3').forEach(function (grid) {
+      var cards = grid.querySelectorAll('.card');
+      if (!cards.length) return;
+      gsap.from(cards, {
+        y: 50,
+        opacity: 0,
+        duration: gridDuration,
+        stagger: gridStagger,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: grid,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      });
+    });
+  }
+
+  // Testimonials carousel
   function starsStr(n) {
     var r = Math.min(5, Math.max(0, Math.round(Number(n) || 5)));
     return new Array(r + 1).join('★');
   }
 
-  function getMaxReviews(reviewsGrid) {
-    var a = reviewsGrid.getAttribute('data-max-reviews');
-    if (a === null || a === '') return 3;
+  function getMaxReviews(carousel) {
+    var a = carousel.getAttribute('data-max-reviews');
+    if (a === null || a === '') return 5;
     var n = parseInt(a, 10);
-    if (isNaN(n) || n < 1) return 3;
+    if (isNaN(n) || n < 1) return 5;
     if (n > 10) return 10;
     return n;
   }
 
-  function renderReviewCards(reviewsGrid, list, maxReviews) {
+  function buildSlideHtml(r, i, active) {
+    var claim = String(r.claimType || '').trim();
+    var claimHtml = claim
+      ? '<span class="claim-type">' + escapeHtml(claim) + '</span>'
+      : '';
+    var maps = r.googleMapsUri
+      ? '<p class="testimonial-maps-link"><a href="' +
+        escapeHtml(String(r.googleMapsUri)) +
+        '" target="_blank" rel="noopener noreferrer">View on Google Maps</a></p>'
+      : '';
+    var cl = 'testimonial-slide' + (active ? ' is-active' : '');
+    return (
+      '<article class="' +
+      cl +
+      '" data-index="' +
+      i +
+      '">' +
+      '<p class="stars testimonial-slide__stars">' +
+      starsStr(r.rating) +
+      '</p>' +
+      '<p class="testimonial-decor" aria-hidden="true">“</p>' +
+      '<blockquote class="testimonial-quote testimonial-quote--carousel">' +
+      escapeHtml(String(r.quote || '')) +
+      '</blockquote>' +
+      '<p class="testimonial-attrib">' +
+      escapeHtml(String(r.author || '')) +
+      '</p>' +
+      maps +
+      claimHtml +
+      '</article>'
+    );
+  }
+
+  function renderTestimonialCarousel(carousel, list, maxReviews) {
     if (maxReviews == null || !isFinite(maxReviews) || maxReviews < 1) {
       maxReviews = Infinity;
     }
@@ -119,35 +341,112 @@
       filtered = filtered.slice(0, maxReviews);
     }
     if (!filtered.length) return false;
-    reviewsGrid.innerHTML = filtered
-      .map(function (r) {
-        var claim = String(r.claimType || '').trim();
-        var claimHtml = claim
-          ? '<span class="claim-type">' + escapeHtml(claim) + '</span>'
-          : '';
-        var maps = r.googleMapsUri
-          ? '<p class="testimonial-maps-link"><a href="' +
-            escapeHtml(String(r.googleMapsUri)) +
-            '" target="_blank" rel="noopener noreferrer">View on Google Maps</a></p>'
-          : '';
-        return (
-          '<article class="card testimonial-card">' +
-          '<p class="stars">' +
-          starsStr(r.rating) +
-          '</p>' +
-          '<blockquote class="testimonial-quote">' +
-          escapeHtml(String(r.quote || '')) +
-          '</blockquote>' +
-          '<p class="testimonial-attrib">' +
-          escapeHtml(String(r.author || '')) +
-          '</p>' +
-          maps +
-          claimHtml +
-          '</article>'
-        );
+    var slidesWrap = carousel.querySelector('.testimonial-slides');
+    if (!slidesWrap) return false;
+    slidesWrap.innerHTML = filtered
+      .map(function (r, i) {
+        return buildSlideHtml(r, i, i === 0);
       })
       .join('');
     return true;
+  }
+
+  var testimonialCarouselTimer = null;
+
+  function destroyTestimonialCarousel() {
+    if (testimonialCarouselTimer) {
+      clearInterval(testimonialCarouselTimer);
+      testimonialCarouselTimer = null;
+    }
+  }
+
+  function initTestimonialCarousel(root) {
+    destroyTestimonialCarousel();
+    var slides = root.querySelectorAll('.testimonial-slide');
+    var dotsWrap = root.querySelector('.testimonial-dots');
+    if (!slides.length || !dotsWrap) return;
+
+    var idx = 0;
+    var n = slides.length;
+
+    dotsWrap.innerHTML = '';
+    for (var i = 0; i < n; i++) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'testimonial-dot' + (i === 0 ? ' is-active' : '');
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-label', 'Show testimonial ' + (i + 1));
+      b.setAttribute('data-index', String(i));
+      dotsWrap.appendChild(b);
+    }
+
+    var dots = dotsWrap.querySelectorAll('.testimonial-dot');
+
+    function goTo(nextIdx, animate) {
+      nextIdx = ((nextIdx % n) + n) % n;
+      if (nextIdx === idx && animate) return;
+      var prev = idx;
+      idx = nextIdx;
+      dots.forEach(function (d, j) {
+        d.classList.toggle('is-active', j === idx);
+      });
+
+      if (typeof gsap === 'undefined') {
+        slides.forEach(function (s, j) {
+          s.classList.toggle('is-active', j === idx);
+          s.style.opacity = j === idx ? '1' : '0';
+        });
+        return;
+      }
+
+      if (!animate) {
+        slides.forEach(function (s, j) {
+          gsap.killTweensOf(s);
+          gsap.set(s, { opacity: j === idx ? 1 : 0 });
+          s.classList.toggle('is-active', j === idx);
+        });
+        return;
+      }
+
+      var prevEl = slides[prev];
+      var nextEl = slides[idx];
+      if (prevEl && prevEl !== nextEl) {
+        gsap.to(prevEl, {
+          opacity: 0,
+          duration: 0.6,
+          ease: 'power2.inOut',
+          onComplete: function () {
+            prevEl.classList.remove('is-active');
+          },
+        });
+      }
+      nextEl.classList.add('is-active');
+      gsap.fromTo(
+        nextEl,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.6, ease: 'power2.inOut' }
+      );
+    }
+
+    slides.forEach(function (s, j) {
+      if (typeof gsap !== 'undefined') {
+        gsap.set(s, { opacity: j === 0 ? 1 : 0 });
+      }
+      s.classList.toggle('is-active', j === 0);
+    });
+
+    dots.forEach(function (d) {
+      d.addEventListener('click', function () {
+        var di = parseInt(d.getAttribute('data-index'), 10);
+        if (!isNaN(di)) goTo(di, true);
+      });
+    });
+
+    if (n > 1) {
+      testimonialCarouselTimer = setInterval(function () {
+        goTo(idx + 1, true);
+      }, 5000);
+    }
   }
 
   function applyGoogleAttribution(attrEl, data) {
@@ -194,16 +493,18 @@
   }
 
   function setFallbackNoteVisible(visible) {
-    var n = document.getElementById('reviews-fallback-note');
-    if (!n) return;
-    if (visible) n.removeAttribute('hidden');
-    else n.setAttribute('hidden', '');
+    var note = document.getElementById('reviews-fallback-note');
+    if (!note) return;
+    if (visible) note.removeAttribute('hidden');
+    else note.setAttribute('hidden', '');
   }
 
-  var reviewsGrid = document.getElementById('reviews-grid');
+  var reviewsCarousel = document.getElementById('reviews-carousel');
   var attrEl = document.getElementById('reviews-google-attribution');
-  if (reviewsGrid) {
-    var maxReviews = getMaxReviews(reviewsGrid);
+  if (reviewsCarousel) {
+    initTestimonialCarousel(reviewsCarousel);
+
+    var maxReviews = getMaxReviews(reviewsCarousel);
     fetch('/api/google-reviews', { headers: { Accept: 'application/json' } })
       .then(function (res) {
         if (!res.ok) throw new Error('api');
@@ -213,12 +514,13 @@
         if (
           !data ||
           data.source !== 'google' ||
-          !renderReviewCards(reviewsGrid, data.reviews, maxReviews)
+          !renderTestimonialCarousel(reviewsCarousel, data.reviews, maxReviews)
         ) {
           throw new Error('no google');
         }
         setFallbackNoteVisible(false);
         applyGoogleAttribution(attrEl, data);
+        initTestimonialCarousel(reviewsCarousel);
       })
       .catch(function () {
         return fetch('data/reviews.json', {
@@ -233,7 +535,7 @@
             if (
               !Array.isArray(list) ||
               !list.length ||
-              !renderReviewCards(reviewsGrid, list, maxReviews)
+              !renderTestimonialCarousel(reviewsCarousel, list, maxReviews)
             ) {
               throw new Error('empty');
             }
@@ -242,6 +544,7 @@
               attrEl.innerHTML = '';
               attrEl.setAttribute('hidden', '');
             }
+            initTestimonialCarousel(reviewsCarousel);
           });
       })
       .catch(function () {
@@ -293,6 +596,12 @@
             'Something went wrong. Please try again or call (786) 223-7867.';
           statusEl.style.color = '#b00020';
         });
+    });
+  }
+
+  if (typeof ScrollTrigger !== 'undefined') {
+    window.addEventListener('load', function () {
+      ScrollTrigger.refresh();
     });
   }
 })();
