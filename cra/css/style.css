@@ -287,11 +287,174 @@ textarea {
 
 /* --- Homepage hero --- */
 .hero {
+  position: relative;
+  z-index: 1;
   background: linear-gradient(rgba(26, 74, 110, 0.85), rgba(26, 74, 110, 0.85)),
     url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center / cover;
   color: var(--cream);
   padding: 100px 20px 120px;
   text-align: center;
+}
+
+/* --- Trust stats bar (overlaps hero) --- */
+.trust-stats-outer {
+  position: relative;
+  z-index: 2;
+  margin-top: -3.5rem;
+  padding: 0 20px 0;
+  margin-bottom: 0;
+}
+
+.trust-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem 1rem;
+  align-items: start;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  padding: 1.75rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trust-stat {
+  text-align: center;
+}
+
+.trust-stat-num {
+  font-family: var(--serif);
+  font-size: clamp(1.65rem, 3.5vw, 2.15rem);
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.15;
+  margin: 0 0 0.35rem;
+}
+
+.trust-stat-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+  line-height: 1.35;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.trust-stats-outer + .section {
+  padding-top: 5rem;
+}
+
+@media (max-width: 768px) {
+  .trust-stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 0.75rem;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .trust-stats-outer {
+    margin-top: -2.5rem;
+  }
+
+  .trust-stats-outer + .section {
+    padding-top: 4rem;
+  }
+}
+
+/* --- Testimonials (home) --- */
+.testimonials .card.testimonial-card {
+  border-left: 4px solid var(--gold);
+  padding-left: 1.35rem;
+}
+
+.testimonials .card.testimonial-card .stars {
+  color: var(--gold);
+  margin-bottom: 0.65rem;
+}
+
+.testimonials .testimonial-quote {
+  font-style: italic;
+  margin: 0 0 1rem;
+  padding: 0;
+  border: none;
+  color: var(--dark-text);
+}
+
+.testimonial-attrib {
+  font-weight: 600;
+  font-style: normal;
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+}
+
+.claim-type {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+/* --- Licensed & trusted (about) --- */
+.license-trust-section {
+  background: var(--cream);
+}
+
+.license-trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.license-badge {
+  flex: 1 1 200px;
+  max-width: 320px;
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 1.25rem 1.35rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.license-badge-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.license-badge h3 {
+  font-size: 1rem;
+  margin: 0 0 0.35rem;
+}
+
+.license-badge p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.license-badge .license-num {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--navy);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .license-trust {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .license-badge {
+    max-width: none;
+  }
 }
 
 .hero h1 {
