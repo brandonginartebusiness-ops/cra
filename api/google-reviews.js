@@ -20,7 +20,10 @@ export default async function handler(req, res) {
   }
 
   const key = process.env.GOOGLE_PLACES_API_KEY;
-  const placeId = process.env.GOOGLE_PLACE_ID;
+  let placeId = (process.env.GOOGLE_PLACE_ID || '').trim();
+  if (placeId.indexOf('places/') === 0) {
+    placeId = placeId.slice('places/'.length).trim();
+  }
 
   if (!key || !placeId) {
     return res.status(503).json({
