@@ -975,18 +975,21 @@ textarea {
   text-decoration: underline;
 }
 
-/* Inner page hero — photo + Ken Burns (services) */
+/* Inner page hero — photo + Ken Burns (services): image on ::before, navy overlay on ::after (matches .hero pattern) */
 .page-hero--photo {
   position: relative;
+  z-index: 1;
   isolation: isolate;
   overflow: hidden;
+  color: #f5f1eb;
   background: var(--navy);
   padding: clamp(3.75rem, 9vw, 5.5rem) 20px clamp(3.5rem, 8vw, 5rem);
   box-shadow: none;
   text-align: center;
 }
 
-.page-hero--photo .page-hero__bg {
+.page-hero--photo::before {
+  content: '';
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -996,6 +999,7 @@ textarea {
   animation: heroKenBurns 15s ease-in-out infinite alternate;
   transform-origin: center center;
   will-change: transform;
+  pointer-events: none;
 }
 
 .page-hero--photo::after {
@@ -1013,6 +1017,7 @@ textarea {
 }
 
 .page-hero--photo h1 {
+  color: #f5f1eb;
   font-size: clamp(2.2rem, 5vw, 3.5rem);
   line-height: 1.08;
   margin: 0 0 1rem;
@@ -1023,12 +1028,16 @@ textarea {
   max-width: 56ch;
   font-size: clamp(1.02rem, 2vw, 1.15rem);
   line-height: 1.55;
-  color: rgba(245, 241, 235, 0.88);
+  color: #f5f1eb;
   font-weight: 400;
 }
 
 .page-hero--photo .page-hero__lead strong {
-  color: var(--cream);
+  color: #f5f1eb;
+}
+
+.page-hero--photo .hero__trust-pill {
+  color: #f5f1eb;
 }
 
 .page-hero--photo .hero__trust-row {
