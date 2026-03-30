@@ -32,7 +32,18 @@ body {
   background: var(--cream);
   color: var(--dark-text);
   line-height: 1.6;
+  letter-spacing: 0.02em;
   -webkit-font-smoothing: antialiased;
+}
+
+body:not(.page-contact) {
+  padding-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  body:not(.page-contact) {
+    padding-bottom: 4.75rem;
+  }
 }
 
 h1,
@@ -117,6 +128,27 @@ main {
   transition: color 0.2s ease;
 }
 
+.site-nav a:not(.btn) {
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.site-nav a:not(.btn)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.site-nav a:not(.btn):hover::after,
+.site-nav a:not(.btn)[aria-current='page']::after {
+  width: 100%;
+}
+
 .site-nav a:hover,
 .site-nav a[aria-current='page'] {
   color: var(--gold);
@@ -153,6 +185,18 @@ main {
 .btn:hover {
   background: var(--navy);
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(26, 74, 110, 0.28);
+}
+
+.btn-navy {
+  background: var(--navy);
+  color: #fff !important;
+}
+
+.btn-navy:hover {
+  background: var(--gold);
+  color: #fff !important;
+  box-shadow: 0 8px 24px rgba(196, 147, 58, 0.35);
 }
 
 .btn-block {
@@ -172,12 +216,20 @@ main {
   padding: 28px;
   border-radius: 8px;
   box-shadow: var(--shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-top: 3px solid transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-hover);
+  border-top-color: var(--gold);
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 24px;
+  }
 }
 
 .card-icon {
@@ -285,15 +337,63 @@ textarea {
   text-decoration: underline;
 }
 
-/* --- Homepage hero --- */
+/* --- Homepage hero (Ken Burns bg + overlay) --- */
+@keyframes heroKenBurns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
 .hero {
   position: relative;
   z-index: 1;
-  background: linear-gradient(rgba(26, 74, 110, 0.85), rgba(26, 74, 110, 0.85)),
-    url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center / cover;
+  isolation: isolate;
+  overflow: hidden;
   color: var(--cream);
   padding: 100px 20px 120px;
   text-align: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: transparent
+    url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center /
+    cover no-repeat;
+  animation: heroKenBurns 15s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(rgba(26, 74, 110, 0.75), rgba(26, 74, 110, 0.75));
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  color: var(--cream);
+  font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+  max-width: 20ch;
+  margin: 0 auto 1rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  max-width: 42ch;
+  margin: 0 auto 1.5rem;
+  color: rgba(245, 241, 235, 0.95);
 }
 
 /* --- Trust stats bar (overlaps hero) --- */
@@ -342,7 +442,7 @@ textarea {
 }
 
 .trust-stats-outer + .section {
-  padding-top: 5rem;
+  padding-top: 3rem;
 }
 
 @media (max-width: 768px) {
@@ -457,20 +557,6 @@ textarea {
   }
 }
 
-.hero h1 {
-  color: var(--cream);
-  font-size: clamp(2rem, 5vw, 3.25rem);
-  max-width: 20ch;
-  margin: 0 auto 1rem;
-}
-
-.hero p {
-  font-size: 1.1rem;
-  max-width: 42ch;
-  margin: 0 auto 1.5rem;
-  color: rgba(245, 241, 235, 0.95);
-}
-
 /* --- Inner page hero --- */
 .page-hero {
   background: var(--navy);
@@ -510,7 +596,13 @@ textarea {
 }
 
 .section {
-  padding: 4rem 20px;
+  padding: 100px 20px;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 20px;
+  }
 }
 
 .section-alt {
@@ -519,8 +611,23 @@ textarea {
 
 .section-title {
   text-align: center;
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-size: 2.2rem;
   margin: 0 0 0.75rem;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 0.75rem auto 0;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.6rem;
+  }
 }
 
 .section-lead {
@@ -639,6 +746,97 @@ textarea {
   margin: 0 0 0.75rem;
 }
 
+.case-compare {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+  font-weight: 500;
+}
+
+.results-disclaimer {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 2rem auto 0;
+  max-width: 52ch;
+  line-height: 1.5;
+}
+
+/* --- Mobile sticky CTA (Phase 4) --- */
+.mobile-cta-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-cta-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 150;
+    flex-direction: row;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.12);
+    background: var(--cream);
+    border-top: 1px solid var(--border-light);
+  }
+
+  body:not(.page-contact) .mobile-cta-bar {
+    display: flex;
+  }
+
+  body.page-contact .mobile-cta-bar {
+    display: none !important;
+  }
+
+  .mobile-cta-bar .btn {
+    flex: 1;
+    border-radius: 0;
+    margin: 0;
+    padding: 1rem 0.75rem;
+    font-size: 0.9rem;
+    transform: none;
+  }
+
+  .mobile-cta-bar .btn:hover {
+    transform: none;
+  }
+
+  .mobile-cta-call {
+    border-right: 1px solid rgba(255, 255, 255, 0.25);
+  }
+}
+
+/* --- Contact form polish --- */
+.form-step {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 0 0 0.5rem;
+}
+
+.form-response-time {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+}
+
+.form-success-message {
+  padding: 2rem 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  border-left: 4px solid var(--gold);
+  box-shadow: var(--shadow);
+}
+
+.form-success-message p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
 /* --- Mobile nav --- */
 @media (max-width: 768px) {
   .nav-toggle {
@@ -665,5 +863,9 @@ textarea {
 
   .site-nav .btn {
     margin-top: 0.25rem;
+  }
+
+  .site-nav a:not(.btn)::after {
+    bottom: 4px;
   }
 }
