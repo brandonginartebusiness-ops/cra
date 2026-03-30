@@ -11,6 +11,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&amp;h=630&amp;fit=crop" />
   <meta name="twitter:card" content="summary_large_image" />
+  <!-- When production domain is live, replace canonical + og:url site-wide (CONTEXT.md Priority 3). -->
   <link rel="canonical" href="https://cra-opal.vercel.app/cra/index.html" />
   <link rel="stylesheet" href="css/style.css" />
   <script type="application/ld+json">
@@ -56,9 +57,10 @@
   </header>
 
   <main>
+    <!-- Background: replace Unsplash URL in css/style.css (.hero::before) with a real photo when available (CONTEXT.md). -->
     <section class="hero">
       <div class="container fade-up">
-        <h1>Florida homeowners deserve better. Now they have us.</h1>
+        <h1>Florida homeowners deserve better. Now they have <em>us.</em></h1>
         <p>
           Expert public adjusters fighting for fair outcomes on hurricane, water, and fire damage claims across South Florida.
         </p>
@@ -89,24 +91,32 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section-block-navy">
       <div class="container fade-up">
-        <h2 class="section-title">Our Service Areas</h2>
-        <p class="section-lead">
-          Proudly serving homeowners and property owners in these Florida counties:
-        </p>
-        <div class="county-row">
-          <span class="chip-county">Miami-Dade</span>
-          <span class="chip-county">Broward</span>
-          <span class="chip-county">Palm Beach</span>
-          <span class="chip-county">Monroe</span>
-          <span class="chip-county">Collier</span>
+        <div class="editorial-split">
+          <div class="editorial-split__copy">
+            <p class="section-label">Service areas</p>
+            <h2 class="section-title">Our Service Areas</h2>
+            <p class="section-lead">
+              Proudly serving homeowners and property owners in these Florida counties:
+            </p>
+          </div>
+          <div class="editorial-split__chips">
+            <div class="county-row">
+              <span class="chip-county">Miami-Dade</span>
+              <span class="chip-county">Broward</span>
+              <span class="chip-county">Palm Beach</span>
+              <span class="chip-county">Monroe</span>
+              <span class="chip-county">Collier</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section section-alt testimonials">
       <div class="container fade-up">
+        <p class="section-label">Testimonials</p>
         <h2 class="section-title">What Our Clients Say</h2>
         <p id="reviews-fallback-note" class="reviews-fallback-note" hidden>
           The examples below are <strong>illustrative</strong>, not live Google reviews. When Google Business is connected, verified reviews replace this section automatically.
@@ -162,15 +172,17 @@
 
     <section class="section">
       <div class="container fade-up">
+        <p class="section-label">Follow us</p>
         <h2 class="section-title">Follow Our Work</h2>
         <p class="section-lead">Recoveries, tips, and updates on Instagram.</p>
+        <!-- Replace placeholder thumbnails with real @claimremedyadjusters posts when available (CONTEXT.md). -->
         <div class="ig-grid">
-          <a href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer"><img src="https://via.placeholder.com/400x400/1A4A6E/F5F1EB?text=IG+1" width="400" height="400" alt="" /></a>
-          <a href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer"><img src="https://via.placeholder.com/400x400/1A4A6E/F5F1EB?text=IG+2" width="400" height="400" alt="" /></a>
-          <a href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer"><img src="https://via.placeholder.com/400x400/1A4A6E/F5F1EB?text=IG+3" width="400" height="400" alt="" /></a>
-          <a href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer"><img src="https://via.placeholder.com/400x400/1A4A6E/F5F1EB?text=IG+4" width="400" height="400" alt="" /></a>
-          <a href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer"><img src="https://via.placeholder.com/400x400/1A4A6E/F5F1EB?text=IG+5" width="400" height="400" alt="" /></a>
-          <a href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer"><img src="https://via.placeholder.com/400x400/1A4A6E/F5F1EB?text=IG+6" width="400" height="400" alt="" /></a>
+          <a href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer"><img src="https://via.placeholder.com/400x400/1A4A6E/F5F1EB?text=IG+1" width="400" height="400" alt="Instagram feed placeholder 1 of 6" /></a>
+          <a href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer"><img src="https://via.placeholder.com/400x400/1A4A6E/F5F1EB?text=IG+2" width="400" height="400" alt="Instagram feed placeholder 2 of 6" /></a>
+          <a href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer"><img src="https://via.placeholder.com/400x400/1A4A6E/F5F1EB?text=IG+3" width="400" height="400" alt="Instagram feed placeholder 3 of 6" /></a>
+          <a href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer"><img src="https://via.placeholder.com/400x400/1A4A6E/F5F1EB?text=IG+4" width="400" height="400" alt="Instagram feed placeholder 4 of 6" /></a>
+          <a href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer"><img src="https://via.placeholder.com/400x400/1A4A6E/F5F1EB?text=IG+5" width="400" height="400" alt="Instagram feed placeholder 5 of 6" /></a>
+          <a href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer"><img src="https://via.placeholder.com/400x400/1A4A6E/F5F1EB?text=IG+6" width="400" height="400" alt="Instagram feed placeholder 6 of 6" /></a>
         </div>
         <p class="text-center mt-lg">
           <a class="btn" href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer">Follow @claimremedyadjusters</a>
