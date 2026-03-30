@@ -57,16 +57,54 @@
   </header>
 
   <main>
-    <!-- Background: replace Unsplash URL in css/style.css (.hero::before) with a real photo when available (CONTEXT.md). -->
+    <!-- Background image URL: css/style.css (.hero__bg) — swap for a real photo when available (CONTEXT.md). -->
     <section class="hero">
-      <div class="container fade-up">
-        <h1>Florida homeowners deserve better. Now they have <em>us.</em></h1>
-        <p>
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <h1 class="hero__title" id="hero-heading">
+          <span class="hero__word">Florida</span>
+          <span class="hero__word">homeowners</span>
+          <span class="hero__word">deserve</span>
+          <span class="hero__word">better.</span>
+          <span class="hero__word">Now</span>
+          <span class="hero__word">they</span>
+          <span class="hero__word">have</span>
+          <span class="hero__word"><em>us.</em></span>
+        </h1>
+        <p class="hero__subtitle">
           Expert public adjusters fighting for fair outcomes on hurricane, water, and fire damage claims across South Florida.
         </p>
-        <a class="btn" href="pages/contact.html">Free Claim Evaluation</a>
+        <a class="btn hero__cta" href="pages/contact.html">Free Claim Evaluation</a>
+        <div class="hero__trust-row" aria-label="Trust highlights">
+          <span class="hero__trust-pill">★ 4.9 Google Rating</span>
+          <span class="hero__trust-pill">Licensed &amp; Insured</span>
+          <span class="hero__trust-pill">No Upfront Cost</span>
+        </div>
+        <div class="hero__scroll-hint" aria-hidden="true">
+          <span class="hero__scroll-chevron"></span>
+        </div>
       </div>
     </section>
+
+    <div class="section-curve section-curve--to-navy" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="var(--navy)"></path>
+      </svg>
+    </div>
+    <section class="marquee-strip" aria-label="Services highlight">
+      <div class="marquee-strip__inner">
+        <div class="marquee-strip__track">
+          <span class="marquee-strip__text">Hurricane Claims <span class="marquee-strip__dot">·</span> Water Damage <span class="marquee-strip__dot">·</span> Roof Damage <span class="marquee-strip__dot">·</span> Fire &amp; Smoke <span class="marquee-strip__dot">·</span> Mold Remediation <span class="marquee-strip__dot">·</span> Flood Claims <span class="marquee-strip__dot">·</span> Denied Claims <span class="marquee-strip__dot">·</span> Underpaid Claims <span class="marquee-strip__dot">·</span></span>
+          <span class="marquee-strip__text" aria-hidden="true">Hurricane Claims <span class="marquee-strip__dot">·</span> Water Damage <span class="marquee-strip__dot">·</span> Roof Damage <span class="marquee-strip__dot">·</span> Fire &amp; Smoke <span class="marquee-strip__dot">·</span> Mold Remediation <span class="marquee-strip__dot">·</span> Flood Claims <span class="marquee-strip__dot">·</span> Denied Claims <span class="marquee-strip__dot">·</span> Underpaid Claims <span class="marquee-strip__dot">·</span></span>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-curve section-curve--to-cream" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="var(--cream)"></path>
+      </svg>
+    </div>
 
     <section class="trust-stats-outer" aria-label="Firm statistics">
       <div class="container fade-up">
@@ -91,8 +129,14 @@
       </div>
     </section>
 
+    <div class="section-curve section-curve--to-navy-2" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="var(--navy)"></path>
+      </svg>
+    </div>
+
     <section class="section section-block-navy">
-      <div class="container fade-up">
+      <div class="container">
         <div class="editorial-split">
           <div class="editorial-split__copy">
             <p class="section-label">Service areas</p>
@@ -103,50 +147,61 @@
           </div>
           <div class="editorial-split__chips">
             <div class="county-row">
-              <span class="chip-county">Miami-Dade</span>
-              <span class="chip-county">Broward</span>
-              <span class="chip-county">Palm Beach</span>
-              <span class="chip-county">Monroe</span>
-              <span class="chip-county">Collier</span>
+              <span class="chip-county"><span class="chip-county__icon" aria-hidden="true">📍</span> Miami-Dade</span>
+              <span class="chip-county"><span class="chip-county__icon" aria-hidden="true">📍</span> Broward</span>
+              <span class="chip-county"><span class="chip-county__icon" aria-hidden="true">📍</span> Palm Beach</span>
+              <span class="chip-county"><span class="chip-county__icon" aria-hidden="true">📍</span> Monroe</span>
+              <span class="chip-county"><span class="chip-county__icon" aria-hidden="true">📍</span> Collier</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <div class="section-curve section-curve--to-white" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="#ffffff"></path>
+      </svg>
+    </div>
+
     <section class="section section-alt testimonials">
-      <div class="container fade-up">
+      <div class="container">
         <p class="section-label">Testimonials</p>
         <h2 class="section-title">What Our Clients Say</h2>
         <p id="reviews-fallback-note" class="reviews-fallback-note" hidden>
           The examples below are <strong>illustrative</strong>, not live Google reviews. When Google Business is connected, verified reviews replace this section automatically.
         </p>
-        <!-- Testimonials: main.js → /api/google-reviews, then data/reviews.json, else static cards. data-max-reviews caps how many cards render (Google returns up to 5). -->
-        <div class="grid-3" id="reviews-grid" data-max-reviews="3">
-          <article class="card testimonial-card">
-            <p class="stars">★★★★★</p>
-            <blockquote class="testimonial-quote">
-              Illustrative example: we document storm and wind damage and policy terms to support a fair scope when carriers undervalue the loss.
-            </blockquote>
-            <p class="testimonial-attrib">—</p>
-            <span class="claim-type">Hurricane &amp; storm claims</span>
-          </article>
-          <article class="card testimonial-card">
-            <p class="stars">★★★★★</p>
-            <blockquote class="testimonial-quote">
-              Illustrative example: we identify missed water and mold-related damage that initial carrier estimates often overlook.
-            </blockquote>
-            <p class="testimonial-attrib">—</p>
-            <span class="claim-type">Water &amp; mold damage</span>
-          </article>
-          <article class="card testimonial-card">
-            <p class="stars">★★★★★</p>
-            <blockquote class="testimonial-quote">
-              Illustrative example: we help policyholders respond to underpayment and dispute resolution with organized evidence and clear communication.
-            </blockquote>
-            <p class="testimonial-attrib">—</p>
-            <span class="claim-type">Underpaid &amp; disputed claims</span>
-          </article>
+        <div id="reviews-carousel" class="testimonials-carousel" data-max-reviews="5">
+          <div class="testimonial-slides">
+            <article class="testimonial-slide is-active" data-index="0">
+              <p class="stars testimonial-slide__stars">★★★★★</p>
+              <p class="testimonial-decor" aria-hidden="true">“</p>
+              <blockquote class="testimonial-quote testimonial-quote--carousel">
+                Illustrative example: we document storm and wind damage and policy terms to support a fair scope when carriers undervalue the loss.
+              </blockquote>
+              <p class="testimonial-attrib">—</p>
+              <span class="claim-type">Hurricane &amp; storm claims</span>
+            </article>
+            <article class="testimonial-slide" data-index="1">
+              <p class="stars testimonial-slide__stars">★★★★★</p>
+              <p class="testimonial-decor" aria-hidden="true">“</p>
+              <blockquote class="testimonial-quote testimonial-quote--carousel">
+                Illustrative example: we identify missed water and mold-related damage that initial carrier estimates often overlook.
+              </blockquote>
+              <p class="testimonial-attrib">—</p>
+              <span class="claim-type">Water &amp; mold damage</span>
+            </article>
+            <article class="testimonial-slide" data-index="2">
+              <p class="stars testimonial-slide__stars">★★★★★</p>
+              <p class="testimonial-decor" aria-hidden="true">“</p>
+              <blockquote class="testimonial-quote testimonial-quote--carousel">
+                Illustrative example: we help policyholders respond to underpayment and dispute resolution with organized evidence and clear communication.
+              </blockquote>
+              <p class="testimonial-attrib">—</p>
+              <span class="claim-type">Underpaid &amp; disputed claims</span>
+            </article>
+          </div>
+          <div class="testimonial-dots" role="tablist" aria-label="Choose testimonial"></div>
         </div>
         <p id="reviews-google-attribution" class="reviews-google-attribution" hidden></p>
         <!-- Google Maps: swap href with your Place URL from Google Business (Profile → Ask for reviews → share link). -->
@@ -170,13 +225,19 @@
       </div>
     </section>
 
+    <div class="section-curve section-curve--to-cream-2" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="var(--cream)"></path>
+      </svg>
+    </div>
+
     <section class="section">
-      <div class="container fade-up">
+      <div class="container">
         <p class="section-label">Follow us</p>
         <h2 class="section-title">Follow Our Work</h2>
-        <p class="section-lead">Recoveries, tips, and updates on Instagram.</p>
+        <p class="section-lead fade-up">Recoveries, tips, and updates on Instagram.</p>
         <!-- Replace placeholder thumbnails with real @claimremedyadjusters posts when available (CONTEXT.md). -->
-        <div class="ig-grid">
+        <div class="ig-grid fade-up">
           <a href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer"><img src="https://via.placeholder.com/400x400/1A4A6E/F5F1EB?text=IG+1" width="400" height="400" alt="Instagram feed placeholder 1 of 6" /></a>
           <a href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer"><img src="https://via.placeholder.com/400x400/1A4A6E/F5F1EB?text=IG+2" width="400" height="400" alt="Instagram feed placeholder 2 of 6" /></a>
           <a href="https://www.instagram.com/claimremedyadjusters/" target="_blank" rel="noopener noreferrer"><img src="https://via.placeholder.com/400x400/1A4A6E/F5F1EB?text=IG+3" width="400" height="400" alt="Instagram feed placeholder 3 of 6" /></a>
@@ -202,6 +263,8 @@
     <p><a href="tel:+17862237867">(786) 223-7867</a></p>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
