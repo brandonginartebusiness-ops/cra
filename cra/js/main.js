@@ -1,41 +1,64 @@
-// Scroll reveal
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const delay = e.target.dataset.delay || 0;
-      setTimeout(() => e.target.classList.add('visible'), Number(delay));
-      observer.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
+(function () {
+  'use strict';
 
-document.querySelectorAll('.reveal, .reveal-left').forEach((el, i) => {
-  observer.observe(el);
-});
-
-// Staggered children
-document.querySelectorAll('[data-stagger]').forEach(parent => {
-  Array.from(parent.children).forEach((child, i) => {
-    child.classList.add('reveal');
-    child.dataset.delay = i * 90;
-    observer.observe(child);
-  });
-});
-
-// FAQ accordion
-document.querySelectorAll('.faq-q').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  });
-});
-
-// Active nav link
-const currentPage = location.pathname.split('/').filter(Boolean).pop() || 'index';
-document.querySelectorAll('.nav-links a').forEach(a => {
-  if (a.getAttribute('href') && a.getAttribute('href').includes(currentPage)) {
-    a.classList.add('active');
+  // Mobile nav toggle
+  var toggle = document.querySelector('.nav-toggle');
+  var nav = document.querySelector('.site-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
   }
-});
+
+  // Fade-up on scroll
+  var fadeEls = document.querySelectorAll('.fade-up');
+  if (fadeEls.length) {
+    var obs = new IntersectionObserver(
+      function (entries, o) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            o.unobserve(entry.target);
+          }
+        });
+      },
+      { root: null, rootMargin: '0px', threshold: 0.15 }
+    );
+    fadeEls.forEach(function (el) {
+      obs.observe(el);
+    });
+  }
+
+  // Formspree AJAX
+  var form = document.getElementById('contact-form');
+  var statusEl = document.getElementById('form-status');
+  if (form && statusEl) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { Accept: 'application/json' },
+      })
+        .then(function (res) {
+          if (res.ok) {
+            statusEl.textContent =
+              'Thanks for your submission! We will review your claim and contact you shortly.';
+            statusEl.style.color = '#1a4a6e';
+            form.reset();
+          } else {
+            statusEl.textContent =
+              'Something went wrong. Please try again or call (786) 223-7867.';
+            statusEl.style.color = '#b00020';
+          }
+        })
+        .catch(function () {
+          statusEl.textContent =
+            'Something went wrong. Please try again or call (786) 223-7867.';
+          statusEl.style.color = '#b00020';
+        });
+    });
+  }
+})();

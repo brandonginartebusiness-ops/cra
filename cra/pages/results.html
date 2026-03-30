@@ -1,209 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Results | Claim Remedy Adjusters</title>
-<meta name="description" content="Real claim results for Florida homeowners. See how Claim Remedy Adjusters has recovered millions from underpaid and denied insurance claims." />
-<link rel="stylesheet" href="../css/style.css" />
-<style>
-.results-overview { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:rgba(255,255,255,0.06); margin-top:3rem; }
-.overview-stat { background:var(--ink); padding:2.5rem 2rem; }
-.overview-stat .num { font-family:var(--serif); font-size:2.5rem; color:var(--cream); letter-spacing:-0.02em; line-height:1; margin-bottom:0.4rem; }
-.overview-stat .lbl { font-size:0.75rem; color:rgba(245,241,235,0.45); text-transform:uppercase; letter-spacing:0.08em; }
-
-.case-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border); margin-top:3rem; }
-.case-card { background:var(--cream); padding:2.5rem 2rem; position:relative; overflow:hidden; transition:background 0.25s; }
-.case-card:hover { background:var(--cream-dark); }
-.case-type { font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
-.case-amount { font-family:var(--serif); font-size:2.4rem; color:var(--accent); letter-spacing:-0.02em; line-height:1; margin-bottom:0.6rem; }
-.case-detail { font-size:0.84rem; color:var(--mid); line-height:1.65; font-weight:300; margin-bottom:1rem; }
-.case-tag { display:inline-block; font-size:0.7rem; padding:0.25rem 0.65rem; background:var(--ink); color:var(--cream); border-radius:2px; letter-spacing:0.04em; }
-
-.testimonials-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:var(--border); margin-top:3rem; }
-.testimonial-card { background:var(--cream); padding:2.5rem 2rem; }
-.t-stars { color:var(--gold); font-size:0.8rem; margin-bottom:1rem; }
-.t-quote { font-family:var(--serif); font-style:italic; font-size:1rem; line-height:1.6; color:var(--ink); margin-bottom:1rem; }
-.t-cite { font-size:0.75rem; color:var(--mid); text-transform:uppercase; letter-spacing:0.08em; }
-
-.comparison { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-top:3rem; }
-.comp-col { padding:3rem; }
-.comp-col:first-child { background:rgba(17,17,16,0.04); }
-.comp-col h3 { font-family:var(--serif); font-size:1.3rem; margin-bottom:1.5rem; }
-.comp-col h3 span { color:var(--gold); }
-.comp-list { list-style:none; display:flex; flex-direction:column; gap:0.75rem; }
-.comp-list li { display:flex; gap:0.75rem; font-size:0.88rem; color:var(--mid); font-weight:300; line-height:1.5; }
-.comp-list li .icon { flex-shrink:0; }
-
-@media(max-width:960px){
-  .results-overview{grid-template-columns:1fr 1fr;}
-  .case-grid{grid-template-columns:1fr 1fr;}
-  .testimonials-grid{grid-template-columns:1fr;}
-  .comparison{grid-template-columns:1fr;}
-}
-@media(max-width:600px){
-  .results-overview,.case-grid{grid-template-columns:1fr;}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claim Results &amp; Case Studies | Claim Remedy Adjusters</title>
+  <meta name="description" content="Recent insurance claim recoveries for Florida homeowners — hurricane, water, fire, and roof cases." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.claimremedyadjusters.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Results",
+        "item": "https://www.claimremedyadjusters.com/pages/results.html"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="../index.html">Claim Remedy Adjusters</a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <nav id="primary-nav" class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="results.html" aria-current="page">Results</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a class="btn" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-<nav>
-  <a href="../index.html" class="nav-logo">Claim <span>Remedy</span> Adjusters</a>
-  <ul class="nav-links">
-    <li><a href="about.html">About</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="results.html" class="active">Results</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="tel:7862237867" class="nav-cta">Call (786) 223-7867</a></li>
-  </ul>
-</nav>
-
-<div class="inner-hero">
-  <div class="inner-hero-content">
-    <p class="kicker">Proven Results</p>
-    <h1>Real settlements for <em>real Florida homeowners</em></h1>
-    <p>Numbers don't lie. See what Claim Remedy Adjusters has recovered for clients who were initially lowballed, delayed, or denied by their insurance company.</p>
-  </div>
-</div>
-
-<!-- OVERVIEW STATS -->
-<section class="section section-dark" style="padding-bottom:4rem;">
-  <p class="label label-dark">By the numbers</p>
-  <h2 class="heading heading-light">What we've <em>recovered for clients</em></h2>
-  <div class="results-overview">
-    <div class="overview-stat reveal" data-delay="0"><div class="num">$4M+</div><div class="lbl">Total recovered for homeowners</div></div>
-    <div class="overview-stat reveal" data-delay="80"><div class="num">500+</div><div class="lbl">Claims successfully settled</div></div>
-    <div class="overview-stat reveal" data-delay="160"><div class="num">3.2×</div><div class="lbl">Average recovery vs. initial offer</div></div>
-    <div class="overview-stat reveal" data-delay="240"><div class="num">10+</div><div class="lbl">Years of Florida claim experience</div></div>
-  </div>
-</section>
-
-<!-- CASE RESULTS -->
-<section class="section">
-  <p class="label">Case highlights</p>
-  <h2 class="heading">Selected <em>claim outcomes</em></h2>
-  <div class="case-grid">
-    <div class="case-card reveal" data-delay="0">
-      <div class="case-type">🌪️ Hurricane Wind Damage</div>
-      <div class="case-amount">$287,000</div>
-      <div class="case-detail">Miami-Dade homeowner. Insurer's initial offer was $74,000, citing depreciation and disputed wind versus flood causation. We documented structural envelope damage, challenged the causation argument, and negotiated full replacement value.</div>
-      <span class="case-tag">3.8× initial offer</span>
-    </div>
-    <div class="case-card reveal" data-delay="80">
-      <div class="case-type">💧 Flood & Mold Remediation</div>
-      <div class="case-amount">$215,000</div>
-      <div class="case-detail">Broward County residence. Hidden moisture behind bathroom tile and inside exterior walls had gone undetected. Our inspection uncovered the full scope. Full remediation and structural repair costs were recovered.</div>
-      <span class="case-tag">Claim expanded 4× in scope</span>
-    </div>
-    <div class="case-card reveal" data-delay="160">
-      <div class="case-type">🏠 Roof & Water Intrusion</div>
-      <div class="case-amount">$142,500</div>
-      <div class="case-detail">Palm Beach County. Claim was initially denied — insurer classified damage as "wear and tear." We documented storm-related cause and effect, reopened the claim, and recovered full replacement cost plus interior damage.</div>
-      <span class="case-tag">Denied → full settlement</span>
-    </div>
-    <div class="case-card reveal" data-delay="0">
-      <div class="case-type">🔥 Kitchen Fire & Smoke</div>
-      <div class="case-amount">$98,000</div>
-      <div class="case-detail">Miami Lakes. Insurer scoped only the kitchen. We documented smoke contamination throughout the home including HVAC ductwork, adjacent rooms, and personal property — nearly tripling the original estimate.</div>
-      <span class="case-tag">2.9× original scope</span>
-    </div>
-    <div class="case-card reveal" data-delay="80">
-      <div class="case-type">🌀 Hurricane Ian — Multi-Peril</div>
-      <div class="case-amount">$334,000</div>
-      <div class="case-detail">Southwest Florida. Complex multi-peril claim involving wind, water intrusion, and structural damage. Insurer split the claim to reduce payout. We consolidated and negotiated a unified settlement reflecting total losses.</div>
-      <span class="case-tag">Claim consolidated & maximized</span>
-    </div>
-    <div class="case-card reveal" data-delay="160">
-      <div class="case-type">💧 Plumbing Failure — Water Damage</div>
-      <div class="case-amount">$76,000</div>
-      <div class="case-detail">Miami. Slow-leak pipe behind a kitchen wall caused damage over several months. Insurer attempted to deny coverage citing "long-term neglect." We established sudden discovery and documented full scope — floors, walls, cabinets.</div>
-      <span class="case-tag">Denial overturned</span>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="section section-muted">
-  <p class="label">What clients say</p>
-  <h2 class="heading">Homeowners who <em>trusted us to fight</em></h2>
-  <div class="testimonials-grid">
-    <div class="testimonial-card reveal" data-delay="0">
-      <div class="t-stars">★★★★★</div>
-      <p class="t-quote">"I had no idea how much I was leaving on the table. Claim Remedy turned a denied claim into a full settlement. If you get a lowball offer, call them immediately."</p>
-      <div class="t-cite">— Carlos M. · Miami-Dade · Water Damage</div>
-    </div>
-    <div class="testimonial-card reveal" data-delay="80">
-      <div class="t-stars">★★★★★</div>
-      <p class="t-quote">"They recovered 3× what the insurance company initially offered after Hurricane Idalia. The whole process was handled professionally and they kept me informed every step."</p>
-      <div class="t-cite">— Maria R. · Tampa · Hurricane Claim</div>
-    </div>
-    <div class="testimonial-card reveal" data-delay="0">
-      <div class="t-stars">★★★★★</div>
-      <p class="t-quote">"My roof claim was denied twice before I called Claim Remedy. They documented everything properly, reopened the claim, and got me a full settlement. Worth every penny."</p>
-      <div class="t-cite">— James T. · Palm Beach · Roof Damage</div>
-    </div>
-    <div class="testimonial-card reveal" data-delay="80">
-      <div class="t-stars">★★★★★</div>
-      <p class="t-quote">"Thought I had a straightforward fire claim. They found smoke damage throughout the whole house that the insurance adjuster completely ignored. Life-changing difference in my payout."</p>
-      <div class="t-cite">— Yolanda F. · Broward County · Fire & Smoke</div>
-    </div>
-  </div>
-</section>
-
-<!-- WITH VS WITHOUT -->
-<section class="section">
-  <p class="label">The difference we make</p>
-  <h2 class="heading">Filing alone vs. <em>having us in your corner</em></h2>
-  <div class="comparison reveal">
-    <div class="comp-col">
-      <h3>Without a public adjuster <span>✗</span></h3>
-      <ul class="comp-list">
-        <li><span class="icon" style="color:#e05252">✗</span> Insurance company adjuster works against your interests</li>
-        <li><span class="icon" style="color:#e05252">✗</span> Damage often scoped incompletely or incorrectly</li>
-        <li><span class="icon" style="color:#e05252">✗</span> Policy language misinterpreted in insurer's favor</li>
-        <li><span class="icon" style="color:#e05252">✗</span> Hidden damage overlooked — mold, moisture, smoke</li>
-        <li><span class="icon" style="color:#e05252">✗</span> Denials and lowball offers accepted without challenge</li>
-        <li><span class="icon" style="color:#e05252">✗</span> Homeowner handles complex negotiations alone</li>
-      </ul>
-    </div>
-    <div class="comp-col">
-      <h3>With Claim Remedy <span style="color:var(--gold)">✓</span></h3>
-      <ul class="comp-list">
-        <li><span class="icon" style="color:var(--gold)">✓</span> Licensed advocate working exclusively for you</li>
-        <li><span class="icon" style="color:var(--gold)">✓</span> Comprehensive on-site inspection — nothing missed</li>
-        <li><span class="icon" style="color:var(--gold)">✓</span> Policy reviewed and applied in your favor</li>
-        <li><span class="icon" style="color:var(--gold)">✓</span> Full scope documentation including hidden damage</li>
-        <li><span class="icon" style="color:var(--gold)">✓</span> Denials challenged with evidence and expertise</li>
-        <li><span class="icon" style="color:var(--gold)">✓</span> We handle every conversation with your insurer</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="section section-dark">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
-    <h2 class="heading heading-light">Your claim could be worth <em>significantly more.</em></h2>
-    <div>
-      <p class="body-text body-text-light" style="margin-bottom:1.5rem;">Most homeowners don't know what they're leaving on the table. A free claim review takes 15 minutes and could change everything.</p>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-        <a href="tel:7862237867" class="btn btn-light">Call (786) 223-7867</a>
-        <a href="contact.html" class="btn btn-outline">Send a message</a>
+  <main>
+    <section class="page-hero">
+      <div class="container fade-up">
+        <h1>Recent claim recoveries</h1>
+        <p>Examples of outcomes we’ve pursued for policyholders. Every claim is different; past results do not guarantee future results.</p>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand"><a href="../index.html" class="nav-logo">Claim <span style="color:var(--accent-light)">Remedy</span> Adjusters</a><p>Licensed Florida public adjusters fighting for the payout homeowners truly deserve.</p></div>
-    <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="results.html">Results</a><a href="contact.html">Contact</a></div>
-    <div class="footer-col"><h4>Services</h4><a href="services.html#storm">Storm & Hurricane</a><a href="services.html#water">Water & Flood</a><a href="services.html#roof">Roof Damage</a><a href="services.html#fire">Fire & Smoke</a></div>
-    <div class="footer-col"><h4>Contact</h4><a href="tel:7862237867">(786) 223-7867</a><a href="mailto:office@cradjusters.com">office@cradjusters.com</a><a href="https://maps.app.goo.gl/q3hukF8AL637JsX49" target="_blank">7900 Oak Ln #400, Miami Lakes FL</a></div>
-  </div>
-  <div class="footer-bottom"><span>© 2026 Claim Remedy Adjusters. Licensed Florida Public Adjusters.</span><span><a href="faq.html">FAQ</a> &nbsp;·&nbsp; <a href="contact.html">Contact</a></span></div>
-</footer>
-<script src="../js/main.js"></script>
+    <section class="section section-alt">
+      <div class="container fade-up">
+        <div class="grid-3">
+          <article class="card">
+            <p class="case-amount">$145,000</p>
+            <p class="case-type">Hurricane damage</p>
+            <p>
+              Initial offer was around <strong>$32,000</strong>. After full documentation and negotiation, the settlement
+              reflected a more realistic scope for roof and interior repairs.
+            </p>
+          </article>
+          <article class="card">
+            <p class="case-amount">$85,000</p>
+            <p class="case-type">Cast iron pipe leak</p>
+            <p>
+              Carrier initially <strong>denied</strong> the claim. We developed causation evidence and policy support to secure a
+              recovery for tear-out, drying, and rebuild.
+            </p>
+          </article>
+          <article class="card">
+            <p class="case-amount">$62,000</p>
+            <p class="case-type">Fire &amp; smoke</p>
+            <p>
+              Kitchen and adjacent rooms affected by smoke and heat. The first estimate overlooked code upgrades and contents;
+              we aligned the file with actual repair bids.
+            </p>
+          </article>
+          <article class="card">
+            <p class="case-amount">$38,500</p>
+            <p class="case-type">Roof &amp; wind-driven rain</p>
+            <p>
+              Insurer scoped only cosmetic repairs. Supplemental testing and moisture mapping supported a broader replacement and
+              interior dry-out.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container fade-up">
+        <h2>Want a professional review?</h2>
+        <p>Tell us what happened — we’ll help you understand your options.</p>
+        <a class="btn" href="contact.html">Contact us</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Claim Remedy Adjusters. All rights reserved.</p>
+    <p>7900 Oak Ln #400, Miami Lakes, FL 33016</p>
+    <p><a href="tel:+17862237867">(786) 223-7867</a></p>
+  </footer>
+
+  <script src="../js/main.js"></script>
 </body>
 </html>

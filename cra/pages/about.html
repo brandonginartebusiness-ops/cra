@@ -1,166 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>About Us | Claim Remedy Adjusters</title>
-<meta name="description" content="Over 10 years of hands-on claim experience. Florida-licensed public adjusters representing homeowners — never insurance companies." />
-<link rel="stylesheet" href="../css/style.css" />
-<style>
-.about-intro { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
-.about-intro-text .heading { margin:1rem 0 1.5rem; }
-.about-intro-text .body-text { margin-bottom:1.5rem; }
-.about-intro-right { padding-top:1rem; }
-.value-list { list-style:none; display:flex; flex-direction:column; gap:0; }
-.value-list li {
-  display:flex; gap:1.25rem; padding:1.25rem 0;
-  border-bottom:1px solid var(--border); align-items:flex-start;
-  font-size:0.88rem; color:var(--mid); line-height:1.65; font-weight:300;
-}
-.value-list li:first-child { border-top:1px solid var(--border); }
-.value-list li::before { content:'→'; color:var(--gold); flex-shrink:0; margin-top:0.05rem; }
-
-.pillars { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border); margin-top:3rem; }
-.pillar { background:var(--cream); padding:2.5rem 2rem; }
-.pillar-num { font-family:var(--serif); font-size:3rem; color:rgba(17,17,16,0.08); line-height:1; margin-bottom:0.75rem; }
-.pillar h3 { font-family:var(--serif); font-size:1.15rem; margin-bottom:0.5rem; }
-.pillar p { font-size:0.84rem; color:var(--mid); line-height:1.7; font-weight:300; }
-
-.approach-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:rgba(255,255,255,0.06); margin-top:3rem; }
-.approach-item { background:var(--ink); padding:2.5rem 2rem; }
-.approach-item h3 { font-family:var(--serif); font-size:1.1rem; color:var(--cream); margin-bottom:0.6rem; }
-.approach-item p { font-size:0.84rem; color:rgba(245,241,235,0.5); line-height:1.7; font-weight:300; }
-
-.team-note { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
-.big-quote { font-family:var(--serif); font-style:italic; font-size:clamp(1.5rem,2.5vw,2.2rem); line-height:1.35; color:var(--ink); }
-.big-quote em { color:var(--accent); font-style:italic; }
-
-@media(max-width:960px){
-  .about-intro,.pillars{grid-template-columns:1fr;}
-  .approach-grid{grid-template-columns:1fr;}
-  .team-note{grid-template-columns:1fr;gap:2.5rem;}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Claim Remedy Adjusters</title>
+  <meta name="description" content="Licensed Florida public adjusters based in Miami Lakes. Over 10 years of experience representing homeowners — not insurance companies." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.claimremedyadjusters.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About",
+        "item": "https://www.claimremedyadjusters.com/pages/about.html"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-
-<nav>
-  <a href="../index.html" class="nav-logo">Claim <span>Remedy</span> Adjusters</a>
-  <ul class="nav-links">
-    <li><a href="about.html" class="active">About</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="results.html">Results</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="tel:7862237867" class="nav-cta">Call (786) 223-7867</a></li>
-  </ul>
-</nav>
-
-<div class="inner-hero">
-  <div class="inner-hero-content">
-    <p class="kicker">About Us</p>
-    <h1>Over a decade fighting for <em>Florida homeowners</em></h1>
-    <p>We exist for one reason: to make sure you're not left fighting your insurance company alone. We know the process, the policy language, and the tactics — and we use them for you.</p>
-  </div>
-</div>
-
-<!-- INTRO -->
-<section class="section">
-  <div class="about-intro">
-    <div class="about-intro-text">
-      <p class="label">Our story</p>
-      <h2 class="heading">Built from the ground up to <em>level the playing field</em></h2>
-      <p class="body-text">Claim Remedy Adjusters was founded on a simple premise: when a homeowner suffers property damage, they deserve fair representation — not a complicated fight against an insurer with unlimited resources.</p>
-      <p class="body-text">After more than 10 years of direct claim handling across Florida, we've seen every type of lowball offer, bad-faith delay, and unjust denial. We built this firm to fight back on your behalf.</p>
-      <a href="contact.html" class="btn btn-dark">Get a free claim review</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="../index.html">Claim Remedy Adjusters</a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <nav id="primary-nav" class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="results.html">Results</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a class="btn" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="about-intro-right reveal-left">
-      <ul class="value-list">
-        <li>We represent homeowners exclusively — never insurance carriers</li>
-        <li>Florida-licensed public adjusters with hands-on field experience</li>
-        <li>Clear communication at every stage, no surprises</li>
-        <li>Detailed inspections and written documentation on every claim</li>
-        <li>We stay involved from first call through final payout</li>
-        <li>Methodical preparation rather than rushed, incomplete filings</li>
-        <li>Our success is tied directly to yours — contingency-based fees only</li>
-      </ul>
-    </div>
-  </div>
-</section>
+  </header>
 
-<!-- PILLARS -->
-<section class="section section-muted">
-  <p class="label">What drives us</p>
-  <h2 class="heading">Three pillars of <em>every claim we handle</em></h2>
-  <div class="pillars">
-    <div class="pillar reveal" data-delay="0">
-      <div class="pillar-num">01</div>
-      <h3>Accuracy</h3>
-      <p>We document damage thoroughly and precisely — photographing, measuring, and recording every detail to build a claim file that stands up to scrutiny.</p>
-    </div>
-    <div class="pillar reveal" data-delay="100">
-      <div class="pillar-num">02</div>
-      <h3>Advocacy</h3>
-      <p>We speak directly with your insurer on your behalf. No miscommunication, no missed opportunities — just focused, professional representation.</p>
-    </div>
-    <div class="pillar reveal" data-delay="200">
-      <div class="pillar-num">03</div>
-      <h3>Transparency</h3>
-      <p>You're never left guessing. We explain every step, share every update, and make sure you understand what's happening with your claim at all times.</p>
-    </div>
-  </div>
-</section>
-
-<!-- OUR APPROACH -->
-<section class="section section-dark">
-  <p class="label label-dark">Our approach</p>
-  <h2 class="heading heading-light">How we handle <em>every claim</em></h2>
-  <div class="approach-grid">
-    <div class="approach-item reveal"><h3>Policy-First Review</h3><p>We start by reading your policy carefully — understanding your coverage, exclusions, and limits before we inspect anything.</p></div>
-    <div class="approach-item reveal" data-delay="80"><h3>Comprehensive Field Inspection</h3><p>Our adjusters walk every inch of the affected property, capturing photographic evidence, measurements, and written observations.</p></div>
-    <div class="approach-item reveal" data-delay="160"><h3>Itemized Loss Documentation</h3><p>We prepare a detailed proof of loss with line-item damage estimates aligned to current market replacement costs.</p></div>
-    <div class="approach-item reveal" data-delay="240"><h3>Strategic Negotiation</h3><p>We handle all communication and negotiation with your carrier — using our documentation to push back on underpayments and denials.</p></div>
-  </div>
-</section>
-
-<!-- TEAM NOTE -->
-<section class="section">
-  <div class="team-note">
-    <p class="big-quote">"We built this firm because we saw too many homeowners leave money on the table — not because they didn't deserve it, but because they didn't have <em>someone in their corner.</em>"</p>
-    <div>
-      <p class="label">Our team</p>
-      <p class="body-text" style="margin-bottom:1.5rem;">Every claim at Claim Remedy Adjusters is handled by licensed Florida public adjusters with working knowledge of state regulations, insurance policy interpretation, and ethical representation standards.</p>
-      <p class="body-text" style="margin-bottom:2rem;">We don't outsource. We don't rush. We stay involved from the day you call us to the day your check clears.</p>
-      <a href="contact.html" class="btn btn-dark">Speak with our team</a>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="section section-dark">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
-    <h2 class="heading heading-light">Ready to find out what your claim is <em>really worth?</em></h2>
-    <div>
-      <p class="body-text body-text-light" style="margin-bottom:1.5rem;">Our free claim review costs you nothing and puts you in a much stronger position. Call us or send a message — we respond fast.</p>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-        <a href="tel:7862237867" class="btn btn-light">Call (786) 223-7867</a>
-        <a href="contact.html" class="btn btn-outline">Send a message</a>
+  <main>
+    <section class="page-hero">
+      <div class="container fade-up">
+        <h1>About Claim Remedy Adjusters</h1>
+        <p>Florida-licensed public adjusters focused on homeowners and property owners — never the insurance carrier.</p>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <a href="../index.html" class="nav-logo">Claim <span style="color:var(--accent-light)">Remedy</span> Adjusters</a>
-      <p>Licensed Florida public adjusters fighting for the payout homeowners truly deserve.</p>
-    </div>
-    <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="results.html">Results</a><a href="contact.html">Contact</a></div>
-    <div class="footer-col"><h4>Services</h4><a href="services.html#storm">Storm & Hurricane</a><a href="services.html#water">Water & Flood</a><a href="services.html#roof">Roof Damage</a><a href="services.html#fire">Fire & Smoke</a></div>
-    <div class="footer-col"><h4>Contact</h4><a href="tel:7862237867">(786) 223-7867</a><a href="mailto:office@cradjusters.com">office@cradjusters.com</a><a href="https://maps.app.goo.gl/q3hukF8AL637JsX49" target="_blank">7900 Oak Ln #400, Miami Lakes FL</a></div>
-  </div>
-  <div class="footer-bottom"><span>© 2026 Claim Remedy Adjusters. Licensed Florida Public Adjusters.</span><span><a href="faq.html">FAQ</a> &nbsp;·&nbsp; <a href="contact.html">Contact</a></span></div>
-</footer>
-<script src="../js/main.js"></script>
+    <section class="section">
+      <div class="container about-grid fade-up">
+        <div>
+          <h2>Who we are</h2>
+          <p>
+            Based in <strong>Miami Lakes</strong>, Claim Remedy Adjusters brings <strong>more than 10 years</strong> of hands-on
+            experience with residential and commercial property claims. As licensed Florida public adjusters, our loyalty is
+            strictly with the policyholder.
+          </p>
+          <p>
+            When hurricanes, plumbing failures, or fires damage your property, the insurer sends adjusters who protect their
+            interests. We document the full scope of damage, build a strong claim file, and negotiate so you are positioned for a
+            fair settlement.
+          </p>
+          <p>
+            We believe Florida homeowners deserve clear communication, honest timelines, and advocacy at every step.
+          </p>
+        </div>
+        <aside class="credentials-card">
+          <h2>Our credentials</h2>
+          <ul>
+            <li>Licensed public adjusters in the State of Florida</li>
+            <li>10+ years of industry experience</li>
+            <li>Serving Miami-Dade, Broward, Palm Beach, Monroe, and Collier counties</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Claim Remedy Adjusters. All rights reserved.</p>
+    <p>7900 Oak Ln #400, Miami Lakes, FL 33016</p>
+    <p><a href="tel:+17862237867">(786) 223-7867</a></p>
+  </footer>
+
+  <script src="../js/main.js"></script>
 </body>
 </html>
