@@ -7,524 +7,621 @@
 <meta name="description" content="Florida's most trusted public adjusters. We fight for the insurance payout you truly deserve — storm, water, roof & fire damage claims." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --cream: #F5F1EB;
-    --ink: #111110;
-    --mid: #5C5C58;
-    --accent: #1A4A6E;
-    --accent-light: #2A6FA8;
-    --gold: #C4933A;
-    --border: rgba(17,17,16,0.10);
-    --serif: 'Instrument Serif', Georgia, serif;
-    --sans: 'DM Sans', sans-serif;
-  }
+:root {
+  --black:  #080810;
+  --black2: #0c0c18;
+  --navy:   #0A1628;
+  --blue:   #1E6FFF;
+  --blue2:  #4d8fff;
+  --gold:   #C9922A;
+  --cream:  #F2F0EC;
+  --mid:    #6f6f80;
+  --border: rgba(242,240,236,0.07);
+  --serif:  'Cormorant Garamond', Georgia, serif;
+  --sans:   'DM Sans', sans-serif;
+}
 
-  html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }
 
-  body {
-    font-family: var(--sans);
-    background: var(--cream);
-    color: var(--ink);
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
+body {
+  font-family: var(--sans);
+  background: var(--black);
+  color: rgba(242,240,236,0.82);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.25rem 2.5rem;
-    background: rgba(245,241,235,0.88);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    animation: fadeDown 0.7s ease both;
-  }
-  .nav-logo {
-    font-family: var(--serif);
-    font-size: 1.15rem;
-    color: var(--ink);
-    text-decoration: none;
-    letter-spacing: -0.01em;
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-  .nav-logo span { color: var(--accent); }
-  .nav-links {
-    display: flex; align-items: center; gap: 2rem; list-style: none;
-  }
-  .nav-links a {
-    font-size: 0.85rem; font-weight: 400; letter-spacing: 0.04em;
-    text-decoration: none; color: var(--mid);
-    text-transform: uppercase; transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--ink); }
-  .nav-cta {
-    background: var(--ink); color: var(--cream) !important;
-    padding: 0.55rem 1.2rem; border-radius: 2px;
-    font-weight: 500 !important; transition: background 0.2s !important;
-  }
-  .nav-cta:hover { background: var(--accent) !important; color: var(--cream) !important; }
+/* ── GRAIN ── */
+.grain {
+  position: fixed; inset: 0; z-index: 9999;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: grain-anim 8s steps(10) infinite;
+}
+@keyframes grain-anim {
+  0%  { transform: translate(0,0); }
+  10% { transform: translate(-3%,-4%); }
+  20% { transform: translate(-5%, 4%); }
+  30% { transform: translate( 3%,-2%); }
+  40% { transform: translate(-1%, 6%); }
+  50% { transform: translate(-5%,-1%); }
+  60% { transform: translate( 4%, 3%); }
+  70% { transform: translate( 1%,-5%); }
+  80% { transform: translate(-4%, 2%); }
+  90% { transform: translate( 5%, 4%); }
+  100%{ transform: translate(0,0); }
+}
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 72px;
-  }
-  .hero-left {
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 6rem 3rem 6rem 5rem;
-    animation: fadeUp 0.9s 0.2s ease both;
-  }
-  .hero-kicker {
-    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 1.5rem;
-    display: flex; align-items: center; gap: 0.75rem;
-  }
-  .hero-kicker::before {
-    content: ''; display: block;
-    width: 2rem; height: 1px; background: var(--gold);
-  }
-  .hero h1 {
-    font-family: var(--serif);
-    font-size: clamp(2.8rem, 5vw, 4.2rem);
-    line-height: 1.08; letter-spacing: -0.02em;
-    color: var(--ink); margin-bottom: 1.5rem;
-  }
-  .hero h1 em {
-    font-style: italic; color: var(--accent);
-  }
-  .hero-sub {
-    font-size: 1.05rem; color: var(--mid);
-    line-height: 1.7; max-width: 42ch;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-  }
-  .hero-actions {
-    display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
-  }
-  .btn-primary {
-    background: var(--ink); color: var(--cream);
-    padding: 0.85rem 2rem; border-radius: 2px;
-    text-decoration: none; font-size: 0.9rem; font-weight: 500;
-    letter-spacing: 0.02em;
-    transition: background 0.2s, transform 0.15s;
-    display: inline-block;
-  }
-  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
-  .btn-ghost {
-    color: var(--ink); text-decoration: none;
-    font-size: 0.9rem; font-weight: 400;
-    display: flex; align-items: center; gap: 0.4rem;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.1rem;
-    transition: border-color 0.2s, gap 0.2s;
-  }
-  .btn-ghost:hover { border-color: var(--ink); gap: 0.65rem; }
-  .hero-stats {
-    margin-top: 3.5rem; padding-top: 2rem;
-    border-top: 1px solid var(--border);
-    display: flex; gap: 2.5rem;
-  }
-  .stat-num {
-    font-family: var(--serif); font-size: 2rem; color: var(--ink);
-    line-height: 1; letter-spacing: -0.02em;
-  }
-  .stat-label {
-    font-size: 0.78rem; color: var(--mid);
-    text-transform: uppercase; letter-spacing: 0.06em;
-    margin-top: 0.3rem;
-  }
+/* ── CURSOR ── */
+#cur {
+  position: fixed; z-index: 10000;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--gold);
+  pointer-events: none; will-change: transform;
+  transition: background 0.2s;
+}
+#cur-r {
+  position: fixed; z-index: 9998;
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid rgba(242,240,236,0.35);
+  pointer-events: none; will-change: transform;
+  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
 
-  .hero-right {
-    position: relative; overflow: hidden;
-    animation: fadeIn 1.1s 0.1s ease both;
-  }
-  .hero-right::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, var(--accent) 0%, #0D2E45 100%);
-    z-index: 0;
-  }
-  .hero-img-overlay {
-    position: absolute; inset: 0; z-index: 1;
-    background:
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 3px,
-        rgba(0,0,0,0.04) 3px,
-        rgba(0,0,0,0.04) 4px
-      );
-  }
-  .hero-quote-card {
-    position: absolute; bottom: 3rem; left: -2rem; z-index: 2;
-    background: var(--cream); padding: 1.5rem 1.75rem;
-    border-radius: 2px; max-width: 280px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
-    animation: slideIn 1s 0.6s ease both;
-  }
-  .hero-quote-card blockquote {
-    font-family: var(--serif); font-style: italic;
-    font-size: 0.95rem; line-height: 1.55; color: var(--ink);
-    margin-bottom: 0.75rem;
-  }
-  .hero-quote-card cite {
-    font-size: 0.72rem; color: var(--mid);
-    text-transform: uppercase; letter-spacing: 0.08em;
-    font-style: normal;
-  }
-  .hero-badge {
-    position: absolute; top: 3rem; right: 2.5rem; z-index: 2;
-    width: 90px; height: 90px;
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 50%;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    animation: spin 20s linear infinite;
-  }
-  .hero-badge-inner {
-    position: absolute; inset: 0;
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 50%;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-  }
-  .hero-badge-num {
-    font-family: var(--serif); font-size: 1.6rem;
-    color: #fff; line-height: 1;
-  }
-  .hero-badge-text {
-    font-size: 0.55rem; color: rgba(255,255,255,0.7);
-    text-transform: uppercase; letter-spacing: 0.1em;
-    margin-top: 0.2rem;
-  }
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 3rem;
+  background: rgba(8,8,16,0.82);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.15rem; font-weight: 400;
+  color: var(--cream);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.nav-logo em { font-style: italic; color: var(--gold); }
+.nav-links {
+  display: flex; align-items: center; gap: 2.5rem; list-style: none;
+}
+.nav-links a {
+  font-size: 0.72rem; font-weight: 400; letter-spacing: 0.14em;
+  text-decoration: none; color: rgba(242,240,236,0.5);
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--cream); }
+.nav-cta {
+  background: var(--gold) !important; color: var(--black) !important;
+  padding: 0.5rem 1.25rem; border-radius: 2px;
+  font-weight: 500 !important;
+  transition: background 0.2s !important, transform 0.15s !important;
+}
+.nav-cta:hover { background: var(--blue) !important; color: #fff !important; transform: translateY(-1px); }
 
-  /* ── MARQUEE BAND ── */
-  .marquee-band {
-    background: var(--ink); color: var(--cream);
-    padding: 0.9rem 0; overflow: hidden;
-    border-top: 1px solid var(--border);
-  }
-  .marquee-track {
-    display: flex; gap: 3rem;
-    animation: marquee 25s linear infinite;
-    white-space: nowrap;
-  }
-  .marquee-item {
-    font-size: 0.75rem; letter-spacing: 0.12em;
-    text-transform: uppercase; color: rgba(245,241,235,0.7);
-    flex-shrink: 0; display: flex; align-items: center; gap: 3rem;
-  }
-  .marquee-item::after {
-    content: '◆'; color: var(--gold); font-size: 0.5rem;
-  }
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 72px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(30,111,255,0.07), transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(201,146,42,0.06), transparent 50%);
+}
+.hero-left {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 7rem 3rem 7rem 5rem;
+}
+.hero-kicker {
+  font-size: 0.68rem; font-weight: 400; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 1rem;
+  opacity: 0;
+}
+.hero-kicker::before {
+  content: ''; display: block;
+  width: 2.5rem; height: 1px; background: var(--gold);
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5vw, 4.8rem);
+  line-height: 1.04; letter-spacing: -0.01em;
+  color: var(--cream); font-weight: 300;
+  margin-bottom: 1.75rem;
+  opacity: 0;
+}
+.hero h1 em {
+  font-style: italic; color: var(--blue);
+}
+.hero-sub {
+  font-size: 1rem; color: var(--mid);
+  line-height: 1.75; max-width: 44ch;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  opacity: 0;
+}
+.hero-actions {
+  display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+  opacity: 0;
+}
+.btn-primary {
+  background: var(--blue); color: #fff;
+  padding: 0.9rem 2.25rem; border-radius: 2px;
+  text-decoration: none; font-size: 0.82rem; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.btn-primary:hover { background: var(--blue2); transform: translateY(-2px); }
+.btn-ghost {
+  color: rgba(242,240,236,0.55); text-decoration: none;
+  font-size: 0.85rem; font-weight: 300;
+  display: flex; align-items: center; gap: 0.5rem;
+  border-bottom: 1px solid rgba(242,240,236,0.15);
+  padding-bottom: 0.15rem;
+  transition: color 0.2s, border-color 0.2s, gap 0.2s;
+}
+.btn-ghost:hover { color: var(--cream); border-color: var(--cream); gap: 0.8rem; }
+.hero-stats {
+  margin-top: 3.5rem; padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  display: flex; gap: 3rem;
+  opacity: 0;
+}
+.stat-num {
+  font-family: var(--serif); font-size: 2.2rem; color: var(--cream);
+  line-height: 1; letter-spacing: -0.02em; font-weight: 300;
+}
+.stat-label {
+  font-size: 0.7rem; color: var(--mid);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-top: 0.4rem;
+}
 
-  /* ── SECTION GENERIC ── */
-  section { padding: 6rem 5rem; }
-  .section-label {
-    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 0.75rem;
-  }
-  .section-label::before {
-    content: ''; width: 1.5rem; height: 1px; background: var(--gold);
-  }
-  .section-heading {
-    font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.8rem);
-    line-height: 1.12; letter-spacing: -0.02em; color: var(--ink);
-  }
-  .section-heading em { font-style: italic; color: var(--accent); }
+.hero-right {
+  position: relative; z-index: 1; overflow: hidden;
+}
+.hero-right-inner {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(10,22,40,0.95) 0%, rgba(8,8,16,0.8) 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-right::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 3px
+    );
+}
+.hero-badge {
+  position: relative; z-index: 2;
+  width: 160px; height: 160px;
+  border: 1px solid rgba(201,146,42,0.3);
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  animation: spin 30s linear infinite;
+  opacity: 0;
+}
+.hero-badge-num {
+  font-family: var(--serif); font-size: 3rem;
+  color: var(--gold); line-height: 1; font-weight: 300;
+}
+.hero-badge-text {
+  font-size: 0.58rem; color: rgba(242,240,236,0.45);
+  text-transform: uppercase; letter-spacing: 0.15em;
+  margin-top: 0.4rem;
+}
+.hero-quote-card {
+  position: absolute; bottom: 3rem; left: 50%; z-index: 3;
+  transform: translateX(-50%);
+  background: rgba(12,12,24,0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  padding: 1.5rem 1.75rem;
+  border-radius: 2px; max-width: 300px; width: 90%;
+  border-left: 3px solid var(--gold);
+  opacity: 0;
+}
+.hero-quote-card blockquote {
+  font-family: var(--serif); font-style: italic;
+  font-size: 0.92rem; line-height: 1.6; color: rgba(242,240,236,0.85);
+  margin-bottom: 0.75rem;
+}
+.hero-quote-card cite {
+  font-size: 0.68rem; color: var(--mid);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  font-style: normal;
+}
 
-  /* ── HOW IT WORKS ── */
-  .how {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 5rem; align-items: center;
-  }
-  .how-text .section-heading { margin-bottom: 1.5rem; }
-  .how-body {
-    font-size: 1rem; color: var(--mid); line-height: 1.75;
-    font-weight: 300; margin-bottom: 2rem; max-width: 46ch;
-  }
-  .steps {
-    display: flex; flex-direction: column; gap: 0;
-    counter-reset: step;
-  }
-  .step {
-    display: flex; gap: 1.5rem; padding: 1.5rem 0;
-    border-bottom: 1px solid var(--border);
-    align-items: flex-start;
-    opacity: 0; transform: translateX(-20px);
-    transition: opacity 0.5s, transform 0.5s;
-  }
-  .step.visible { opacity: 1; transform: translateX(0); }
-  .step:first-child { border-top: 1px solid var(--border); }
-  .step-num {
-    font-family: var(--serif); font-size: 2.5rem; color: var(--border);
-    line-height: 1; width: 2.5rem; flex-shrink: 0;
-    counter-increment: step;
-  }
-  .step-num::after { content: counter(step, decimal-leading-zero); }
-  .step-content h3 {
-    font-family: var(--serif); font-size: 1.1rem;
-    margin-bottom: 0.3rem; color: var(--ink);
-  }
-  .step-content p {
-    font-size: 0.88rem; color: var(--mid); line-height: 1.65; font-weight: 300;
-  }
+/* ── MARQUEE ── */
+.marquee-band {
+  background: var(--navy);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0; overflow: hidden;
+}
+.marquee-track {
+  display: flex; gap: 4rem;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+}
+.marquee-item {
+  font-size: 0.68rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(242,240,236,0.45);
+  flex-shrink: 0; display: flex; align-items: center; gap: 4rem;
+}
+.marquee-item::after {
+  content: '◆'; color: var(--gold); font-size: 0.45rem;
+}
 
-  /* ── SERVICES ── */
-  .services-section { background: var(--ink); }
-  .services-section .section-label { color: var(--gold); }
-  .services-section .section-heading { color: var(--cream); }
-  .services-section .section-heading em { color: #6AACDA; }
-  .services-intro {
-    font-size: 1rem; color: rgba(245,241,235,0.55);
-    line-height: 1.7; font-weight: 300;
-    max-width: 50ch; margin-top: 1rem;
-  }
-  .services-header {
-    display: flex; justify-content: space-between; align-items: flex-end;
-    margin-bottom: 3rem; gap: 2rem;
-  }
-  .services-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 1.5px; background: rgba(255,255,255,0.07);
-  }
-  .service-card {
-    background: var(--ink); padding: 2rem 1.75rem;
-    cursor: default;
-    transition: background 0.25s;
-    position: relative; overflow: hidden;
-  }
-  .service-card:hover { background: var(--accent); }
-  .service-icon {
-    font-size: 1.6rem; margin-bottom: 1.25rem; display: block;
-  }
-  .service-card h3 {
-    font-family: var(--serif); font-size: 1.1rem; color: var(--cream);
-    margin-bottom: 0.6rem; line-height: 1.2;
-  }
-  .service-card p {
-    font-size: 0.82rem; color: rgba(245,241,235,0.5);
-    line-height: 1.65; font-weight: 300;
-  }
-  .service-card::after {
-    content: '→';
-    position: absolute; bottom: 1.75rem; right: 1.75rem;
-    color: rgba(245,241,235,0.2);
-    font-size: 1rem;
-    transition: color 0.2s, transform 0.2s;
-  }
-  .service-card:hover::after { color: rgba(245,241,235,0.6); transform: translate(4px, -2px); }
+/* ── SECTIONS ── */
+section { padding: 7rem 5rem; }
+.section-label {
+  font-size: 0.65rem; font-weight: 400; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.section-label::before {
+  content: ''; width: 2rem; height: 1px; background: var(--gold);
+}
+.section-heading {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+  line-height: 1.08; letter-spacing: -0.01em;
+  color: var(--cream); font-weight: 300;
+}
+.section-heading em { font-style: italic; color: var(--blue); }
 
-  /* ── WHY US ── */
-  .why-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 2px; background: var(--border);
-    margin-top: 3rem;
-  }
-  .why-item {
-    background: var(--cream); padding: 2.5rem 2rem;
-    opacity: 0; transform: translateY(20px);
-    transition: opacity 0.5s, transform 0.5s;
-  }
-  .why-item.visible { opacity: 1; transform: translateY(0); }
-  .why-icon { font-size: 1.4rem; margin-bottom: 1rem; }
-  .why-item h3 {
-    font-family: var(--serif); font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--ink);
-  }
-  .why-item p {
-    font-size: 0.85rem; color: var(--mid); line-height: 1.7; font-weight: 300;
-  }
-  .why-header {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 3rem; align-items: flex-end; margin-bottom: 0;
-  }
-  .why-header-right {
-    font-size: 1rem; color: var(--mid); line-height: 1.75; font-weight: 300;
-  }
+/* ── HOW IT WORKS ── */
+.how-section { background: var(--black2); }
+.how {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6rem; align-items: start;
+  max-width: 1200px; margin: 0 auto;
+}
+.how-text .section-heading { margin-bottom: 1.5rem; }
+.how-body {
+  font-size: 0.95rem; color: var(--mid); line-height: 1.8;
+  font-weight: 300; margin-bottom: 2rem; max-width: 44ch;
+}
+.steps { display: flex; flex-direction: column; gap: 0; }
+.step {
+  display: flex; gap: 1.75rem; padding: 1.75rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+  opacity: 0; transform: translateX(-30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.step.visible { opacity: 1; transform: translateX(0); }
+.step:first-child { border-top: 1px solid var(--border); }
+.step-num {
+  font-family: var(--serif); font-size: 2.8rem; color: rgba(242,240,236,0.08);
+  line-height: 1; width: 3rem; flex-shrink: 0; font-weight: 300;
+  counter-increment: step;
+}
+.step-num::after { content: counter(step, decimal-leading-zero); }
+.steps { counter-reset: step; }
+.step-content h3 {
+  font-family: var(--serif); font-size: 1.15rem; font-weight: 400;
+  margin-bottom: 0.4rem; color: var(--cream);
+}
+.step-content p {
+  font-size: 0.85rem; color: var(--mid); line-height: 1.7; font-weight: 300;
+}
 
-  /* ── RESULTS ── */
-  .results-section { background: #F0EDE7; }
-  .results-row {
-    display: grid; grid-template-columns: 1fr 2fr;
-    gap: 5rem; align-items: start; margin-top: 3rem;
-  }
-  .results-left .big-num {
-    font-family: var(--serif); font-size: clamp(4rem, 8vw, 7rem);
-    color: var(--ink); line-height: 0.9; letter-spacing: -0.04em;
-    margin-bottom: 0.5rem;
-  }
-  .results-left .big-label {
-    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--mid);
-  }
-  .results-cards {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px;
-    background: var(--border);
-  }
-  .result-card {
-    background: #F0EDE7; padding: 2rem;
-    border-left: 3px solid transparent;
-    transition: border-color 0.2s;
-  }
-  .result-card:hover { border-color: var(--gold); }
-  .result-card .amount {
-    font-family: var(--serif); font-size: 1.8rem; color: var(--accent);
-    letter-spacing: -0.02em; margin-bottom: 0.4rem;
-  }
-  .result-card .type {
-    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--mid); margin-bottom: 0.3rem;
-  }
-  .result-card .note {
-    font-size: 0.82rem; color: var(--mid); font-weight: 300;
-  }
+/* ── SERVICES ── */
+.services-section { background: var(--navy); }
+.services-section .section-heading em { color: var(--gold); }
+.services-intro {
+  font-size: 0.9rem; color: rgba(242,240,236,0.45);
+  line-height: 1.75; font-weight: 300;
+  max-width: 48ch;
+}
+.services-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 3.5rem; gap: 2rem;
+  max-width: 1200px; margin-left: auto; margin-right: auto;
+}
+.services-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: rgba(255,255,255,0.05);
+  max-width: 1200px; margin: 0 auto;
+}
+.service-card {
+  background: var(--navy); padding: 2.25rem 2rem;
+  cursor: default;
+  transition: background 0.3s ease;
+  position: relative; overflow: hidden;
+}
+.service-card:hover { background: rgba(30,111,255,0.12); }
+.service-icon {
+  font-size: 1.5rem; margin-bottom: 1.25rem; display: block;
+  filter: grayscale(0.3);
+}
+.service-card h3 {
+  font-family: var(--serif); font-size: 1.15rem; font-weight: 400;
+  color: var(--cream); margin-bottom: 0.75rem; line-height: 1.25;
+}
+.service-card p {
+  font-size: 0.8rem; color: rgba(242,240,236,0.42);
+  line-height: 1.7; font-weight: 300;
+}
+.service-card::after {
+  content: '→';
+  position: absolute; bottom: 1.75rem; right: 1.75rem;
+  color: rgba(242,240,236,0.15);
+  font-size: 0.9rem;
+  transition: color 0.2s, transform 0.2s;
+}
+.service-card:hover::after { color: var(--blue); transform: translate(4px,-2px); }
 
-  /* ── TESTIMONIAL ── */
-  .testimonial-section {
-    background: var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    text-align: center; padding: 7rem 5rem;
-  }
-  .testimonial-inner { max-width: 680px; }
-  .testimonial-inner blockquote {
-    font-family: var(--serif); font-style: italic;
-    font-size: clamp(1.4rem, 2.5vw, 2rem);
-    line-height: 1.4; color: #fff; margin-bottom: 1.5rem;
-  }
-  .testimonial-inner cite {
-    font-size: 0.78rem; letter-spacing: 0.1em;
-    text-transform: uppercase; color: rgba(255,255,255,0.55);
-    font-style: normal;
-  }
-  .stars {
-    display: flex; gap: 0.25rem; justify-content: center;
-    margin-bottom: 2rem; color: var(--gold); font-size: 0.9rem;
-  }
+/* ── WHY US ── */
+.why-section { background: var(--black); }
+.why-inner { max-width: 1200px; margin: 0 auto; }
+.why-header {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: flex-end; margin-bottom: 4rem;
+}
+.why-header-right {
+  font-size: 0.95rem; color: var(--mid); line-height: 1.8; font-weight: 300;
+}
+.why-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+}
+.why-item {
+  background: var(--black); padding: 2.5rem 2rem;
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.why-item.visible { opacity: 1; transform: translateY(0); }
+.why-icon {
+  font-size: 1.25rem; margin-bottom: 1rem;
+  width: 2.5rem; height: 2.5rem;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+}
+.why-item h3 {
+  font-family: var(--serif); font-size: 1.15rem; font-weight: 400;
+  margin-bottom: 0.5rem; color: var(--cream);
+}
+.why-item p {
+  font-size: 0.82rem; color: var(--mid); line-height: 1.75; font-weight: 300;
+}
 
-  /* ── FAQ ── */
-  .faq-section { max-width: 800px; margin: 0 auto; padding: 6rem 2rem; }
-  .faq-section .section-label,
-  .faq-section .section-heading { text-align: center; justify-content: center; }
-  .faq-section .section-label { justify-content: center; }
-  .faq-list { margin-top: 3rem; }
-  .faq-item {
-    border-bottom: 1px solid var(--border); overflow: hidden;
-  }
-  .faq-q {
-    width: 100%; background: none; border: none;
-    padding: 1.3rem 0; cursor: pointer;
-    display: flex; justify-content: space-between; align-items: center;
-    font-family: var(--sans); font-size: 0.95rem; font-weight: 500;
-    color: var(--ink); text-align: left; gap: 1rem;
-  }
-  .faq-icon {
-    font-size: 1rem; color: var(--mid); transition: transform 0.3s;
-    flex-shrink: 0;
-  }
-  .faq-item.open .faq-icon { transform: rotate(45deg); }
-  .faq-a {
-    font-size: 0.88rem; color: var(--mid); line-height: 1.75;
-    font-weight: 300; max-height: 0; overflow: hidden;
-    transition: max-height 0.35s ease, padding 0.25s ease;
-  }
-  .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.25rem; }
+/* ── RESULTS ── */
+.results-section { background: var(--black2); }
+.results-inner { max-width: 1200px; margin: 0 auto; }
+.results-header { margin-bottom: 3.5rem; }
+.results-row {
+  display: grid; grid-template-columns: 1fr 2.5fr;
+  gap: 6rem; align-items: start;
+}
+.results-left .big-num {
+  font-family: var(--serif);
+  font-size: clamp(5rem, 10vw, 9rem);
+  color: var(--cream); line-height: 0.85;
+  letter-spacing: -0.04em; font-weight: 300;
+  margin-bottom: 0.75rem;
+}
+.big-num-gold { color: var(--gold); }
+.results-left .big-label {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--mid);
+}
+.results-cards {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--border);
+}
+.result-card {
+  background: var(--black2); padding: 2.25rem 2rem;
+  border-left: 2px solid transparent;
+  transition: border-color 0.25s, background 0.25s;
+}
+.result-card:hover { border-color: var(--gold); background: rgba(201,146,42,0.04); }
+.result-card .amount {
+  font-family: var(--serif);
+  font-size: 2rem; color: var(--cream);
+  letter-spacing: -0.02em; margin-bottom: 0.5rem; font-weight: 300;
+}
+.result-card .type {
+  font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--gold); margin-bottom: 0.4rem;
+}
+.result-card .note {
+  font-size: 0.8rem; color: var(--mid); font-weight: 300; line-height: 1.6;
+}
 
-  /* ── CTA ── */
-  .cta-section {
-    background: var(--ink); color: var(--cream);
-    display: grid; grid-template-columns: 1fr 1fr;
-    align-items: center; gap: 3rem;
-    padding: 6rem 5rem;
-  }
-  .cta-section h2 {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
-    line-height: 1.1; letter-spacing: -0.02em;
-  }
-  .cta-section h2 em { font-style: italic; color: #6AACDA; }
-  .cta-right {
-    display: flex; flex-direction: column; gap: 1.25rem;
-    align-items: flex-start;
-  }
-  .cta-right p {
-    font-size: 0.9rem; color: rgba(245,241,235,0.6);
-    line-height: 1.7; font-weight: 300;
-  }
-  .cta-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
-  .btn-light {
-    background: var(--cream); color: var(--ink);
-    padding: 0.85rem 2rem; border-radius: 2px;
-    text-decoration: none; font-size: 0.9rem; font-weight: 500;
-    transition: opacity 0.2s, transform 0.15s;
-  }
-  .btn-light:hover { opacity: 0.88; transform: translateY(-1px); }
-  .cta-phone {
-    color: rgba(245,241,235,0.6); font-size: 0.9rem;
-    text-decoration: none; transition: color 0.2s;
-    display: flex; align-items: center; gap: 0.4rem;
-  }
-  .cta-phone:hover { color: var(--cream); }
+/* ── TESTIMONIAL ── */
+.testimonial-section {
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 8rem 5rem;
+  position: relative; overflow: hidden;
+}
+.testimonial-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(30,111,255,0.08), transparent 70%);
+}
+.testimonial-inner { max-width: 720px; position: relative; z-index: 1; }
+.testimonial-decor {
+  font-family: var(--serif); font-size: 6rem;
+  color: rgba(201,146,42,0.15); line-height: 0.7;
+  margin-bottom: 1rem;
+}
+.testimonial-inner blockquote {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  line-height: 1.35; color: var(--cream);
+  font-weight: 300; margin-bottom: 2rem;
+}
+.testimonial-inner cite {
+  font-size: 0.7rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mid);
+  font-style: normal;
+}
+.stars {
+  display: flex; gap: 0.3rem; justify-content: center;
+  margin-bottom: 2.5rem; color: var(--gold); font-size: 0.85rem;
+}
 
-  /* ── FOOTER ── */
-  footer {
-    padding: 2.5rem 5rem;
-    border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 0.78rem; color: var(--mid);
-  }
-  footer a { color: var(--mid); text-decoration: none; }
-  footer a:hover { color: var(--ink); }
+/* ── FAQ ── */
+.faq-section { background: var(--black); }
+.faq-inner { max-width: 760px; margin: 0 auto; }
+.faq-section .section-label,
+.faq-section .section-heading { text-align: center; }
+.faq-section .section-label { justify-content: center; }
+.faq-list { margin-top: 3.5rem; }
+.faq-item { border-bottom: 1px solid var(--border); overflow: hidden; }
+.faq-q {
+  width: 100%; background: none; border: none;
+  padding: 1.5rem 0; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--sans); font-size: 0.9rem; font-weight: 400;
+  color: rgba(242,240,236,0.75); text-align: left; gap: 1.5rem;
+  transition: color 0.2s;
+}
+.faq-q:hover { color: var(--cream); }
+.faq-icon {
+  font-size: 1.1rem; color: var(--gold);
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  flex-shrink: 0; font-style: normal; font-family: var(--sans);
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a {
+  font-size: 0.85rem; color: var(--mid); line-height: 1.8;
+  font-weight: 300; max-height: 0; overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.22,1,0.36,1), padding 0.3s ease;
+}
+.faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.5rem; }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: none; } }
-  @keyframes fadeUp   { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-  @keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes slideIn  { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: none; } }
-  @keyframes marquee  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @keyframes spin     { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+/* ── CTA ── */
+.cta-section {
+  background: var(--blue);
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 4rem;
+  padding: 7rem 5rem;
+  position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(255,255,255,0.05), transparent 60%);
+}
+.cta-section h2 {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+  line-height: 1.08; letter-spacing: -0.01em;
+  color: #fff; font-weight: 300;
+  position: relative; z-index: 1;
+}
+.cta-section h2 em { font-style: italic; color: rgba(255,255,255,0.6); }
+.cta-right {
+  display: flex; flex-direction: column; gap: 1.5rem;
+  align-items: flex-start; position: relative; z-index: 1;
+}
+.cta-right p {
+  font-size: 0.9rem; color: rgba(255,255,255,0.65);
+  line-height: 1.75; font-weight: 300;
+}
+.cta-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.btn-light {
+  background: #fff; color: var(--blue);
+  padding: 0.9rem 2.25rem; border-radius: 2px;
+  text-decoration: none; font-size: 0.82rem; font-weight: 500;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.btn-light:hover { opacity: 0.9; transform: translateY(-2px); }
+.cta-phone {
+  color: rgba(255,255,255,0.55); font-size: 0.85rem;
+  text-decoration: none; transition: color 0.2s;
+  display: flex; align-items: center; gap: 0.5rem;
+  font-weight: 300;
+}
+.cta-phone:hover { color: #fff; }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 5rem 1.5rem 3rem; }
-    .hero-right { min-height: 50vw; }
-    .hero-quote-card { left: 1rem; bottom: 1.5rem; }
-    section { padding: 4rem 1.5rem; }
-    .how { grid-template-columns: 1fr; gap: 3rem; }
-    .services-grid { grid-template-columns: 1fr 1fr; }
-    .services-header { flex-direction: column; align-items: flex-start; }
-    .why-grid { grid-template-columns: 1fr 1fr; }
-    .why-header { grid-template-columns: 1fr; }
-    .results-row { grid-template-columns: 1fr; gap: 2rem; }
-    .cta-section { grid-template-columns: 1fr; padding: 4rem 1.5rem; }
-    footer { flex-direction: column; gap: 1rem; padding: 2rem 1.5rem; }
-  }
+/* ── FOOTER ── */
+footer {
+  padding: 2.5rem 5rem;
+  background: var(--black);
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.72rem; color: rgba(242,240,236,0.3);
+  letter-spacing: 0.04em;
+}
+footer a { color: rgba(242,240,236,0.3); text-decoration: none; transition: color 0.2s; }
+footer a:hover { color: rgba(242,240,236,0.7); }
 
-  @media (max-width: 600px) {
-    .services-grid { grid-template-columns: 1fr; }
-    .why-grid { grid-template-columns: 1fr; }
-    .results-cards { grid-template-columns: 1fr; }
-    .hero-stats { flex-direction: column; gap: 1.5rem; }
-  }
+/* ── ANIMATIONS ── */
+@keyframes marquee  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes spin     { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 6rem 2rem 3rem; }
+  .hero-right { min-height: 60vw; }
+  .hero-quote-card { max-width: 80%; }
+  section { padding: 5rem 2rem; }
+  .how { grid-template-columns: 1fr; gap: 3rem; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .services-header { flex-direction: column; align-items: flex-start; }
+  .why-grid { grid-template-columns: 1fr 1fr; }
+  .why-header { grid-template-columns: 1fr; }
+  .results-row { grid-template-columns: 1fr; gap: 3rem; }
+  .cta-section { grid-template-columns: 1fr; padding: 5rem 2rem; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+}
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .results-cards { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: column; gap: 1.5rem; }
+}
+@media (pointer: coarse) {
+  body { cursor: auto; }
+  #cur, #cur-r { display: none; }
+}
 </style>
 </head>
 <body>
 
+<div class="grain" aria-hidden="true"></div>
+<div id="cur"></div>
+<div id="cur-r"></div>
+
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Claim <span>Remedy</span> Adjusters</a>
+  <a href="#" class="nav-logo">Claim <em>Remedy</em> Adjusters</a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#results">Results</a></li>
@@ -535,15 +632,16 @@
 
 <!-- HERO -->
 <section class="hero" style="padding:0;">
+  <div class="hero-bg"></div>
   <div class="hero-left">
-    <p class="hero-kicker">Licensed Florida Public Adjusters</p>
-    <h1>Your insurance company has a team.<br><em>Now you do too.</em></h1>
-    <p class="hero-sub">When a storm, flood, or fire hits your home, we step in to inspect, document, and negotiate your claim — so you get every dollar you're owed. No upfront cost, ever.</p>
-    <div class="hero-actions">
+    <p class="hero-kicker" id="hero-kicker">Licensed Florida Public Adjusters</p>
+    <h1 id="hero-h1">Your insurance company has a team.<br><em>Now you do too.</em></h1>
+    <p class="hero-sub" id="hero-sub">When a storm, flood, or fire hits your home, we step in to inspect, document, and negotiate your claim — so you get every dollar you're owed. No upfront cost, ever.</p>
+    <div class="hero-actions" id="hero-actions">
       <a href="tel:7862237867" class="btn-primary">Call for a Free Review</a>
       <a href="#how" class="btn-ghost">See how it works →</a>
     </div>
-    <div class="hero-stats">
+    <div class="hero-stats" id="hero-stats">
       <div>
         <div class="stat-num">$4M+</div>
         <div class="stat-label">Recovered for clients</div>
@@ -559,14 +657,12 @@
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-img-overlay"></div>
-    <div class="hero-badge">
-      <div class="hero-badge-inner">
-        <div class="hero-badge-num">A+</div>
-        <div class="hero-badge-text">Rated</div>
-      </div>
+    <div class="hero-right-inner"></div>
+    <div class="hero-badge" id="hero-badge">
+      <div class="hero-badge-num">A+</div>
+      <div class="hero-badge-text">Rated</div>
     </div>
-    <div class="hero-quote-card">
+    <div class="hero-quote-card" id="hero-quote">
       <blockquote>"They recovered 3× what the insurance company initially offered us after Hurricane Idalia."</blockquote>
       <cite>— Maria R., Tampa FL</cite>
     </div>
@@ -596,9 +692,9 @@
 </div>
 
 <!-- HOW IT WORKS -->
-<section id="how">
+<section id="how" class="how-section">
   <div class="how">
-    <div class="how-text">
+    <div class="how-text gsap-reveal">
       <p class="section-label">How it works</p>
       <h2 class="section-heading">Simple, transparent, <em>on your side</em></h2>
       <p class="how-body">From your first call to your final payout, we handle every detail of the claims process. No jargon, no runaround — just results.</p>
@@ -639,7 +735,7 @@
 
 <!-- SERVICES -->
 <section id="services" class="services-section">
-  <div class="services-header">
+  <div class="services-header gsap-reveal">
     <div>
       <p class="section-label">What we handle</p>
       <h2 class="section-heading">Every type of <em>property damage claim</em></h2>
@@ -671,77 +767,83 @@
 </section>
 
 <!-- WHY US -->
-<section id="why">
-  <div class="why-header">
-    <div>
-      <p class="section-label">Why Claim Remedy</p>
-      <h2 class="section-heading">We work for <em>you</em> — not your insurer</h2>
+<section id="why" class="why-section">
+  <div class="why-inner">
+    <div class="why-header gsap-reveal">
+      <div>
+        <p class="section-label">Why Claim Remedy</p>
+        <h2 class="section-heading">We work for <em>you</em> —<br>not your insurer</h2>
+      </div>
+      <p class="why-header-right">Your insurance company has staff adjusters whose job is to minimize your payout. A public adjuster levels the playing field — we're your expert, your advocate, your voice.</p>
     </div>
-    <p class="why-header-right">Your insurance company has staff adjusters whose job is to minimize your payout. A public adjuster levels the playing field — we're your expert, your advocate, your voice.</p>
-  </div>
-  <div class="why-grid">
-    <div class="why-item">
-      <div class="why-icon">⚖️</div>
-      <h3>Licensed & Regulated</h3>
-      <p>We're fully licensed Florida public adjusters — held to state standards and committed to ethical, transparent practice.</p>
-    </div>
-    <div class="why-item">
-      <div class="why-icon">💼</div>
-      <h3>No Upfront Cost</h3>
-      <p>You pay nothing until we win your claim. Our fee is a percentage of your settlement — so we're invested in your outcome.</p>
-    </div>
-    <div class="why-item">
-      <div class="why-icon">⚡</div>
-      <h3>Fast Response</h3>
-      <p>We respond quickly because timing matters. The sooner we're involved, the stronger your claim will be.</p>
-    </div>
-    <div class="why-item">
-      <div class="why-icon">📋</div>
-      <h3>Meticulous Documentation</h3>
-      <p>We photograph, measure, and record everything — building an evidence-backed claim file that's hard to argue with.</p>
-    </div>
-    <div class="why-item">
-      <div class="why-icon">🗣️</div>
-      <h3>Direct Negotiation</h3>
-      <p>We communicate with your insurer on your behalf — eliminating confusion and ensuring nothing is left on the table.</p>
-    </div>
-    <div class="why-item">
-      <div class="why-icon">🌊</div>
-      <h3>Florida Expertise</h3>
-      <p>We know Florida's unique weather patterns, insurance laws, and insurer tactics — and we use that knowledge for you.</p>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">⚖️</div>
+        <h3>Licensed & Regulated</h3>
+        <p>We're fully licensed Florida public adjusters — held to state standards and committed to ethical, transparent practice.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">💼</div>
+        <h3>No Upfront Cost</h3>
+        <p>You pay nothing until we win your claim. Our fee is a percentage of your settlement — so we're invested in your outcome.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">⚡</div>
+        <h3>Fast Response</h3>
+        <p>We respond quickly because timing matters. The sooner we're involved, the stronger your claim will be.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">📋</div>
+        <h3>Meticulous Documentation</h3>
+        <p>We photograph, measure, and record everything — building an evidence-backed claim file that's hard to argue with.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🗣️</div>
+        <h3>Direct Negotiation</h3>
+        <p>We communicate with your insurer on your behalf — eliminating confusion and ensuring nothing is left on the table.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🌊</div>
+        <h3>Florida Expertise</h3>
+        <p>We know Florida's unique weather patterns, insurance laws, and insurer tactics — and we use that knowledge for you.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- RESULTS -->
 <section id="results" class="results-section">
-  <p class="section-label">Proven results</p>
-  <h2 class="section-heading">Real settlements, <em>real people</em></h2>
-  <div class="results-row">
-    <div class="results-left">
-      <div class="big-num">$4M+</div>
-      <div class="big-label">Total recovered for Florida homeowners</div>
+  <div class="results-inner">
+    <div class="results-header gsap-reveal">
+      <p class="section-label">Proven results</p>
+      <h2 class="section-heading">Real settlements, <em>real people</em></h2>
     </div>
-    <div class="results-cards">
-      <div class="result-card">
-        <div class="amount">$287,000</div>
-        <div class="type">Hurricane Wind Damage</div>
-        <div class="note">Insurer initially offered $74,000 — we recovered 3.8×</div>
+    <div class="results-row">
+      <div class="results-left gsap-reveal">
+        <div class="big-num"><span class="big-num-gold">$4M</span>+</div>
+        <div class="big-label">Total recovered for Florida homeowners</div>
       </div>
-      <div class="result-card">
-        <div class="amount">$142,500</div>
-        <div class="type">Roof & Water Intrusion</div>
-        <div class="note">Denied claim reopened and settled in full</div>
-      </div>
-      <div class="result-card">
-        <div class="amount">$98,000</div>
-        <div class="type">Kitchen Fire Damage</div>
-        <div class="note">Smoke and structural damage documented comprehensively</div>
-      </div>
-      <div class="result-card">
-        <div class="amount">$215,000</div>
-        <div class="type">Flood & Mold Remediation</div>
-        <div class="note">Hidden moisture damage uncovered during inspection</div>
+      <div class="results-cards">
+        <div class="result-card">
+          <div class="amount">$287,000</div>
+          <div class="type">Hurricane Wind Damage</div>
+          <div class="note">Insurer initially offered $74,000 — we recovered 3.8×</div>
+        </div>
+        <div class="result-card">
+          <div class="amount">$142,500</div>
+          <div class="type">Roof & Water Intrusion</div>
+          <div class="note">Denied claim reopened and settled in full</div>
+        </div>
+        <div class="result-card">
+          <div class="amount">$98,000</div>
+          <div class="type">Kitchen Fire Damage</div>
+          <div class="note">Smoke and structural damage documented comprehensively</div>
+        </div>
+        <div class="result-card">
+          <div class="amount">$215,000</div>
+          <div class="type">Flood & Mold Remediation</div>
+          <div class="note">Hidden moisture damage uncovered during inspection</div>
+        </div>
       </div>
     </div>
   </div>
@@ -749,8 +851,9 @@
 
 <!-- TESTIMONIAL -->
 <div class="testimonial-section">
-  <div class="testimonial-inner">
+  <div class="testimonial-inner gsap-reveal">
     <div class="stars">★★★★★</div>
+    <div class="testimonial-decor" aria-hidden="true">"</div>
     <blockquote>"I had no idea how much I was leaving on the table until Claim Remedy stepped in. They turned a denied claim into a full settlement. I can't recommend them enough."</blockquote>
     <cite>— Carlos M., Miami-Dade FL · Water Damage Claim</cite>
   </div>
@@ -758,32 +861,34 @@
 
 <!-- FAQ -->
 <section id="faq" class="faq-section">
-  <p class="section-label">Questions</p>
-  <h2 class="section-heading">Common questions</h2>
-  <div class="faq-list">
-    <div class="faq-item">
-      <button class="faq-q">What exactly is a public adjuster? <span class="faq-icon">+</span></button>
-      <div class="faq-a">A public adjuster is a licensed professional who works exclusively for policyholders — not insurance companies. We assess damage, prepare your claim, and negotiate on your behalf to make sure you receive a fair settlement.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q">How do you get paid? <span class="faq-icon">+</span></button>
-      <div class="faq-a">We charge a percentage of your final settlement — typically 10–20% depending on claim complexity. You pay nothing upfront. If we don't recover money for you, you owe us nothing.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q">Can I use a public adjuster if my claim was already denied? <span class="faq-icon">+</span></button>
-      <div class="faq-a">Yes. Denied claims can often be reopened and appealed. We review your policy, the denial reason, and the damage evidence to build a compelling case for reinstatement.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q">How long does the claims process take? <span class="faq-icon">+</span></button>
-      <div class="faq-a">It depends on the complexity of your claim and your insurer's responsiveness. Simple claims may resolve in weeks; more complex ones can take a few months. We keep you informed every step of the way.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q">Does hiring a public adjuster affect my relationship with my insurer? <span class="faq-icon">+</span></button>
-      <div class="faq-a">No. You have every legal right to representation. Most insurers are accustomed to working with public adjusters and are required to communicate professionally and in good faith with licensed representatives.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q">What areas of Florida do you serve? <span class="faq-icon">+</span></button>
-      <div class="faq-a">We serve clients across the state of Florida, with a focus on South Florida including Miami-Dade, Broward, and Palm Beach counties. Contact us to confirm coverage in your area.</div>
+  <div class="faq-inner">
+    <p class="section-label">Questions</p>
+    <h2 class="section-heading">Common questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">What exactly is a public adjuster? <span class="faq-icon">+</span></button>
+        <div class="faq-a">A public adjuster is a licensed professional who works exclusively for policyholders — not insurance companies. We assess damage, prepare your claim, and negotiate on your behalf to make sure you receive a fair settlement.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How do you get paid? <span class="faq-icon">+</span></button>
+        <div class="faq-a">We charge a percentage of your final settlement — typically 10–20% depending on claim complexity. You pay nothing upfront. If we don't recover money for you, you owe us nothing.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I use a public adjuster if my claim was already denied? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Yes. Denied claims can often be reopened and appealed. We review your policy, the denial reason, and the damage evidence to build a compelling case for reinstatement.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long does the claims process take? <span class="faq-icon">+</span></button>
+        <div class="faq-a">It depends on the complexity of your claim and your insurer's responsiveness. Simple claims may resolve in weeks; more complex ones can take a few months. We keep you informed every step of the way.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Does hiring a public adjuster affect my relationship with my insurer? <span class="faq-icon">+</span></button>
+        <div class="faq-a">No. You have every legal right to representation. Most insurers are accustomed to working with public adjusters and are required to communicate professionally and in good faith with licensed representatives.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What areas of Florida do you serve? <span class="faq-icon">+</span></button>
+        <div class="faq-a">We serve clients across the state of Florida, with a focus on South Florida including Miami-Dade, Broward, and Palm Beach counties. Contact us to confirm coverage in your area.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -802,7 +907,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <span>© 2025 Claim Remedy Adjusters · Licensed Florida Public Adjusters</span>
+  <span>© 2026 Claim Remedy Adjusters · Licensed Florida Public Adjusters</span>
   <span>
     <a href="tel:7862237867">(786) 223-7867</a> &nbsp;·&nbsp;
     <a href="#services">Services</a> &nbsp;·&nbsp;
@@ -810,35 +915,132 @@
   </span>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-  // FAQ accordion
-  document.querySelectorAll('.faq-q').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-    });
-  });
+(function() {
+  'use strict';
 
-  // Scroll reveal
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+
+  // Custom cursor
+  var cur = document.getElementById('cur');
+  var curR = document.getElementById('cur-r');
+  if (hasFinePointer && cur && curR) {
+    var mx = window.innerWidth * 0.5, my = window.innerHeight * 0.5;
+    var rx = mx, ry = my;
+    document.addEventListener('mousemove', function(e) {
+      mx = e.clientX; my = e.clientY;
+      cur.style.transform = 'translate(' + mx + 'px,' + my + 'px) translate(-50%,-50%)';
+    });
+    (function loop() {
+      rx += (mx - rx) * 0.1;
+      ry += (my - ry) * 0.1;
+      curR.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a, button').forEach(function(el) {
+      el.addEventListener('mouseenter', function() {
+        cur.style.background = 'var(--blue)';
+        curR.style.width = '50px'; curR.style.height = '50px';
+        curR.style.borderColor = 'rgba(30,111,255,0.7)';
+        curR.style.backgroundColor = 'rgba(30,111,255,0.1)';
+      });
+      el.addEventListener('mouseleave', function() {
+        cur.style.background = 'var(--gold)';
+        curR.style.width = '34px'; curR.style.height = '34px';
+        curR.style.borderColor = 'rgba(242,240,236,0.35)';
+        curR.style.backgroundColor = 'transparent';
+      });
+    });
+  }
+
+  // Hero intro
+  if (typeof gsap !== 'undefined' && !prefersReduced) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    tl.to('#hero-kicker',  { opacity: 1, y: 0, duration: 0.8, delay: 0.2 }, 0)
+      .from('#hero-kicker', { y: 20 }, 0)
+      .to('#hero-h1',      { opacity: 1, y: 0, duration: 1 }, 0.35)
+      .from('#hero-h1',    { y: 60 }, 0.35)
+      .to('#hero-sub',     { opacity: 1, y: 0, duration: 0.9 }, 0.55)
+      .from('#hero-sub',   { y: 40 }, 0.55)
+      .to('#hero-actions', { opacity: 1, y: 0, duration: 0.8 }, 0.75)
+      .from('#hero-actions',{ y: 30 }, 0.75)
+      .to('#hero-stats',   { opacity: 1, y: 0, duration: 0.8 }, 0.9)
+      .from('#hero-stats',  { y: 30 }, 0.9)
+      .to('#hero-badge',   { opacity: 1, duration: 1.2 }, 0.5)
+      .to('#hero-quote',   { opacity: 1, x: 0, duration: 1, ease: 'power2.out' }, 0.85)
+      .from('#hero-quote', { x: -30 }, 0.85);
+
+    // Scroll reveals
+    document.querySelectorAll('.gsap-reveal').forEach(function(el) {
+      gsap.from(el, {
+        y: 60, opacity: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+      });
+    });
+
+    // Service cards stagger
+    var sGrid = document.querySelector('.services-grid');
+    if (sGrid) {
+      gsap.from(sGrid.querySelectorAll('.service-card'), {
+        y: 60, opacity: 0, duration: 0.9, ease: 'power3.out',
+        stagger: 0.1,
+        scrollTrigger: { trigger: sGrid, start: 'top 85%', toggleActions: 'play none none none' }
+      });
+    }
+
+    // Result cards stagger
+    var rCards = document.querySelector('.results-cards');
+    if (rCards) {
+      gsap.from(rCards.querySelectorAll('.result-card'), {
+        y: 60, opacity: 0, duration: 0.9, ease: 'power3.out',
+        stagger: 0.1,
+        scrollTrigger: { trigger: rCards, start: 'top 85%', toggleActions: 'play none none none' }
+      });
+    }
+  } else {
+    // No GSAP fallback: make hero elements visible
+    ['#hero-kicker','#hero-h1','#hero-sub','#hero-actions','#hero-stats','#hero-badge','#hero-quote'].forEach(function(s) {
+      var el = document.querySelector(s);
+      if (el) { el.style.opacity = '1'; el.style.transform = 'none'; }
+    });
+  }
+
+  // Scroll reveal for steps and why-items (CSS transition fallback)
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e, idx) {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), e.target.dataset.delay || 0);
+        var delay = parseInt(e.target.dataset.delay || 0);
+        setTimeout(function() { e.target.classList.add('visible'); }, delay);
         observer.unobserve(e.target);
       }
     });
   }, { threshold: 0.15 });
 
-  document.querySelectorAll('.step').forEach((el, i) => {
+  document.querySelectorAll('.step').forEach(function(el, i) {
     el.dataset.delay = i * 100;
     observer.observe(el);
   });
-  document.querySelectorAll('.why-item').forEach((el, i) => {
+  document.querySelectorAll('.why-item').forEach(function(el, i) {
     el.dataset.delay = i * 80;
     observer.observe(el);
   });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.closest('.faq-item');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+})();
 </script>
 </body>
 </html>
