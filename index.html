@@ -447,65 +447,6 @@
       line-height: 1.75;
       color: var(--color-light-fg-muted);
     }
-    .services-detail-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .services-detail-card {
-      border: 1px solid var(--color-light-border);
-      border-radius: var(--radius-lg);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,255,255,0.94)),
-        radial-gradient(circle at top left, rgba(46,139,255,0.08), transparent 48%);
-      padding: clamp(1.5rem, 2.6vw, 2rem);
-      box-shadow: 0 16px 32px rgba(27, 58, 92, 0.08);
-    }
-    .services-detail-card h3 {
-      font-family: var(--font-display);
-      font-size: clamp(1.45rem, 1.3rem + 0.35vw, 1.7rem);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      color: var(--color-light-fg);
-    }
-    .services-detail-card p {
-      margin-top: 0.8rem;
-      font-size: clamp(0.98rem, 0.93rem + 0.18vw, 1.05rem);
-      line-height: 1.72;
-      color: var(--color-light-fg-muted);
-    }
-    .services-list {
-      list-style: none;
-      display: grid;
-      gap: 0.8rem;
-      margin-top: 1rem;
-    }
-    .services-list li {
-      position: relative;
-      padding-left: 1rem;
-      font-size: clamp(0.98rem, 0.93rem + 0.18vw, 1.05rem);
-      line-height: 1.68;
-      color: var(--color-light-fg-muted);
-    }
-    .services-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.72rem;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #1B3A5C;
-      opacity: 0.8;
-    }
-    .services-highlight {
-      margin-top: 1rem;
-      font-family: var(--font-display);
-      font-size: clamp(1.25rem, 1.15rem + 0.3vw, 1.45rem);
-      line-height: 1.25;
-      color: var(--color-light-fg);
-    }
 
     /* ?????? Dark Section ?????? */
     .section-dark {
@@ -714,6 +655,9 @@
       padding: clamp(1.6rem, 2.8vw, 2.2rem);
       box-shadow: 0 20px 48px rgba(0,0,0,0.16);
     }
+    .authority-card.primary {
+      text-align: center;
+    }
     .authority-card h3 {
       font-family: var(--font-display);
       font-size: clamp(1.7rem, 1.55rem + 0.45vw, 2rem);
@@ -726,33 +670,32 @@
       color: var(--color-foreground-muted);
     }
     .authority-profile {
-      display: grid;
-      grid-template-columns: 140px minmax(0, 1fr);
-      gap: 1.2rem;
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      gap: 1.25rem;
     }
     .authority-photo {
-      width: 140px;
+      width: min(100%, 280px);
       aspect-ratio: 1;
-      border-radius: 24px;
+      border-radius: 28px;
       border: 1px solid rgba(255,255,255,0.08);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0)),
-        radial-gradient(circle at top left, rgba(46,139,255,0.22), transparent 48%),
-        #202126;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      padding: 1rem;
-      color: var(--color-foreground-muted);
-      font-size: 0.92rem;
-      text-align: center;
+      overflow: hidden;
+      background: #202126;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.22);
+    }
+    .authority-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .authority-kickers {
       display: flex;
       flex-wrap: wrap;
       gap: 0.65rem;
       margin-top: 1.2rem;
+      justify-content: center;
     }
     .authority-kicker {
       border: 1px solid rgba(255,255,255,0.08);
@@ -1847,7 +1790,6 @@
         clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
       }
       .results-grid { grid-template-columns: 1fr 1fr; }
-      .services-detail-grid { grid-template-columns: 1fr; }
       .proof-gallery { grid-template-columns: 1fr 1fr; }
       .process-grid { grid-template-columns: repeat(2, 1fr); }
       .authority-grid { grid-template-columns: 1fr; }
@@ -1949,7 +1891,6 @@
       }
       .services-grid { grid-template-columns: 1fr; }
       .results-grid { grid-template-columns: 1fr; }
-      .services-detail-grid { grid-template-columns: 1fr; }
       .proof-gallery { grid-template-columns: 1fr; }
       .process-grid { grid-template-columns: 1fr; }
       .value-grid { grid-template-columns: 1fr; }
@@ -2096,41 +2037,6 @@
       <h2 class="section-heading" style="color: var(--color-light-fg)">Property damage claims handled with Florida-specific experience.</h2>
       <p class="services-intro">We focus exclusively on property damage insurance claims in Florida. Whether you are a homeowner or commercial property owner, Claim Remedy is built to move quickly, document thoroughly, and fight for the recovery your policy should support.</p>
     </div>
-    <div class="services-detail-grid">
-      <div class="services-detail-card reveal">
-        <h3>Our Specialization</h3>
-        <p>Our experience with Florida's unique weather risks means we know what to look for and how to fight for it.</p>
-        <ul class="services-list">
-          <li>Hurricanes &amp; storm damage</li>
-          <li>Roof leaks &amp; wind damage</li>
-          <li>Water &amp; flood damage</li>
-          <li>Mold &amp; structural issues</li>
-          <li>Fire &amp; smoke losses</li>
-        </ul>
-      </div>
-      <div class="services-detail-card reveal">
-        <h3>Our Approach</h3>
-        <p>We treat every claim like it is our own, which means homeowners get support that is proactive, transparent, and built around doing the hard parts for them.</p>
-        <ul class="services-list">
-          <li>Free claim reviews with a no-obligation assessment</li>
-          <li>No recovery, no fee</li>
-          <li>Complete handling of inspections, documentation, and negotiations</li>
-          <li>Fast action with quick insurer contact and active follow-through</li>
-          <li>Clear communication at every step</li>
-        </ul>
-      </div>
-      <div class="services-detail-card reveal">
-        <h3>Our Results</h3>
-        <p>We help clients move from confusion and delay to a clearer path toward recovery, backed by speed, structure, and follow-through.</p>
-        <ul class="services-list">
-          <li>Helped hundreds of Florida families recover after Hurricane Ian</li>
-          <li>Reopened denied claims and secured 2x-3x higher payouts</li>
-          <li>Fast turnaround on inspection, claim filing, and settlement</li>
-          <li>5-star client satisfaction built on transparency, speed, and results</li>
-        </ul>
-        <p class="services-highlight">Your property. Your rights. Our fight.</p>
-      </div>
-    </div>
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-card-image">
@@ -2260,35 +2166,6 @@
         </div>
       </div>
     </div>
-    <div class="proof-gallery">
-      <div class="proof-panel reveal">
-        <div class="proof-panel-image">
-          <span class="proof-panel-tag">Before / after slot</span>
-        </div>
-        <div class="proof-panel-copy">
-          <h3>Storm damage evidence</h3>
-          <p>Reserve this area for real claim photos that show visible property damage before repairs and documented conditions after inspection.</p>
-        </div>
-      </div>
-      <div class="proof-panel reveal">
-        <div class="proof-panel-image">
-          <span class="proof-panel-tag">Coverage support slot</span>
-        </div>
-        <div class="proof-panel-copy">
-          <h3>Claim file depth</h3>
-          <p>Use this panel later for engineering reports, moisture mapping, or detailed estimate snapshots that support larger recoveries.</p>
-        </div>
-      </div>
-      <div class="proof-panel reveal">
-        <div class="proof-panel-image">
-          <span class="proof-panel-tag">Outcome summary slot</span>
-        </div>
-        <div class="proof-panel-copy">
-          <h3>Range of claim types</h3>
-          <p>Keep expanding this proof system with roof, water, mold, denial, reopening, and commercial examples as more verified case material becomes available.</p>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -2328,6 +2205,35 @@
         <p>You receive the full settlement you're owed. We only get paid when you do. No recovery, no fee. Period.</p>
       </div>
     </div>
+    <div class="proof-gallery">
+      <div class="proof-panel reveal">
+        <div class="proof-panel-image">
+          <span class="proof-panel-tag">Before / after slot</span>
+        </div>
+        <div class="proof-panel-copy">
+          <h3>Storm damage evidence</h3>
+          <p>Reserve this area for real claim photos that show visible property damage before repairs and documented conditions after inspection.</p>
+        </div>
+      </div>
+      <div class="proof-panel reveal">
+        <div class="proof-panel-image">
+          <span class="proof-panel-tag">Coverage support slot</span>
+        </div>
+        <div class="proof-panel-copy">
+          <h3>Claim file depth</h3>
+          <p>Use this panel later for engineering reports, moisture mapping, or detailed estimate snapshots that support larger recoveries.</p>
+        </div>
+      </div>
+      <div class="proof-panel reveal">
+        <div class="proof-panel-image">
+          <span class="proof-panel-tag">Outcome summary slot</span>
+        </div>
+        <div class="proof-panel-copy">
+          <h3>Range of claim types</h3>
+          <p>Keep expanding this proof system with roof, water, mold, denial, reopening, and commercial examples as more verified case material becomes available.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2338,9 +2244,11 @@
       <h2 class="section-heading">A human face, a license, and a process homeowners can verify.</h2>
     </div>
     <div class="authority-grid">
-      <div class="authority-card reveal">
+      <div class="authority-card primary reveal">
         <div class="authority-profile">
-          <div class="authority-photo">Headshot slot<br>for lead adjuster</div>
+          <div class="authority-photo">
+            <img src="brand_assets/eddy_headshot.jpg" alt="Lead adjuster headshot">
+          </div>
           <div>
             <h3>Built for trust-sensitive claims</h3>
             <p>This section is ready for the lead adjuster name, short bio, license number, and a concise explanation of who homeowners will actually be working with.</p>
