@@ -1,0 +1,12 @@
+{
+  "name": "cra-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "node serve.mjs",
+    "screenshot": "node screenshot.mjs"
+  },
+  "devDependencies": {
+    "puppeteer": "^24.4.0"
+  }
+}

@@ -1,6 +1,6 @@
 /* Claim Remedy Adjusters — global styles (vanilla CSS) */
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
 
 *,
 *::before,
@@ -11,7 +11,7 @@
 :root {
   --black: #080810;
   --black2: #0c0c18;
-  --navy: #060d1f;
+  --navy: #0A1628;
   --blue: #1e6fff;
   --blue2: #4d8fff;
   --gold: #c9922a;
@@ -20,8 +20,8 @@
   --mid: #8a8a9a;
   --bebas: 'Bebas Neue', sans-serif;
   --dm: 'DM Sans', sans-serif;
-  --play: 'Playfair Display', serif;
-  --serif: 'Playfair Display', serif;
+  --cormorant: 'Cormorant Garamond', serif;
+  --serif: 'Cormorant Garamond', serif;
   --sans: 'DM Sans', sans-serif;
   --dark-text: var(--cream);
   --muted: var(--mid);

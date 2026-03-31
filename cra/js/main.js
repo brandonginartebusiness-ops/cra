@@ -146,7 +146,7 @@
       var stCountDone = false;
       ScrollTrigger.create({
         trigger: statsBar,
-        start: 'top 80%',
+        start: 'top 85%',
         once: true,
         onEnter: function () {
           if (stCountDone) return;
@@ -311,13 +311,13 @@
       line.setAttribute('aria-hidden', 'true');
       h.appendChild(line);
       gsap.set(line, { width: 0 });
-      gsap.to(line, {
+        gsap.to(line, {
         width: 60,
         duration: 0.55,
-        ease: 'power2.out',
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: h,
-          start: 'top 80%',
+          start: 'top 85%',
           toggleActions: 'play none none none',
         },
       });
@@ -333,13 +333,13 @@
         if (el.closest('.page-hero')) return;
         if (el.closest('.hero')) return;
         gsap.from(el, {
-          y: 30,
+          y: 60,
           opacity: 0,
-          duration: 0.65,
-          ease: 'power2.out',
+          duration: 1,
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: el,
-            start: 'top 80%',
+            start: 'top 85%',
             toggleActions: 'play none none none',
           },
         });
@@ -359,19 +359,21 @@
 
       if (heading) {
         gsap.from(heading, {
-          y: 40,
+          y: 60,
           opacity: 0,
-          duration: 0.8,
-          scrollTrigger: { trigger: section, start: 'top 80%' },
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: section, start: 'top 85%' },
         });
       }
       if (body.length) {
         gsap.from(body, {
-          y: 30,
+          y: 60,
           opacity: 0,
-          duration: 0.6,
+          duration: 1,
+          ease: 'power3.out',
           stagger: 0.12,
-          scrollTrigger: { trigger: section, start: 'top 75%' },
+          scrollTrigger: { trigger: section, start: 'top 85%' },
         });
       }
     });
@@ -483,14 +485,14 @@
       var cards = grid.querySelectorAll('.card');
       if (!cards.length) return;
       gsap.from(cards, {
-        y: 50,
+        y: 60,
         opacity: 0,
         duration: gridDuration,
         stagger: gridStagger,
-        ease: 'power2.out',
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: grid,
-          start: 'top 80%',
+          start: 'top 85%',
           toggleActions: 'play none none none',
         },
       });

@@ -13,17 +13,27 @@
 ## Design System
 
 ### Palette
-- Cream: `#F5F1EB` (primary background)
-- Navy: `#1A4A6E` (headings, accents, dark sections)
-- Gold: `#C4933A` (CTAs, highlights, accents)
-- Dark text: `#1a1a1a`
-- Muted: `#5c5c58` (secondary text)
-- CSS variables defined in `:root` — always use `var(--cream)`, `var(--navy)`, `var(--gold)`, etc.
+- Black: `#080810` (`--black`, body background)
+- Navy: `#0A1628` (`--navy`, headings, footer, accents)
+- Gold: `#C9922A` (`--gold`, CTAs, highlights)
+- Electric blue: `#1E6FFF` (`--blue`, interactive accents, cursor hover)
+- Cream: `#F2F0EC` (`--cream`, text on dark, light surfaces)
+- Muted: `#8A8A9A` (`--mid`, secondary text)
+- CSS variables defined in `:root` — always use `var(--navy)`, `var(--gold)`, `var(--cream)`, etc.
 
 ### Typography
-- Headings: `Instrument Serif` (serif), normal weight
-- Body: `DM Sans` (sans-serif), weights 400/500/700
-- Both loaded via Google Fonts import in style.css
+- Headings: `Cormorant Garamond` (`var(--serif)`) — loaded via Google Fonts
+- Display/marquee: `Bebas Neue` (`var(--bebas)`) — loaded via Google Fonts
+- Body: `DM Sans` (`var(--sans)`) — weights 300/400/500
+- Tone: high-end, authoritative, cinematic
+
+### Design philosophy
+- Dark base (`--black`) with cream text; sections use depth via layered z-index
+- Film grain overlay (`.grain` div, `aria-hidden`) on every page at ~3% opacity
+- Custom cursor (`#cur` + `#cur-r`) on desktop (`pointer: fine`), hidden on touch
+- GSAP reveal defaults: `y:60, opacity:0, duration:1, ease:power3.out, start:'top 85%'`; stagger `0.1–0.15s`
+- Parallax scrub on hero and CTA backgrounds; disabled ≤768px
+- Animate `transform` and `opacity` only — never `transition-all`
 
 ### Components
 - `.btn` — Gold background, white text, hover → navy + lift
@@ -49,6 +59,8 @@ cra/
 └── data/
     └── reviews.json        ← Fallback testimonials (used when Google API unavailable)
 ```
+
+**Repo root (local workflow):** `serve.mjs` — static server, browse at `http://localhost:3000/cra/`; `screenshot.mjs` — Puppeteer captures to `temporary screenshots/`; `CLAUDE.md` — process and guardrails; `brand_assets/` — optional logos and reference art. Run `npm install` once, then `npm run serve`.
 
 **Path notes:** Inner pages live in `/pages/`. From inner pages, reference assets as `../css/style.css`, `../js/main.js`. Nav links from inner pages use `../index.html` for Home.
 

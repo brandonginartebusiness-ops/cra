@@ -1,0 +1,51 @@
+# Claim Remedy Adjusters — Cursor Rules
+
+## Always read first
+- Read **CONTEXT.md** before making any changes. It has the brand, palette, current state, and design direction.
+- For process (local server, screenshots, references, craft guardrails), follow **CLAUDE.md** at the repo root.
+
+## Stack rules
+- This is a vanilla HTML/CSS/JS site. No React, no Tailwind, no build tools.
+- All styles go in `cra/css/style.css`. Do not create additional CSS files.
+- All scripts go in `cra/js/main.js`. Do not create additional JS files.
+- Use CSS custom properties from `:root` for all colors — never hardcode hex values.
+- Use the existing font variables: `var(--serif)` for headings, `var(--sans)` for body.
+
+## Local review (CLAUDE.md)
+- Serve from repo root: `node serve.mjs` or `npm run serve` → main site at **http://localhost:3000/cra/** (never rely on `file:///` for visual QA).
+- Screenshots: `node screenshot.mjs http://localhost:3000/cra/ [label]` → `./temporary screenshots/`. Requires `npm install` once for Puppeteer.
+
+## Brand assets
+- Check **brand_assets/** before designing. Use real files there instead of placeholders when available.
+
+## Reference images
+- If the user supplies a reference: match layout, spacing, type, and color; do not add sections or “improve” beyond the reference.
+- Compare with at least two screenshot passes when matching a reference (see CLAUDE.md).
+
+## Code style
+- Keep HTML semantic: use `<main>`, `<section>`, `<article>`, `<nav>`, `<header>`, `<footer>`.
+- Add `.fade-up` class to any new section content that should animate on scroll (the IntersectionObserver in main.js handles activation).
+- Follow existing naming conventions: `.section`, `.section-alt`, `.section-title`, `.section-lead`, `.card`, `.btn`, `.btn-navy`.
+- Mobile breakpoint is 768px. Test all changes at both widths.
+
+## Path rules
+- Inner pages are in `cra/pages/`. From inner pages, assets are `../css/style.css` and `../js/main.js`.
+- Nav links from inner pages use `../index.html` for Home, `../pages/about.html` etc. for siblings (or just `about.html` since they're in the same folder).
+
+## Craft guardrails (see CLAUDE.md)
+- Prefer animating `transform` and `opacity` only; do not use `transition-all`.
+- Every clickable element needs hover, focus-visible, and active states.
+- Use CONTEXT palette variables — not generic template blues as primary brand colors.
+
+## Don't break
+- The Google Reviews API integration in main.js (fetch → fallback chain). Don't remove or restructure.
+- The count-up animation system (`.js-count-up` with `data-target` and `data-format` attributes).
+- The Formspree AJAX handler and personalized success message.
+- The mobile nav toggle and sticky mobile CTA bar.
+- Any existing JSON-LD schema blocks.
+
+## When making visual changes
+- Prefer CSS over inline styles.
+- Add new styles to the relevant section in style.css (it's organized by component).
+- Test hover states and transitions — existing cards/buttons have 0.25-0.3s ease transitions.
+- Keep the warm, approachable tone — nothing cold, corporate, or overly flashy.

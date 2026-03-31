@@ -1,0 +1,22 @@
+---
+description: CRA site — CONTEXT, CLAUDE workflow, vanilla stack, design rules
+alwaysApply: true
+---
+
+# CRA website
+
+1. Read **CONTEXT.md** (brand, structure, stack).
+2. Follow **CLAUDE.md** for localhost serving (`node serve.mjs`), screenshots (`node screenshot.mjs`), references, and guardrails.
+3. Read **cra/.cursorrules.txt** for the active design rules (palette, fonts, animation defaults, philosophy).
+4. Site root for browsing: `http://localhost:3000/cra/`
+5. Only `cra/css/style.css` and `cra/js/main.js` for styles/scripts. Use `:root` CSS variables — no Tailwind.
+
+## Active design rules (summary from cra/.cursorrules.txt)
+
+- **Palette:** navy `#0A1628`, cream `#F2F0EC`, gold `#C9922A`, electric blue `#1E6FFF`
+- **Fonts:** `var(--serif)` = Cormorant Garamond (headings), `var(--sans)` = DM Sans (body), `var(--bebas)` = Bebas Neue (display/marquee)
+- **Tone:** high-end, authoritative, cinematic — no Inter, no purple gradients, no cookie-cutter cards
+- **GSAP reveal defaults:** `y:60, opacity:0, duration:1, ease:power3.out, start:'top 85%'`; stagger `0.1–0.15s`
+- **Motion:** animate `transform`/`opacity` only; never `transition-all`; respect `prefers-reduced-motion`
+- **Texture:** film grain overlay (`.grain`) on every page at low opacity
+- **Custom cursor:** desktop only (`pointer: fine`), hidden on touch devices
