@@ -2367,6 +2367,26 @@ textarea::placeholder {
   }
 }
 
+/* Service Areas typography aligned with hero style */
+.service-areas-typography .section-title {
+  font-family: var(--bebas);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  line-height: 0.92;
+}
+
+.service-areas-typography .section-lead {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(242, 240, 236, 0.72);
+  max-width: 42ch;
+}
+
+.service-areas-typography .section-label {
+  letter-spacing: 0.16em;
+}
+
 /* Faster motion pass */
 .hero__bg,
 .page-hero--photo::before {
