@@ -66,6 +66,7 @@
 
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
+    gsap.globalTimeline.timeScale(1.35);
   }
 
   // Mobile nav toggle
