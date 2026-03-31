@@ -268,9 +268,9 @@
     !prefersMobile &&
     typeof ScrollTrigger !== 'undefined'
   ) {
-    // Parallax: ~0.4× apparent motion vs a stronger baseline (tune yPercent if needed)
+    // Hero parallax depth using background position scrub
     gsap.to(heroBg, {
-      yPercent: 10,
+      backgroundPositionY: '50%',
       ease: 'none',
       scrollTrigger: {
         trigger: '.hero',
@@ -279,6 +279,25 @@
         scrub: true,
       },
     });
+  }
+
+  // Section parallax wrappers (additive)
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.utils
+      .toArray('.parallax-section .parallax-bg')
+      .forEach(function (bg) {
+        if (bg.classList.contains('hero__bg')) return;
+        gsap.to(bg, {
+          yPercent: 20,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: bg.closest('.parallax-section'),
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
+      });
   }
 
   // Section headings: underline span + reveal
@@ -330,6 +349,32 @@
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     setupSectionTitleLines();
     setupSectionHeadingReveals();
+  }
+
+  // Staggered parallax text depth per section
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.utils.toArray('.section-content').forEach(function (section) {
+      var heading = section.querySelector('h2');
+      var body = section.querySelectorAll('p, .stat, .btn');
+
+      if (heading) {
+        gsap.from(heading, {
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+          scrollTrigger: { trigger: section, start: 'top 80%' },
+        });
+      }
+      if (body.length) {
+        gsap.from(body, {
+          y: 30,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.12,
+          scrollTrigger: { trigger: section, start: 'top 75%' },
+        });
+      }
+    });
   }
 
   // Service areas interactive map/chips module

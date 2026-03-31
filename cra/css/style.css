@@ -2387,6 +2387,56 @@ textarea::placeholder {
   letter-spacing: 0.16em;
 }
 
+/* Shared parallax layering */
+.parallax-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-bg {
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform, background-position;
+}
+
+.parallax-section .section-content,
+.parallax-section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.parallax-bg--page-hero {
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 60%);
+}
+
+.parallax-bg--cta {
+  background: radial-gradient(ellipse at 50% 40%, rgba(196, 147, 58, 0.14), rgba(196, 147, 58, 0) 65%);
+}
+
+.parallax-bg--testimonials {
+  background: radial-gradient(ellipse at 20% 20%, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 60%);
+}
+
+/* Use parallax-bg layer instead of pseudo-bg on photo heroes */
+.parallax-section.page-hero--photo::before {
+  display: none;
+}
+
+.parallax-section.page-hero--photo .parallax-bg--page-hero {
+  background: transparent
+    url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=2000&q=80') center /
+    cover no-repeat;
+}
+
+.parallax-section.page-hero--photo.page-hero--results .parallax-bg--page-hero,
+.parallax-bg--results-hero {
+  background: transparent
+    url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=2000&q=80') center /
+    cover no-repeat;
+}
+
 /* Homepage: continuous dark flow, no hard dividers */
 .page-home {
   background: #111111;
