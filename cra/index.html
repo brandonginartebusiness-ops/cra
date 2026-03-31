@@ -139,23 +139,25 @@
                       <stop offset="100%" stop-color="rgba(255,255,255,0.04)"></stop>
                     </linearGradient>
                   </defs>
-                  <path class="county-map__state" d="M86,66 L176,64 L179,72 L301,79 L309,92 L313,78 L350,84 L360,128 L371,168 L396,205 L386,219 L387,231 L402,274 L402,306 L391,331 L364,345 L328,349 L319,322 L304,298 L285,292 L279,273 L259,268 L250,247 L241,222 L251,198 L246,170 L236,159 L218,151 L203,132 L198,117 L182,102 L167,98 L156,106 L152,116 L134,123 L121,129 L108,130 L103,114 L95,101 L85,93 L77,84 L74,76 Z"></path>
-                  <path class="county-map__keys" d="M328,353 L345,359 L362,368 L379,377"></path>
-                  <circle class="county-greenery" cx="109" cy="88" r="13"></circle>
-                  <circle class="county-greenery" cx="97" cy="110" r="9"></circle>
-                  <circle class="county-greenery" cx="333" cy="241" r="11"></circle>
-                  <circle class="county-greenery" cx="356" cy="295" r="8"></circle>
-                  <circle class="county-hotspot" data-county-hotspot="miami-dade" cx="341" cy="306" r="11"></circle>
-                  <circle class="county-hotspot" data-county-hotspot="broward" cx="334" cy="276" r="11"></circle>
-                  <circle class="county-hotspot" data-county-hotspot="palm-beach" cx="324" cy="245" r="11"></circle>
-                  <circle class="county-hotspot" data-county-hotspot="monroe" cx="359" cy="366" r="10"></circle>
-                  <circle class="county-hotspot" data-county-hotspot="collier" cx="275" cy="280" r="11"></circle>
+                  <g class="county-map__florida" transform="translate(12 14) scale(0.76)">
+                    <path class="county-map__state" d="M86,66 L176,64 L179,72 L301,79 L309,92 L313,78 L350,84 L360,128 L371,168 L396,205 L386,219 L387,231 L402,274 L402,306 L391,331 L364,345 L328,349 L319,322 L304,298 L285,292 L279,273 L259,268 L250,247 L241,222 L251,198 L246,170 L236,159 L218,151 L203,132 L198,117 L182,102 L167,98 L156,106 L152,116 L134,123 L121,129 L108,130 L103,114 L95,101 L85,93 L77,84 L74,76 Z"></path>
+                    <path class="county-map__keys" d="M328,353 L345,359 L362,368 L379,377"></path>
+                    <circle class="county-greenery" cx="109" cy="88" r="13"></circle>
+                    <circle class="county-greenery" cx="97" cy="110" r="9"></circle>
+                    <circle class="county-greenery" cx="333" cy="241" r="11"></circle>
+                    <circle class="county-greenery" cx="356" cy="295" r="8"></circle>
+                    <circle class="county-hotspot" data-county-hotspot="miami-dade" cx="341" cy="306" r="11"></circle>
+                    <circle class="county-hotspot" data-county-hotspot="broward" cx="334" cy="276" r="11"></circle>
+                    <circle class="county-hotspot" data-county-hotspot="palm-beach" cx="324" cy="245" r="11"></circle>
+                    <circle class="county-hotspot" data-county-hotspot="monroe" cx="359" cy="366" r="10"></circle>
+                    <circle class="county-hotspot" data-county-hotspot="collier" cx="275" cy="280" r="11"></circle>
+                  </g>
                 </svg>
-                <button class="county-map-btn" type="button" data-county-btn="miami-dade" aria-selected="true" aria-controls="county-details-panel" style="--x:80%;--y:77%;">Miami-Dade</button>
-                <button class="county-map-btn" type="button" data-county-btn="broward" aria-selected="false" aria-controls="county-details-panel" style="--x:76%;--y:68%;">Broward</button>
-                <button class="county-map-btn" type="button" data-county-btn="palm-beach" aria-selected="false" aria-controls="county-details-panel" style="--x:73%;--y:59%;">Palm Beach</button>
-                <button class="county-map-btn" type="button" data-county-btn="monroe" aria-selected="false" aria-controls="county-details-panel" style="--x:85%;--y:90%;">Monroe</button>
-                <button class="county-map-btn" type="button" data-county-btn="collier" aria-selected="false" aria-controls="county-details-panel" style="--x:63%;--y:78%;">Collier</button>
+                <button class="county-map-btn" type="button" data-county-btn="miami-dade" aria-selected="true" aria-controls="county-details-panel" style="--x:74%;--y:69%;">Miami-Dade</button>
+                <button class="county-map-btn" type="button" data-county-btn="broward" aria-selected="false" aria-controls="county-details-panel" style="--x:71%;--y:61%;">Broward</button>
+                <button class="county-map-btn" type="button" data-county-btn="palm-beach" aria-selected="false" aria-controls="county-details-panel" style="--x:68%;--y:52%;">Palm Beach</button>
+                <button class="county-map-btn" type="button" data-county-btn="monroe" aria-selected="false" aria-controls="county-details-panel" style="--x:79%;--y:84%;">Monroe</button>
+                <button class="county-map-btn" type="button" data-county-btn="collier" aria-selected="false" aria-controls="county-details-panel" style="--x:59%;--y:71%;">Collier</button>
               </div>
               <div id="county-details-panel" class="county-detail-panel" aria-live="polite">
                 <p class="county-detail-panel__label">Active service area</p>
