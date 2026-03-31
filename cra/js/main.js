@@ -196,6 +196,7 @@
 
   // Homepage hero — word reveal, parallax, sequencing
   var heroBg = document.querySelector('.hero__bg');
+  var heroTitle = document.querySelector('.hero__title');
   var heroWords = document.querySelectorAll('.hero__word');
   var heroSubtitle = document.querySelector('.hero__subtitle');
   var heroCtas = document.querySelectorAll('.hero__actions .btn');
@@ -207,6 +208,13 @@
     heroSubtitle &&
     heroCtas.length
   ) {
+    if (heroTitle) {
+      gsap.set(heroTitle, {
+        opacity: 0,
+        scale: 0.96,
+        filter: 'blur(10px)',
+      });
+    }
     gsap.set([heroSubtitle].concat(Array.from(heroCtas), Array.from(heroPills)), {
       opacity: 0,
     });
@@ -216,13 +224,22 @@
     gsap.set(heroCtas, { y: 24 });
 
     var heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    if (heroTitle) {
+      heroTl.to(heroTitle, {
+        opacity: 1,
+        scale: 1,
+        filter: 'blur(0px)',
+        duration: 0.75,
+        ease: 'power2.out',
+      });
+    }
     heroTl.from(heroWords, {
-      y: 60,
+      y: 46,
       opacity: 0,
       rotateX: -15,
-      duration: 0.9,
+      duration: 0.72,
       stagger: 0.08,
-    });
+    }, heroTitle ? '-=0.4' : 0);
     var headEnd = (heroWords.length - 1) * 0.08 + 0.9;
     heroTl.to(
       heroSubtitle,
