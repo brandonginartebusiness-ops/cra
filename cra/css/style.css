@@ -611,6 +611,24 @@ textarea {
   margin-top: -1px;
 }
 
+/* Curve theme overrides for dark sections */
+.section-curve--to-navy svg path {
+  fill: var(--navy);
+}
+
+.section-curve--to-cream svg path,
+.section-curve--to-cream-2 svg path {
+  fill: var(--black);
+}
+
+.section-curve--to-navy-2 svg path {
+  fill: var(--navy);
+}
+
+.section-curve--to-white svg path {
+  fill: var(--black2);
+}
+
 /* --- Trust stats bar (overlaps hero) --- */
 .trust-stats-outer {
   position: relative;
