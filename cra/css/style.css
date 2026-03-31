@@ -1247,23 +1247,17 @@ textarea {
 }
 
 .county-map__state {
-  fill: rgba(255, 255, 255, 0.03);
-  stroke: rgba(242, 240, 236, 0.42);
-  stroke-width: 2.4;
+  fill: rgba(255, 255, 255, 0.02);
+  stroke: rgba(242, 240, 236, 0.5);
+  stroke-width: 2.2;
 }
 
 .county-map__keys {
   fill: none;
-  stroke: rgba(242, 240, 236, 0.35);
-  stroke-width: 2;
+  stroke: rgba(242, 240, 236, 0.45);
+  stroke-width: 1.8;
   stroke-linecap: round;
-  stroke-dasharray: 2 8;
-}
-
-.county-greenery {
-  fill: rgba(83, 145, 86, 0.35);
-  stroke: rgba(128, 191, 132, 0.55);
-  stroke-width: 1.2;
+  stroke-dasharray: 1.5 7;
 }
 
 .county-hotspot {
