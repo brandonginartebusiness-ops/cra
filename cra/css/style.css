@@ -1900,9 +1900,19 @@ h1, h2, h3, h4 {
 }
 
 .hero__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35em;
   font-family: var(--bebas);
   letter-spacing: 0.08em;
   background: var(--blue);
+}
+
+.hero__cta-arrow {
+  display: inline-block;
+  line-height: 1;
+  transform: translateY(-0.03em);
 }
 
 .hero__cta:hover {
@@ -1910,6 +1920,9 @@ h1, h2, h3, h4 {
 }
 
 .hero__cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--bebas);
   letter-spacing: 0.08em;
   color: var(--cream) !important;

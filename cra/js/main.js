@@ -197,22 +197,22 @@
   var heroBg = document.querySelector('.hero__bg');
   var heroWords = document.querySelectorAll('.hero__word');
   var heroSubtitle = document.querySelector('.hero__subtitle');
-  var heroCta = document.querySelector('.hero__cta');
+  var heroCtas = document.querySelectorAll('.hero__actions .btn');
   var heroPills = document.querySelectorAll('.hero__trust-pill');
 
   if (
     typeof gsap !== 'undefined' &&
     heroWords.length &&
     heroSubtitle &&
-    heroCta
+    heroCtas.length
   ) {
-    gsap.set([heroSubtitle, heroCta].concat(Array.from(heroPills)), {
+    gsap.set([heroSubtitle].concat(Array.from(heroCtas), Array.from(heroPills)), {
       opacity: 0,
     });
     if (heroPills.length) {
       gsap.set(heroPills, { y: 20 });
     }
-    gsap.set(heroCta, { y: 24 });
+    gsap.set(heroCtas, { y: 24 });
 
     var heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
     heroTl.from(heroWords, {
@@ -228,11 +228,13 @@
       { opacity: 1, duration: 0.65, ease: 'power2.out' },
       headEnd + 0.3
     );
-    heroTl.to(
-      heroCta,
-      { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out' },
-      '>+=0.2'
-    );
+    heroTl.to(heroCtas, {
+      y: 0,
+      opacity: 1,
+      duration: 0.55,
+      stagger: 0.1,
+      ease: 'power2.out',
+    }, '>+=0.2');
     if (heroPills.length) {
       heroTl.to(
         heroPills,
