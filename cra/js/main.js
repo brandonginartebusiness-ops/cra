@@ -5,6 +5,59 @@
     typeof window.matchMedia === 'function' &&
     window.matchMedia('(max-width: 768px)').matches;
 
+  // Custom cursor (desktop-only)
+  var canUseFinePointer =
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(pointer: fine)').matches;
+  var cur = document.getElementById('cur');
+  var curRing = document.getElementById('cur-r');
+  if (canUseFinePointer && cur && curRing) {
+    var mx = window.innerWidth * 0.5;
+    var my = window.innerHeight * 0.5;
+    var rx = mx;
+    var ry = my;
+
+    function setCursorHover(on) {
+      if (on) {
+        cur.style.background = 'var(--blue)';
+        curRing.style.width = '48px';
+        curRing.style.height = '48px';
+        curRing.style.borderColor = 'rgba(30, 111, 255, 0.8)';
+        curRing.style.backgroundColor = 'rgba(30, 111, 255, 0.18)';
+      } else {
+        cur.style.background = 'var(--gold)';
+        curRing.style.width = '34px';
+        curRing.style.height = '34px';
+        curRing.style.borderColor = 'rgba(242, 240, 236, 0.4)';
+        curRing.style.backgroundColor = 'transparent';
+      }
+    }
+
+    document.addEventListener('mousemove', function (e) {
+      mx = e.clientX;
+      my = e.clientY;
+      cur.style.transform = 'translate(' + mx + 'px, ' + my + 'px) translate(-50%, -50%)';
+    });
+
+    function cursorLoop() {
+      rx += (mx - rx) * 0.1;
+      ry += (my - ry) * 0.1;
+      curRing.style.transform =
+        'translate(' + rx + 'px, ' + ry + 'px) translate(-50%, -50%)';
+      requestAnimationFrame(cursorLoop);
+    }
+    requestAnimationFrame(cursorLoop);
+
+    document.querySelectorAll('a, button').forEach(function (el) {
+      el.addEventListener('mouseenter', function () {
+        setCursorHover(true);
+      });
+      el.addEventListener('mouseleave', function () {
+        setCursorHover(false);
+      });
+    });
+  }
+
   function escapeHtml(s) {
     var d = document.createElement('div');
     d.textContent = s;
