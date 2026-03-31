@@ -126,12 +126,12 @@
             <p class="section-label">Service areas</p>
             <h2 class="section-title">Our Service Areas</h2>
             <p class="section-lead">
-              Proudly serving homeowners and property owners in these Florida counties:
+              Florida-based and proudly serving homeowners and property owners across the entire state of Florida.
             </p>
           </div>
           <div class="editorial-split__chips">
-            <div class="county-interactive" data-county-module>
-              <div class="county-map-wrap" role="group" aria-label="Explore Florida service areas">
+            <div class="county-interactive">
+              <div class="county-map-wrap" role="img" aria-label="Outline map of Florida showing statewide coverage">
                 <svg class="county-map" viewBox="0 0 420 320" focusable="false" aria-hidden="true">
                   <defs>
                     <linearGradient id="county-map-grad" x1="0" y1="0" x2="1" y2="1">
@@ -142,32 +142,20 @@
                   <g class="county-map__florida" transform="translate(6 6) scale(0.8)">
                     <path class="county-map__state" d="M70,76 L178,74 L185,84 L276,84 L322,90 L328,104 L334,98 L334,86 L366,94 L374,130 L384,172 L402,204 L398,228 L388,242 L391,254 L408,300 L408,334 L398,352 L372,362 L338,366 L323,364 L320,337 L310,318 L289,304 L277,302 L272,288 L260,284 L251,268 L243,248 L250,220 L248,194 L236,176 L218,162 L202,138 L185,126 L172,130 L166,140 L146,148 L130,154 L114,154 L102,134 L94,116 L82,100 L75,88 Z"></path>
                     <path class="county-map__keys" d="M329,369 L346,374 L362,380 L378,389"></path>
-                    <circle class="county-hotspot" data-county-hotspot="miami-dade" cx="342" cy="330" r="11"></circle>
-                    <circle class="county-hotspot" data-county-hotspot="broward" cx="336" cy="301" r="11"></circle>
-                    <circle class="county-hotspot" data-county-hotspot="palm-beach" cx="329" cy="269" r="11"></circle>
-                    <circle class="county-hotspot" data-county-hotspot="monroe" cx="361" cy="379" r="10"></circle>
-                    <circle class="county-hotspot" data-county-hotspot="collier" cx="276" cy="309" r="11"></circle>
+                    <circle class="county-hotspot is-active" cx="320" cy="240" r="12"></circle>
                   </g>
                 </svg>
-                <button class="county-map-btn" type="button" data-county-btn="miami-dade" aria-selected="true" aria-controls="county-details-panel" style="--x:75%;--y:73%;">Miami-Dade</button>
-                <button class="county-map-btn" type="button" data-county-btn="broward" aria-selected="false" aria-controls="county-details-panel" style="--x:72%;--y:65%;">Broward</button>
-                <button class="county-map-btn" type="button" data-county-btn="palm-beach" aria-selected="false" aria-controls="county-details-panel" style="--x:70%;--y:56%;">Palm Beach</button>
-                <button class="county-map-btn" type="button" data-county-btn="monroe" aria-selected="false" aria-controls="county-details-panel" style="--x:82%;--y:89%;">Monroe</button>
-                <button class="county-map-btn" type="button" data-county-btn="collier" aria-selected="false" aria-controls="county-details-panel" style="--x:59%;--y:74%;">Collier</button>
               </div>
-              <div id="county-details-panel" class="county-detail-panel" aria-live="polite">
-                <p class="county-detail-panel__label">Active service area</p>
-                <h3 class="county-detail-panel__title" data-county-title>Miami-Dade</h3>
-                <p class="county-detail-panel__text" data-county-text>
-                  Urban and coastal claims throughout Miami-Dade, including hurricane wind, roof, and water losses.
+              <div class="county-detail-panel">
+                <p class="county-detail-panel__label">Statewide coverage</p>
+                <h3 class="county-detail-panel__title">Entire Florida</h3>
+                <p class="county-detail-panel__text">
+                  We are based in Florida and provide public adjuster support throughout the entire state, including coastal, inland, and metro communities.
                 </p>
               </div>
               <div class="county-row county-row--interactive">
-                <button class="chip-county is-active" type="button" data-county-chip="miami-dade" aria-selected="true" aria-controls="county-details-panel"><span class="chip-county__icon" aria-hidden="true">📍</span> Miami-Dade</button>
-                <button class="chip-county" type="button" data-county-chip="broward" aria-selected="false" aria-controls="county-details-panel"><span class="chip-county__icon" aria-hidden="true">📍</span> Broward</button>
-                <button class="chip-county" type="button" data-county-chip="palm-beach" aria-selected="false" aria-controls="county-details-panel"><span class="chip-county__icon" aria-hidden="true">📍</span> Palm Beach</button>
-                <button class="chip-county" type="button" data-county-chip="monroe" aria-selected="false" aria-controls="county-details-panel"><span class="chip-county__icon" aria-hidden="true">📍</span> Monroe</button>
-                <button class="chip-county" type="button" data-county-chip="collier" aria-selected="false" aria-controls="county-details-panel"><span class="chip-county__icon" aria-hidden="true">📍</span> Collier</button>
+                <span class="chip-county is-active"><span class="chip-county__icon" aria-hidden="true">📍</span> Florida-based</span>
+                <span class="chip-county"><span class="chip-county__icon" aria-hidden="true">📍</span> Serving all Florida counties</span>
               </div>
             </div>
           </div>
