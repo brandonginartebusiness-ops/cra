@@ -458,7 +458,7 @@ textarea {
   inset: 0;
   z-index: 0;
   background: transparent
-    url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center /
+    url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=2000&q=80') center /
     cover no-repeat;
   animation: heroKenBurns 15s ease-in-out infinite alternate;
   transform-origin: center center;
@@ -1791,10 +1791,10 @@ textarea {
   left: 0;
   right: 0;
   z-index: 200;
-  background: transparent;
-  border-bottom: 0;
+  background: var(--black2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: none;
-  mix-blend-mode: difference;
+  mix-blend-mode: normal;
 }
 
 .logo {
@@ -1808,7 +1808,7 @@ textarea {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: rgba(242, 240, 236, 0.6);
+  color: rgba(242, 240, 236, 0.95);
 }
 
 .site-nav a:hover,
@@ -1903,16 +1903,9 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.35em;
   font-family: var(--bebas);
   letter-spacing: 0.08em;
   background: var(--blue);
-}
-
-.hero__cta-arrow {
-  display: inline-block;
-  line-height: 1;
-  transform: translateY(-0.03em);
 }
 
 .hero__cta:hover {
@@ -1941,7 +1934,7 @@ h1, h2, h3, h4 {
 }
 
 .marquee-strip__text {
-  color: var(--mid);
+  color: rgba(242, 240, 236, 0.88);
 }
 
 .section {
@@ -1985,7 +1978,7 @@ h1, h2, h3, h4 {
 }
 
 .trust-stat-label {
-  color: var(--mid);
+  color: rgba(242, 240, 236, 0.82);
 }
 
 .testimonials-carousel .testimonial-quote--carousel {
@@ -1994,7 +1987,7 @@ h1, h2, h3, h4 {
 
 .testimonial-attrib,
 .claim-type {
-  color: var(--mid);
+  color: rgba(242, 240, 236, 0.82);
 }
 
 .chip-county {
@@ -2028,7 +2021,7 @@ h1, h2, h3, h4 {
 
 .site-footer {
   background: var(--navy);
-  color: rgba(242, 240, 236, 0.7);
+  color: rgba(242, 240, 236, 0.82);
 }
 
 .site-footer a {
@@ -2059,11 +2052,11 @@ textarea::placeholder {
 .google-reviews-note,
 .form-response-time,
 .faq-item p {
-  color: var(--mid);
+  color: rgba(242, 240, 236, 0.85);
 }
 
 @media (max-width: 768px) {
   .site-nav a {
-    color: rgba(242, 240, 236, 0.82);
+    color: rgba(242, 240, 236, 0.95);
   }
 }
