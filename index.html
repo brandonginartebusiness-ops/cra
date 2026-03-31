@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Claim Remedy Adjusters — Your Claim. Our Fight.</title>
-  <meta name="description" content="Licensed Florida Public Adjusters. We represent homeowners — never insurance companies. No recovery, no fee.">
+  <title>Claim Remedy Adjusters - Your Claim. Our Fight.</title>
+  <meta name="description" content="Licensed Florida Public Adjusters. We represent homeowners, never insurance companies. No recovery, no fee.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -90,7 +90,7 @@
       padding: 0 var(--site-grid-margin);
     }
 
-    /* ── Floating Navbar ── */
+    /* ?????? Floating Navbar ?????? */
     .nav {
       position: fixed;
       top: 1.25rem;
@@ -208,7 +208,7 @@
       text-align: center;
     }
 
-    /* ── Hero ── */
+    /* ?????? Hero ?????? */
     .hero {
       position: relative;
       display: flex;
@@ -287,6 +287,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.85rem;
+      margin-top: 1rem;
     }
     .hero-cta-secondary {
       background: rgba(255,255,255,0.04);
@@ -334,17 +335,52 @@
       .hero-contact { grid-template-columns: 1fr; gap: 1rem; }
     }
     @media (max-width: 768px) {
-      .hero-contact { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
     }
 
-    /* ── Stats ── */
+    /* ?????? Stats ?????? */
     .stats {
       padding: clamp(4rem, 8vw, 6rem) 0;
       border-top: 1px solid var(--color-border);
     }
+    .trust-strip {
+      padding: 1.25rem 0 0;
+    }
+    .trust-strip-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .trust-pill {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.03);
+      padding: 1rem 1.1rem;
+      min-height: 100%;
+    }
+    .trust-pill-label {
+      font-size: clamp(0.82rem, 0.78rem + 0.15vw, 0.92rem);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-brand-muted);
+    }
+    .trust-pill-value {
+      margin-top: 0.45rem;
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 1.05rem + 0.4vw, 1.45rem);
+      letter-spacing: -0.02em;
+      color: var(--color-foreground);
+    }
+    .trust-pill-note {
+      margin-top: 0.45rem;
+      font-size: clamp(0.95rem, 0.9rem + 0.18vw, 1.02rem);
+      line-height: 1.65;
+      color: var(--color-foreground-muted);
+    }
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 2rem;
     }
     .stat-item {
@@ -362,12 +398,12 @@
       color: var(--color-foreground);
     }
     .stat-label {
-      font-size: var(--text-small);
+      font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
       color: var(--color-foreground-muted);
       margin-top: 0.5rem;
     }
 
-    /* ── Light Section ── */
+    /* ?????? Light Section ?????? */
     .section-light {
       background: var(--color-light-bg);
       color: var(--color-light-fg);
@@ -377,23 +413,23 @@
       color: var(--color-light-fg-muted);
     }
 
-    /* ── Section Labels ── */
+    /* ?????? Section Labels ?????? */
     .section-label {
-      font-size: var(--text-small);
+      font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.02rem);
       font-weight: 500;
       color: var(--color-foreground-muted);
       margin-bottom: 2rem;
     }
     .section-heading {
       font-family: var(--font-display);
-      font-size: var(--text-h2);
+      font-size: clamp(2.2rem, 2.05rem + (54 - 35) * var(--fluid-slope), 3.375rem);
       font-weight: 500;
       letter-spacing: -0.035em;
       line-height: 1.1;
       max-width: 720px;
     }
 
-    /* ── Services Grid ── */
+    /* ?????? Services Grid ?????? */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -425,26 +461,26 @@
     }
     .service-card h3 {
       font-family: var(--font-display);
-      font-size: var(--text-h3);
+      font-size: clamp(1.7rem, 1.6rem + (36 - 27) * var(--fluid-slope), 2.25rem);
       font-weight: 500;
       letter-spacing: -0.025em;
       line-height: 1.15;
       color: var(--color-light-fg);
     }
     .service-card p {
-      font-size: var(--text-body);
+      font-size: clamp(1.08rem, 1.02rem + (20 - 17) * var(--fluid-slope), 1.25rem);
       color: var(--color-light-fg-muted);
       line-height: 1.6;
       max-width: 420px;
     }
 
-    /* ── Dark Section ── */
+    /* ?????? Dark Section ?????? */
     .section-dark {
       background: var(--color-background);
       padding: clamp(5rem, 10vw, 8rem) 0;
     }
 
-    /* ── Results ── */
+    /* ?????? Results ?????? */
     .results-header {
       display: flex;
       justify-content: space-between;
@@ -452,6 +488,12 @@
       flex-wrap: wrap;
       gap: 2rem;
       margin-bottom: 4rem;
+    }
+    .results-proofline {
+      max-width: 420px;
+      font-size: clamp(1rem, 0.95rem + 0.2vw, 1.08rem);
+      line-height: 1.7;
+      color: var(--color-foreground-muted);
     }
     .results-grid {
       display: grid;
@@ -487,7 +529,7 @@
     }
     .result-tag {
       display: inline-block;
-      font-size: 0.75rem;
+      font-size: 0.82rem;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -501,7 +543,7 @@
       margin-bottom: 0.5rem;
     }
     .result-before {
-      font-size: 1rem;
+      font-size: 1.08rem;
       color: var(--color-foreground-muted);
       text-decoration: line-through;
       text-decoration-color: rgba(129,128,129,0.4);
@@ -509,19 +551,67 @@
     .result-arrow { color: var(--color-brand); font-size: 1rem; }
     .result-after {
       font-family: var(--font-display);
-      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-size: clamp(1.7rem, 3.2vw, 2.25rem);
       font-weight: 600;
       letter-spacing: -0.02em;
       color: var(--color-foreground);
     }
     .result-desc {
-      font-size: var(--text-small);
+      font-size: clamp(0.98rem, 0.92rem + 0.2vw, 1.08rem);
       color: var(--color-foreground-muted);
       line-height: 1.6;
       margin-top: 0.5rem;
     }
+    .proof-gallery {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+    .proof-panel {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--color-background-muted);
+    }
+    .proof-panel-image {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)),
+        radial-gradient(circle at top left, rgba(46,139,255,0.18), transparent 48%),
+        var(--color-surface);
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+    }
+    .proof-panel-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border-radius: 9999px;
+      padding: 0.35rem 0.7rem;
+      background: rgba(20,19,20,0.72);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.82rem;
+      color: var(--color-foreground);
+    }
+    .proof-panel-copy {
+      padding: 1.25rem;
+    }
+    .proof-panel-copy h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 1.2rem + 0.4vw, 1.6rem);
+      line-height: 1.15;
+    }
+    .proof-panel-copy p {
+      margin-top: 0.8rem;
+      font-size: clamp(0.98rem, 0.92rem + 0.2vw, 1.08rem);
+      line-height: 1.7;
+      color: var(--color-foreground-muted);
+    }
 
-    /* ── Full-width statement ── */
+    /* ?????? Full-width statement ?????? */
     .statement {
       padding: clamp(6rem, 14vw, 12rem) 0;
       border-top: 1px solid var(--color-border);
@@ -537,7 +627,7 @@
     }
     .statement h2 .muted { color: var(--color-foreground-muted); }
 
-    /* ── Process ── */
+    /* ?????? Process ?????? */
     .process-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -564,18 +654,121 @@
     }
     .process-step h3 {
       font-family: var(--font-display);
-      font-size: 1.25rem;
+      font-size: clamp(1.4rem, 1.28rem + 0.4vw, 1.6rem);
       font-weight: 500;
       letter-spacing: -0.02em;
       color: var(--color-foreground);
     }
     .process-step p {
-      font-size: var(--text-small);
+      font-size: clamp(0.98rem, 0.92rem + 0.2vw, 1.08rem);
       color: var(--color-foreground-muted);
       line-height: 1.6;
     }
+    .authority {
+      border-top: 1px solid var(--color-border);
+    }
+    .authority-grid {
+      margin-top: 3.5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+    .authority-card {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,0.03);
+      padding: clamp(1.6rem, 2.8vw, 2.2rem);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.16);
+    }
+    .authority-card h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 1.55rem + 0.45vw, 2rem);
+      line-height: 1.1;
+      margin-bottom: 0.85rem;
+    }
+    .authority-card p {
+      font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
+      line-height: 1.75;
+      color: var(--color-foreground-muted);
+    }
+    .authority-profile {
+      display: grid;
+      grid-template-columns: 140px minmax(0, 1fr);
+      gap: 1.2rem;
+      align-items: center;
+    }
+    .authority-photo {
+      width: 140px;
+      aspect-ratio: 1;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0)),
+        radial-gradient(circle at top left, rgba(46,139,255,0.22), transparent 48%),
+        #202126;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 1rem;
+      color: var(--color-foreground-muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+    .authority-kickers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.2rem;
+    }
+    .authority-kicker {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      border-radius: 9999px;
+      padding: 0.55rem 0.85rem;
+      font-size: 0.92rem;
+      color: var(--color-foreground);
+    }
+    .authority-list {
+      list-style: none;
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 1.2rem;
+    }
+    .authority-list li {
+      font-size: clamp(0.98rem, 0.92rem + 0.2vw, 1.08rem);
+      line-height: 1.7;
+      color: var(--color-foreground-muted);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .authority-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.7rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-brand);
+    }
+    .press-strip {
+      margin-top: 1.4rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+    .press-tile {
+      border: 1px dashed rgba(255,255,255,0.16);
+      border-radius: var(--radius-md);
+      padding: 0.95rem 1rem;
+      font-size: 0.92rem;
+      color: var(--color-foreground-muted);
+      text-align: center;
+      background: rgba(255,255,255,0.02);
+    }
 
-    /* ── Pricing / Value ── */
+    /* ?????? Pricing / Value ?????? */
     .value-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -600,26 +793,26 @@
     }
     .value-card h3 {
       font-family: var(--font-display);
-      font-size: var(--text-h3);
+      font-size: clamp(1.75rem, 1.6rem + (38 - 28) * var(--fluid-slope), 2.35rem);
       font-weight: 500;
       letter-spacing: -0.025em;
       color: var(--color-foreground);
       margin-bottom: 0.5rem;
     }
     .value-card p {
-      font-size: var(--text-body);
+      font-size: clamp(1.08rem, 1.02rem + (20 - 17) * var(--fluid-slope), 1.25rem);
       color: var(--color-foreground-muted);
       line-height: 1.6;
     }
     .value-card-price {
       font-family: var(--font-display);
-      font-size: var(--text-h2);
+      font-size: clamp(2.15rem, 2rem + (56 - 36) * var(--fluid-slope), 3.5rem);
       font-weight: 500;
       letter-spacing: -0.03em;
       color: var(--color-foreground);
     }
     .value-card-price .sub {
-      font-size: var(--text-small);
+      font-size: clamp(0.98rem, 0.92rem + 0.2vw, 1.08rem);
       font-weight: 400;
       color: var(--color-foreground-muted);
       letter-spacing: 0;
@@ -631,7 +824,7 @@
       gap: 0.75rem;
     }
     .value-features li {
-      font-size: var(--text-small);
+      font-size: clamp(1rem, 0.94rem + 0.2vw, 1.1rem);
       color: var(--color-foreground-muted);
       display: flex;
       align-items: center;
@@ -645,7 +838,7 @@
       flex-shrink: 0;
     }
 
-    /* ── Testimonials ── */
+    /* ?????? Testimonials ?????? */
     .testimonials {
       background: var(--color-background);
       padding: clamp(5rem, 10vw, 8rem) 0;
@@ -664,7 +857,7 @@
       border: 1px solid var(--color-border);
       padding: 0.25rem 1rem;
       border-radius: var(--radius-sm);
-      font-size: var(--text-small);
+      font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.02rem);
       color: var(--color-foreground-muted);
       margin-bottom: 1.25rem;
     }
@@ -697,7 +890,7 @@
       width: 18px; height: 18px; fill: #FBBF24; stroke: none;
     }
     .testimonials-rating span {
-      font-size: var(--text-small);
+      font-size: clamp(0.98rem, 0.92rem + 0.2vw, 1.06rem);
       color: var(--color-foreground-muted);
     }
     .testimonials-columns {
@@ -735,7 +928,7 @@
       width: 16px; height: 16px; fill: #FBBF24; stroke: none;
     }
     .testimonial-card .card-text {
-      font-size: var(--text-small);
+      font-size: clamp(1rem, 0.94rem + 0.2vw, 1.08rem);
       color: var(--color-foreground);
       line-height: 1.65;
       margin-bottom: 1.25rem;
@@ -755,13 +948,13 @@
       object-fit: cover;
     }
     .testimonial-card .card-author-name {
-      font-size: var(--text-small);
+      font-size: clamp(0.98rem, 0.92rem + 0.2vw, 1.06rem);
       font-weight: 500;
       color: var(--color-foreground);
       line-height: 1.3;
     }
     .testimonial-card .card-author-time {
-      font-size: 0.75rem;
+      font-size: 0.86rem;
       color: var(--color-foreground-muted);
     }
     .testimonials-footer {
@@ -772,7 +965,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-size: var(--text-small);
+      font-size: clamp(0.98rem, 0.92rem + 0.2vw, 1.06rem);
       font-weight: 500;
       color: var(--color-brand);
       transition: opacity 0.2s var(--ease-out);
@@ -787,7 +980,7 @@
       .testimonial-card { max-width: 100%; }
     }
 
-    /* ── FAQ ── */
+    /* ?????? FAQ ?????? */
     .faq-list {
       margin-top: 4rem;
       border-top: 1px solid var(--color-border);
@@ -805,7 +998,7 @@
       border: none;
       cursor: pointer;
       font-family: var(--font-sans);
-      font-size: clamp(1rem, 1.5vw, 1.125rem);
+      font-size: clamp(1.08rem, 1.55vw, 1.24rem);
       font-weight: 500;
       color: var(--color-foreground);
       text-align: left;
@@ -835,13 +1028,13 @@
     }
     .faq-answer-inner {
       padding-bottom: 1.5rem;
-      font-size: var(--text-body);
+      font-size: clamp(1.08rem, 1.02rem + (20 - 17) * var(--fluid-slope), 1.25rem);
       color: var(--color-foreground-muted);
       line-height: 1.7;
       max-width: 640px;
     }
 
-    /* ── CTA ── */
+    /* ?????? CTA ?????? */
     .cta-section {
       padding: clamp(6rem, 14vw, 10rem) 0;
       border-top: 1px solid var(--color-border);
@@ -863,7 +1056,7 @@
     .contact-hub-copy p {
       max-width: 620px;
       color: var(--color-foreground-muted);
-      font-size: 1.05rem;
+      font-size: clamp(1.12rem, 1.05rem + 0.3vw, 1.28rem);
       line-height: 1.75;
       margin-top: 1rem;
     }
@@ -874,13 +1067,66 @@
       padding: clamp(1.35rem, 2.4vw, 2rem);
       box-shadow: 0 20px 48px rgba(0,0,0,0.18);
     }
+    .reassurance-grid {
+      margin-top: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+    .reassurance-item {
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.04);
+      padding: 0.9rem 1rem;
+    }
+    .reassurance-item strong {
+      display: block;
+      font-size: 0.98rem;
+      color: var(--color-foreground);
+    }
+    .reassurance-item span {
+      display: block;
+      margin-top: 0.35rem;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--color-foreground-muted);
+    }
+    .next-steps {
+      list-style: none;
+      display: grid;
+      gap: 0.85rem;
+      margin: 1.25rem 0 0;
+    }
+    .next-steps li {
+      display: grid;
+      grid-template-columns: 2rem minmax(0, 1fr);
+      gap: 0.8rem;
+      align-items: start;
+      font-size: 0.96rem;
+      line-height: 1.7;
+      color: var(--color-foreground-muted);
+    }
+    .next-step-number {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(46,139,255,0.16);
+      border: 1px solid rgba(46,139,255,0.25);
+      color: var(--color-foreground);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
     .contact-hub-card h3 {
       font-family: var(--font-display);
-      font-size: clamp(1.4rem, 2vw, 1.8rem);
+      font-size: clamp(1.6rem, 2.2vw, 2rem);
       margin-bottom: 0.75rem;
     }
     .contact-hub-card p {
       color: var(--color-foreground-muted);
+      font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
       line-height: 1.7;
       margin-bottom: 1.25rem;
     }
@@ -891,7 +1137,7 @@
       margin-bottom: 1.25rem;
     }
     .contact-hub-note {
-      font-size: var(--text-small);
+      font-size: clamp(0.98rem, 0.92rem + 0.2vw, 1.04rem);
       color: var(--color-foreground-muted);
     }
     .cta-grid {
@@ -924,13 +1170,13 @@
       gap: 1rem;
     }
 
-    /* ── Buttons ── */
+    /* ?????? Buttons ?????? */
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       font-family: var(--font-sans);
-      font-size: var(--text-small);
+      font-size: clamp(0.98rem, 0.92rem + 0.2vw, 1.06rem);
       font-weight: 500;
       border: none;
       cursor: pointer;
@@ -961,7 +1207,7 @@
       transform: translateY(-1px);
     }
 
-    /* ── Team Photos (CTA area) ── */
+    /* ?????? Team Photos (CTA area) ?????? */
     .team-photo {
       width: 180px;
       height: 240px;
@@ -973,7 +1219,7 @@
       width: 100%; height: 100%; object-fit: cover;
     }
 
-    /* ── Footer ── */
+    /* ?????? Footer ?????? */
     .footer {
       border-top: 1px solid var(--color-border);
       padding: clamp(4rem, 8vw, 6rem) 0 2rem;
@@ -993,7 +1239,7 @@
     }
     .footer-brand img { height: 48px; width: auto; }
     .footer-brand p {
-      font-size: var(--text-small);
+      font-size: clamp(0.98rem, 0.92rem + 0.2vw, 1.06rem);
       color: var(--color-foreground-muted);
       line-height: 1.7;
     }
@@ -1017,7 +1263,7 @@
       width: 100%;
     }
     .footer h4 {
-      font-size: var(--text-small);
+      font-size: clamp(1rem, 0.94rem + 0.2vw, 1.08rem);
       font-weight: 600;
       color: var(--color-foreground);
       margin-bottom: 1rem;
@@ -1029,11 +1275,11 @@
       gap: 0.625rem;
     }
     .footer-links li {
-      font-size: var(--text-small);
+      font-size: clamp(0.98rem, 0.92rem + 0.2vw, 1.06rem);
       color: var(--color-foreground-muted);
     }
     .footer-links a {
-      font-size: var(--text-small);
+      font-size: clamp(0.98rem, 0.92rem + 0.2vw, 1.06rem);
       color: var(--color-foreground-muted);
       transition: color 0.2s var(--ease-out);
     }
@@ -1047,7 +1293,7 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
-      font-size: 0.75rem;
+      font-size: 0.86rem;
       color: var(--color-foreground-muted);
     }
     .footer-legal {
@@ -1071,7 +1317,7 @@
       .footer-columns { grid-template-columns: 1fr; }
     }
 
-    /* ── Floating AI Chat Widget ── */
+    /* ?????? Floating AI Chat Widget ?????? */
     .ai-widget {
       position: fixed;
       bottom: 1.5rem;
@@ -1117,16 +1363,26 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 2px solid rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.08);
       cursor: pointer;
-      background: linear-gradient(135deg, var(--color-brand) 0%, #1B3A5C 100%);
-      box-shadow: 0 0 20px rgba(46,139,255,0.5), 0 0 40px rgba(46,139,255,0.3), 0 0 60px rgba(46,139,255,0.15);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(126, 200, 242, 0.28), transparent 40%),
+        linear-gradient(135deg, #256fcb 0%, #1d4d93 100%);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.04),
+        0 0 22px rgba(37,111,203,0.45),
+        0 0 44px rgba(37,111,203,0.24),
+        0 0 68px rgba(29,77,147,0.16);
       transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
       position: relative;
     }
     .ai-fab:hover {
       transform: scale(1.1) rotate(5deg);
-      box-shadow: 0 0 30px rgba(46,139,255,0.7), 0 0 50px rgba(46,139,255,0.5), 0 0 70px rgba(46,139,255,0.3);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.05),
+        0 0 28px rgba(37,111,203,0.58),
+        0 0 52px rgba(37,111,203,0.34),
+        0 0 76px rgba(29,77,147,0.22);
     }
     .ai-fab:active { transform: scale(0.95); }
     .ai-fab svg {
@@ -1527,7 +1783,7 @@
       .ai-chat-hint { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
     }
 
-    /* ── Reveal Animation ── */
+    /* ?????? Reveal Animation ?????? */
     .reveal {
       opacity: 0;
       transform: translateY(40px);
@@ -1537,7 +1793,7 @@
       .reveal { opacity: 1; transform: none; }
     }
 
-    /* ── Responsive ── */
+    /* ?????? Responsive ?????? */
     @media (max-width: 1024px) {
       .nav {
         width: calc(100% - 1.5rem);
@@ -1555,7 +1811,9 @@
         clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
       }
       .results-grid { grid-template-columns: 1fr 1fr; }
+      .proof-gallery { grid-template-columns: 1fr 1fr; }
       .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .authority-grid { grid-template-columns: 1fr; }
       .cta-grid { grid-template-columns: 1fr; gap: 2rem; }
       .footer-top { flex-direction: column; }
       .footer-brand { max-width: 100%; }
@@ -1632,6 +1890,7 @@
       .stats {
         padding: 2.5rem 0;
       }
+      .trust-strip-grid,
       .stats-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .stat-item { border-right: none !important; padding-right: 0; }
       .stat-item:not(:last-child) { border-bottom: 1px solid var(--color-border); padding-bottom: 1.5rem; }
@@ -1651,6 +1910,7 @@
       }
       .services-grid { grid-template-columns: 1fr; }
       .results-grid { grid-template-columns: 1fr; }
+      .proof-gallery { grid-template-columns: 1fr; }
       .process-grid { grid-template-columns: 1fr; }
       .value-grid { grid-template-columns: 1fr; }
       .service-card,
@@ -1672,20 +1932,24 @@
       }
       .faq-question {
         padding: 1.1rem 0;
-        font-size: 0.98rem;
+        font-size: 1.02rem;
       }
       .faq-answer-inner {
         padding-bottom: 1rem;
-        font-size: 0.95rem;
+        font-size: 1rem;
       }
       .contact-hub-grid {
         grid-template-columns: 1fr;
       }
       .contact-hub-copy p {
-        font-size: 1rem;
+        font-size: 1.06rem;
       }
       .contact-hub-actions {
         display: grid;
+      }
+      .reassurance-grid,
+      .press-strip {
+        grid-template-columns: 1fr;
       }
       .contact-hub-actions .btn {
         width: 100%;
@@ -1716,7 +1980,7 @@
 </head>
 <body>
 
-<!-- ── Navbar ── -->
+<!-- ?????? Navbar ?????? -->
 <nav class="nav" id="navbar">
   <div class="nav-inner">
     <a href="#" class="nav-logo" aria-label="Home">
@@ -1725,14 +1989,13 @@
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#results">Results</a></li>
-      <li><a href="#testimonials">Reviews</a></li>
       <li><a href="#process">Process</a></li>
-      <li><a href="#connect">Contact Us</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="#connect">Contact Us</a></li>
     </ul>
     <div style="display:flex;align-items:center;gap:0.5rem;">
-      <button class="nav-cta nav-cta-outline" id="navCalendlyButton" type="button">Book Free Consultation</button>
-      <a href="#contact" class="nav-cta">Free Claim Review</a>
+      <a href="#connect" class="nav-cta">Free Claim Review</a>
       <button class="mobile-menu-btn" id="mobileToggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -1743,73 +2006,71 @@
   <ul class="mobile-menu-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#results">Results</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#process">Process</a></li>
-    <li><a href="#connect">Contact Us</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#connect">Contact Us</a></li>
+    <li><a href="#connect">Contact</a></li>
   </ul>
-  <button class="nav-cta nav-cta-outline mobile-menu-cta" id="mobileCalendlyButton" type="button">Book Free Consultation</button>
   <a href="tel:+17862237867" class="nav-cta mobile-menu-cta">Call Now</a>
 </div>
 
-<!-- ── Hero ── -->
+<!-- ?????? Hero ?????? -->
 <section class="hero" id="hero">
   <div class="hero-left">
     <div>
-      <div class="hero-logo-row hero-reveal">
-        <img src="brand_assets/logo-transparent.png" alt="Claim Remedy Adjusters">
-        <span class="hero-slogan">LICENSED FLORIDA PUBLIC ADJUSTERS</span>
-      </div>
       <div class="hero-main">
         <h1 class="hero-reveal">Your Claim.<br><span class="accent">Our Fight.</span></h1>
         <div class="hero-accent-bar hero-reveal"></div>
         <p class="hero-subtitle hero-reveal">Your insurer offered $18K. We recovered $147K. That's what having an advocate means. We represent homeowners &mdash; never insurance companies.</p>
         <div class="hero-actions hero-reveal">
           <a href="tel:+17862237867" class="hero-cta">GET YOUR FREE CLAIM REVIEW &rarr;</a>
-          <button type="button" class="hero-cta hero-cta-secondary" id="heroCalendlyButton">BOOK FREE CONSULTATION</button>
         </div>
-      </div>
-    </div>
-    <div class="hero-contact hero-reveal">
-      <div class="hero-contact-item">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        <span>cradjusters.com</span>
-      </div>
-      <div class="hero-contact-item">
-        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span>(786) 223-7867</span>
-      </div>
-      <div class="hero-contact-item">
-        <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span>7900 Oak Ln, Suite 400, Miami Lakes, FL</span>
       </div>
     </div>
   </div>
   <div class="hero-right" id="heroImage" style="background-image: url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=1200&auto=format&fit=crop&q=80')"></div>
 </section>
 
-<!-- ── Stats ── -->
+<section class="trust-strip">
+  <div class="container">
+    <div class="trust-strip-grid reveal">
+      <div class="trust-pill">
+        <div class="trust-pill-label">Florida License</div>
+        <div class="trust-pill-value">License info ready to add</div>
+        <div class="trust-pill-note">Reserve this space for the official Florida DFS license number once it is confirmed.</div>
+      </div>
+      <div class="trust-pill">
+        <div class="trust-pill-label">Verified Reviews</div>
+        <div class="trust-pill-value">Live Google profile</div>
+        <div class="trust-pill-note">Connect this trust point directly to the public Google review profile for easy verification.</div>
+      </div>
+      <div class="trust-pill">
+        <div class="trust-pill-label">Credentials & Badges</div>
+        <div class="trust-pill-value">Accreditations ready to display</div>
+        <div class="trust-pill-note">Use this area for real memberships, certifications, or business accreditations when available.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ?????? Stats ?????? -->
 <section class="stats">
   <div class="container">
     <div class="stats-grid reveal">
       <div class="stat-item">
-        <div class="stat-number">$50M+</div>
+        <div class="stat-number">$15M+</div>
         <div class="stat-label">Recovered for Florida homeowners</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">10K+</div>
-        <div class="stat-label">Claims documented & filed</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">10+</div>
+        <div class="stat-number">15+</div>
         <div class="stat-label">Years of hands-on experience</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Services (Light) ── -->
+<!-- ?????? Services (Light) ?????? -->
 <section class="section-light" id="services">
   <div class="container">
     <div class="reveal">
@@ -1836,20 +2097,20 @@
           <img src="https://placehold.co/640x400/c8d6e5/1B3A5C?text=Fire+%26+Smoke" alt="Fire damage assessment">
         </div>
         <h3>Fire &amp; Smoke</h3>
-        <p>Structural fire damage, smoke residue, content loss. We fight for full replacement value — not depreciated guesses.</p>
+        <p>Structural fire damage, smoke residue, and content loss. We fight for full replacement value, not depreciated guesses.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-card-image">
           <img src="https://placehold.co/640x400/c8d6e5/1B3A5C?text=Roof+Claims" alt="Roof damage claim">
         </div>
         <h3>Roof Claims</h3>
-        <p>Age-related wear vs. storm impact — we bring the engineering reports to prove your damage is covered.</p>
+        <p>Age-related wear vs. storm impact: we bring the engineering reports to prove your damage is covered.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Featured Results (Dark) ── -->
+<!-- ?????? Featured Results (Dark) ?????? -->
 <section class="section-dark" id="results">
   <div class="container">
     <div class="results-header reveal">
@@ -1857,6 +2118,7 @@
         <p class="section-label">Featured results</p>
         <h2 class="section-heading">Real recoveries.<br>Not projections.</h2>
       </div>
+      <p class="results-proofline">Structure this proof area around real files and outcomes later. For now, it shows the range of claims Claim Remedy is built to document, negotiate, and reopen.</p>
     </div>
     <div class="results-grid">
       <div class="result-card reveal">
@@ -1901,18 +2163,89 @@
           <p class="result-desc">Claim denied twice. We reopened it with forensic evidence and got a full roof replacement.</p>
         </div>
       </div>
+      <div class="result-card reveal">
+        <div class="result-card-image">
+          <img src="https://placehold.co/640x400/1a1a1a/2E8BFF?text=Mold+Claim" alt="Mold remediation claim">
+        </div>
+        <div class="result-card-body">
+          <span class="result-tag">Mold / Hidden Damage</span>
+          <div class="result-amounts">
+            <span class="result-before">$12,500</span>
+            <span class="result-arrow">&rarr;</span>
+            <span class="result-after">$96,000</span>
+          </div>
+          <p class="result-desc">Moisture and microbial growth were missed in the original estimate. A stronger scope turned the claim into a full remediation and rebuild.</p>
+        </div>
+      </div>
+      <div class="result-card reveal">
+        <div class="result-card-image">
+          <img src="https://placehold.co/640x400/1a1a1a/2E8BFF?text=Denied+Claim" alt="Denied claim reopened">
+        </div>
+        <div class="result-card-body">
+          <span class="result-tag">Denied / Reopened Claim</span>
+          <div class="result-amounts">
+            <span class="result-before">$0</span>
+            <span class="result-arrow">&rarr;</span>
+            <span class="result-after">$118,000</span>
+          </div>
+          <p class="result-desc">After a denial, the file was rebuilt with better documentation, coverage support, and a negotiation path the homeowner could not create alone.</p>
+        </div>
+      </div>
+      <div class="result-card reveal">
+        <div class="result-card-image">
+          <img src="https://placehold.co/640x400/1a1a1a/2E8BFF?text=Commercial+Loss" alt="Commercial property claim">
+        </div>
+        <div class="result-card-body">
+          <span class="result-tag">Commercial Property</span>
+          <div class="result-amounts">
+            <span class="result-before">$44,000</span>
+            <span class="result-arrow">&rarr;</span>
+            <span class="result-after">$286,000</span>
+          </div>
+          <p class="result-desc">Business interruption and structural repair costs were documented more completely, creating leverage for a broader commercial recovery.</p>
+        </div>
+      </div>
+    </div>
+    <div class="proof-gallery">
+      <div class="proof-panel reveal">
+        <div class="proof-panel-image">
+          <span class="proof-panel-tag">Before / after slot</span>
+        </div>
+        <div class="proof-panel-copy">
+          <h3>Storm damage evidence</h3>
+          <p>Reserve this area for real claim photos that show visible property damage before repairs and documented conditions after inspection.</p>
+        </div>
+      </div>
+      <div class="proof-panel reveal">
+        <div class="proof-panel-image">
+          <span class="proof-panel-tag">Coverage support slot</span>
+        </div>
+        <div class="proof-panel-copy">
+          <h3>Claim file depth</h3>
+          <p>Use this panel later for engineering reports, moisture mapping, or detailed estimate snapshots that support larger recoveries.</p>
+        </div>
+      </div>
+      <div class="proof-panel reveal">
+        <div class="proof-panel-image">
+          <span class="proof-panel-tag">Outcome summary slot</span>
+        </div>
+        <div class="proof-panel-copy">
+          <h3>Range of claim types</h3>
+          <p>Keep expanding this proof system with roof, water, mold, denial, reopening, and commercial examples as more verified case material becomes available.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ── Statement ── -->
+<!-- ?????? Statement ?????? -->
 <section class="statement">
   <div class="container reveal">
     <h2>Every type of property claim. <span class="muted">One dedicated advocate who never works for the insurance company.</span></h2>
   </div>
 </section>
 
-<!-- ── Process ── -->
+<!-- ?????? Process ?????? -->
 <section class="section-dark" id="process">
   <div class="container">
     <div class="reveal">
@@ -1944,7 +2277,46 @@
   </div>
 </section>
 
-<!-- ── Why CRA / Value ── -->
+<section class="section-dark authority">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Authority & trust</p>
+      <h2 class="section-heading">A human face, a license, and a process homeowners can verify.</h2>
+    </div>
+    <div class="authority-grid">
+      <div class="authority-card reveal">
+        <div class="authority-profile">
+          <div class="authority-photo">Headshot slot<br>for lead adjuster</div>
+          <div>
+            <h3>Built for trust-sensitive claims</h3>
+            <p>This section is ready for the lead adjuster name, short bio, license number, and a concise explanation of who homeowners will actually be working with.</p>
+          </div>
+        </div>
+        <div class="authority-kickers">
+          <span class="authority-kicker">Florida license number slot</span>
+          <span class="authority-kicker">Credential badge slot</span>
+          <span class="authority-kicker">No upfront fee</span>
+        </div>
+      </div>
+      <div class="authority-card reveal">
+        <h3>What to add as real assets come in</h3>
+        <ul class="authority-list">
+          <li>Verified license information that visitors can cross-check quickly.</li>
+          <li>Real team photography that replaces anonymous-business skepticism with a clear point of contact.</li>
+          <li>Credential or association logos only if they are real and current.</li>
+          <li>Optional media or ?as seen in? proof if Claim Remedy has legitimate press mentions to show.</li>
+        </ul>
+        <div class="press-strip">
+          <div class="press-tile">Press logo slot</div>
+          <div class="press-tile">Credential logo slot</div>
+          <div class="press-tile">Accreditation slot</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ?????? Why CRA / Value ?????? -->
 <section class="section-dark">
   <div class="container">
     <div class="reveal">
@@ -1958,12 +2330,13 @@
           <p>You negotiate alone against a team of insurance adjusters whose job is to minimize your payout. Most homeowners settle for a fraction.</p>
         </div>
         <div>
-          <div class="value-card-price">Average<br><span class="sub">40–60% less recovery</span></div>
+          <div class="value-card-price">Time<br><span class="sub">More pressure, more paperwork</span></div>
           <ul class="value-features" style="margin-top: 1.5rem;">
             <li>You handle paperwork alone</li>
             <li>No damage documentation expertise</li>
             <li>Insurance company sets the terms</li>
             <li>Delays, denials, and lowball offers</li>
+            <li>Many homeowners recover less than they should</li>
           </ul>
         </div>
       </div>
@@ -1978,7 +2351,7 @@
             <li>Full damage inspection & documentation</li>
             <li>Professional claim filing & evidence</li>
             <li>Direct negotiation with insurer</li>
-            <li>Average 3–5&times; higher settlements</li>
+            <li>Average 3-5&times; higher settlements</li>
           </ul>
         </div>
       </div>
@@ -1986,7 +2359,7 @@
   </div>
 </section>
 
-<!-- ── Testimonials (Google Reviews) ── -->
+<!-- ?????? Testimonials (Google Reviews) ?????? -->
 <section class="testimonials" id="testimonials">
   <div class="container">
     <div class="testimonials-header reveal">
@@ -2014,7 +2387,7 @@
   </div>
 </section>
 
-<!-- ── FAQ ── -->
+<!-- ?????? FAQ ?????? -->
 <section class="section-dark" id="faq">
   <div class="container">
     <div class="reveal">
@@ -2027,14 +2400,14 @@
           What is a public adjuster?
           <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
         </button>
-        <div class="faq-answer"><div class="faq-answer-inner">A public adjuster is a licensed insurance professional who represents homeowners — not the insurance company — during the claims process. We document damage, file claims, and negotiate on your behalf to ensure you receive the maximum settlement you're owed under your policy.</div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">A public adjuster is a licensed insurance professional who represents homeowners, not the insurance company, during the claims process. We document damage, file claims, and negotiate on your behalf to help you recover the maximum settlement allowed under your policy.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-question" aria-expanded="false">
           How does "no recovery, no fee" work?
           <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
         </button>
-        <div class="faq-answer"><div class="faq-answer-inner">You pay absolutely nothing upfront. Our fee is a percentage of the settlement we recover for you. If we don't recover anything, you owe us nothing. This means our interests are fully aligned with yours — we only win when you win.</div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">You pay absolutely nothing upfront. Our fee is a percentage of the settlement we recover for you. If we do not recover anything, you owe us nothing. That means our interests stay fully aligned with yours: we only win when you win.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-question" aria-expanded="false">
@@ -2055,57 +2428,62 @@
           How long does the claims process take?
           <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
         </button>
-        <div class="faq-answer"><div class="faq-answer-inner">Every claim is different, but most claims settle within 30–90 days once we've filed all documentation. Complex or disputed claims may take longer, but we keep you informed at every step and push for the fastest possible resolution.</div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Every claim is different, but most claims settle within 30-90 days once we have filed all documentation. Complex or disputed claims may take longer, but we keep you informed at every step and push for the fastest possible resolution.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Contact Hub ── -->
+<!-- ?????? Contact Hub ?????? -->
 <section class="contact-hub" id="connect">
   <div class="container">
     <div class="contact-hub-grid">
       <div class="contact-hub-copy reveal">
         <p class="section-label">Contact us</p>
         <h2 class="section-heading">Choose the fastest way to reach Claim Remedy.</h2>
-        <p>This section is ready to grow later. For now, it gives visitors a simple place to book a consultation or start a conversation right away.</p>
+        <p>Reach the Claim Remedy team directly and get clear guidance on the next step for your claim.</p>
       </div>
       <div class="contact-hub-card reveal">
         <h3>Start here</h3>
-        <p>Book a free consultation or message the team directly on WhatsApp. We can expand this area with forms, office details, or FAQs whenever you're ready.</p>
+        <p>Message the team directly on WhatsApp to start a simple, pressure-free first conversation about your claim.</p>
+        <ul class="next-steps">
+          <li>
+            <span class="next-step-number">1</span>
+            <span>Share the basics of what happened and where your claim stands today.</span>
+          </li>
+          <li>
+            <span class="next-step-number">2</span>
+            <span>Claim Remedy reviews the situation and explains whether it looks like a fit for a deeper inspection.</span>
+          </li>
+          <li>
+            <span class="next-step-number">3</span>
+            <span>If it makes sense to move forward, the next step and fee structure are explained clearly before anything begins.</span>
+          </li>
+        </ul>
+        <div class="reassurance-grid">
+          <div class="reassurance-item">
+            <strong>No obligation</strong>
+            <span>Use this slot to reassure visitors that the first conversation is informational and pressure-free.</span>
+          </div>
+          <div class="reassurance-item">
+            <strong>No upfront fee</strong>
+            <span>Reinforce the contingency structure so hesitant visitors understand they are not taking on immediate cost.</span>
+          </div>
+          <div class="reassurance-item">
+            <strong>Response-time slot</strong>
+            <span>Add a real response promise later, such as same-day follow-up or a defined callback window.</span>
+          </div>
+        </div>
         <div class="contact-hub-actions">
-          <button type="button" class="btn btn-primary" id="contactCalendlyButton">Book Free Consultation</button>
           <a href="https://wa.me/17862237867?text=Hi%20Claim%20Remedy%2C%20I%27d%20like%20to%20book%20a%20free%20consultation." class="btn btn-outline" target="_blank" rel="noopener">Chat on WhatsApp</a>
         </div>
-        <p class="contact-hub-note">More contact details and content can be added here once you have the final information ready.</p>
+        <p class="contact-hub-note">If you are ready to talk through your claim, send a message and our team will follow up.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── CTA ── -->
-<section class="cta-section" id="contact">
-  <div class="container">
-    <div class="cta-grid">
-      <div class="reveal">
-        <h2 class="cta-heading">Start your<br>claim.</h2>
-      </div>
-      <div class="cta-right reveal">
-        <p>Property damage is stressful enough. Let a licensed Florida public adjuster handle the insurance company while you focus on what matters.</p>
-        <div class="cta-buttons">
-          <a href="tel:+17862237867" class="btn btn-primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            (786) 223-7867
-          </a>
-          <a href="mailto:office@cradjusters.com" class="btn btn-outline">Email Us</a>
-        </div>
-        <p style="font-size: var(--text-small); color: var(--color-foreground-muted);">7900 Oak Ln, Suite 400, Miami Lakes, FL 33016</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Footer ── -->
+<!-- ?????? Footer ?????? -->
 <footer class="footer">
   <div class="container">
     <div class="footer-top">
@@ -2136,7 +2514,7 @@
             <li><a href="#testimonials">Reviews</a></li>
             <li><a href="#process">Process</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#connect">Contact</a></li>
           </ul>
         </div>
         <div>
@@ -2174,7 +2552,7 @@
   </a>
 </div>
 
-<!-- ── Floating AI Chat Widget ── -->
+<!-- ?????? Floating AI Chat Widget ?????? -->
 <div class="ai-widget" id="aiWidget">
   <button class="ai-fab" id="aiFab" aria-label="Open AI assistant">
     <div class="ai-fab-ping"></div>
@@ -2350,25 +2728,6 @@
   const aiUploadSize = document.getElementById('aiUploadSize');
   const aiUploadRemove = document.getElementById('aiUploadRemove');
   const aiVoiceBtn = document.getElementById('aiVoiceBtn');
-  const calendlyUrl = 'https://calendly.com/office-cradjusters';
-
-  function openCalendlyPopup() {
-    if (window.Calendly && typeof window.Calendly.initPopupWidget === 'function') {
-      window.Calendly.initPopupWidget({ url: calendlyUrl });
-      return;
-    }
-
-    window.open(calendlyUrl, '_blank', 'noopener,noreferrer');
-  }
-
-  document.getElementById('navCalendlyButton')?.addEventListener('click', openCalendlyPopup);
-  document.getElementById('mobileCalendlyButton')?.addEventListener('click', () => {
-    setMobileMenu(false);
-    openCalendlyPopup();
-  });
-  document.getElementById('heroCalendlyButton')?.addEventListener('click', openCalendlyPopup);
-  document.getElementById('contactCalendlyButton')?.addEventListener('click', openCalendlyPopup);
-
   const botPath = '<path d="M12 8V4H8"/><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/>';
   const xPath = '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>';
   const MAX_CHAT_FILE_BYTES = 4 * 1024 * 1024;
@@ -2627,7 +2986,29 @@
   // Google Reviews
   const STAR_SVG = '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
   const PLACE_URL = 'https://search.google.com/local/reviews?placeid=ChIJy6vXSOEIMK8RJvzhZzwTlxI';
-
+  const FALLBACK_REVIEWS = [
+    {
+      author: 'Claim Support Client',
+      photo: '',
+      rating: 5,
+      text: 'We document storm and wind damage thoroughly, organize the policy support, and help homeowners push back when a loss has been undervalued.',
+      time: 'Claims support'
+    },
+    {
+      author: 'Water Damage Client',
+      photo: '',
+      rating: 5,
+      text: 'We identify water intrusion, hidden moisture, and related damage that initial carrier estimates often miss.',
+      time: 'Water damage support'
+    },
+    {
+      author: 'Dispute Resolution Client',
+      photo: '',
+      rating: 5,
+      text: 'We help policyholders respond to underpayment disputes with organized evidence, clear communication, and a stronger claim presentation.',
+      time: 'Dispute support'
+    }
+  ];
   function createStars(count) {
     const stars = document.createElement('div');
     stars.className = 'card-stars';
@@ -2708,32 +3089,47 @@
     colEl.appendChild(fragment);
   }
 
+  function renderReviewsSection(rating, total, reviews, ratingLabel) {
+    const headerStars = document.getElementById('headerStars');
+    const headerText = document.getElementById('headerRatingText');
+    if (headerStars) headerStars.innerHTML = STAR_SVG.repeat(Math.round(rating));
+    if (headerText) headerText.textContent = ratingLabel || (rating + ' stars from ' + total + ' reviews');
+
+    const col1 = document.getElementById('testimonials-col-1');
+    const col2 = document.getElementById('testimonials-col-2');
+    const col3 = document.getElementById('testimonials-col-3');
+
+    if (reviews.length >= 5) {
+      fillColumn(col1, [reviews[0], reviews[1]]);
+      fillColumn(col2, [reviews[2], reviews[3]]);
+      fillColumn(col3, [reviews[4], reviews[0]]);
+    } else if (reviews.length > 0) {
+      fillColumn(col1, reviews.slice(0, Math.ceil(reviews.length / 3)));
+      fillColumn(col2, reviews.slice(Math.ceil(reviews.length / 3), Math.ceil(reviews.length * 2 / 3)));
+      fillColumn(col3, reviews.slice(Math.ceil(reviews.length * 2 / 3)));
+    }
+
+    return { col1, col2, col3 };
+  }
+
+  function renderFallbackReviews() {
+    renderReviewsSection(5, FALLBACK_REVIEWS.length, FALLBACK_REVIEWS, '5.0 stars from claim examples while live Google reviews load');
+  }
+
   (async function loadReviews() {
     try {
       const res = await fetch('/api/google-reviews');
       if (!res.ok) throw new Error(res.status);
       const data = await res.json();
 
-      const headerStars = document.getElementById('headerStars');
-      const headerText = document.getElementById('headerRatingText');
-      if (headerStars) headerStars.innerHTML = STAR_SVG.repeat(Math.round(data.rating));
-      if (headerText) headerText.textContent = data.rating + ' stars from ' + data.total + ' reviews';
-
       const reviews = data.reviews || [];
-      const col1 = document.getElementById('testimonials-col-1');
-      const col2 = document.getElementById('testimonials-col-2');
-      const col3 = document.getElementById('testimonials-col-3');
-
-      if (reviews.length >= 5) {
-        fillColumn(col1, [reviews[0], reviews[1]]);
-        fillColumn(col2, [reviews[2], reviews[3]]);
-        fillColumn(col3, [reviews[4], reviews[0]]);
-      } else if (reviews.length > 0) {
-        fillColumn(col1, reviews.slice(0, Math.ceil(reviews.length / 3)));
-        fillColumn(col2, reviews.slice(Math.ceil(reviews.length / 3), Math.ceil(reviews.length * 2 / 3)));
-        fillColumn(col3, reviews.slice(Math.ceil(reviews.length * 2 / 3)));
+      if (!reviews.length) {
+        renderFallbackReviews();
+        return;
       }
+      renderReviewsSection(data.rating, data.total, reviews);
     } catch (e) {
+      renderFallbackReviews();
       console.warn('Could not load Google reviews:', e);
     }
   })();
