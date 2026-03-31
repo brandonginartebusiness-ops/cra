@@ -315,6 +315,103 @@
     setupSectionHeadingReveals();
   }
 
+  // Service areas interactive map/chips module
+  (function initCountyInteractiveModule() {
+    var module = document.querySelector('[data-county-module]');
+    if (!module) return;
+
+    var counties = {
+      'miami-dade': {
+        title: 'Miami-Dade',
+        text: 'Urban and coastal claims throughout Miami-Dade, including hurricane wind, roof, and water losses.',
+      },
+      broward: {
+        title: 'Broward',
+        text: 'Fast-moving storm and interior water claims across Broward neighborhoods and condo communities.',
+      },
+      'palm-beach': {
+        title: 'Palm Beach',
+        text: 'Coverage guidance for high-value homes, roof systems, and water intrusion events in Palm Beach County.',
+      },
+      monroe: {
+        title: 'Monroe',
+        text: 'Island and coastal claim support for wind-driven rain, flood-adjacent damage, and complex rebuild scopes.',
+      },
+      collier: {
+        title: 'Collier',
+        text: 'Property claim advocacy for Naples and surrounding areas, from storm damage documentation to carrier negotiations.',
+      },
+    };
+
+    var titleEl = module.querySelector('[data-county-title]');
+    var textEl = module.querySelector('[data-county-text]');
+    var chips = module.querySelectorAll('[data-county-chip]');
+    var mapBtns = module.querySelectorAll('[data-county-btn]');
+    var hotspots = module.querySelectorAll('[data-county-hotspot]');
+    var activeKey = 'miami-dade';
+
+    function setSelected(nodes, attrName, key, className) {
+      Array.prototype.forEach.call(nodes, function (node) {
+        var on = node.getAttribute(attrName) === key;
+        if (className) node.classList.toggle(className, on);
+        node.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+    }
+
+    function setHotspots(key) {
+      Array.prototype.forEach.call(hotspots, function (spot) {
+        var on = spot.getAttribute('data-county-hotspot') === key;
+        spot.classList.toggle('is-active', on);
+      });
+    }
+
+    function renderCounty(key, opts) {
+      if (!counties[key]) return;
+      activeKey = key;
+      setSelected(chips, 'data-county-chip', key, 'is-active');
+      setSelected(mapBtns, 'data-county-btn', key, 'is-active');
+      setHotspots(key);
+      if (titleEl) titleEl.textContent = counties[key].title;
+      if (textEl) textEl.textContent = counties[key].text;
+
+      if (!opts || opts.animate !== false) {
+        if (typeof gsap !== 'undefined') {
+          gsap.fromTo(
+            [titleEl, textEl],
+            { y: 8, opacity: 0.25 },
+            { y: 0, opacity: 1, duration: 0.24, ease: 'power2.out' }
+          );
+        }
+      }
+    }
+
+    function bindControls(nodes, keyAttr) {
+      Array.prototype.forEach.call(nodes, function (node) {
+        node.addEventListener('click', function () {
+          var key = node.getAttribute(keyAttr);
+          renderCounty(key);
+        });
+        node.addEventListener('keydown', function (ev) {
+          if (ev.key === 'Enter' || ev.key === ' ') {
+            ev.preventDefault();
+            var key = node.getAttribute(keyAttr);
+            renderCounty(key);
+          }
+        });
+        node.addEventListener('mouseenter', function () {
+          if (window.matchMedia && window.matchMedia('(pointer:fine)').matches) {
+            var key = node.getAttribute(keyAttr);
+            renderCounty(key);
+          }
+        });
+      });
+    }
+
+    bindControls(chips, 'data-county-chip');
+    bindControls(mapBtns, 'data-county-btn');
+    renderCounty(activeKey, { animate: false });
+  })();
+
   // Grid-3 card stagger
   var gridStagger = prefersMobile ? 0.08 : 0.15;
   var gridDuration = prefersMobile ? 0.5 : 0.7;

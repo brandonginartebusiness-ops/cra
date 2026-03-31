@@ -130,12 +130,42 @@
             </p>
           </div>
           <div class="editorial-split__chips">
-            <div class="county-row">
-              <span class="chip-county"><span class="chip-county__icon" aria-hidden="true">📍</span> Miami-Dade</span>
-              <span class="chip-county"><span class="chip-county__icon" aria-hidden="true">📍</span> Broward</span>
-              <span class="chip-county"><span class="chip-county__icon" aria-hidden="true">📍</span> Palm Beach</span>
-              <span class="chip-county"><span class="chip-county__icon" aria-hidden="true">📍</span> Monroe</span>
-              <span class="chip-county"><span class="chip-county__icon" aria-hidden="true">📍</span> Collier</span>
+            <div class="county-interactive" data-county-module>
+              <div class="county-map-wrap" role="group" aria-label="Explore Florida service areas">
+                <svg class="county-map" viewBox="0 0 420 320" focusable="false" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="county-map-grad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="rgba(255,255,255,0.2)"></stop>
+                      <stop offset="100%" stop-color="rgba(255,255,255,0.04)"></stop>
+                    </linearGradient>
+                  </defs>
+                  <path class="county-map__state" d="M145,40 L216,36 L286,58 L314,97 L327,148 L353,173 L356,214 L337,247 L292,267 L252,281 L210,274 L169,257 L132,228 L106,194 L93,150 L101,112 L121,79 Z"></path>
+                  <circle class="county-hotspot" data-county-hotspot="miami-dade" cx="303" cy="236" r="11"></circle>
+                  <circle class="county-hotspot" data-county-hotspot="broward" cx="292" cy="218" r="11"></circle>
+                  <circle class="county-hotspot" data-county-hotspot="palm-beach" cx="281" cy="195" r="11"></circle>
+                  <circle class="county-hotspot" data-county-hotspot="monroe" cx="335" cy="254" r="10"></circle>
+                  <circle class="county-hotspot" data-county-hotspot="collier" cx="257" cy="244" r="11"></circle>
+                </svg>
+                <button class="county-map-btn" type="button" data-county-btn="miami-dade" aria-selected="true" aria-controls="county-details-panel" style="--x:72%;--y:74%;">Miami-Dade</button>
+                <button class="county-map-btn" type="button" data-county-btn="broward" aria-selected="false" aria-controls="county-details-panel" style="--x:69%;--y:66%;">Broward</button>
+                <button class="county-map-btn" type="button" data-county-btn="palm-beach" aria-selected="false" aria-controls="county-details-panel" style="--x:66%;--y:58%;">Palm Beach</button>
+                <button class="county-map-btn" type="button" data-county-btn="monroe" aria-selected="false" aria-controls="county-details-panel" style="--x:81%;--y:81%;">Monroe</button>
+                <button class="county-map-btn" type="button" data-county-btn="collier" aria-selected="false" aria-controls="county-details-panel" style="--x:61%;--y:77%;">Collier</button>
+              </div>
+              <div id="county-details-panel" class="county-detail-panel" aria-live="polite">
+                <p class="county-detail-panel__label">Active service area</p>
+                <h3 class="county-detail-panel__title" data-county-title>Miami-Dade</h3>
+                <p class="county-detail-panel__text" data-county-text>
+                  Urban and coastal claims throughout Miami-Dade, including hurricane wind, roof, and water losses.
+                </p>
+              </div>
+              <div class="county-row county-row--interactive">
+                <button class="chip-county is-active" type="button" data-county-chip="miami-dade" aria-selected="true" aria-controls="county-details-panel"><span class="chip-county__icon" aria-hidden="true">📍</span> Miami-Dade</button>
+                <button class="chip-county" type="button" data-county-chip="broward" aria-selected="false" aria-controls="county-details-panel"><span class="chip-county__icon" aria-hidden="true">📍</span> Broward</button>
+                <button class="chip-county" type="button" data-county-chip="palm-beach" aria-selected="false" aria-controls="county-details-panel"><span class="chip-county__icon" aria-hidden="true">📍</span> Palm Beach</button>
+                <button class="chip-county" type="button" data-county-chip="monroe" aria-selected="false" aria-controls="county-details-panel"><span class="chip-county__icon" aria-hidden="true">📍</span> Monroe</button>
+                <button class="chip-county" type="button" data-county-chip="collier" aria-selected="false" aria-controls="county-details-panel"><span class="chip-county__icon" aria-hidden="true">📍</span> Collier</button>
+              </div>
             </div>
           </div>
         </div>

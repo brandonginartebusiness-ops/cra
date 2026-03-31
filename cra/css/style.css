@@ -1224,6 +1224,130 @@ textarea {
   gap: 12px;
 }
 
+.county-interactive {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.county-map-wrap {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.county-map {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.county-map__state {
+  fill: rgba(255, 255, 255, 0.06);
+  stroke: rgba(255, 255, 255, 0.24);
+  stroke-width: 2;
+}
+
+.county-hotspot {
+  fill: rgba(255, 255, 255, 0.08);
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 1.5;
+}
+
+.county-hotspot.is-active {
+  fill: rgba(30, 111, 255, 0.65);
+  stroke: rgba(30, 111, 255, 0.95);
+}
+
+.county-map-btn {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(8, 8, 16, 0.72);
+  color: var(--cream);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.28rem 0.55rem;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.county-map-btn:hover,
+.county-map-btn:focus-visible {
+  border-color: var(--blue);
+  background: rgba(30, 111, 255, 0.24);
+  transform: translate(-50%, -50%) scale(1.03);
+}
+
+.county-map-btn:focus-visible,
+.county-row--interactive .chip-county:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.county-map-btn.is-active {
+  border-color: rgba(30, 111, 255, 0.95);
+  background: rgba(30, 111, 255, 0.28);
+}
+
+.county-detail-panel {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.95rem 1rem;
+  margin: 0 0 1rem;
+}
+
+.county-detail-panel__label {
+  margin: 0 0 0.2rem;
+  color: var(--mid);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.county-detail-panel__title {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+  color: var(--cream);
+}
+
+.county-detail-panel__text {
+  margin: 0;
+  color: rgba(242, 240, 236, 0.82);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.county-row--interactive {
+  justify-content: flex-start;
+}
+
+.county-row--interactive .chip-county.is-active {
+  border-color: var(--blue);
+  box-shadow: 0 0 16px rgba(30, 111, 255, 0.28);
+}
+
+@media (max-width: 680px) {
+  .county-map-btn {
+    font-size: 0.64rem;
+    padding: 0.24rem 0.5rem;
+  }
+
+  .county-row--interactive {
+    justify-content: center;
+  }
+}
+
 .chip-county {
   display: inline-flex;
   align-items: center;
