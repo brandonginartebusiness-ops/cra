@@ -212,6 +212,7 @@
     .hero {
       position: relative;
       display: flex;
+      align-items: stretch;
       min-height: 100vh;
       overflow: hidden;
       background: var(--color-background);
@@ -322,6 +323,8 @@
     }
     .hero-right {
       width: 40%;
+      min-height: 100%;
+      align-self: stretch;
       background-size: cover;
       background-position: center;
       clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
