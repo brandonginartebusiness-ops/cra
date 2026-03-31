@@ -1974,12 +1974,28 @@ h1, h2, h3, h4 {
   color: var(--cream);
 }
 
+.trust-stats-outer {
+  margin-top: -2.25rem;
+}
+
 .trust-stat-num {
-  color: var(--cream);
+  color: var(--navy);
 }
 
 .trust-stat-label {
-  color: rgba(242, 240, 236, 0.82);
+  color: rgba(6, 13, 31, 0.72);
+}
+
+.trust-stats-bar {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.14);
+}
+
+@media (max-width: 768px) {
+  .trust-stats-outer {
+    margin-top: -1.6rem;
+  }
 }
 
 .testimonials-carousel .testimonial-quote--carousel {
