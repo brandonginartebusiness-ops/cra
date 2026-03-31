@@ -1356,6 +1356,144 @@ textarea {
   }
 }
 
+/* Service Areas: cream full-width county map */
+.service-areas-map-section {
+  background: #f5f1eb;
+  color: #1a1a1a;
+}
+
+.service-areas-map-section .section-label {
+  color: #1a4a6e;
+}
+
+.service-areas-map-section .section-title {
+  color: #1a1a1a;
+}
+
+.service-areas-map-section .section-title__line,
+.service-areas-map-section .section-title::after {
+  background: #c4933a;
+}
+
+.service-areas-map-section .section-lead {
+  color: #424242;
+}
+
+.county-map-modern {
+  width: 100%;
+}
+
+.county-map-modern__wrap {
+  width: 100%;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid rgba(26, 74, 110, 0.12);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  padding: 0.75rem;
+}
+
+.county-map-modern__svg {
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  display: block;
+}
+
+.fl-state-outline {
+  fill: none;
+  stroke: rgba(26, 74, 110, 0.4);
+  stroke-width: 2;
+}
+
+.fl-county {
+  fill: #2a2a2a;
+  stroke: rgba(245, 241, 235, 0.3);
+  stroke-width: 1;
+  transition: fill 0.3s ease, stroke 0.3s ease, filter 0.3s ease;
+}
+
+.fl-county--highlight {
+  fill: #1a4a6e;
+  stroke: rgba(245, 241, 235, 0.65);
+  cursor: pointer;
+}
+
+.fl-county--highlight:hover,
+.fl-county--highlight:focus-visible {
+  fill: #c4933a;
+  stroke: #f5f1eb;
+  outline: none;
+}
+
+.fl-tooltip {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fl-county-group:hover .fl-tooltip,
+.fl-county-group:focus-within .fl-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fl-tooltip rect {
+  fill: rgba(8, 8, 16, 0.92);
+  stroke: rgba(196, 147, 58, 0.45);
+  stroke-width: 1;
+}
+
+.fl-tooltip text {
+  fill: #f5f1eb;
+  font-family: var(--sans);
+  font-size: 11px;
+}
+
+.fl-tooltip text:first-of-type {
+  font-weight: 700;
+}
+
+.county-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-top: 0.8rem;
+}
+
+.county-map-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: #343434;
+}
+
+.county-map-legend__swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.county-map-legend__swatch--highlight {
+  background: #1a4a6e;
+}
+
+.county-map-legend__swatch--other {
+  background: #2a2a2a;
+}
+
+@media (max-width: 720px) {
+  .county-map-modern__wrap {
+    padding: 0.45rem;
+  }
+
+  .fl-tooltip {
+    display: none;
+  }
+}
+
 .chip-county {
   display: inline-flex;
   align-items: center;
