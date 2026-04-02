@@ -2558,7 +2558,8 @@ textarea::placeholder {
 .ig-grid a:focus-visible,
 .google-reviews-link:focus-visible,
 .whatsapp-fab:focus-visible,
-.mobile-cta-bar a:focus-visible {
+.mobile-cta-bar a:focus-visible,
+.testimonial-pause-btn:focus-visible {
   outline: 3px solid var(--gold);
   outline-offset: 3px;
 }
@@ -2860,11 +2861,6 @@ textarea::placeholder {
 .testimonial-pause-btn:hover {
   border-color: var(--gold);
   color: var(--gold);
-}
-
-.testimonial-pause-btn:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
 }
 
 /* --- Prefers-reduced-motion --- */
