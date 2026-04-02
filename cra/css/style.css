@@ -96,12 +96,14 @@ main {
 
 /* --- Header --- */
 .site-header {
-  background: var(--cream);
+  background: rgba(8, 8, 16, 0.88);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-light);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: var(--shadow-nav);
+  box-shadow: none;
 }
 
 .nav-wrap {
@@ -122,7 +124,7 @@ main {
 }
 
 .logo:hover {
-  color: var(--navy);
+  color: var(--gold);
 }
 
 .site-nav ul {
@@ -138,7 +140,7 @@ main {
 .site-nav a {
   text-decoration: none;
   font-size: 0.95rem;
-  color: var(--navy);
+  color: rgba(242, 240, 236, 0.75);
   transition: color 0.2s ease;
 }
 
@@ -170,9 +172,9 @@ main {
 
 .nav-toggle {
   display: none;
-  background: var(--navy);
-  color: #fff;
-  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--cream);
+  border: 1px solid var(--border-light);
   padding: 0.5rem 0.85rem;
   border-radius: 4px;
   font-family: var(--sans);
