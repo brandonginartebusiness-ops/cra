@@ -34,7 +34,7 @@ function verifyWebhookToken(req) {
     return true;
   }
 
-  const url = new URL(req.url, "https://cra-opal.vercel.app");
+  const url = new URL(req.url, "https://claimremedyadjusters.com");
   return url.searchParams.get("token") === expected;
 }
 

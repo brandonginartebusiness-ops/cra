@@ -6,7 +6,7 @@
 - **Location:** 7900 Oak Ln #400, Miami Lakes, FL 33016
 - **Phone:** (786) 223-7867
 - **Instagram:** @claimremedyadjusters
-- **Live URL:** https://cra-opal.vercel.app
+- **Live URL:** https://claimremedyadjusters.com
 - **Audience:** Florida homeowners dealing with property damage claims (hurricane, water, fire, roof, mold, flood). They're stressed, often confused by insurance, and looking for someone trustworthy.
 - **Tone:** Warm and approachable — "we're here to help." Confident but never aggressive. Think helpful neighbor who happens to be an expert.
 
@@ -125,7 +125,7 @@ Ongoing polish — core upgrades are in place; can still push further:
 - Add Florida license number to about page
 
 ### Priority 3: SEO & Schema
-- Update canonical URLs from cra-opal.vercel.app to final production domain
+- ✅ Canonical URLs updated to claimremedyadjusters.com (custom domain live)
 - Add unique meta descriptions to all inner pages
 - Add branded OG image
 - Location-target service page copy (Miami, Broward, Palm Beach keywords)
