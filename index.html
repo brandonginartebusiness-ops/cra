@@ -2251,7 +2251,7 @@
       <div class="authority-card primary reveal">
         <div class="authority-profile">
           <div class="authority-photo">
-            <img src="brand_assets/eddy_headshot.jpg" alt="Lead adjuster headshot" loading="lazy">
+            <img src="brand_assets/eddy_headshot.jpeg" alt="Lead adjuster headshot" loading="lazy">
           </div>
           <div>
             <h3>Built for trust-sensitive claims</h3>
@@ -2626,54 +2626,70 @@
     });
   });
 
-  // GSAP reveals
+  // GSAP reveals (.reveal starts at opacity:0 in CSS; must show content if GSAP never runs)
+  function forceRevealVisible() {
+    document.querySelectorAll('.reveal').forEach((el) => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  }
+
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    gsap.registerPlugin(ScrollTrigger);
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      forceRevealVisible();
+    } else {
+      try {
+        gsap.registerPlugin(ScrollTrigger);
 
-    // Hero entrance animations
-    const heroReveals = gsap.utils.toArray('.hero-reveal');
-    heroReveals.forEach((el, i) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.3 + i * 0.15 }
-      );
-    });
+        // Hero entrance animations
+        const heroReveals = gsap.utils.toArray('.hero-reveal');
+        heroReveals.forEach((el, i) => {
+          gsap.fromTo(el,
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.3 + i * 0.15 }
+          );
+        });
 
-    const heroImg = document.getElementById('heroImage');
-    if (heroImg) {
-      const targetClipPath = window.innerWidth <= 768
-        ? 'polygon(0 8%, 100% 0, 100% 100%, 0 100%)'
-        : window.innerWidth <= 1024
-          ? 'polygon(0 12%, 100% 0, 100% 100%, 0 100%)'
-          : 'polygon(25% 0, 100% 0, 100% 100%, 0% 100%)';
-      gsap.fromTo(heroImg,
-        { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' },
-        { clipPath: targetClipPath, duration: 1.2, ease: 'circ.out', delay: 0.2 }
-      );
-    }
-
-    gsap.utils.toArray('.reveal').forEach(el => {
-      const parent = el.parentElement;
-      const siblings = parent ? Array.from(parent.children).filter(c => c.classList.contains('reveal')) : [];
-      const idx = siblings.indexOf(el);
-      const isGridChild = parent && (
-        parent.classList.contains('services-grid') ||
-        parent.classList.contains('results-grid') ||
-        parent.classList.contains('process-grid') ||
-        parent.classList.contains('value-grid')
-      );
-
-      gsap.fromTo(el,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1, y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          delay: isGridChild ? idx * 0.1 : 0,
-          scrollTrigger: { trigger: el, start: 'top 88%' },
+        const heroImg = document.getElementById('heroImage');
+        if (heroImg) {
+          const targetClipPath = window.innerWidth <= 768
+            ? 'polygon(0 8%, 100% 0, 100% 100%, 0 100%)'
+            : window.innerWidth <= 1024
+              ? 'polygon(0 12%, 100% 0, 100% 100%, 0 100%)'
+              : 'polygon(25% 0, 100% 0, 100% 100%, 0% 100%)';
+          gsap.fromTo(heroImg,
+            { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' },
+            { clipPath: targetClipPath, duration: 1.2, ease: 'circ.out', delay: 0.2 }
+          );
         }
-      );
-    });
+
+        gsap.utils.toArray('.reveal').forEach(el => {
+          const parent = el.parentElement;
+          const siblings = parent ? Array.from(parent.children).filter(c => c.classList.contains('reveal')) : [];
+          const idx = siblings.indexOf(el);
+          const isGridChild = parent && (
+            parent.classList.contains('services-grid') ||
+            parent.classList.contains('results-grid') ||
+            parent.classList.contains('process-grid') ||
+            parent.classList.contains('value-grid')
+          );
+
+          gsap.fromTo(el,
+            { opacity: 0, y: 50 },
+            {
+              opacity: 1, y: 0,
+              duration: 0.8,
+              ease: 'power3.out',
+              delay: isGridChild ? idx * 0.1 : 0,
+              scrollTrigger: { trigger: el, start: 'top 88%' },
+            }
+          );
+        });
+      } catch (e) {
+        console.warn('GSAP reveal failed:', e);
+        forceRevealVisible();
+      }
+    }
   }
 
   // AI Chat Widget
