@@ -2499,3 +2499,67 @@ textarea::placeholder {
 .fade-up {
   transition-duration: 0.55s;
 }
+
+/* ===== Smooth section-to-section gradient transitions ===== */
+
+/* HOMEPAGE: each section gets a subtle tonal gradient so the eye flows
+   between them without hard flat-color cuts */
+.page-home .trust-stats-outer {
+  background: linear-gradient(180deg, var(--black) 0%, #111111 22%) !important;
+}
+
+.page-home .section-block-navy {
+  background: linear-gradient(180deg, #111111 0%, #0c1020 22%, #0c1020 78%, #111111 100%) !important;
+}
+
+.page-home .section-alt.testimonials {
+  background: linear-gradient(180deg, #111111 0%, #0d0d1c 40%, #0d0d1c 60%, #111111 100%) !important;
+}
+
+/* Last section (Instagram) bleeds into the navy footer */
+.page-home main > .section:last-child {
+  background: linear-gradient(180deg, #111111 0%, #111111 52%, #0c1628 100%) !important;
+}
+
+/* Footer gets a gradient entry from the dark section above */
+.page-home .site-footer {
+  background: linear-gradient(180deg, #091424 0%, var(--navy) 55%) !important;
+}
+
+/* INNER PAGES: gradient bleed from navy page-hero into first dark section */
+.page-hero + .section,
+.page-hero + .section-alt {
+  position: relative;
+}
+
+.page-hero + .section::before,
+.page-hero + .section-alt::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  background: linear-gradient(to bottom, var(--navy), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Blend final section content into navy footer on inner pages */
+body:not(.page-home) main > .section:last-child,
+body:not(.page-home) main > .section-alt:last-child {
+  position: relative;
+}
+
+body:not(.page-home) main > .section:last-child::after,
+body:not(.page-home) main > .section-alt:last-child::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  background: linear-gradient(to bottom, transparent, var(--navy));
+  pointer-events: none;
+  z-index: 0;
+}

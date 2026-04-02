@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   }
 
   const key = process.env.GOOGLE_PLACES_API_KEY;
-  let placeId = (process.env.GOOGLE_PLACE_ID || '').trim();
+  let placeId = (process.env.GOOGLE_PLACE_ID || 'ChIJy6vXSOEIMK8RJvzhZzwTlxI').trim();
   if (placeId.indexOf('places/') === 0) {
     placeId = placeId.slice('places/'.length).trim();
   }
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
     return res.status(503).json({
       error: 'not_configured',
       message:
-        'Set GOOGLE_PLACES_API_KEY and GOOGLE_PLACE_ID in the deployment environment.',
+        'Set GOOGLE_PLACES_API_KEY in the deployment environment.',
     });
   }
 
