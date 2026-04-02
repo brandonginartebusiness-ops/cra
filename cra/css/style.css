@@ -445,13 +445,13 @@ textarea {
   isolation: isolate;
   overflow: hidden;
   color: var(--cream);
-  padding: 90px 20px 120px;
-  text-align: center;
+  padding: 130px 20px 140px;
+  text-align: left;
 }
 
 @media (min-width: 769px) {
   .hero {
-    padding: 140px 20px 180px;
+    padding: 180px 20px 200px;
   }
 }
 
@@ -460,7 +460,7 @@ textarea {
   inset: 0;
   z-index: 0;
   background: transparent
-    url('../images/hero-hurricane-house.jpg') center /
+    url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1800&q=80&fit=crop') center /
     cover no-repeat;
   animation: heroKenBurns 15s ease-in-out infinite alternate;
   transform-origin: center center;
@@ -472,32 +472,31 @@ textarea {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(rgba(26, 74, 110, 0.75), rgba(26, 74, 110, 0.75));
+  background: linear-gradient(160deg, rgba(4, 8, 20, 0.82) 0%, rgba(4, 8, 20, 0.70) 60%, rgba(4, 8, 20, 0.60) 100%);
 }
 
 .hero__inner {
   position: relative;
   z-index: 2;
   perspective: 1000px;
+  text-align: left;
 }
 
 .hero__title {
   color: var(--cream);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  line-height: 1.05;
-  max-width: 22ch;
-  margin: 0 auto 1rem;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+  font-size: clamp(3rem, 7.5vw, 6rem);
+  line-height: 1.0;
+  max-width: 18ch;
+  margin: 0 0 1.5rem;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
 }
 
 .hero__word {
-  display: inline-block;
-  margin-right: 0.18em;
-  transform-origin: 50% 100%;
+  display: block;
 }
 
-.hero__word:last-child {
-  margin-right: 0;
+.hero__word--blue {
+  color: var(--blue);
 }
 
 .hero em {
@@ -506,17 +505,36 @@ textarea {
 }
 
 .hero__subtitle {
-  font-size: clamp(1.05rem, 2.2vw, 1.28rem);
-  line-height: 1.55;
-  max-width: 38ch;
-  margin: 0 auto 1.5rem;
-  color: rgba(245, 241, 235, 0.95);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.6;
+  max-width: 44ch;
+  margin: 0 0 2rem;
+  color: rgba(245, 241, 235, 0.88);
+}
+
+.hero__actions .hero__cta {
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 4px;
+  display: inline-block;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.hero__actions .hero__cta:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
 }
 
 .hero__trust-row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.5rem 0.65rem;
   margin-top: 1.75rem;
 }
@@ -2760,3 +2778,32 @@ textarea::placeholder {
   }
 }
 
+
+/* --- WhatsApp FAB --- */
+.whatsapp-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 24px;
+  z-index: 900;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45), 0 2px 8px rgba(0,0,0,0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.whatsapp-fab:hover {
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.55), 0 4px 12px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+  .whatsapp-fab {
+    bottom: 76px;
+  }
+}
