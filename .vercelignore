@@ -1,0 +1,18 @@
+node_modules
+temporary screenshots
+serve.mjs
+screenshot.mjs
+CLAUDE.md
+.cursor
+*.pdf
+# Untracked root-level files — keep out of CLI deployments
+contact.html
+faq.html
+process.html
+results.html
+reviews.html
+services.html
+pages.css
+pages.js
+cra-bot/
+CONTEXT.md
