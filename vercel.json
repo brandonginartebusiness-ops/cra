@@ -1,5 +1,8 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/", "destination": "/cra/", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",
