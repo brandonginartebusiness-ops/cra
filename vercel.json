@@ -1,7 +1,8 @@
 {
   "cleanUrls": true,
   "redirects": [
-    { "source": "/", "destination": "/cra/", "permanent": true }
+    { "source": "/", "destination": "/cra/", "permanent": true },
+    { "source": "/index.html", "destination": "/cra/", "permanent": true }
   ],
   "headers": [
     {
