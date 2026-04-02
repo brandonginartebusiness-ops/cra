@@ -2499,3 +2499,108 @@ textarea::placeholder {
 .fade-up {
   transition-duration: 0.55s;
 }
+
+/* ── Florida County SVG Map (navy section) ──────────────────────────────── */
+
+/* State background fill */
+.fl-state-bg {
+  fill: rgba(255, 255, 255, 0.04);
+  stroke: rgba(242, 240, 236, 0.28);
+  stroke-width: 1.5;
+}
+
+/* Keys decorative dashed line */
+.fl-keys-path {
+  fill: none;
+  stroke: rgba(242, 240, 236, 0.3);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-dasharray: 2 6;
+}
+
+/* Button reset for chip-county when rendered as <button> */
+button.chip-county {
+  font-family: var(--sans);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Highlighted counties — navy section */
+.section-block-navy .fl-county--highlight {
+  fill: rgba(46, 139, 255, 0.38);
+  stroke: rgba(46, 139, 255, 0.65);
+  stroke-width: 1.5;
+  cursor: pointer;
+  transition: fill 0.22s ease, stroke 0.22s ease, filter 0.22s ease;
+}
+
+.section-block-navy [data-county-btn]:hover .fl-county--highlight,
+.section-block-navy [data-county-btn].is-active .fl-county--highlight {
+  fill: rgba(46, 139, 255, 0.65);
+  stroke: #2e8bff;
+  filter: drop-shadow(0 0 8px rgba(46, 139, 255, 0.5));
+}
+
+.section-block-navy [data-county-btn]:focus-visible {
+  outline: none;
+}
+
+.section-block-navy [data-county-btn]:focus-visible .fl-county--highlight {
+  stroke: #2e8bff;
+  filter: drop-shadow(0 0 8px rgba(46, 139, 255, 0.6));
+}
+
+/* Active chip highlight — navy section */
+.section-block-navy .county-row--interactive .chip-county.is-active {
+  border-color: #2e8bff;
+  background: rgba(46, 139, 255, 0.2);
+  box-shadow: 0 0 16px rgba(46, 139, 255, 0.3);
+}
+
+/* SVG tooltip — navy section */
+.section-block-navy .fl-tooltip {
+  transform-box: fill-box;
+  transform-origin: center center;
+}
+
+.section-block-navy .fl-tooltip rect {
+  fill: rgba(8, 8, 16, 0.93);
+  stroke: rgba(46, 139, 255, 0.55);
+  stroke-width: 1;
+}
+
+.section-block-navy .fl-tooltip text {
+  fill: #f2f0ec;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* ── Card photo wrap (services + results pages) ──────────────────────────── */
+
+.card-photo-wrap {
+  margin: -28px -28px 20px;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+  line-height: 0;
+  background: rgba(26, 74, 110, 0.08);
+}
+
+.card-photo {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.card:hover .card-photo {
+  transform: scale(1.04);
+}
+
+@media (max-width: 768px) {
+  .card-photo-wrap {
+    margin: -24px -24px 18px;
+  }
+}

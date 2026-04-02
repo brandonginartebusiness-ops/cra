@@ -121,30 +121,92 @@
 
     <section class="section section-block-navy service-areas-typography">
       <div class="container">
-        <div class="editorial-split">
+        <div class="editorial-split" data-county-module>
           <div class="editorial-split__copy">
             <p class="section-label">Service areas</p>
             <h2 class="section-title">Our Service Areas</h2>
             <p class="section-lead">
-              Based in Florida and helping homeowners and property owners statewide.
+              South Florida's go-to public adjusters — serving homeowners across five counties from the Keys to Palm Beach.
             </p>
+            <div class="county-row county-row--interactive" role="list" aria-label="Service counties">
+              <button type="button" class="chip-county" role="listitem" data-county-chip="miami-dade" aria-selected="true">
+                <span class="chip-county__icon" aria-hidden="true">📍</span>Miami-Dade
+              </button>
+              <button type="button" class="chip-county" role="listitem" data-county-chip="broward" aria-selected="false">
+                <span class="chip-county__icon" aria-hidden="true">📍</span>Broward
+              </button>
+              <button type="button" class="chip-county" role="listitem" data-county-chip="palm-beach" aria-selected="false">
+                <span class="chip-county__icon" aria-hidden="true">📍</span>Palm Beach
+              </button>
+              <button type="button" class="chip-county" role="listitem" data-county-chip="monroe" aria-selected="false">
+                <span class="chip-county__icon" aria-hidden="true">📍</span>Monroe
+              </button>
+              <button type="button" class="chip-county" role="listitem" data-county-chip="collier" aria-selected="false">
+                <span class="chip-county__icon" aria-hidden="true">📍</span>Collier
+              </button>
+            </div>
           </div>
           <div class="editorial-split__chips">
             <div class="county-interactive">
-              <div class="county-map-wrap" role="img" aria-label="Outline map of Florida showing statewide coverage">
-                <svg class="county-map" viewBox="0 0 420 320" focusable="false" aria-hidden="true">
-                  <g class="county-map__florida" transform="translate(8 14) scale(0.79)">
-                    <path class="county-map__state" d="M70,76 L178,74 L185,84 L276,84 L322,90 L328,104 L334,98 L334,86 L366,94 L374,130 L384,172 L402,204 L398,228 L388,242 L391,254 L408,300 L408,334 L398,352 L372,362 L338,366 L323,364 L320,337 L310,318 L289,304 L277,302 L272,288 L260,284 L251,268 L243,248 L250,220 L248,194 L236,176 L218,162 L202,138 L185,126 L172,130 L166,140 L146,148 L130,154 L114,154 L102,134 L94,116 L82,100 L75,88 Z"></path>
-                    <path class="county-map__keys" d="M329,369 L346,374 L362,380 L378,389"></path>
-                    <circle class="county-hotspot is-active" cx="320" cy="240" r="9"></circle>
+              <div class="county-map-wrap" role="img" aria-label="Interactive map of South Florida service counties">
+                <!-- Florida peninsula SVG — 5 highlighted service-area counties -->
+                <svg class="county-map fl-county-svg" viewBox="0 0 280 430" focusable="true" aria-label="Florida county map showing service areas">
+                  <!-- State background -->
+                  <path class="fl-state-bg" d="M 15,8 L 268,4 L 278,42 L 278,112 L 274,168 L 268,258 L 242,302 L 218,334 L 190,350 L 175,372 C 162,382 145,382 132,372 L 105,355 L 75,332 L 52,302 L 34,262 L 22,210 L 12,155 L 10,55 L 12,25 Z" />
+                  <!-- Keys — decorative dashed path -->
+                  <path class="fl-keys-path" d="M 175,372 L 158,385 L 132,393 L 102,397 L 72,393 L 48,381 L 28,367" />
+
+                  <!-- Palm Beach County -->
+                  <g class="fl-county-group" data-county-btn="palm-beach" tabindex="0" role="button" aria-label="Palm Beach County">
+                    <path class="fl-county fl-county--highlight" d="M 162,8 L 268,4 L 278,42 L 278,112 L 162,114 Z" />
+                    <g class="fl-tooltip" transform="translate(220,52)">
+                      <rect x="-52" y="-14" width="104" height="22" rx="4" />
+                      <text x="0" y="4" text-anchor="middle">Palm Beach</text>
+                    </g>
+                  </g>
+
+                  <!-- Broward County -->
+                  <g class="fl-county-group" data-county-btn="broward" tabindex="0" role="button" aria-label="Broward County">
+                    <path class="fl-county fl-county--highlight" d="M 162,114 L 278,112 L 274,168 L 162,172 Z" />
+                    <g class="fl-tooltip" transform="translate(220,140)">
+                      <rect x="-40" y="-14" width="80" height="22" rx="4" />
+                      <text x="0" y="4" text-anchor="middle">Broward</text>
+                    </g>
+                  </g>
+
+                  <!-- Miami-Dade County -->
+                  <g class="fl-county-group" data-county-btn="miami-dade" tabindex="0" role="button" aria-label="Miami-Dade County">
+                    <path class="fl-county fl-county--highlight" d="M 162,172 L 274,168 L 268,258 L 242,302 L 218,334 L 190,350 L 172,348 L 155,315 L 152,238 L 152,172 Z" />
+                    <g class="fl-tooltip" transform="translate(213,262)">
+                      <rect x="-50" y="-14" width="100" height="22" rx="4" />
+                      <text x="0" y="4" text-anchor="middle">Miami-Dade</text>
+                    </g>
+                  </g>
+
+                  <!-- Monroe County (Everglades + Keys) -->
+                  <g class="fl-county-group" data-county-btn="monroe" tabindex="0" role="button" aria-label="Monroe County">
+                    <path class="fl-county fl-county--highlight" d="M 22,228 L 152,222 L 152,315 L 172,348 L 190,350 L 178,370 L 148,380 L 108,378 L 72,360 L 48,328 L 28,285 Z" />
+                    <g class="fl-tooltip" transform="translate(98,302)">
+                      <rect x="-38" y="-14" width="76" height="22" rx="4" />
+                      <text x="0" y="4" text-anchor="middle">Monroe</text>
+                    </g>
+                  </g>
+
+                  <!-- Collier County -->
+                  <g class="fl-county-group" data-county-btn="collier" tabindex="0" role="button" aria-label="Collier County">
+                    <path class="fl-county fl-county--highlight" d="M 10,108 L 152,102 L 152,222 L 22,228 L 14,195 L 10,152 Z" />
+                    <g class="fl-tooltip" transform="translate(82,160)">
+                      <rect x="-34" y="-14" width="68" height="22" rx="4" />
+                      <text x="0" y="4" text-anchor="middle">Collier</text>
+                    </g>
                   </g>
                 </svg>
               </div>
               <div class="county-detail-panel">
-                <p class="county-detail-panel__label">Florida-based team</p>
-                <h3 class="county-detail-panel__title">Coverage Across Florida</h3>
-                <p class="county-detail-panel__text">
-                  We support policyholders across the state, from metro corridors to coastal and inland communities.
+                <p class="county-detail-panel__label">Service area</p>
+                <h3 class="county-detail-panel__title" data-county-title>Miami-Dade</h3>
+                <p class="county-detail-panel__text" data-county-text>
+                  Urban and coastal claims throughout Miami-Dade, including hurricane wind, roof, and water losses.
                 </p>
               </div>
             </div>
@@ -262,5 +324,25 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    // Florida county map: GSAP entrance animation on scroll
+    (function () {
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+      var countyPaths = document.querySelectorAll('.fl-county--highlight');
+      if (!countyPaths.length) return;
+      gsap.from(countyPaths, {
+        opacity: 0,
+        y: 12,
+        duration: 0.75,
+        stagger: 0.13,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.county-map-wrap',
+          start: 'top 82%',
+          toggleActions: 'play none none none',
+        },
+      });
+    })();
+  </script>
 </body>
 </html>

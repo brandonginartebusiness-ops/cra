@@ -140,8 +140,17 @@
         <p class="section-lead">
           From wind-driven rain to coastal flood scenarios — here is how we help on each claim.
         </p>
+        <!--
+          SERVICE CARD PHOTOS
+          To add a photo to any card, set the src attribute on the matching img below.
+          Leave src="" to keep the icon-only layout (the photo wrap auto-hides when src is empty).
+          Recommended: 600 × 400 px, JPG or WebP, relative to this file (e.g. ../images/hurricane.jpg).
+        -->
         <div class="services-page-grid">
           <article class="card card--service">
+            <div class="card-photo-wrap" hidden>
+              <img class="card-photo" src="" alt="Hurricane and wind damage to a home" data-service-photo="hurricane" loading="lazy" width="600" height="400" />
+            </div>
             <div class="card-icon-wrap" aria-hidden="true">
               <span class="card-icon">🌪️</span>
             </div>
@@ -153,6 +162,9 @@
             </p>
           </article>
           <article class="card card--service">
+            <div class="card-photo-wrap" hidden>
+              <img class="card-photo" src="" alt="Water damage and plumbing leak in a home" data-service-photo="water" loading="lazy" width="600" height="400" />
+            </div>
             <div class="card-icon-wrap" aria-hidden="true">
               <span class="card-icon">💧</span>
             </div>
@@ -164,6 +176,9 @@
             </p>
           </article>
           <article class="card card--service">
+            <div class="card-photo-wrap" hidden>
+              <img class="card-photo" src="" alt="Fire and smoke damage to a home" data-service-photo="fire" loading="lazy" width="600" height="400" />
+            </div>
             <div class="card-icon-wrap" aria-hidden="true">
               <span class="card-icon">🔥</span>
             </div>
@@ -174,6 +189,9 @@
             </p>
           </article>
           <article class="card card--service">
+            <div class="card-photo-wrap" hidden>
+              <img class="card-photo" src="" alt="Roof damage from storm" data-service-photo="roof" loading="lazy" width="600" height="400" />
+            </div>
             <div class="card-icon-wrap" aria-hidden="true">
               <span class="card-icon">🏠</span>
             </div>
@@ -184,6 +202,9 @@
             </p>
           </article>
           <article class="card card--service">
+            <div class="card-photo-wrap" hidden>
+              <img class="card-photo" src="" alt="Mold remediation in a home" data-service-photo="mold" loading="lazy" width="600" height="400" />
+            </div>
             <div class="card-icon-wrap" aria-hidden="true">
               <span class="card-icon">🦠</span>
             </div>
@@ -194,6 +215,9 @@
             </p>
           </article>
           <article class="card card--service">
+            <div class="card-photo-wrap" hidden>
+              <img class="card-photo" src="" alt="Flood damage to a home" data-service-photo="flood" loading="lazy" width="600" height="400" />
+            </div>
             <div class="card-icon-wrap" aria-hidden="true">
               <span class="card-icon">🌊</span>
             </div>
@@ -241,6 +265,39 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="../js/main.js"></script>
+
+  <!--
+    ══════════════════════════════════════════════════════════════════════
+    SERVICE CARD PHOTOS — drop real image paths here (relative to /pages/)
+    e.g.  hurricane: '../images/hurricane-damage.jpg'
+    Leave as '' to keep the icon-only layout for any card.
+    Recommended dimensions: 600 × 400 px  |  format: JPG or WebP
+    ══════════════════════════════════════════════════════════════════════
+  -->
+  <script>
+    var SERVICE_PHOTOS = {
+      hurricane: '',   /* e.g. '../images/hurricane-damage.jpg'   */
+      water:     '',   /* e.g. '../images/water-damage.jpg'       */
+      fire:      '',   /* e.g. '../images/fire-damage.jpg'        */
+      roof:      '',   /* e.g. '../images/roof-damage.jpg'        */
+      mold:      '',   /* e.g. '../images/mold-remediation.jpg'   */
+      flood:     ''    /* e.g. '../images/flood-damage.jpg'       */
+    };
+    (function () {
+      Object.keys(SERVICE_PHOTOS).forEach(function (key) {
+        var src = (SERVICE_PHOTOS[key] || '').trim();
+        if (!src) return;
+        var img = document.querySelector('.card-photo[data-service-photo="' + key + '"]');
+        if (!img) return;
+        img.src = src;
+        var wrap = img.parentElement;
+        if (wrap && wrap.classList.contains('card-photo-wrap')) {
+          wrap.removeAttribute('hidden');
+        }
+      });
+    })();
+  </script>
+
   <script>
     (function () {
       if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;

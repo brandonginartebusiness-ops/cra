@@ -104,8 +104,17 @@
         <p class="section-lead">
           Examples of outcomes we’ve pursued for policyholders. Every claim is different; past results do not guarantee future results.
         </p>
+        <!--
+          CASE STUDY PHOTOS
+          To add a photo to any card, set the src attribute on the matching img below.
+          Leave src="" to keep the icon-only layout (the photo wrap auto-hides when src is empty).
+          Recommended: 600 × 360 px, JPG or WebP, relative to this file (e.g. ../images/case-hurricane.jpg).
+        -->
         <div class="results-page-grid">
           <article class="card card--result">
+            <div class="card-photo-wrap" hidden>
+              <img class="card-photo" src="" alt="Hurricane damage case study" data-result-photo="hurricane" loading="lazy" width="600" height="360" />
+            </div>
             <div class="case-card-icon" aria-hidden="true">🌪️</div>
             <p class="case-amount">$145,000</p>
             <p class="case-type">Hurricane damage</p>
@@ -119,6 +128,9 @@
             </p>
           </article>
           <article class="card card--result">
+            <div class="card-photo-wrap" hidden>
+              <img class="card-photo" src="" alt="Cast iron pipe leak case study" data-result-photo="water" loading="lazy" width="600" height="360" />
+            </div>
             <div class="case-card-icon" aria-hidden="true">💧</div>
             <p class="case-amount">$85,000</p>
             <p class="case-type">Cast iron pipe leak</p>
@@ -132,6 +144,9 @@
             </p>
           </article>
           <article class="card card--result">
+            <div class="card-photo-wrap" hidden>
+              <img class="card-photo" src="" alt="Fire and smoke damage case study" data-result-photo="fire" loading="lazy" width="600" height="360" />
+            </div>
             <div class="case-card-icon" aria-hidden="true">🔥</div>
             <p class="case-amount">$62,000</p>
             <p class="case-type">Fire &amp; smoke</p>
@@ -146,6 +161,9 @@
             </p>
           </article>
           <article class="card card--result">
+            <div class="card-photo-wrap" hidden>
+              <img class="card-photo" src="" alt="Roof and wind-driven rain case study" data-result-photo="roof" loading="lazy" width="600" height="360" />
+            </div>
             <div class="case-card-icon" aria-hidden="true">🏠</div>
             <p class="case-amount">$38,500</p>
             <p class="case-type">Roof &amp; wind-driven rain</p>
@@ -217,6 +235,37 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="../js/main.js"></script>
+
+  <!--
+    ══════════════════════════════════════════════════════════════════════
+    CASE STUDY PHOTOS — drop real image paths here (relative to /pages/)
+    e.g.  hurricane: '../images/case-hurricane.jpg'
+    Leave as '' to keep the icon-only layout for any card.
+    Recommended dimensions: 600 × 360 px  |  format: JPG or WebP
+    ══════════════════════════════════════════════════════════════════════
+  -->
+  <script>
+    var CASE_PHOTOS = {
+      hurricane: '',   /* e.g. '../images/case-hurricane.jpg'   */
+      water:     '',   /* e.g. '../images/case-water.jpg'       */
+      fire:      '',   /* e.g. '../images/case-fire.jpg'        */
+      roof:      ''    /* e.g. '../images/case-roof.jpg'        */
+    };
+    (function () {
+      Object.keys(CASE_PHOTOS).forEach(function (key) {
+        var src = (CASE_PHOTOS[key] || '').trim();
+        if (!src) return;
+        var img = document.querySelector('.card-photo[data-result-photo="' + key + '"]');
+        if (!img) return;
+        img.src = src;
+        var wrap = img.parentElement;
+        if (wrap && wrap.classList.contains('card-photo-wrap')) {
+          wrap.removeAttribute('hidden');
+        }
+      });
+    })();
+  </script>
+
   <script>
     (function () {
       if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
