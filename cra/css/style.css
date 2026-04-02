@@ -12,7 +12,7 @@
   --black: #080810;
   --black2: #0c0c18;
   --navy: #0A1628;
-  --blue: #1e6fff;
+  --blue: #1a60e0;
   --blue2: #4d8fff;
   --gold: #c9922a;
   --cream: #f2f0ec;
@@ -186,7 +186,7 @@ main {
 .btn {
   display: inline-block;
   background: var(--gold);
-  color: #fff !important;
+  color: #1a1a1a !important;
   padding: 12px 24px;
   border-radius: 4px;
   font-weight: 500;
@@ -195,11 +195,12 @@ main {
   border: none;
   cursor: pointer;
   text-align: center;
-  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
 }
 
 .btn:hover {
   background: var(--navy);
+  color: #fff !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(26, 74, 110, 0.28);
 }
@@ -520,7 +521,7 @@ textarea {
   text-transform: uppercase;
   padding: 16px 32px;
   background: var(--blue);
-  color: #fff;
+  color: #fff !important;
   border-radius: 4px;
   display: inline-block;
   transition: opacity 0.2s, transform 0.2s;
@@ -812,24 +813,46 @@ textarea {
   margin-top: 0.15rem;
 }
 
-.testimonial-dots {
+.testimonial-controls {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.75rem 1rem;
   margin-top: 1rem;
   position: relative;
   z-index: 2;
 }
 
+.testimonial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
 .testimonial-dot {
-  width: 10px;
-  height: 10px;
+  position: relative;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   border: none;
   padding: 0;
   cursor: pointer;
   background: #d4d4d0;
   transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.testimonial-dot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
 }
 
 .testimonial-dot:hover {
@@ -840,9 +863,28 @@ textarea {
   background: var(--gold);
 }
 
-.testimonial-dot:focus-visible {
-  outline: 2px solid var(--navy);
-  outline-offset: 2px;
+.testimonial-pause-btn {
+  flex-shrink: 0;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 0.75rem;
+  border: 1px solid rgba(242, 240, 236, 0.25);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(242, 240, 236, 0.85);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.testimonial-pause-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(201, 146, 42, 0.45);
+  color: var(--cream);
 }
 
 .testimonial-attrib {
@@ -2542,6 +2584,19 @@ textarea::placeholder {
   outline-offset: 2px;
 }
 
+.btn:focus-visible,
+.logo:focus-visible,
+.site-nav a:focus-visible,
+.ig-grid a:focus-visible,
+.google-reviews-link:focus-visible,
+.whatsapp-fab:focus-visible,
+.mobile-cta-bar a:focus-visible,
+.testimonial-dot:focus-visible,
+.testimonial-pause-btn:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
 /* ─── License verify link ───────────────────────────────── */
 .license-verify-link {
   color: var(--blue);
@@ -2550,10 +2605,13 @@ textarea::placeholder {
   text-underline-offset: 2px;
   transition: color 0.2s ease;
 }
-.license-verify-link:hover,
+.license-verify-link:hover {
+  color: var(--gold);
+}
 .license-verify-link:focus-visible {
   color: var(--gold);
-  outline: none;
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
 }
 
 /* ─── Case study meta line ──────────────────────────────── */
@@ -2694,7 +2752,7 @@ textarea::placeholder {
 
 .comparison-row__alone {
   background: rgba(255, 255, 255, 0.02);
-  color: rgba(242, 240, 236, 0.42);
+  color: rgba(242, 240, 236, 0.6);
 }
 
 .cmp-check {
@@ -2805,5 +2863,16 @@ textarea::placeholder {
 @media (max-width: 768px) {
   .whatsapp-fab {
     bottom: 76px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
