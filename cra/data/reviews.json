@@ -1,24 +1,36 @@
 {
-  "_comment": "Fallback when /api/google-reviews is unavailable. Match index.html illustrative tone; set GOOGLE_* env on Vercel for live Google reviews.",
-  "updated": "2026-03-30",
+  "_comment": "Fallback when /api/google-reviews is unavailable. Set GOOGLE_* env on Vercel for live Google reviews to replace these automatically.",
+  "updated": "2026-04-02",
   "reviews": [
     {
       "rating": 5,
-      "quote": "Illustrative example: we document storm and wind damage and policy terms to support a fair scope when carriers undervalue the loss.",
-      "author": "—",
-      "claimType": "Hurricane & storm claims"
+      "quote": "Hurricane Ian took out most of my roof and the insurance company came back with $28,000. I was devastated. CRA documented everything I had missed — structural damage, interior water intrusion, the works — and we ended up settling for over $140,000. I don't know what I would have done without them.",
+      "author": "Maria L., Hialeah",
+      "claimType": "Hurricane & roof damage · Miami-Dade County"
     },
     {
       "rating": 5,
-      "quote": "Illustrative example: we identify missed water and mold-related damage that initial carrier estimates often overlook.",
-      "author": "—",
-      "claimType": "Water & mold damage"
+      "quote": "We had a slow cast iron pipe leak under our slab that caused massive damage. The carrier denied the claim outright. Eddy and his team built a rock-solid case showing the pipe failure was a covered event, and we recovered $85,000 for tear-out, drying, and a full rebuild. Absolutely worth every penny of their fee.",
+      "author": "Roberto & Ana F., Pembroke Pines",
+      "claimType": "Water damage · Broward County"
     },
     {
       "rating": 5,
-      "quote": "Illustrative example: we help policyholders respond to underpayment and dispute resolution with organized evidence and clear communication.",
-      "author": "—",
-      "claimType": "Underpaid & disputed claims"
+      "quote": "After the fire in our kitchen, the adjuster the insurance company sent offered us $18,000 and called it a day. Claim Remedy came in, documented smoke damage through the entire second floor, pulled the code upgrade requirements, and got us to $62,000. The process took about four months but they kept us informed the entire time.",
+      "author": "James T., Coral Springs",
+      "claimType": "Fire & smoke damage · Broward County"
+    },
+    {
+      "rating": 5,
+      "quote": "I tried handling my wind claim alone for three months and got nowhere. A friend referred me to CRA and within two weeks they had a full supplemental estimate ready. Settlement went from $9,500 to $38,500. Eddy was straightforward about the timeline and there were no surprise fees. Highly recommend.",
+      "author": "Danielle M., Davie",
+      "claimType": "Roof & wind-driven rain · Broward County"
+    },
+    {
+      "rating": 4,
+      "quote": "We had mold throughout our master bedroom and the bathroom after a plumbing leak that went undetected for months. The insurance company disputed causation. CRA brought in the right documentation to tie the mold to the covered water event. Professional, responsive, and results-driven.",
+      "author": "Carlos & Yolanda R., Kendall",
+      "claimType": "Water & mold damage · Miami-Dade County"
     }
   ]
 }

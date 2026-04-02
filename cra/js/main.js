@@ -816,6 +816,61 @@
     });
   }
 
+  /* ── Comparison table: staggered row reveal ── */
+  (function () {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    var table = document.querySelector('.js-comparison-table');
+    if (!table) return;
+
+    var rows = table.querySelectorAll('.js-cmp-row');
+    if (!rows.length) return;
+
+    gsap.from(rows, {
+      y: 32,
+      opacity: 0,
+      duration: 0.55,
+      stagger: 0.09,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: table,
+        start: 'top 78%',
+        toggleActions: 'play none none none',
+      },
+    });
+
+    /* Slide in the CRA and Alone cells within each row */
+    rows.forEach(function (row) {
+      var cra = row.querySelector('.comparison-row__cra');
+      var alone = row.querySelector('.comparison-row__alone');
+      if (cra) {
+        gsap.from(cra, {
+          x: -16,
+          opacity: 0,
+          duration: 0.45,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: row,
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+        });
+      }
+      if (alone) {
+        gsap.from(alone, {
+          x: 16,
+          opacity: 0,
+          duration: 0.45,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: row,
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+        });
+      }
+    });
+  })();
+
   if (typeof ScrollTrigger !== 'undefined') {
     window.addEventListener('load', function () {
       ScrollTrigger.refresh();
