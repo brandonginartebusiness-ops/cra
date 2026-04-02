@@ -136,6 +136,44 @@
       </svg>
     </div>
 
+    <section class="section comparison-section" aria-labelledby="comparison-heading">
+      <div class="container">
+        <p class="section-label">Why it matters</p>
+        <h2 id="comparison-heading" class="section-title">With CRA vs. Going Alone</h2>
+        <p class="section-lead">Insurance companies have adjusters working for them. Shouldn't you?</p>
+        <div class="comparison-grid">
+          <div class="comparison-col comparison-col--alone">
+            <p class="comparison-col__heading">Going Alone</p>
+            <ul class="comparison-list">
+              <li>No policy expertise — coverage gaps go unchallenged</li>
+              <li>Carrier's adjuster determines your scope and payout</li>
+              <li>Documentation mistakes can permanently reduce your claim</li>
+              <li>Deadlines and supplement windows get missed</li>
+              <li>No one negotiating on your behalf</li>
+              <li>Left wondering if the offer was fair</li>
+            </ul>
+          </div>
+          <div class="comparison-col comparison-col--cra">
+            <p class="comparison-col__heading">With CRA</p>
+            <ul class="comparison-list">
+              <li>10+ years of Florida policy expertise in your corner</li>
+              <li>We document every loss — nothing gets missed</li>
+              <li>We write and file your estimate, aligned with real repair costs</li>
+              <li>We track every deadline and supplement opportunity</li>
+              <li>We negotiate directly with the carrier on your behalf</li>
+              <li>You know exactly what you're owed — and we fight to get it</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-curve section-curve--to-white" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="#ffffff"></path>
+      </svg>
+    </div>
+
     <section class="section">
       <div class="container">
         <p class="section-label">By claim type</p>
@@ -311,6 +349,23 @@
           },
           lines.length ? '-=0.35' : '-=0.15'
         );
+      }
+
+      var comparison = document.querySelector('.comparison-section');
+      if (comparison) {
+        var cols = comparison.querySelectorAll('.comparison-col');
+        gsap.from(cols, {
+          y: 36,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: comparison,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          },
+        });
       }
 
       var cta = document.querySelector('.cta-band--impact');

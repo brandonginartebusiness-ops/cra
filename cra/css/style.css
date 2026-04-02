@@ -2499,3 +2499,168 @@ textarea::placeholder {
 .fade-up {
   transition-duration: 0.55s;
 }
+
+/* ─── Home Teaser Cards ──────────────────────────────────────────────── */
+.home-teaser-section {
+  padding: 5rem 0 6rem;
+}
+
+.home-teaser-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .home-teaser-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}
+
+.home-teaser-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2rem;
+  position: relative;
+  transition: border-color 0.18s;
+}
+
+.home-teaser-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.home-teaser-card:hover {
+  border-color: rgba(30, 111, 255, 0.3);
+}
+
+.home-teaser-card:hover::before {
+  transform: scaleX(1);
+}
+
+.home-teaser-card__label {
+  font-family: var(--bebas);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--blue);
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+}
+
+.home-teaser-card__title {
+  font-family: var(--bebas);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  line-height: 1;
+  color: var(--cream);
+  margin: 0 0 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.home-teaser-card__body {
+  font-size: 0.9rem;
+  color: rgba(242, 240, 236, 0.65);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* ─── With CRA vs. Going Alone ───────────────────────────────────────── */
+.comparison-section {
+  padding: 5rem 0;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 700px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.comparison-col {
+  padding: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.comparison-col--alone {
+  opacity: 0.7;
+}
+
+.comparison-col--cra {
+  border-color: rgba(30, 111, 255, 0.35);
+  position: relative;
+}
+
+.comparison-col--cra::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--blue);
+}
+
+.comparison-col__heading {
+  font-family: var(--bebas);
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  margin: 0 0 1.5rem;
+  color: var(--mid);
+}
+
+.comparison-col--cra .comparison-col__heading {
+  color: var(--blue);
+}
+
+.comparison-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comparison-list li {
+  padding: 0.65rem 0 0.65rem 1.6rem;
+  position: relative;
+  font-size: 0.92rem;
+  color: rgba(242, 240, 236, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  line-height: 1.45;
+}
+
+.comparison-list li:last-child {
+  border-bottom: none;
+}
+
+.comparison-col--alone .comparison-list li::before {
+  content: '✗';
+  position: absolute;
+  left: 0;
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.8rem;
+}
+
+.comparison-col--cra .comparison-list li {
+  color: rgba(242, 240, 236, 0.85);
+}
+
+.comparison-col--cra .comparison-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--blue);
+  font-size: 0.8rem;
+}
