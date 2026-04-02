@@ -5,6 +5,10 @@
     typeof window.matchMedia === 'function' &&
     window.matchMedia('(max-width: 768px)').matches;
 
+  var reduceMotion =
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // Custom cursor (desktop-only)
   var canUseFinePointer =
     typeof window.matchMedia === 'function' &&
@@ -142,7 +146,7 @@
 
   var statsBar = document.querySelector('.trust-stats-bar');
   if (statsBar && countEls.length) {
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    if (!reduceMotion && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       var stCountDone = false;
       ScrollTrigger.create({
         trigger: statsBar,
@@ -168,6 +172,11 @@
 
             if (format === 'zero') {
               el.textContent = '$0';
+              return;
+            }
+
+            if (reduceMotion) {
+              el.textContent = renderStatValue(target, format);
               return;
             }
 
@@ -203,6 +212,7 @@
   var heroPills = document.querySelectorAll('.hero__trust-pill');
 
   if (
+    !reduceMotion &&
     typeof gsap !== 'undefined' &&
     heroWords.length &&
     heroSubtitle &&
@@ -263,6 +273,7 @@
   }
 
   if (
+    !reduceMotion &&
     typeof gsap !== 'undefined' &&
     heroBg &&
     !prefersMobile &&
@@ -282,7 +293,7 @@
   }
 
   // Section parallax wrappers (additive)
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  if (!reduceMotion && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.utils
       .toArray('.parallax-section .parallax-bg')
       .forEach(function (bg) {
@@ -346,13 +357,13 @@
       });
   }
 
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  if (!reduceMotion && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     setupSectionTitleLines();
     setupSectionHeadingReveals();
   }
 
   // Staggered parallax text depth per section
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  if (!reduceMotion && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.utils.toArray('.section-content').forEach(function (section) {
       var heading = section.querySelector('h2');
       var body = section.querySelectorAll('p, .stat, .btn');
@@ -480,7 +491,7 @@
   var gridStagger = prefersMobile ? 0.08 : 0.15;
   var gridDuration = prefersMobile ? 0.5 : 0.7;
 
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  if (!reduceMotion && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     document.querySelectorAll('.grid-3').forEach(function (grid) {
       var cards = grid.querySelectorAll('.card');
       if (!cards.length) return;
@@ -525,13 +536,20 @@
         '" target="_blank" rel="noopener noreferrer">View on Google Maps</a></p>'
       : '';
     var cl = 'testimonial-slide' + (active ? ' is-active' : '');
+    var starCount = starsStr(r.rating).length;
     return (
       '<article class="' +
       cl +
       '" data-index="' +
       i +
+      '" id="testimonial-panel-' +
+      i +
+      '" role="tabpanel" aria-hidden="' +
+      (active ? 'false' : 'true') +
       '">' +
-      '<p class="stars testimonial-slide__stars">' +
+      '<p class="stars testimonial-slide__stars" aria-label="' +
+      starCount +
+      ' out of 5 stars">' +
       starsStr(r.rating) +
       '</p>' +
       '<p class="testimonial-decor" aria-hidden="true">“</p>' +
@@ -586,6 +604,13 @@
     var idx = 0;
     var n = slides.length;
 
+    // Assign IDs and ARIA roles to slides
+    slides.forEach(function (s, i) {
+      s.id = 'testimonial-panel-' + i;
+      s.setAttribute('role', 'tabpanel');
+      s.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
+    });
+
     dotsWrap.innerHTML = '';
     for (var i = 0; i < n; i++) {
       var b = document.createElement('button');
@@ -593,6 +618,8 @@
       b.className = 'testimonial-dot' + (i === 0 ? ' is-active' : '');
       b.setAttribute('role', 'tab');
       b.setAttribute('aria-label', 'Show testimonial ' + (i + 1));
+      b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      b.setAttribute('aria-controls', 'testimonial-panel-' + i);
       b.setAttribute('data-index', String(i));
       dotsWrap.appendChild(b);
     }
@@ -606,9 +633,13 @@
       idx = nextIdx;
       dots.forEach(function (d, j) {
         d.classList.toggle('is-active', j === idx);
+        d.setAttribute('aria-selected', j === idx ? 'true' : 'false');
+      });
+      slides.forEach(function (s, j) {
+        s.setAttribute('aria-hidden', j === idx ? 'false' : 'true');
       });
 
-      if (typeof gsap === 'undefined') {
+      if (typeof gsap === 'undefined' || reduceMotion) {
         slides.forEach(function (s, j) {
           s.classList.toggle('is-active', j === idx);
           s.style.opacity = j === idx ? '1' : '0';
@@ -663,6 +694,29 @@
       testimonialCarouselTimer = setInterval(function () {
         goTo(idx + 1, true);
       }, 5000);
+    }
+
+    // Pause/play button
+    var pauseBtn = root.querySelector('.testimonial-pause-btn');
+    if (pauseBtn && n > 1) {
+      var newPauseBtn = pauseBtn.cloneNode(true);
+      pauseBtn.parentNode.replaceChild(newPauseBtn, pauseBtn);
+      pauseBtn = newPauseBtn;
+      pauseBtn.setAttribute('aria-label', 'Pause testimonials');
+      pauseBtn.textContent = '\u23F8';
+      pauseBtn.addEventListener('click', function () {
+        if (testimonialCarouselTimer) {
+          destroyTestimonialCarousel();
+          pauseBtn.setAttribute('aria-label', 'Play testimonials');
+          pauseBtn.textContent = '\u25B6';
+        } else {
+          testimonialCarouselTimer = setInterval(function () {
+            goTo(idx + 1, true);
+          }, 5000);
+          pauseBtn.setAttribute('aria-label', 'Pause testimonials');
+          pauseBtn.textContent = '\u23F8';
+        }
+      });
     }
   }
 
@@ -818,7 +872,7 @@
 
   /* ── Comparison table: staggered row reveal ── */
   (function () {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    if (reduceMotion || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     var table = document.querySelector('.js-comparison-table');
     if (!table) return;
 

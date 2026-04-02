@@ -12,7 +12,7 @@
   --black: #080810;
   --black2: #0c0c18;
   --navy: #0A1628;
-  --blue: #1e6fff;
+  --blue: #1a60e0;
   --blue2: #4d8fff;
   --gold: #c9922a;
   --cream: #f2f0ec;
@@ -186,7 +186,7 @@ main {
 .btn {
   display: inline-block;
   background: var(--gold);
-  color: #fff !important;
+  color: #1a1a1a !important;
   padding: 12px 24px;
   border-radius: 4px;
   font-weight: 500;
@@ -200,6 +200,7 @@ main {
 
 .btn:hover {
   background: var(--navy);
+  color: #fff !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(26, 74, 110, 0.28);
 }
@@ -520,7 +521,7 @@ textarea {
   text-transform: uppercase;
   padding: 16px 32px;
   background: var(--blue);
-  color: #fff;
+  color: #fff !important;
   border-radius: 4px;
   display: inline-block;
   transition: opacity 0.2s, transform 0.2s;
@@ -822,6 +823,7 @@ textarea {
 }
 
 .testimonial-dot {
+  position: relative;
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -830,6 +832,13 @@ textarea {
   cursor: pointer;
   background: #d4d4d0;
   transition: transform 0.2s ease, background 0.2s ease;
+}
+
+/* Extend touch target to 44×44px without changing visual size */
+.testimonial-dot::before {
+  content: '';
+  position: absolute;
+  inset: -17px;
 }
 
 .testimonial-dot:hover {
@@ -841,8 +850,8 @@ textarea {
 }
 
 .testimonial-dot:focus-visible {
-  outline: 2px solid var(--navy);
-  outline-offset: 2px;
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
 }
 
 .testimonial-attrib {
@@ -2542,6 +2551,18 @@ textarea::placeholder {
   outline-offset: 2px;
 }
 
+/* ─── Focus-visible styles ───────────────────────────────── */
+.btn:focus-visible,
+.logo:focus-visible,
+.site-nav a:focus-visible,
+.ig-grid a:focus-visible,
+.google-reviews-link:focus-visible,
+.whatsapp-fab:focus-visible,
+.mobile-cta-bar a:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
 /* ─── License verify link ───────────────────────────────── */
 .license-verify-link {
   color: var(--blue);
@@ -2550,10 +2571,13 @@ textarea::placeholder {
   text-underline-offset: 2px;
   transition: color 0.2s ease;
 }
-.license-verify-link:hover,
+.license-verify-link:hover {
+  color: var(--gold);
+}
 .license-verify-link:focus-visible {
   color: var(--gold);
-  outline: none;
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
 }
 
 /* ─── Case study meta line ──────────────────────────────── */
@@ -2694,7 +2718,7 @@ textarea::placeholder {
 
 .comparison-row__alone {
   background: rgba(255, 255, 255, 0.02);
-  color: rgba(242, 240, 236, 0.42);
+  color: rgba(242, 240, 236, 0.60);
 }
 
 .cmp-check {
@@ -2805,5 +2829,52 @@ textarea::placeholder {
 @media (max-width: 768px) {
   .whatsapp-fab {
     bottom: 76px;
+  }
+}
+
+/* --- Testimonial pause button --- */
+.testimonial-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.testimonial-pause-btn {
+  background: transparent;
+  border: 1px solid rgba(242, 240, 236, 0.3);
+  color: rgba(242, 240, 236, 0.6);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.testimonial-pause-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.testimonial-pause-btn:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* --- Prefers-reduced-motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
