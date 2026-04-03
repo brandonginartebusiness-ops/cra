@@ -6,6 +6,10 @@
     "serve": "node serve.mjs",
     "screenshot": "node screenshot.mjs"
   },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "formidable": "^3.5.2"
+  },
   "devDependencies": {
     "puppeteer": "^24.4.0"
   }

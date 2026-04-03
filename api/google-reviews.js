@@ -42,7 +42,9 @@ export default async function handler(req, res) {
     const r = await fetch(url, {
       headers: {
         'X-Goog-Api-Key': key,
-        'X-Goog-FieldMask': 'reviews,attributions,googleMapsUri',
+        // Include place-level rating/count so the homepage can show header stats.
+        'X-Goog-FieldMask':
+          'rating,userRatingCount,reviews,attributions,googleMapsUri',
       },
     });
 
@@ -65,24 +67,42 @@ export default async function handler(req, res) {
     }
 
     const raw = data.reviews || [];
+    const placeRating =
+      typeof data.rating === 'number' ? data.rating : null;
+    const totalReviews =
+      typeof data.userRatingCount === 'number' ? data.userRatingCount : raw.length;
+
     const reviews = raw
       .map(function (rev) {
         const t =
           (rev.text && rev.text.text) ||
           (rev.originalText && rev.originalText.text) ||
           '';
+        const author =
+          (rev.authorAttribution && rev.authorAttribution.displayName) ||
+          'Google reviewer';
+        const photoUri =
+          rev.authorAttribution && rev.authorAttribution.photoUri
+            ? String(rev.authorAttribution.photoUri)
+            : '';
+        const timeLabel =
+          typeof rev.relativePublishTimeDescription === 'string'
+            ? rev.relativePublishTimeDescription
+            : '';
         return {
           rating: rev.rating,
+          // Frontend expects `text` (see index.html createReviewCard).
+          text: t,
           quote: t,
-          author:
-            (rev.authorAttribution && rev.authorAttribution.displayName) ||
-            'Google reviewer',
+          author,
+          photo: photoUri,
+          time: timeLabel,
           claimType: '',
           googleMapsUri: rev.googleMapsUri || '',
         };
       })
       .filter(function (x) {
-        return String(x.quote || '').trim().length > 0;
+        return String(x.text || '').trim().length > 0;
       });
 
     const attributions = (data.attributions || []).map(function (a) {
@@ -96,8 +116,18 @@ export default async function handler(req, res) {
       'Cache-Control',
       'public, s-maxage=3600, stale-while-revalidate=86400'
     );
+    const ratingForHeader =
+      placeRating != null
+        ? placeRating
+        : reviews.length
+          ? reviews.reduce((s, rv) => s + (Number(rv.rating) || 0), 0) /
+            reviews.length
+          : 0;
+
     return res.status(200).json({
       source: 'google',
+      rating: Math.round(ratingForHeader * 10) / 10,
+      total: totalReviews,
       reviews,
       attributions,
       googleMapsUri: data.googleMapsUri || '',
