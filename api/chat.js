@@ -5,6 +5,7 @@ import {
   rateLimit,
 } from "./_lib/rate-limit.js";
 import {
+  readJsonBody,
   rejectIfBodyTooLarge,
   requireJsonRequest,
   validateChatPayload,
@@ -111,7 +112,11 @@ export default async function handler(req, res) {
       attachment = await buildClaudeFileAttachment(parsed.file);
       message = payload.value.message;
     } else {
-      const payload = validateChatPayload(req.body);
+      const json = await readJsonBody(req);
+      if (!json.ok) {
+        return res.status(json.status).json({ error: json.error });
+      }
+      const payload = validateChatPayload(json.body);
       if (!payload.ok) {
         return res.status(payload.status).json({ error: payload.error });
       }

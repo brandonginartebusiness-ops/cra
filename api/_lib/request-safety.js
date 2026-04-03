@@ -37,6 +37,53 @@ export function requireJsonRequest(req, res) {
   return null;
 }
 
+/**
+ * Vercel Node serverless requests often do NOT populate `req.body`.
+ * Read the stream when needed so JSON POST works in production.
+ */
+export async function readJsonBody(req) {
+  if (req.body != null) {
+    if (Buffer.isBuffer(req.body)) {
+      try {
+        const text = req.body.toString("utf8");
+        if (!text.trim()) {
+          return { ok: true, body: {} };
+        }
+        return { ok: true, body: JSON.parse(text) };
+      } catch {
+        return { ok: false, status: 400, error: "Invalid JSON body." };
+      }
+    }
+    if (typeof req.body === "string") {
+      try {
+        if (!req.body.trim()) {
+          return { ok: true, body: {} };
+        }
+        return { ok: true, body: JSON.parse(req.body) };
+      } catch {
+        return { ok: false, status: 400, error: "Invalid JSON body." };
+      }
+    }
+    if (typeof req.body === "object" && !Array.isArray(req.body)) {
+      return { ok: true, body: req.body };
+    }
+  }
+
+  const chunks = [];
+  for await (const chunk of req) {
+    chunks.push(chunk);
+  }
+  const raw = Buffer.concat(chunks).toString("utf8");
+  if (!raw.trim()) {
+    return { ok: true, body: {} };
+  }
+  try {
+    return { ok: true, body: JSON.parse(raw) };
+  } catch {
+    return { ok: false, status: 400, error: "Invalid JSON body." };
+  }
+}
+
 export function validateChatPayload(body) {
   if (!body || typeof body !== "object" || Array.isArray(body)) {
     return { ok: false, status: 400, error: "Malformed JSON payload." };

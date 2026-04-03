@@ -115,6 +115,13 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    if (pathname === "/api/health") {
+      const { default: handler } = await import("./api/health.js");
+      const vres = createVercelResponse(res);
+      await handler(req, vres);
+      return;
+    }
+
     if (pathname === "/api/chat") {
       const { default: handler } = await import("./api/chat.js");
       const vres = createVercelResponse(res);
@@ -195,5 +202,5 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, () => {
   console.log(`Serving ${ROOT}`);
   console.log(`http://localhost:${PORT}/`);
-  console.log(`API: GET /api/google-reviews  POST /api/chat`);
+  console.log(`API: GET /api/health  GET /api/google-reviews  POST /api/chat`);
 });
