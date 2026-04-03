@@ -13,25 +13,37 @@ Stack and file layout are defined in **CONTEXT.md** and `.cursorrules`. This fil
 - If no reference: follow CONTEXT.md and the guardrails below.
 - Compare visually: run the local server, capture screenshots, fix mismatches; repeat until aligned or the user stops you.
 
+## Production deployment
+
+- **Live site:** https://claimremedyadjusters.com
+- **Repo:** `brandonginartebusiness-ops/cra` (GitHub) — `main` branch → auto-deploys via Vercel project `cra-opal`
+- **Vercel root directory:** `.` (repo root) — do NOT set to `cra/`
+- To deploy: `git push origin main` from repo root. That's it.
+
+## Source of truth for the homepage
+
+- **Production homepage = `/index.html` at repo root.** Edit files at the repo root level.
+- **`cra/` is legacy / secondary** — `cra/index.html` just redirects to `/`. Do NOT treat `cra/` as the primary design target unless explicitly told to.
+- Root styles: **`/css/style.css`** (or wherever the root index links). Root scripts: **`/js/main.js`** (or equivalent). Check the root index.html `<link>` and `<script>` tags to confirm paths.
+
 ## Local server (required for review)
 
 - **Always use `http://localhost`** — do not rely on `file:///` for screenshots or layout checks.
-- From the repo root: `node serve.mjs` (or `npm run serve`). Serves the project root; **main site:** `http://localhost:3000/cra/`
+- From the repo root: `node serve.mjs` (or `npm run serve`). Serves the project root; **main site:** `http://localhost:3000/`
 - If a server is already running on port 3000, do not start a second instance.
 
 ## Screenshot workflow
 
 - With the server running: `node screenshot.mjs <url> [label]`
 - Examples:
-  - `node screenshot.mjs http://localhost:3000/cra/`
-  - `node screenshot.mjs http://localhost:3000/cra/pages/about.html about`
+  - `node screenshot.mjs http://localhost:3000/`
+  - `node screenshot.mjs http://localhost:3000/contact.html contact`
 - Output: `./temporary screenshots/screenshot-N.png` (incrementing `N`; optional `-label` before `.png`).
 - Puppeteer downloads Chromium via the `puppeteer` package; cache location follows your OS (e.g. under your user profile on Windows).
 
 ## Output conventions (this repo)
 
-- Primary site lives under **`cra/`** — not a single root `index.html`.
-- Styles: **`cra/css/style.css`** only. Scripts: **`cra/js/main.js`** only.
+- **Do not edit `cra/` files for the live site.** Production is the repo root.
 - Use **CSS custom properties** from `:root` — see CONTEXT.md (no ad-hoc hex for brand colors).
 
 ## Anti-generic guardrails (adapted to CRA)
