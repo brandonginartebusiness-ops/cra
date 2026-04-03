@@ -141,9 +141,10 @@ export default async function handler(req, res) {
       });
     }
 
-    // Default: Haiku (lowest cost in current lineup); override with ANTHROPIC_MODEL in Vercel.
+    // Default: Haiku snapshot id (aliases can 400 on some accounts); override via ANTHROPIC_MODEL.
     const model =
-      (process.env.ANTHROPIC_MODEL || "").trim() || "claude-haiku-4-5";
+      (process.env.ANTHROPIC_MODEL || "").trim() ||
+      "claude-haiku-4-5-20251001";
 
     // Stateless: no server-side conversation store or session cookie (privacy / no transcript DB).
     const response = await client.messages.create({
@@ -160,29 +161,43 @@ export default async function handler(req, res) {
     return res.status(200).json({ reply });
   } catch (error) {
     console.error("Chat API error:", error);
-    const status = error?.status ?? error?.statusCode;
-    const apiMsg =
-      error?.error?.message ||
-      error?.message ||
-      (typeof error === "string" ? error : "");
-    if (status === 401 || status === 403) {
-      return res.status(502).json({
-        error:
-          "Assistant could not authenticate with Anthropic. Check ANTHROPIC_API_KEY in Vercel (Production) and redeploy.",
-      });
+    const httpStatus = error?.status ?? error?.statusCode;
+    const msg =
+      typeof error?.message === "string"
+        ? error.message
+        : typeof error?.error?.message === "string"
+          ? error.error.message
+          : "";
+
+    // Anthropic SDK sets `status` on APIError (400, 401, 404, 429, …)
+    if (typeof httpStatus === "number") {
+      if (httpStatus === 401 || httpStatus === 403) {
+        return res.status(502).json({
+          error:
+            "Assistant could not authenticate with Anthropic. Check ANTHROPIC_API_KEY in Vercel (Production) and redeploy.",
+        });
+      }
+      if (httpStatus === 429) {
+        return res.status(502).json({
+          error:
+            "The assistant is rate-limited right now. Please wait a minute and try again.",
+        });
+      }
+      if (httpStatus >= 400 && httpStatus < 500) {
+        return res.status(502).json({
+          error:
+            msg.slice(0, 500) ||
+            `Assistant request was rejected (HTTP ${httpStatus}). Check ANTHROPIC_MODEL or API access in the Anthropic console.`,
+        });
+      }
+      if (httpStatus >= 500) {
+        return res.status(502).json({
+          error:
+            "The assistant service had a temporary error. Please try again in a moment.",
+        });
+      }
     }
-    const looksLikeModel =
-      status === 404 ||
-      /model/i.test(apiMsg || "") ||
-      /not_found/i.test(apiMsg || "") ||
-      /retired|deprecated|invalid_model/i.test(apiMsg || "");
-    if (looksLikeModel) {
-      return res.status(502).json({
-        error:
-          "Assistant model is misconfigured. Remove ANTHROPIC_MODEL in Vercel to use the site default, or set a valid id (e.g. claude-haiku-4-5).",
-        detail: process.env.VERCEL ? undefined : apiMsg,
-      });
-    }
+
     return res.status(500).json({
       error:
         "Something went wrong. Please try again or call us at (786) 223-7867.",
