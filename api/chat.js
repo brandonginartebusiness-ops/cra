@@ -141,9 +141,9 @@ export default async function handler(req, res) {
       });
     }
 
-    // Default: current Claude API id (3.5 Sonnet snapshot is retired — see Anthropic model overview).
+    // Default: Haiku (lowest cost in current lineup); override with ANTHROPIC_MODEL in Vercel.
     const model =
-      (process.env.ANTHROPIC_MODEL || "").trim() || "claude-sonnet-4-6";
+      (process.env.ANTHROPIC_MODEL || "").trim() || "claude-haiku-4-5";
 
     // Stateless: no server-side conversation store or session cookie (privacy / no transcript DB).
     const response = await client.messages.create({
@@ -179,7 +179,7 @@ export default async function handler(req, res) {
     if (looksLikeModel) {
       return res.status(502).json({
         error:
-          "Assistant model is misconfigured. Remove ANTHROPIC_MODEL in Vercel to use the site default, or set a valid id (e.g. claude-sonnet-4-6).",
+          "Assistant model is misconfigured. Remove ANTHROPIC_MODEL in Vercel to use the site default, or set a valid id (e.g. claude-haiku-4-5).",
         detail: process.env.VERCEL ? undefined : apiMsg,
       });
     }

@@ -29,7 +29,7 @@ module.exports = async function handler(req, res) {
 
     // Stateless: no server-side conversation history stored.
     const response = await client.messages.create({
-      model: process.env.ANTHROPIC_MODEL || "claude-sonnet-4-6",
+      model: process.env.ANTHROPIC_MODEL || "claude-haiku-4-5",
       max_tokens: 1024,
       system: systemPrompt,
       messages: [{ role: "user", content: message }],
