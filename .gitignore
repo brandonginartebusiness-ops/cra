@@ -2,3 +2,8 @@ node_modules/
 temporary screenshots/
 .cursor/skills/
 .claude/
+
+# Secrets — never commit (set in Vercel → Environment Variables or local .env)
+.env
+.env.*
+!.env.example
