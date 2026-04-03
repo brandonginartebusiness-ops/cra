@@ -35,7 +35,11 @@ function setCorsHeaders(req, res) {
   }
 
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  // Multipart uploads send a boundary-specific Content-Type; browsers may request extra header names in preflight.
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, X-Requested-With"
+  );
 }
 
 function getContentType(req) {
@@ -135,9 +139,14 @@ export default async function handler(req, res) {
       });
     }
 
+    // Default model must be a valid Anthropic API id (override in Vercel: ANTHROPIC_MODEL).
+    const model =
+      (process.env.ANTHROPIC_MODEL || "").trim() ||
+      "claude-3-5-sonnet-20241022";
+
     // Stateless: no server-side conversation store or session cookie (privacy / no transcript DB).
     const response = await client.messages.create({
-      model: "claude-opus-4-6",
+      model,
       max_tokens: 1024,
       system: systemPrompt,
       messages: [{ role: "user", content: userContent }],
@@ -150,6 +159,22 @@ export default async function handler(req, res) {
     return res.status(200).json({ reply });
   } catch (error) {
     console.error("Chat API error:", error);
+    const status = error?.status ?? error?.statusCode;
+    const apiMsg =
+      error?.error?.message ||
+      error?.message ||
+      (typeof error === "string" ? error : "");
+    const looksLikeModel =
+      status === 404 ||
+      /model/i.test(apiMsg || "") ||
+      /not_found/i.test(apiMsg || "");
+    if (looksLikeModel) {
+      return res.status(502).json({
+        error:
+          "Assistant model is misconfigured. Set ANTHROPIC_MODEL in Vercel to a valid model id, or remove it to use the default.",
+        detail: process.env.VERCEL ? undefined : apiMsg,
+      });
+    }
     return res.status(500).json({
       error:
         "Something went wrong. Please try again or call us at (786) 223-7867.",
