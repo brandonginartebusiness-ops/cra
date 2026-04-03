@@ -1,5 +1,13 @@
 {
   "cleanUrls": true,
+  "functions": {
+    "api/chat.js": {
+      "maxDuration": 60
+    },
+    "api/google-reviews.js": {
+      "maxDuration": 15
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",

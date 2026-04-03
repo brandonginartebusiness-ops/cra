@@ -2,7 +2,6 @@
 // Deploy this file at the root of your Vercel project under /api/chat.js
 
 const Anthropic = require("@anthropic-ai/sdk");
-const { systemPrompt } = require("../system-prompt");
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -21,6 +20,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    const { systemPrompt } = await import("../system-prompt.js");
     const { message } = req.body;
 
     if (!message || typeof message !== "string") {

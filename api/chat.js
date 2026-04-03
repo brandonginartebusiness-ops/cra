@@ -1,5 +1,4 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { createRequire } from "node:module";
 import {
   applyRateLimitHeaders,
   limiterConfigs,
@@ -15,9 +14,7 @@ import {
   getMaxUploadBytes,
   parseMultipartChatRequest,
 } from "./_lib/chat-upload.js";
-
-const require = createRequire(import.meta.url);
-const { systemPrompt } = require("../cra-bot/system-prompt.js");
+import { systemPrompt } from "./_lib/system-prompt.js";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
