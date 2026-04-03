@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "serve": "node serve.mjs",
-    "screenshot": "node screenshot.mjs"
+    "screenshot": "node screenshot.mjs",
+    "postinstall": "node scripts/copy-api-to-cra.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
