@@ -28,8 +28,13 @@ export default async function handler(req, res) {
   if (!key || !placeId) {
     return res.status(503).json({
       error: 'not_configured',
-      message:
-        'Set GOOGLE_PLACES_API_KEY and GOOGLE_PLACE_ID in the deployment environment.',
+      message: !key
+        ? 'Set GOOGLE_PLACES_API_KEY in Vercel → Environment Variables (Production).'
+        : 'Set GOOGLE_PLACE_ID in Vercel → Environment Variables (Production). Use the Place ID (e.g. ChIJ...) from Google Maps / Business Profile.',
+      missing: {
+        GOOGLE_PLACES_API_KEY: !key,
+        GOOGLE_PLACE_ID: !placeId,
+      },
     });
   }
 
