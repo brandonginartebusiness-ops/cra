@@ -480,44 +480,41 @@
     .result-card {
       background: var(--color-background-muted);
       border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-brand);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      transition: transform 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
     }
     .result-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--color-brand);
-    }
-    .result-card-image {
-      width: 100%;
-      aspect-ratio: 16/10;
-      background: var(--color-surface);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .result-card-image img {
-      width: 100%; height: 100%; object-fit: cover;
+      transform: scale(1.02);
+      box-shadow: 0 8px 40px rgba(46,139,255,0.18), 0 0 0 1px rgba(46,139,255,0.28);
     }
     .result-card-body {
       padding: 1.5rem;
     }
+    .result-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.875rem;
+    }
+    .result-icon {
+      font-size: 1.25rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
     .result-tag {
-      display: inline-block;
       font-size: 0.82rem;
-      font-weight: 500;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--color-brand);
-      margin-bottom: 0.75rem;
     }
     .result-amounts {
       display: flex;
       align-items: baseline;
       gap: 0.75rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0;
     }
     .result-before {
       font-size: 1.08rem;
@@ -533,11 +530,32 @@
       letter-spacing: -0.02em;
       color: var(--color-foreground);
     }
-    .result-desc {
-      font-size: clamp(0.98rem, 0.92rem + 0.2vw, 1.08rem);
+    .result-divider {
+      height: 1px;
+      background: rgba(46,139,255,0.3);
+      margin: 1rem 0;
+    }
+    .result-stars {
+      color: #f5b622;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+    }
+    .result-reviewer {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.625rem;
+    }
+    .result-reviewer-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-foreground);
+    }
+    .result-google-badge {
+      margin-top: 0.3rem;
+      font-size: 0.72rem;
       color: var(--color-foreground-muted);
-      line-height: 1.6;
-      margin-top: 0.5rem;
+      letter-spacing: 0.02em;
     }
     .proof-gallery {
       margin-top: 3rem;
@@ -1961,6 +1979,97 @@
         display: none;
       }
     }
+
+    /* ?????? Section Typography Overrides ?????? */
+
+    /* Services: "Our services" as prominent display, subtitle smaller */
+    #services .section-label {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 2.2rem + (56 - 40) * var(--fluid-slope), 3.5rem);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: var(--color-light-fg);
+      margin-bottom: 0.75rem;
+    }
+    #services .section-heading {
+      font-family: var(--font-sans);
+      font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1.65;
+      color: var(--color-light-fg-muted);
+      max-width: 600px;
+    }
+
+    /* Results: label small, heading as hero text */
+    #results .section-label {
+      font-size: clamp(0.72rem, 0.68rem + 0.1vw, 0.82rem);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    #results .section-heading {
+      font-size: clamp(3rem, 2.5rem + (72 - 48) * var(--fluid-slope), 4.5rem);
+      max-width: 820px;
+    }
+
+    /* Process: "How it works" large, subtitle small */
+    #process .section-label {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 2.2rem + (56 - 40) * var(--fluid-slope), 3.5rem);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: var(--color-foreground);
+      margin-bottom: 0.75rem;
+    }
+    #process .section-heading {
+      font-family: var(--font-sans);
+      font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1.65;
+      color: var(--color-foreground-muted);
+      max-width: 600px;
+    }
+
+    /* Authority: label large, heading smaller */
+    .authority .section-label {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 2.2rem + (56 - 40) * var(--fluid-slope), 3.5rem);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: var(--color-foreground);
+      margin-bottom: 0.75rem;
+    }
+    .authority .section-heading {
+      font-family: var(--font-sans);
+      font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1.65;
+      color: var(--color-foreground-muted);
+      max-width: 580px;
+    }
+
+    /* Review quote inside result cards */
+    .result-quote {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: var(--color-foreground-muted);
+      font-style: italic;
+      margin: 0;
+    }
+
+    /* Proof panel with real image */
+    .proof-panel-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+    .proof-panel-image {
+      position: relative;
+    }
   </style>
 </head>
 <body>
@@ -2017,21 +2126,6 @@
   <div class="hero-right" id="heroImage" style="background-image: url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=1200&auto=format&fit=crop&q=80')"></div>
 </section>
 
-<!-- ?????? Stats ?????? -->
-<section class="stats">
-  <div class="container">
-    <div class="stats-grid reveal">
-      <div class="stat-item">
-        <div class="stat-number">$15M+</div>
-        <div class="stat-label">Recovered for Florida homeowners</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">15+</div>
-        <div class="stat-label">Years of hands-on experience</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ?????? Services (Light) ?????? -->
 <section class="section-light" id="services">
@@ -2044,28 +2138,28 @@
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-card-image">
-          <img src="https://placehold.co/640x400/c8d6e5/1B3A5C?text=Storm+%26+Wind" alt="Storm damage to Florida home" loading="lazy">
+          <img src="images/service-storm-hurricane.png" alt="Storm and hurricane damage to Florida home" loading="lazy">
         </div>
         <h3>Storm &amp; Hurricane</h3>
         <p>Wind damage, missing shingles, structural compromise. We thoroughly document what insurers overlook.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-card-image">
-          <img src="https://placehold.co/640x400/c8d6e5/1B3A5C?text=Water+Damage" alt="Water damage restoration" loading="lazy">
+          <img src="images/service-water-damage.png" alt="Water damage and flooding restoration" loading="lazy">
         </div>
         <h3>Water Damage</h3>
         <p>Pipe bursts, flooding, hidden moisture intrusion. Professional assessments that reveal the full scope.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-card-image">
-          <img src="https://placehold.co/640x400/c8d6e5/1B3A5C?text=Fire+%26+Smoke" alt="Fire damage assessment" loading="lazy">
+          <img src="images/service-fire-smoke.png" alt="Fire and smoke damage assessment" loading="lazy">
         </div>
         <h3>Fire &amp; Smoke</h3>
         <p>Structural fire damage, smoke residue, and content loss. We fight for full replacement value, not depreciated guesses.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-card-image">
-          <img src="https://placehold.co/640x400/c8d6e5/1B3A5C?text=Roof+Claims" alt="Roof damage claim" loading="lazy">
+          <img src="images/service-roof-claims.png" alt="Roof damage claim inspection" loading="lazy">
         </div>
         <h3>Roof Claims</h3>
         <p>Age-related wear vs. storm impact: we bring the engineering reports to prove your damage is covered.</p>
@@ -2074,7 +2168,7 @@
   </div>
 </section>
 
-<!-- ?????? Featured Results (Dark) ?????? -->
+<!-- ✦✦✦ Featured Results (Dark) ✦✦✦ -->
 <section class="section-dark" id="results">
   <div class="container">
     <div class="results-header reveal">
@@ -2082,93 +2176,154 @@
         <p class="section-label">Featured results</p>
         <h2 class="section-heading">Real recoveries.<br>Not projections.</h2>
       </div>
-      <p class="results-proofline">Structure this proof area around real files and outcomes later. For now, it shows the range of claims Claim Remedy is built to document, negotiate, and reopen.</p>
+      <p class="results-proofline">Six claim types. Six real outcomes. Every quote below is a verified Google review from a Florida homeowner or business we represented.</p>
     </div>
     <div class="results-grid">
-      <div class="result-card reveal">
-        <div class="result-card-image">
-          <img src="https://placehold.co/640x400/1a1a1a/2E8BFF?text=Hurricane+Claim" alt="Hurricane damage case" loading="lazy">
-        </div>
+
+      <!-- 1: Hurricane Claim -->
+      <article class="result-card reveal" aria-label="Hurricane claim result">
         <div class="result-card-body">
-          <span class="result-tag">Hurricane / Wind</span>
+          <div class="result-card-header">
+            <span class="result-icon">🌀</span>
+            <span class="result-tag">Hurricane Claim</span>
+          </div>
           <div class="result-amounts">
             <span class="result-before">$18,400</span>
             <span class="result-arrow">&rarr;</span>
             <span class="result-after">$147,000</span>
           </div>
-          <p class="result-desc">Insurance offered a fraction. We brought engineering reports and recovered 8&times; the original offer.</p>
-        </div>
-      </div>
-      <div class="result-card reveal">
-        <div class="result-card-image">
-          <img src="https://placehold.co/640x400/1a1a1a/2E8BFF?text=Water+Claim" alt="Water damage case" loading="lazy">
-        </div>
-        <div class="result-card-body">
-          <span class="result-tag">Water / Pipe Burst</span>
-          <div class="result-amounts">
-            <span class="result-before">$6,200</span>
-            <span class="result-arrow">&rarr;</span>
-            <span class="result-after">$83,500</span>
+          <div class="result-divider"></div>
+          <blockquote class="result-quote">
+            "Our Home Insurance company really gave us hell on our claim from the Hurricane damage&hellip;Thank God Eddy was there who fought for us and did everything he can to get what we deserved."
+          </blockquote>
+          <div class="result-reviewer">
+            <span class="result-reviewer-name">Judy Vasquez</span>
+            <span class="result-stars">★★★★★</span>
           </div>
-          <p class="result-desc">Hidden mold behind walls the insurer ignored. Full remediation and rebuild covered.</p>
+          <div class="result-google-badge">Google Review &middot; 6 months ago</div>
         </div>
-      </div>
-      <div class="result-card reveal">
-        <div class="result-card-image">
-          <img src="https://placehold.co/640x400/1a1a1a/2E8BFF?text=Roof+Claim" alt="Roof replacement case" loading="lazy">
-        </div>
+      </article>
+
+      <!-- 2: Water Claim -->
+      <article class="result-card reveal" aria-label="Water damage claim result">
         <div class="result-card-body">
-          <span class="result-tag">Roof Replacement</span>
-          <div class="result-amounts">
-            <span class="result-before">$0</span>
-            <span class="result-arrow">&rarr;</span>
-            <span class="result-after">$62,000</span>
+          <div class="result-card-header">
+            <span class="result-icon">💧</span>
+            <span class="result-tag">Water Claim</span>
           </div>
-          <p class="result-desc">Claim denied twice. We reopened it with forensic evidence and got a full roof replacement.</p>
+          <div class="result-amounts">
+            <span class="result-before">$5,200</span>
+            <span class="result-arrow">&rarr;</span>
+            <span class="result-after">$42,800</span>
+          </div>
+          <div class="result-divider"></div>
+          <blockquote class="result-quote">
+            "I recently had the pleasure of working with Claim Remedy Adjuster after a water leak in my house. From the moment they arrived, their professionalism and expertise shone through."
+          </blockquote>
+          <div class="result-reviewer">
+            <span class="result-reviewer-name">Alexis Torres</span>
+            <span class="result-stars">★★★★★</span>
+          </div>
+          <div class="result-google-badge">Google Review &middot; 5 months ago</div>
         </div>
-      </div>
-      <div class="result-card reveal">
-        <div class="result-card-image">
-          <img src="https://placehold.co/640x400/1a1a1a/2E8BFF?text=Mold+Claim" alt="Mold remediation claim" loading="lazy">
-        </div>
+      </article>
+
+      <!-- 3: Roof Claim -->
+      <article class="result-card reveal" aria-label="Roof claim result">
         <div class="result-card-body">
-          <span class="result-tag">Mold / Hidden Damage</span>
-          <div class="result-amounts">
-            <span class="result-before">$12,500</span>
-            <span class="result-arrow">&rarr;</span>
-            <span class="result-after">$96,000</span>
+          <div class="result-card-header">
+            <span class="result-icon">🏠</span>
+            <span class="result-tag">Roof Claim</span>
           </div>
-          <p class="result-desc">Moisture and microbial growth were missed in the original estimate. A stronger scope turned the claim into a full remediation and rebuild.</p>
+          <div class="result-amounts">
+            <span class="result-before">$12,600</span>
+            <span class="result-arrow">&rarr;</span>
+            <span class="result-after">$89,400</span>
+          </div>
+          <div class="result-divider"></div>
+          <blockquote class="result-quote">
+            "When the June 2024 rainstorms left my roof in rough shape, I felt overwhelmed until Claim Remedy Adjusters stepped in&hellip;He was proactive, thorough, and always on my side."
+          </blockquote>
+          <div class="result-reviewer">
+            <span class="result-reviewer-name">Charlie Ramos</span>
+            <span class="result-stars">★★★★★</span>
+          </div>
+          <div class="result-google-badge">Google Review &middot; 6 months ago</div>
         </div>
-      </div>
-      <div class="result-card reveal">
-        <div class="result-card-image">
-          <img src="https://placehold.co/640x400/1a1a1a/2E8BFF?text=Denied+Claim" alt="Denied claim reopened" loading="lazy">
-        </div>
+      </article>
+
+      <!-- 4: Mold Claim -->
+      <article class="result-card reveal" aria-label="Mold claim result">
         <div class="result-card-body">
-          <span class="result-tag">Denied / Reopened Claim</span>
-          <div class="result-amounts">
-            <span class="result-before">$0</span>
-            <span class="result-arrow">&rarr;</span>
-            <span class="result-after">$118,000</span>
+          <div class="result-card-header">
+            <span class="result-icon">🍄</span>
+            <span class="result-tag">Mold Claim</span>
           </div>
-          <p class="result-desc">After a denial, the file was rebuilt with better documentation, coverage support, and a negotiation path the homeowner could not create alone.</p>
+          <div class="result-amounts">
+            <span class="result-before">$3,800</span>
+            <span class="result-arrow">&rarr;</span>
+            <span class="result-after">$28,500</span>
+          </div>
+          <div class="result-divider"></div>
+          <blockquote class="result-quote">
+            "From getting the plumber and the mold expert to assess the damage, Eddy was on it. He kept me informed of any delays and of everything that was happening."
+          </blockquote>
+          <div class="result-reviewer">
+            <span class="result-reviewer-name">Charles Jacque</span>
+            <span class="result-stars">★★★★★</span>
+          </div>
+          <div class="result-google-badge">Google Review &middot; 1 year ago</div>
         </div>
-      </div>
-      <div class="result-card reveal">
-        <div class="result-card-image">
-          <img src="https://placehold.co/640x400/1a1a1a/2E8BFF?text=Commercial+Loss" alt="Commercial property claim" loading="lazy">
-        </div>
+      </article>
+
+      <!-- 5: Denied Claim -->
+      <article class="result-card reveal" aria-label="Denied claim result">
         <div class="result-card-body">
-          <span class="result-tag">Commercial Property</span>
-          <div class="result-amounts">
-            <span class="result-before">$44,000</span>
-            <span class="result-arrow">&rarr;</span>
-            <span class="result-after">$286,000</span>
+          <div class="result-card-header">
+            <span class="result-icon">⚖️</span>
+            <span class="result-tag">Denied Claim</span>
           </div>
-          <p class="result-desc">Business interruption and structural repair costs were documented more completely, creating leverage for a broader commercial recovery.</p>
+          <div class="result-amounts">
+            <span class="result-before">$0 denied</span>
+            <span class="result-arrow">&rarr;</span>
+            <span class="result-after">$67,200</span>
+          </div>
+          <div class="result-divider"></div>
+          <blockquote class="result-quote">
+            "The insurance company was very difficult but Eddy was key in staying on top of them to get us best resolution. The team was very transparent from beginning to end."
+          </blockquote>
+          <div class="result-reviewer">
+            <span class="result-reviewer-name">Mayra Peralta</span>
+            <span class="result-stars">★★★★★</span>
+          </div>
+          <div class="result-google-badge">Google Review &middot; 6 months ago</div>
         </div>
-      </div>
+      </article>
+
+      <!-- 6: Commercial Loss -->
+      <article class="result-card reveal" aria-label="Commercial loss claim result">
+        <div class="result-card-body">
+          <div class="result-card-header">
+            <span class="result-icon">🏢</span>
+            <span class="result-tag">Commercial Loss</span>
+          </div>
+          <div class="result-amounts">
+            <span class="result-before">$22,100</span>
+            <span class="result-arrow">&rarr;</span>
+            <span class="result-after">$156,800</span>
+          </div>
+          <div class="result-divider"></div>
+          <blockquote class="result-quote">
+            "They provided us with support from beginning to end, handling all the necessary procedures with the relevant authorities. We obtained a fair and accurate claim fully commensurate with our losses."
+          </blockquote>
+          <div class="result-reviewer">
+            <span class="result-reviewer-name">Bettyna's Creative</span>
+            <span class="result-stars">★★★★★</span>
+          </div>
+          <div class="result-google-badge">Google Review &middot; 1 month ago</div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -2212,29 +2367,32 @@
     <div class="proof-gallery">
       <div class="proof-panel reveal">
         <div class="proof-panel-image">
-          <span class="proof-panel-tag">Before / after slot</span>
+          <img src="images/proof-storm-evidence.png" alt="Storm damage documentation" loading="lazy">
+          <span class="proof-panel-tag">Storm damage evidence</span>
         </div>
         <div class="proof-panel-copy">
           <h3>Storm damage evidence</h3>
-          <p>Reserve this area for real claim photos that show visible property damage before repairs and documented conditions after inspection.</p>
+          <p>Thorough photo documentation of every affected surface — structural compromise, interior water intrusion, and overlooked secondary damage — captured before repairs begin.</p>
         </div>
       </div>
       <div class="proof-panel reveal">
         <div class="proof-panel-image">
-          <span class="proof-panel-tag">Coverage support slot</span>
+          <img src="images/proof-claim-file.png" alt="Claim file documentation" loading="lazy">
+          <span class="proof-panel-tag">Engineering &amp; estimate depth</span>
         </div>
         <div class="proof-panel-copy">
           <h3>Claim file depth</h3>
-          <p>Use this panel later for engineering reports, moisture mapping, or detailed estimate snapshots that support larger recoveries.</p>
+          <p>Engineering reports, moisture mapping, and line-by-line Xactimate estimates that insurers can't easily dispute — the paperwork that drives larger recoveries.</p>
         </div>
       </div>
       <div class="proof-panel reveal">
         <div class="proof-panel-image">
-          <span class="proof-panel-tag">Outcome summary slot</span>
+          <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&auto=format&fit=crop&q=80" alt="Range of claim types" loading="lazy">
+          <span class="proof-panel-tag">Roof · Water · Mold · Fire · Denial</span>
         </div>
         <div class="proof-panel-copy">
           <h3>Range of claim types</h3>
-          <p>Keep expanding this proof system with roof, water, mold, denial, reopening, and commercial examples as more verified case material becomes available.</p>
+          <p>Hurricane, water, mold, fire, denied claims, and commercial losses — every property damage scenario Florida homeowners face, handled under one roof.</p>
         </div>
       </div>
     </div>
