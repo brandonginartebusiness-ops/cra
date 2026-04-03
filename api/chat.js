@@ -141,10 +141,9 @@ export default async function handler(req, res) {
       });
     }
 
-    // Default model must be a valid Anthropic API id (override in Vercel: ANTHROPIC_MODEL).
+    // Default: current Claude API id (3.5 Sonnet snapshot is retired — see Anthropic model overview).
     const model =
-      (process.env.ANTHROPIC_MODEL || "").trim() ||
-      "claude-3-5-sonnet-20241022";
+      (process.env.ANTHROPIC_MODEL || "").trim() || "claude-sonnet-4-6";
 
     // Stateless: no server-side conversation store or session cookie (privacy / no transcript DB).
     const response = await client.messages.create({
@@ -166,14 +165,21 @@ export default async function handler(req, res) {
       error?.error?.message ||
       error?.message ||
       (typeof error === "string" ? error : "");
+    if (status === 401 || status === 403) {
+      return res.status(502).json({
+        error:
+          "Assistant could not authenticate with Anthropic. Check ANTHROPIC_API_KEY in Vercel (Production) and redeploy.",
+      });
+    }
     const looksLikeModel =
       status === 404 ||
       /model/i.test(apiMsg || "") ||
-      /not_found/i.test(apiMsg || "");
+      /not_found/i.test(apiMsg || "") ||
+      /retired|deprecated|invalid_model/i.test(apiMsg || "");
     if (looksLikeModel) {
       return res.status(502).json({
         error:
-          "Assistant model is misconfigured. Set ANTHROPIC_MODEL in Vercel to a valid model id, or remove it to use the default.",
+          "Assistant model is misconfigured. Remove ANTHROPIC_MODEL in Vercel to use the site default, or set a valid id (e.g. claude-sonnet-4-6).",
         detail: process.env.VERCEL ? undefined : apiMsg,
       });
     }
