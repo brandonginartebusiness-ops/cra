@@ -183,6 +183,17 @@ export default async function handler(req, res) {
             "The assistant is rate-limited right now. Please wait a minute and try again.",
         });
       }
+      const lower = msg.toLowerCase();
+      if (
+        lower.includes("credit balance") ||
+        lower.includes("purchase credits") ||
+        lower.includes("plans & billing")
+      ) {
+        return res.status(502).json({
+          error:
+            "Our AI assistant is temporarily unavailable. Please call (786) 223-7867 or use the contact options on this site — we’re happy to help directly.",
+        });
+      }
       if (httpStatus >= 400 && httpStatus < 500) {
         return res.status(502).json({
           error:
