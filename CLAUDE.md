@@ -26,6 +26,13 @@ Stack and file layout are defined in **CONTEXT.md** and `.cursorrules`. This fil
 - **`cra/` is legacy / secondary** — `cra/index.html` just redirects to `/`. Do NOT treat `cra/` as the primary design target unless explicitly told to.
 - Root styles: **`/css/style.css`** (or wherever the root index links). Root scripts: **`/js/main.js`** (or equivalent). Check the root index.html `<link>` and `<script>` tags to confirm paths.
 
+## Single-page site (non-negotiable)
+
+- The live marketing experience is **one page**: **root `index.html` only** (plus **`404.html`** for errors if present).
+- **Do not** introduce or restore a **multipage** pattern: no sibling top-level pages such as `services.html`, `contact.html`, `faq.html`, `process.html`, `results.html`, `reviews.html`, no shared `pages.css` / `pages.js` for a page family, and no “site nav” that jumps between separate HTML documents.
+- **Do not** default to “add an inner page” for new content — put it **on `index.html`** (a section, modal, anchor, or expand-in-place) unless the user **explicitly** asks for a separate HTML file.
+- If the user later requests a new standalone HTML file by name, treat that as an **exception**; still do not recreate the old multipage set unless they say so.
+
 ## Local server (required for review)
 
 - **Always use `http://localhost`** — do not rely on `file:///` for screenshots or layout checks.
@@ -37,7 +44,7 @@ Stack and file layout are defined in **CONTEXT.md** and `.cursorrules`. This fil
 - With the server running: `node screenshot.mjs <url> [label]`
 - Examples:
   - `node screenshot.mjs http://localhost:3000/`
-  - `node screenshot.mjs http://localhost:3000/contact.html contact`
+  - `node screenshot.mjs http://localhost:3000/#section-id anchor` (optional label)
 - Output: `./temporary screenshots/screenshot-N.png` (incrementing `N`; optional `-label` before `.png`).
 - Puppeteer downloads Chromium via the `puppeteer` package; cache location follows your OS (e.g. under your user profile on Windows).
 
@@ -58,6 +65,7 @@ Stack and file layout are defined in **CONTEXT.md** and `.cursorrules`. This fil
 
 ## Hard rules
 
+- **No multipage marketing setup** — see **Single-page site** above. Never recreate deleted sibling pages or a cross-page nav as the default architecture.
 - Do not add sections, features, or content not requested or not in a supplied reference.
 - Do not “improve” a reference layout — match it.
 - Do not use **`transition-all`**.

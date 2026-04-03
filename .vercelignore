@@ -5,14 +5,5 @@ screenshot.mjs
 CLAUDE.md
 .cursor
 *.pdf
-# Untracked root-level files — keep out of CLI deployments
-contact.html
-faq.html
-process.html
-results.html
-reviews.html
-services.html
-pages.css
-pages.js
 # Do NOT ignore cra-bot/ — api/chat.js requires cra-bot/system-prompt.js at runtime.
 CONTEXT.md

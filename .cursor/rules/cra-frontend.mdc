@@ -10,6 +10,7 @@ alwaysApply: true
 3. Read **cra/.cursorrules.txt** for the active design rules (palette, fonts, animation defaults, philosophy).
 4. Site root for browsing: `http://localhost:3000/cra/`
 5. Only `cra/css/style.css` and `cra/js/main.js` for styles/scripts. Use `:root` CSS variables — no Tailwind.
+6. **Single-page marketing site:** production UX is **root `index.html`** — do **not** default to or recreate a multipage setup (no `services.html`, `contact.html`, `faq.html`, etc., or `pages.css` / `pages.js` for a page family). See **`CLAUDE.md`** → *Single-page site*.
 
 ## Active design rules (summary from cra/.cursorrules.txt)
 

@@ -6,7 +6,7 @@ Single-file context for **Claude Project** sessions (or any assistant). **Author
 
 ## Claude’s job
 
-You are the implementation partner for **Claim Remedy Adjusters**’ marketing site: **vanilla HTML / CSS / JavaScript** at the **repository root**, deployed to **Vercel** from **`main`**. You align with **`CONTEXT.md`** (brand, tone, palette) and **`CLAUDE.md`** (local review, deploy, homepage source of truth). You do **not** add frameworks (no React, no Tailwind) unless the user explicitly asks. You do **not** add sections or features not requested or not in a supplied reference. You do **not** use **`transition-all`**. You use **CSS custom properties** from **`:root`** on the live page—no generic template blues as primary brand colors.
+You are the implementation partner for **Claim Remedy Adjusters**’ marketing site: **vanilla HTML / CSS / JavaScript** at the **repository root**, deployed to **Vercel** from **`main`**. The site is **intentionally single-page**: all marketing UX lives on **root `index.html`** (and **`404.html`** for errors only). **Never** default to a multipage setup—no `services.html`, `contact.html`, `faq.html`, or similar siblings, no shared `pages.css` / `pages.js` page family, no primary nav that loads separate HTML documents. New content goes **into `index.html`** (sections, anchors, modals) unless the user **explicitly** asks for a named standalone file. You align with **`CONTEXT.md`** (brand, tone, palette) and **`CLAUDE.md`** (local review, deploy, homepage source of truth). You do **not** add frameworks (no React, no Tailwind) unless the user explicitly asks. You do **not** add sections or features not requested or not in a supplied reference. You do **not** use **`transition-all`**. You use **CSS custom properties** from **`:root`** on the live page—no generic template blues as primary brand colors.
 
 ---
 
@@ -76,18 +76,19 @@ Upload or sync these from the repo so sessions have full technical context:
 ## Behavior checklist (“act like this assistant”)
 
 1. Read **`CONTEXT.md`** and **`CLAUDE.md`** before changing UI or copy.  
-2. Treat **root `index.html`** as the production homepage; avoid editing **`cra/`** for the live site unless explicitly requested.  
-3. Use **`var(--navy)`**, **`var(--gold)`**, **`var(--cream)`**, **`var(--blue)`**, etc.—no ad-hoc generic blues as the brand.  
-4. Animate **`transform`** and **`opacity`** only; **never `transition-all`**.  
-5. Interactive controls: **hover**, **focus-visible**, and **active** states.  
-6. Respect **`prefers-reduced-motion`** where the page already does (e.g. `.reveal` / GSAP fallbacks).  
-7. Do not add sections, features, or copy not requested and not in a reference.  
-8. Do not “improve” a reference layout—**match** it.  
-9. After changes, verify on **http://localhost:3000/** and the live URL when deployed.  
-10. **Never** paste or commit API keys; keep secrets in Vercel only.
+2. **Single-page only:** do **not** recreate or default to a multipage HTML site; ship changes on **root `index.html`** unless the user explicitly requests a separate file.  
+3. Treat **root `index.html`** as the production homepage; avoid editing **`cra/`** for the live site unless explicitly requested.  
+4. Use **`var(--navy)`**, **`var(--gold)`**, **`var(--cream)`**, **`var(--blue)`**, etc.—no ad-hoc generic blues as the brand.  
+5. Animate **`transform`** and **`opacity`** only; **never `transition-all`**.  
+6. Interactive controls: **hover**, **focus-visible**, and **active** states.  
+7. Respect **`prefers-reduced-motion`** where the page already does (e.g. `.reveal` / GSAP fallbacks).  
+8. Do not add sections, features, or copy not requested and not in a reference.  
+9. Do not “improve” a reference layout—**match** it.  
+10. After changes, verify on **http://localhost:3000/** and the live URL when deployed.  
+11. **Never** paste or commit API keys; keep secrets in Vercel only.
 
 ---
 
 ## One-liner (paste into a new chat)
 
-**Repo:** `brandonginartebusiness-ops/cra`, branch **`main`**, Vercel root **`.`**, live **https://claimremedyadjusters.com**. Production homepage = **root `index.html`**. Follow **`CLAUDE.md`** and **`CONTEXT.md`**; use `:root` CSS variables, vanilla stack only, no `transition-all`.
+**Repo:** `brandonginartebusiness-ops/cra`, branch **`main`**, Vercel root **`.`**, live **https://claimremedyadjusters.com**. **Single-page site:** production = **root `index.html` only** — never default to multipage (`*.html` siblings, `pages.css`/`pages.js`). Follow **`CLAUDE.md`** and **`CONTEXT.md`**; `:root` CSS variables, vanilla stack, no `transition-all`.

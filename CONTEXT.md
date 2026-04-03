@@ -43,34 +43,31 @@
 
 ## File Structure
 
+**Production marketing site = single page:** **`index.html` at the repo root** (`/`). Do **not** add sibling marketing HTML files (`services.html`, `contact.html`, etc.) or a multipage nav unless the owner explicitly asks. **`CLAUDE.md`** has the full rule.
+
 ```
-cra/
-├── index.html              ← Homepage
-├── css/
-│   └── style.css           ← Single global stylesheet (950 lines)
-├── js/
-│   └── main.js             ← Global JS (nav toggle, fade-up, count-up, reviews API, Formspree AJAX)
-├── pages/
-│   ├── about.html
-│   ├── services.html
-│   ├── results.html
-│   ├── faq.html
-│   └── contact.html
-└── data/
-    └── reviews.json        ← Fallback testimonials (used when Google API unavailable)
+repo root/
+├── index.html              ← Live marketing page (single-page site)
+├── 404.html                ← Error page (if present)
+├── api/                    ← Vercel serverless routes
+├── CLAUDE.md, CONTEXT.md, PROJECT_HANDOFF.md
+└── brand_assets/
+
+cra/                        ← Legacy / secondary (redirects to /)
+├── css/style.css
+├── js/main.js
+└── data/reviews.json       ← Fallback testimonials when Google API unavailable
 ```
 
-**Repo root (local workflow):** `serve.mjs` — static server, browse at `http://localhost:3000/cra/`; `screenshot.mjs` — Puppeteer captures to `temporary screenshots/`; `CLAUDE.md` — process and guardrails; `brand_assets/` — optional logos and reference art. Run `npm install` once, then `npm run serve`.
-
-**Path notes:** Inner pages live in `/pages/`. From inner pages, reference assets as `../css/style.css`, `../js/main.js`. Nav links from inner pages use `../index.html` for Home.
+**Local workflow:** `serve.mjs` serves the **repo root** at **`http://localhost:3000/`** (see **`CLAUDE.md`**). `screenshot.mjs` → `temporary screenshots/`. Run `npm install` once, then `npm run serve`.
 
 ## Tech Stack
 
 - Vanilla HTML / CSS / JS — no frameworks, no build tools
 - **[GSAP](https://greensock.com/gsap/) 3.12.5** + **[ScrollTrigger](https://greensock.com/docs/v3/Plugins/ScrollTrigger)** (CDN on all pages, before `main.js`) — hero intro timeline, hero background parallax (~`yPercent: 10`, scrub; disabled ≤768px), stats count-up on scroll, `.grid-3` card stagger, section label/title reveals + animated underline (`cra/js/main.js`). Fade-up still uses `IntersectionObserver` for `.fade-up` elements.
 - Hosted on Vercel (auto-deploys from GitHub on push)
-- Forms via Formspree (ID needs to be set in contact.html)
-- Testimonials: main.js tries `/api/google-reviews` first → falls back to `data/reviews.json` → falls back to static carousel slides in HTML
+- Lead paths on **root `index.html`** (e.g. Calendly, phone, chat) — no separate contact page in the default architecture
+- Testimonials: `/api/google-reviews` when configured → fallback data → static content in HTML as applicable
 
 ## Current State (What's Built)
 
@@ -85,13 +82,6 @@ cra/
 - ✅ Instagram grid (6 placeholders linking to @claimremedyadjusters)
 - ✅ Mobile sticky CTA bar (Call Now / Free Review) — hidden on contact page
 - ✅ Footer (navy bg, address, phone)
-
-### Inner Pages
-- ✅ About — two-column layout + credentials card (navy bg)
-- ✅ Services — intro + 6 service cards (hurricane, water, roof, fire, mold, flood) + CTA
-- ✅ Results — 4 case study cards with amounts + CTA
-- ✅ FAQ — 5 Q&As with FAQPage JSON-LD schema
-- ✅ Contact — form with Formspree, personalized success message, floating labels
 
 ### CSS Features Already In Place
 - Nav link underline animation (::after slide-in)
@@ -109,10 +99,10 @@ cra/
 
 ### Priority 1: Visual Elevation (Awwwards-inspired)
 Ongoing polish — core upgrades are in place; can still push further:
-- Bolder typography — hero / page heroes tightened; continue tuning inner pages as needed
-- Layered depth — trust bar + cards elevated; consider more overlaps / asymmetry on secondary pages
-- Generous whitespace — section padding uses fluid clamp; adjust per page if needed
-- Strong color blocking — navy band on home service areas; consider additional bands or accents elsewhere
+- Bolder typography — hero tightened; continue tuning sections on **`index.html`** as needed
+- Layered depth — trust bar + cards elevated; consider more overlaps / asymmetry
+- Generous whitespace — section padding uses fluid clamp; tune per section as needed
+- Strong color blocking — navy band on service areas; consider additional bands or accents elsewhere
 - Subtle motion — chips, cards, IG grid, fade-up refined; optional scroll-linked or accent motion later
 - Editorial layout — service areas split; extend pattern to other sections if desired
 
@@ -121,14 +111,13 @@ Ongoing polish — core upgrades are in place; can still push further:
 - Swap placeholder testimonials with real quotes (or connect Google Reviews API)
 - Swap IG placeholder images with real posts
 - Add client logo to header (replace text)
-- Add real case study numbers to results page
-- Add Florida license number to about page
+- Add real case study numbers and license copy on **`index.html`** where those sections live
 
 ### Priority 3: SEO & Schema
 - ✅ Canonical URLs updated to claimremedyadjusters.com (custom domain live)
-- Add unique meta descriptions to all inner pages
+- Tune meta / structured data on **`index.html`** as needed
 - Add branded OG image
-- Location-target service page copy (Miami, Broward, Palm Beach keywords)
+- Location-target service copy (Miami, Broward, Palm Beach keywords) within **`index.html`**
 
 ## Design Direction
 
