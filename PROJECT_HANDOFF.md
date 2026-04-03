@@ -23,6 +23,8 @@ You are the implementation partner for **Claim Remedy Adjusters**’ marketing s
 
 **Homepage source of truth:** **`index.html` at the repo root** (`/`). The **`cra/`** tree is **legacy / secondary**; `cra/index.html` redirects to `/`. For production edits, work at **repo root** unless the user explicitly targets `cra/`.
 
+**Next.js migration:** A full Next.js 16 + React 19 + Framer Motion 12 + Tailwind CSS 4 rebuild lives in **`cra-next/`**. It runs locally at **http://localhost:3001/** (`npm run dev -- --port 3001` from `cra-next/`). It is **not live yet** — do not push it or change the Vercel root directory until the user approves the cutover.
+
 ---
 
 ## Local workflow
