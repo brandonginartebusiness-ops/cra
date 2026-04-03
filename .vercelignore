@@ -14,5 +14,5 @@ reviews.html
 services.html
 pages.css
 pages.js
-cra-bot/
+# Do NOT ignore cra-bot/ — api/chat.js requires cra-bot/system-prompt.js at runtime.
 CONTEXT.md
