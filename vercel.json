@@ -9,15 +9,6 @@
     },
     "api/health.js": {
       "maxDuration": 10
-    },
-    "cra/api/chat.js": {
-      "maxDuration": 60
-    },
-    "cra/api/google-reviews.js": {
-      "maxDuration": 15
-    },
-    "cra/api/health.js": {
-      "maxDuration": 10
     }
   },
   "headers": [
