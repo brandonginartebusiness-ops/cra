@@ -2120,6 +2120,89 @@
     .proof-panel-image {
       position: relative;
     }
+
+    /* Hero — larger text to fill vertical space */
+    .hero h1 {
+      font-size: clamp(4.5rem, 9.5vw, 10rem);
+      line-height: 1.0;
+    }
+    .hero-subtitle {
+      font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+      margin-top: 1.75rem;
+    }
+
+    /* Authority section — single card, horizontal layout */
+    .authority-grid {
+      grid-template-columns: 1fr;
+      max-width: 860px;
+    }
+    .authority-card.primary {
+      text-align: left;
+    }
+    .authority-profile {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2.5rem;
+    }
+    .authority-photo {
+      width: min(220px, 35%);
+      flex-shrink: 0;
+    }
+    .authority-statement {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 1.5rem + 1.2vw, 2.75rem);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: var(--color-foreground-muted);
+      margin-top: 1.25rem;
+      margin-bottom: 3rem;
+      max-width: 820px;
+    }
+    .authority-statement strong { color: var(--color-foreground); }
+    @media (max-width: 640px) {
+      .authority-profile { flex-direction: column; align-items: center; }
+      .authority-photo { width: min(100%, 240px); }
+      .authority-card.primary { text-align: center; }
+    }
+
+    /* Why Claim Remedy — big label, small heading */
+    .why-cra .section-label {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 2.2rem + (56 - 40) * var(--fluid-slope), 3.5rem);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: var(--color-foreground);
+      margin-bottom: 0.75rem;
+    }
+    .why-cra .section-heading {
+      font-family: var(--font-sans);
+      font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1.65;
+      color: var(--color-foreground-muted);
+      max-width: 600px;
+    }
+
+    /* FAQ — big label, small heading */
+    #faq .section-label {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 2.2rem + (56 - 40) * var(--fluid-slope), 3.5rem);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: var(--color-foreground);
+      margin-bottom: 0.75rem;
+    }
+    #faq .section-heading {
+      font-family: var(--font-sans);
+      font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1.65;
+      color: var(--color-foreground-muted);
+      max-width: 580px;
+    }
   </style>
 </head>
 <body>
@@ -2373,13 +2456,6 @@
   </div>
 </section>
 
-<!-- ?????? Statement ?????? -->
-<section class="statement">
-  <div class="container reveal">
-    <h2>Every type of property claim. <span class="muted">One dedicated advocate who never works for the insurance company.</span></h2>
-  </div>
-</section>
-
 <!-- ✦✦✦ Process ✦✦✦ -->
 <section class="section-dark" id="process">
   <div class="container">
@@ -2447,38 +2523,25 @@
 <section class="section-dark authority" id="about">
   <div class="container">
     <div class="reveal">
-      <p class="section-label">Authority & trust</p>
+      <p class="section-label">Authority &amp; trust</p>
       <h2 class="section-heading">A human face, a license, and a process homeowners can verify.</h2>
+      <p class="authority-statement reveal"><strong>Every type of property claim.</strong> One dedicated advocate who never works for the insurance company.</p>
     </div>
     <div class="authority-grid">
       <div class="authority-card primary reveal">
         <div class="authority-profile">
           <div class="authority-photo">
-            <img src="brand_assets/eddy_headshot.jpeg" alt="Lead adjuster headshot" loading="lazy">
+            <img src="brand_assets/eddy_headshot.jpeg" alt="Eddy D Gomez, Licensed Public Adjuster" loading="lazy">
           </div>
           <div>
-            <h3>Built for trust-sensitive claims</h3>
-            <p>Homeowners can see exactly who they may be working with: Eddy D Gomez, Public Adjuster, with a real headshot and a Florida license reference already shown in supporting brand materials.</p>
+            <h3>Eddy D Gomez<br>Public Adjuster</h3>
+            <p>Licensed by the State of Florida to represent homeowners and commercial property owners during the insurance claims process — never the insurance company.</p>
+            <div class="authority-kickers" style="justify-content: flex-start; margin-top: 1.5rem;">
+              <span class="authority-kicker">Florida License W549958</span>
+              <span class="authority-kicker">No upfront fee</span>
+              <span class="authority-kicker">(786) 223-7867</span>
+            </div>
           </div>
-        </div>
-        <div class="authority-kickers">
-          <span class="authority-kicker">Florida License W549958</span>
-          <span class="authority-kicker">Eddy D Gomez, Public Adjuster</span>
-          <span class="authority-kicker">No upfront fee</span>
-        </div>
-      </div>
-      <div class="authority-card reveal">
-        <h3>Verified details now available</h3>
-        <ul class="authority-list">
-          <li>Eddy D Gomez is identified directly in brand materials as the Public Adjuster.</li>
-          <li>Florida license number shown in the provided creative: W549958.</li>
-          <li>Real team photography is now on-page, giving visitors a clear human point of contact.</li>
-          <li>Direct phone number shown in the provided creative: 305-733-1670.</li>
-        </ul>
-        <div class="press-strip">
-          <div class="press-tile">Public Adjuster</div>
-          <div class="press-tile">License W549958</div>
-          <div class="press-tile">305-733-1670</div>
         </div>
       </div>
     </div>
@@ -2486,7 +2549,7 @@
 </section>
 
 <!-- ?????? Why CRA / Value ?????? -->
-<section class="section-dark">
+<section class="section-dark why-cra">
   <div class="container">
     <div class="reveal">
       <p class="section-label">Why Claim Remedy?</p>
