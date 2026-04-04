@@ -1,0 +1,2 @@
+{"type":"convention","content":"Single-page marketing site. Root index.html is production. cra/ dir is legacy/redirect only. Do not add multipage architecture without explicit user request.","classification":"tactical","recorded_at":"2026-04-04T06:31:27.520Z","id":"mx-c24e83"}
+{"type":"convention","content":"Brand colors via CSS custom properties: --cream, --navy, --gold. Serif headings (--serif), sans body (--sans). No transition-all. Layered subtle shadows.","classification":"tactical","recorded_at":"2026-04-04T06:31:27.786Z","id":"mx-bdd55c"}

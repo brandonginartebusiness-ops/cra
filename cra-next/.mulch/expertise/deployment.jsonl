@@ -1,0 +1,2 @@
+{"type":"convention","content":"Live site: https://claimremedyadjusters.com — deployed via Vercel project cra-opal from main branch of brandonginartebusiness-ops/cra repo. Push to main to deploy.","classification":"tactical","recorded_at":"2026-04-04T06:31:23.322Z","id":"mx-1d6d4f"}
+{"type":"failure","description":"Worked on claude/... worktree branches expecting it to reach production","resolution":"Always work on main branch — claude/... branches never deploy to the live Vercel site.","classification":"tactical","recorded_at":"2026-04-04T06:31:27.321Z","id":"mx-44f922"}
