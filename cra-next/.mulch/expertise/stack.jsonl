@@ -1,1 +1,2 @@
 {"type":"convention","content":"Next.js app using TypeScript, Tailwind CSS, Supabase for backend, deployed to Vercel. Primary working dir is cra-next/.","classification":"tactical","recorded_at":"2026-04-04T06:31:23.118Z","id":"mx-212a19"}
+{"type":"convention","content":"Framer Motion v12 (individual transforms) — whileHover={{ y: -4, scale: 1.02 }} and Tailwind hover: classes can coexist safely since FM12 uses separate CSS transform properties","classification":"tactical","recorded_at":"2026-04-04T06:38:56.916Z","id":"mx-9e4d2c"}
