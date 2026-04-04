@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -14,7 +15,7 @@ export default function Footer() {
               className="mb-4"
             />
             <p className="text-sm text-[#666677] leading-relaxed max-w-xs">
-              Licensed Florida Public Adjusters. We represent homeowners —
+              Licensed Florida Public Adjusting Firm. We represent homeowners —
               never insurance companies.
             </p>
           </div>
@@ -25,21 +26,21 @@ export default function Footer() {
             </h4>
             <ul className="flex flex-col gap-2.5">
               {[
-                ["Services", "#services"],
-                ["Results", "#results"],
-                ["Process", "#process"],
-                ["About", "#about"],
-                ["Reviews", "#testimonials"],
-                ["FAQ", "#faq"],
-                ["Contact", "#connect"],
+                ["Services", "/services"],
+                ["Results", "/results"],
+                ["Process", "/process"],
+                ["About", "/about"],
+                ["Reviews", "/reviews"],
+                ["FAQ", "/faq"],
+                ["Contact", "/contact"],
               ].map(([label, href]) => (
                 <li key={href}>
-                  <a
+                  <Link
                     href={href}
                     className="text-sm text-[#9999aa] hover:text-[#f0f0f5] transition-colors"
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -77,7 +78,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Claim Remedy Adjusters. All rights
             reserved.
           </p>
-          <p>Florida License W549958 — Eddy D Gomez, Public Adjuster</p>
+          <p>Licensed Florida Public Adjusting Firm &mdash; License W549958</p>
         </div>
       </div>
     </footer>

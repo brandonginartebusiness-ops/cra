@@ -7,6 +7,9 @@ import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import StarRating from "@/components/ui/StarRating";
 import SectionHeading from "@/components/ui/SectionHeading";
 
+const GOOGLE_REVIEWS_URL =
+  "https://search.google.com/local/reviews?placeid=ChIJy6vXSOEIMK8RJvzhZzwTlxI";
+
 export default function Results() {
   return (
     <section id="results" className="bg-[#111118] py-24 lg:py-32">
@@ -36,10 +39,15 @@ export default function Results() {
           viewport={{ once: true, margin: "-60px" }}
         >
           {caseResults.map((r) => (
-            <motion.article
+            <motion.a
               key={r.type}
+              href={GOOGLE_REVIEWS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               variants={fadeInUp}
-              className="bg-[#16161f] border border-white/5 rounded-2xl p-6 flex flex-col gap-4 hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/20 transition-all duration-300"
+              whileHover={{ y: -4, scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+              className="bg-[#16161f] border border-white/5 rounded-2xl p-6 flex flex-col gap-4 hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/20 transition-shadow transition-colors duration-300"
               aria-label={`${r.type} case result`}
             >
               {/* Tag */}
@@ -79,7 +87,7 @@ export default function Results() {
                   Google Review &middot; {r.review.timeAgo}
                 </p>
               </div>
-            </motion.article>
+            </motion.a>
           ))}
         </motion.div>
       </div>

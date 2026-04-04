@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { slideInLeft, slideInRight } from "@/lib/animations";
+import { slideInLeft, staggerContainer, fadeInUp } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const WA_LINK =
@@ -29,11 +29,12 @@ export default function Contact() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
-            variants={slideInRight}
+            variants={staggerContainer}
             className="flex flex-col gap-4"
           >
             {/* WhatsApp */}
-            <a
+            <motion.a
+              variants={fadeInUp}
               href={WA_LINK}
               target="_blank"
               rel="noopener noreferrer"
@@ -52,10 +53,11 @@ export default function Contact() {
                   Start a free, pressure-free conversation
                 </p>
               </div>
-            </a>
+            </motion.a>
 
             {/* Call */}
-            <a
+            <motion.a
+              variants={fadeInUp}
               href="tel:+17862237867"
               className="flex items-center gap-4 bg-[#16161f] border border-white/5 rounded-2xl p-6 hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-all group"
             >
@@ -70,10 +72,13 @@ export default function Contact() {
                 </p>
                 <p className="text-sm text-[#9999aa]">Speak directly with the team</p>
               </div>
-            </a>
+            </motion.a>
 
             {/* Address */}
-            <div className="flex items-center gap-4 bg-[#16161f] border border-white/5 rounded-2xl p-6">
+            <motion.div
+              variants={fadeInUp}
+              className="flex items-center gap-4 bg-[#16161f] border border-white/5 rounded-2xl p-6"
+            >
               <div className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center shrink-0">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9999aa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
@@ -83,7 +88,7 @@ export default function Contact() {
                 <p className="font-semibold text-[#f0f0f5]">Miami Lakes Office</p>
                 <p className="text-sm text-[#9999aa]">7900 Oak Ln, Suite 400, Miami Lakes, FL 33016</p>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import { services } from "@/data/services";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -36,28 +37,44 @@ export default function Services() {
             <motion.div
               key={s.title}
               variants={fadeInUp}
-              className="group bg-white rounded-2xl overflow-hidden border border-black/5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={s.image}
-                  alt={s.alt}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                />
-              </div>
-              <div className="p-5">
-                <h3 className="font-semibold text-[#141314] text-base mb-1.5">
-                  {s.title}
-                </h3>
-                <p className="text-sm text-[#696869] leading-relaxed">
-                  {s.description}
-                </p>
-              </div>
+              <Link
+                href={s.href}
+                className="group block bg-white rounded-2xl overflow-hidden border border-black/5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={s.image}
+                    alt={s.alt}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="font-semibold text-[#141314] text-base mb-1.5">
+                    {s.title}
+                  </h3>
+                  <p className="text-sm text-[#696869] leading-relaxed mb-3">
+                    {s.description}
+                  </p>
+                  <span className="text-sm text-[#3b82f6] font-medium group-hover:underline">
+                    Learn More &rarr;
+                  </span>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
+
+        <div className="mt-10 text-center">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-[#3b82f6] hover:underline"
+          >
+            View All Services &rarr;
+          </Link>
+        </div>
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { staggerContainer, fadeInUp } from "@/lib/animations";
+import { staggerContainer, fadeInUp, scaleIn } from "@/lib/animations";
 import { processSteps } from "@/data/process";
 import SectionHeading from "@/components/ui/SectionHeading";
 
@@ -35,9 +35,15 @@ export default function Process() {
               variants={fadeInUp}
               className="bg-[#0a0a0f] p-8 flex flex-col gap-4"
             >
-              <div className="font-bebas text-6xl text-[#3b82f6]/10 leading-none">
+              <motion.div
+                className="font-bebas text-6xl text-[#3b82f6]/10 leading-none"
+                variants={scaleIn}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-40px" }}
+              >
                 {step.step}
-              </div>
+              </motion.div>
               <h3 className="font-semibold text-[#f0f0f5] text-lg">
                 {step.title}
               </h3>

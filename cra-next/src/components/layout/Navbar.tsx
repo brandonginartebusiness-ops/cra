@@ -1,45 +1,50 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const links = [
-  { label: "Services", href: "#services" },
-  { label: "Results", href: "#results" },
-  { label: "Process", href: "#process" },
-  { label: "About", href: "#about" },
-  { label: "Reviews", href: "#testimonials" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact Us", href: "#connect" },
+  { label: "Services", href: "/services" },
+  { label: "Results", href: "/results" },
+  { label: "Process", href: "/process" },
+  { label: "About", href: "/about" },
+  { label: "Reviews", href: "/reviews" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleLink = (href: string) => {
+  useEffect(() => {
     setOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
+  }, [pathname]);
 
   return (
     <>
-      <nav
+      <motion.nav
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-[#0a0a0f]/95 backdrop-blur-md border-b border-white/5 shadow-lg"
-            : "bg-transparent"
+            ? "bg-[#0a0a0f]/90 backdrop-blur-md border-b border-white/5 shadow-lg py-3"
+            : "bg-[#0a0a0f]/90 backdrop-blur-md py-5"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#" aria-label="Home">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+          <Link href="/" aria-label="Home">
             <Image
               src="/brand_assets/logo-transparent.png"
               alt="Claim Remedy Adjusters"
@@ -47,29 +52,33 @@ export default function Navbar() {
               height={36}
               priority
             />
-          </a>
+          </Link>
 
           {/* Desktop links */}
           <ul className="hidden lg:flex items-center gap-7">
             {links.map((l) => (
               <li key={l.href}>
-                <button
-                  onClick={() => handleLink(l.href)}
-                  className="text-sm text-[#9999aa] hover:text-[#f0f0f5] transition-colors cursor-pointer"
+                <Link
+                  href={l.href}
+                  className={`text-sm transition-colors ${
+                    pathname === l.href || pathname.startsWith(l.href + "/")
+                      ? "text-[#f0f0f5]"
+                      : "text-[#9999aa] hover:text-[#f0f0f5]"
+                  }`}
                 >
                   {l.label}
-                </button>
+                </Link>
               </li>
             ))}
           </ul>
 
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => handleLink("#connect")}
-              className="hidden sm:inline-flex items-center gap-2 bg-[#3b82f6] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 transition-all cursor-pointer"
+            <Link
+              href="/contact"
+              className="hidden sm:inline-flex items-center gap-2 bg-[#3b82f6] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 transition-all"
             >
               Free Claim Review
-            </button>
+            </Link>
 
             {/* Hamburger */}
             <button
@@ -89,7 +98,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Mobile menu */}
       <div
@@ -100,19 +109,22 @@ export default function Navbar() {
         <ul className="flex flex-col gap-6">
           {links.map((l) => (
             <li key={l.href}>
-              <button
-                onClick={() => handleLink(l.href)}
-                className="text-2xl font-semibold text-[#f0f0f5] hover:text-[#3b82f6] transition-colors cursor-pointer"
+              <Link
+                href={l.href}
+                className={`text-2xl font-semibold transition-colors ${
+                  pathname === l.href || pathname.startsWith(l.href + "/")
+                    ? "text-[#3b82f6]"
+                    : "text-[#f0f0f5] hover:text-[#3b82f6]"
+                }`}
               >
                 {l.label}
-              </button>
+              </Link>
             </li>
           ))}
         </ul>
         <a
           href="tel:+17862237867"
           className="mt-10 inline-flex items-center justify-center bg-[#3b82f6] text-white font-semibold py-4 rounded-full text-lg"
-          onClick={() => setOpen(false)}
         >
           Call Now
         </a>

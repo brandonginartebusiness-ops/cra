@@ -8,6 +8,7 @@ import Pricing from "@/components/sections/Pricing";
 import Reviews from "@/components/sections/Reviews";
 import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
+import InstagramFeed from "@/components/sections/InstagramFeed";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <Reviews />
       <FAQ />
       <Contact />
+      <InstagramFeed />
     </>
   );
 }

@@ -41,7 +41,7 @@ export default function Hero() {
 
         <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap gap-3">
           <a
-            href="tel:+17862237867"
+            href="/contact"
             className="inline-flex items-center gap-2 bg-[#3b82f6] text-white font-semibold text-sm uppercase tracking-wider px-7 py-3.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 transition-all"
           >
             Get Your Free Claim Review &rarr;
