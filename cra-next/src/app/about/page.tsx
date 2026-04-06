@@ -3,9 +3,16 @@ import About from "@/components/sections/About";
 import PageTransition from "@/components/ui/PageTransition";
 
 export const metadata: Metadata = {
-  title: "About — Claim Remedy Adjusters",
+  title: "About Our Florida Public Adjuster — Claim Remedy Adjusters",
   description:
-    "Meet Eddy D Gomez, licensed Florida public adjuster. Learn about Claim Remedy's mission to represent homeowners — never insurance companies.",
+    "Meet Eddy D Gomez, licensed Florida public adjuster. Claim Remedy represents homeowners and commercial property owners — never the insurance company.",
+  openGraph: {
+    title: "About Our Florida Public Adjuster — Claim Remedy Adjusters",
+    description:
+      "Meet Eddy D Gomez, licensed Florida public adjuster representing homeowners — never insurance companies.",
+    url: "https://claimremedyadjusters.com/about",
+  },
+  alternates: { canonical: "https://claimremedyadjusters.com/about" },
 };
 
 export default function AboutPage() {

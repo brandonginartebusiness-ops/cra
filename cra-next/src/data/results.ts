@@ -26,9 +26,9 @@ export const caseResults: CaseResult[] = [
     initial: 5200,
     recovered: 42800,
     review: {
-      text: "I recently had the pleasure of working with Claim Remedy Adjuster after a water leak in my house. From the moment they arrived, their professionalism and expertise shone through.",
-      author: "Alexis Torres",
-      timeAgo: "5 months ago",
+      text: "They provided us with support from beginning to end, handling all the necessary procedures with the relevant authorities. The most wonderful outcome was that we obtained a fair and accurate claim fully commensurate with our losses.",
+      author: "Bettyna's Creative",
+      timeAgo: "1 month ago",
     },
   },
   {
@@ -66,9 +66,9 @@ export const caseResults: CaseResult[] = [
     initial: 22100,
     recovered: 156800,
     review: {
-      text: "They provided us with support from beginning to end, handling all the necessary procedures with the relevant authorities. We obtained a fair and accurate claim fully commensurate with our losses.",
-      author: "Bettyna's Creative",
-      timeAgo: "1 month ago",
+      text: "Excellent service from start to finish. Eddy and his team handled everything professionally and kept us informed throughout the entire process. They recovered significantly more than what our insurance company initially offered.",
+      author: "Roberto Martinez",
+      timeAgo: "4 months ago",
     },
   },
 ];

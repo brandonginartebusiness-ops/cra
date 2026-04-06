@@ -15,7 +15,7 @@ export default function WhatsAppFAB() {
       rel="noopener noreferrer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#25d366] text-white rounded-full shadow-2xl transition-all duration-300 hover:shadow-[0_0_24px_rgba(37,211,102,0.4)]"
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#25d366] text-white rounded-full shadow-2xl transition-shadow duration-300 hover:shadow-[0_0_24px_rgba(37,211,102,0.4)]"
       style={{
         padding: hovered ? "0.75rem 1.25rem 0.75rem 1rem" : "0.875rem",
       }}

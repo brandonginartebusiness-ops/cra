@@ -1,0 +1,9 @@
+[
+  { "type": "convention", "content": "All animation components must be client components with 'use client' directive" },
+  { "type": "convention", "content": "Use viewport={{ once: true, margin: '-80px' }} on all scroll-triggered animations" },
+  { "type": "convention", "content": "WhatsApp link: https://wa.me/17862237867 — Phone: tel:+17862237867" },
+  { "type": "convention", "content": "Office email: office@cradjusters.com — Address: 7900 Oak Ln Suite 400, Miami Lakes FL 33016" },
+  { "type": "convention", "content": "Google Place ID: ChIJy6vXSOEIMK8RJvzhZzwTlxI" },
+  { "type": "convention", "content": "Instagram placeholder cards until Meta Graph API is connected — code is ready, just needs token" },
+  { "type": "decision", "title": "Site architecture", "rationale": "Multi-page: /services, /results, /process, /about, /reviews, /faq, /contact. Each service type gets its own sub-page under /services/" }
+]

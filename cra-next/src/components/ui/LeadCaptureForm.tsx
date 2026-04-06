@@ -283,7 +283,7 @@ export default function LeadCaptureForm({
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full bg-[#3b82f6] text-white font-semibold py-3.5 rounded-lg hover:opacity-90 hover:shadow-[0_0_24px_rgba(59,130,246,0.3)] transition-all duration-300 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full bg-[#3b82f6] text-white font-semibold py-3.5 rounded-lg hover:opacity-90 hover:shadow-[0_0_24px_rgba(59,130,246,0.3)] transition-[opacity,box-shadow] duration-300 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {status === "submitting" ? (
           <>

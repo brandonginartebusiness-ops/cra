@@ -2,9 +2,16 @@ import type { Metadata } from "next";
 import ServicePageLayout from "@/components/templates/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Water Damage Claims — Claim Remedy Adjusters",
+  title: "Water Damage Insurance Claim Florida — Public Adjuster Help",
   description:
-    "Expert water damage claim representation for Florida homeowners. From pipe bursts to hidden moisture, we document and fight for your full recovery.",
+    "Expert water damage claim representation for Florida homeowners. Burst pipes, hidden moisture, appliance failures — we document every loss and fight for your full recovery.",
+  openGraph: {
+    title: "Water Damage Insurance Claim Florida — Claim Remedy Adjusters",
+    description:
+      "Florida public adjuster for water damage claims. We use moisture mapping and thermal imaging to document the full loss.",
+    url: "https://claimremedyadjusters.com/services/water-damage",
+  },
+  alternates: { canonical: "https://claimremedyadjusters.com/services/water-damage" },
 };
 
 export default function WaterDamagePage() {

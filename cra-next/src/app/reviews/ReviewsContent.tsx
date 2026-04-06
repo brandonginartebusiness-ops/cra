@@ -43,7 +43,7 @@ function ReviewCard({
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.25 }}
-      className={`block bg-[#16161f] rounded-2xl p-6 flex flex-col gap-4 cursor-pointer hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] transition-all duration-300 ${
+      className={`block bg-[#16161f] rounded-2xl p-6 flex flex-col gap-4 cursor-pointer hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] transition-[box-shadow,border-color] duration-300 ${
         featured
           ? "border-2 border-[#d4a853]/30 hover:border-[#d4a853]/50"
           : "border border-white/5 hover:border-[#3b82f6]/20"

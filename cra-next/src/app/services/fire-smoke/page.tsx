@@ -2,9 +2,16 @@ import type { Metadata } from "next";
 import ServicePageLayout from "@/components/templates/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Fire & Smoke Damage Claims — Claim Remedy Adjusters",
+  title: "Fire & Smoke Damage Claim Florida — Public Adjuster Representation",
   description:
-    "Licensed Florida public adjusters for fire and smoke damage claims. We document structural, content, and environmental damage for full replacement value.",
+    "Licensed Florida public adjusters for fire and smoke damage claims. We document structural, content, and environmental damage to secure full replacement value — no recovery, no fee.",
+  openGraph: {
+    title: "Fire & Smoke Damage Claim Florida — Claim Remedy Adjusters",
+    description:
+      "Fire and smoke damage claim representation in Florida. We document every room, fight for replacement value.",
+    url: "https://claimremedyadjusters.com/services/fire-smoke",
+  },
+  alternates: { canonical: "https://claimremedyadjusters.com/services/fire-smoke" },
 };
 
 export default function FireSmokePage() {

@@ -130,7 +130,7 @@ export default function InstagramFeed() {
             href="https://instagram.com/claimremedyadjusters"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#16161f] border border-white/10 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-all duration-300"
+            className="inline-flex items-center gap-2 bg-[#16161f] border border-white/10 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300"
           >
             Follow Us on Instagram
             <svg

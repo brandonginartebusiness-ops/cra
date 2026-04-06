@@ -4,9 +4,16 @@ import ContactForm from "./ContactForm";
 import PageTransition from "@/components/ui/PageTransition";
 
 export const metadata: Metadata = {
-  title: "Contact — Claim Remedy Adjusters",
+  title: "Free Claim Review — Contact a Miami Public Adjuster",
   description:
-    "Get in touch with Claim Remedy Adjusters. Call, WhatsApp, or visit our Miami Lakes office for a free claim review.",
+    "Get a free claim review from Claim Remedy Adjusters. Call, WhatsApp, or visit our Miami Lakes office. Licensed Florida public adjusters — no recovery, no fee.",
+  openGraph: {
+    title: "Free Claim Review — Contact a Miami Public Adjuster",
+    description:
+      "Call, WhatsApp, or visit our Miami Lakes office for a free Florida insurance claim review.",
+    url: "https://claimremedyadjusters.com/contact",
+  },
+  alternates: { canonical: "https://claimremedyadjusters.com/contact" },
 };
 
 export default function ContactPage() {

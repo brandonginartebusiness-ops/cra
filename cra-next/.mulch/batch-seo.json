@@ -1,0 +1,10 @@
+[
+  { "type": "convention", "content": "Primary keyword target: 'public adjuster Miami'" },
+  { "type": "convention", "content": "Tier 1 keywords: public adjuster Miami, public adjuster Florida, public adjuster near me" },
+  { "type": "convention", "content": "Tier 2 keywords: hurricane damage claim help Florida, water damage claim, roof damage insurance claim" },
+  { "type": "convention", "content": "Tier 3 keywords: underpaid insurance claim Florida, denied insurance claim help, insurance adjuster lowball offer" },
+  { "type": "convention", "content": "Schema markup: LocalBusiness + ProfessionalService on homepage, FAQPage on FAQ, Service on service pages" },
+  { "type": "convention", "content": "NAP must be consistent everywhere: Claim Remedy Adjusters LLC, 7900 Oak Ln Suite 400, Miami Lakes FL 33016, (786) 223-7867" },
+  { "type": "reference", "name": "BBB status", "description": "CRA has A- BBB rating, not accredited yet — BBB 'Visit Website' link incorrectly points to Facebook (needs fix)" },
+  { "type": "reference", "name": "Missing citations", "description": "CRA missing from Yelp, Thumbtack, HomeAdvisor, Angi, Apple Maps, Bing Places — build 20+ citations" }
+]

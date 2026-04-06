@@ -1,0 +1,7 @@
+{"type":"decision","title":"Lead infrastructure","rationale":"Supabase for lead storage, Resend for email notifications — both non-blocking so form always saves even if email fails","recorded_at":"2026-04-06T05:34:44.352Z","classification":"tactical","id":"mx-fd48ba"}
+{"type":"convention","content":"All lead forms auto-tag with service_page field matching the URL slug","recorded_at":"2026-04-06T05:36:05.451Z","classification":"tactical","id":"mx-192890"}
+{"type":"convention","content":"Supabase table 'leads' with columns: full_name, phone, email, claim_number, help_type, message, service_page, status","recorded_at":"2026-04-06T05:36:05.455Z","classification":"tactical","id":"mx-017981"}
+{"type":"convention","content":"API route /api/leads uses server-side Supabase client with SUPABASE_SERVICE_ROLE_KEY — never anon key for writes","recorded_at":"2026-04-06T05:36:05.455Z","classification":"tactical","id":"mx-a1b7a0"}
+{"type":"convention","content":"HTML-escape all user input before email interpolation to prevent injection","recorded_at":"2026-04-06T05:36:05.455Z","classification":"tactical","id":"mx-63fb32"}
+{"type":"convention","content":"Email notifications via Resend to brandonginartebusiness@gmail.com and office@cradjusters.com","recorded_at":"2026-04-06T05:36:05.455Z","classification":"tactical","id":"mx-f170e1"}
+{"type":"convention","content":"Form dropdown options: denied, underpaid, new_claim, protect, appraisal, other","recorded_at":"2026-04-06T05:36:05.455Z","classification":"tactical","id":"mx-8dc364"}

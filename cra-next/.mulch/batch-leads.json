@@ -1,0 +1,8 @@
+[
+  { "type": "convention", "content": "All lead forms auto-tag with service_page field matching the URL slug" },
+  { "type": "convention", "content": "Supabase table 'leads' with columns: full_name, phone, email, claim_number, help_type, message, service_page, status" },
+  { "type": "convention", "content": "API route /api/leads uses server-side Supabase client with SUPABASE_SERVICE_ROLE_KEY — never anon key for writes" },
+  { "type": "convention", "content": "HTML-escape all user input before email interpolation to prevent injection" },
+  { "type": "convention", "content": "Email notifications via Resend to brandonginartebusiness@gmail.com and office@cradjusters.com" },
+  { "type": "convention", "content": "Form dropdown options: denied, underpaid, new_claim, protect, appraisal, other" }
+]

@@ -37,7 +37,7 @@ export default function Navbar() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-[padding,box-shadow] duration-300 ${
           scrolled
             ? "bg-[#0a0a0f]/90 backdrop-blur-md border-b border-white/5 shadow-lg py-3"
             : "bg-[#0a0a0f]/90 backdrop-blur-md py-5"
@@ -75,7 +75,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="hidden sm:inline-flex items-center gap-2 bg-[#3b82f6] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 transition-all"
+              className="hidden sm:inline-flex items-center gap-2 bg-[#3b82f6] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 transition-[opacity,transform]"
             >
               Free Claim Review
             </Link>
@@ -87,13 +87,13 @@ export default function Navbar() {
               aria-label="Menu"
             >
               <span
-                className={`block w-5 h-0.5 bg-[#f0f0f5] transition-all ${open ? "rotate-45 translate-y-2" : ""}`}
+                className={`block w-5 h-0.5 bg-[#f0f0f5] transition-transform ${open ? "rotate-45 translate-y-2" : ""}`}
               />
               <span
-                className={`block w-5 h-0.5 bg-[#f0f0f5] transition-all ${open ? "opacity-0" : ""}`}
+                className={`block w-5 h-0.5 bg-[#f0f0f5] transition-opacity ${open ? "opacity-0" : ""}`}
               />
               <span
-                className={`block w-5 h-0.5 bg-[#f0f0f5] transition-all ${open ? "-rotate-45 -translate-y-2" : ""}`}
+                className={`block w-5 h-0.5 bg-[#f0f0f5] transition-transform ${open ? "-rotate-45 -translate-y-2" : ""}`}
               />
             </button>
           </div>
@@ -102,7 +102,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`fixed inset-0 z-40 bg-[#0a0a0f]/98 backdrop-blur-lg flex flex-col justify-center px-8 transition-all duration-300 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-[#0a0a0f]/98 backdrop-blur-lg flex flex-col justify-center px-8 transition-opacity duration-300 lg:hidden ${
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >

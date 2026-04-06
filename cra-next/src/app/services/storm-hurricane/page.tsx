@@ -2,9 +2,16 @@ import type { Metadata } from "next";
 import ServicePageLayout from "@/components/templates/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Storm & Hurricane Claims — Claim Remedy Adjusters",
+  title: "Hurricane Damage Claim Help Florida — Storm & Hurricane Claims",
   description:
-    "Licensed Florida public adjusters specializing in hurricane and storm damage claims. We document, file, and fight for the recovery your policy supports.",
+    "Licensed Florida public adjusters specializing in hurricane and storm damage claims. We deploy within 24 hours, document every loss, and fight for the full recovery your policy supports.",
+  openGraph: {
+    title: "Hurricane Damage Claim Help Florida — Claim Remedy Adjusters",
+    description:
+      "Underpaid or denied hurricane claim? Our licensed Florida public adjusters fight for the recovery you deserve.",
+    url: "https://claimremedyadjusters.com/services/storm-hurricane",
+  },
+  alternates: { canonical: "https://claimremedyadjusters.com/services/storm-hurricane" },
 };
 
 export default function StormHurricanePage() {

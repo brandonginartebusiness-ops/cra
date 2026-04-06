@@ -2,9 +2,16 @@ import type { Metadata } from "next";
 import ServicePageLayout from "@/components/templates/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Appraisal Services — Claim Remedy Adjusters",
+  title: "Insurance Appraisal Florida — Independent Appraisal Representation",
   description:
-    "Independent appraisal representation for Florida homeowners. When you and your insurer can't agree on the value, we step in.",
+    "Licensed public adjuster appraisal representation for Florida homeowners. When you and your insurer disagree on the value of your claim, invoke the appraisal clause and let Claim Remedy fight for you.",
+  openGraph: {
+    title: "Insurance Appraisal Florida — Claim Remedy Adjusters",
+    description:
+      "Know your rights. Florida homeowners can invoke the appraisal clause to get an independent valuation — we represent you.",
+    url: "https://claimremedyadjusters.com/services/appraisal",
+  },
+  alternates: { canonical: "https://claimremedyadjusters.com/services/appraisal" },
 };
 
 export default function AppraisalPage() {

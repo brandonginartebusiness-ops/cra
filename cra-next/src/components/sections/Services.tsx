@@ -40,7 +40,7 @@ export default function Services() {
             >
               <Link
                 href={s.href}
-                className="group block bg-white rounded-2xl overflow-hidden border border-black/5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
+                className="group block bg-white rounded-2xl overflow-hidden border border-black/5 hover:-translate-y-1 hover:shadow-xl transition-[transform,box-shadow] duration-300"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image

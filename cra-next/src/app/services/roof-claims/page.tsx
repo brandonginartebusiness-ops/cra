@@ -2,9 +2,16 @@ import type { Metadata } from "next";
 import ServicePageLayout from "@/components/templates/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Roof Damage Claims — Claim Remedy Adjusters",
+  title: "Roof Damage Insurance Claim Florida — Fight Your Insurer",
   description:
-    "Expert roof damage claim representation in Florida. Engineering reports, Xactimate estimates, and NOAA storm data to prove your claim.",
+    "Florida public adjuster for roof damage claims. Engineering reports, Xactimate estimates, and NOAA storm data — we prove your roof damage and fight for full replacement value.",
+  openGraph: {
+    title: "Roof Damage Insurance Claim Florida — Claim Remedy Adjusters",
+    description:
+      "Roof claim denied or underpaid? Our Florida public adjusters use engineering reports and storm data to prove your loss.",
+    url: "https://claimremedyadjusters.com/services/roof-claims",
+  },
+  alternates: { canonical: "https://claimremedyadjusters.com/services/roof-claims" },
 };
 
 export default function RoofClaimsPage() {

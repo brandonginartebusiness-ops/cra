@@ -3,6 +3,11 @@ domains:
   - stack
   - deployment
   - design
+  - website
+  - seo
+  - leads
+  - florida-law
+  - competitors
 governance:
   max_entries: 100
   warn_entries: 150

@@ -38,7 +38,7 @@ export default function Contact() {
               href={WA_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 bg-[#16161f] border border-white/5 rounded-2xl p-6 hover:border-[#25d366]/30 hover:shadow-[0_0_24px_rgba(37,211,102,0.08)] transition-all group"
+              className="flex items-center gap-4 bg-[#16161f] border border-white/5 rounded-2xl p-6 hover:border-[#25d366]/30 hover:shadow-[0_0_24px_rgba(37,211,102,0.08)] transition-[border-color,box-shadow] group"
             >
               <div className="w-11 h-11 rounded-full bg-[#25d366]/10 flex items-center justify-center shrink-0">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="#25d366">
@@ -59,7 +59,7 @@ export default function Contact() {
             <motion.a
               variants={fadeInUp}
               href="tel:+17862237867"
-              className="flex items-center gap-4 bg-[#16161f] border border-white/5 rounded-2xl p-6 hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-all group"
+              className="flex items-center gap-4 bg-[#16161f] border border-white/5 rounded-2xl p-6 hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] group"
             >
               <div className="w-11 h-11 rounded-full bg-[#3b82f6]/10 flex items-center justify-center shrink-0">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

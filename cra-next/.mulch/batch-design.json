@@ -1,0 +1,8 @@
+[
+  { "type": "convention", "content": "Case result cards use modal expand on click — layoutId animation with blur backdrop" },
+  { "type": "convention", "content": "Animated counters on dollar amounts — count up from 0 when scrolled into view, fire once only" },
+  { "type": "convention", "content": "Loading splash screen on first visit only — CRA logo + progress bar, 2s duration, sessionStorage flag 'cra_loaded'" },
+  { "type": "convention", "content": "Card hover: whileHover={{ y: -4 }} with blue glow box-shadow" },
+  { "type": "convention", "content": "Page transitions: fade + slide up on mount via PageTransition wrapper" },
+  { "type": "convention", "content": "Stagger children at 0.1s intervals, delay children 0.1s" }
+]
