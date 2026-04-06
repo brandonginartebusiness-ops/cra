@@ -12,6 +12,7 @@ export default function Footer() {
               alt="Claim Remedy Adjusters"
               width={130}
               height={38}
+              unoptimized
               className="mb-4"
             />
             <p className="text-sm text-[#666677] leading-relaxed max-w-xs">

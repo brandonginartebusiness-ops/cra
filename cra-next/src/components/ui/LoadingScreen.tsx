@@ -35,8 +35,9 @@ export default function LoadingScreen() {
               src="/brand_assets/logo-transparent.png"
               alt="Claim Remedy Adjusters"
               width={165}
-              height={50}
+              height={48}
               priority
+              unoptimized
             />
           </motion.div>
 
