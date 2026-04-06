@@ -1,16 +1,33 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { slideInLeft, slideInRight } from "@/lib/animations";
 import FloridaMap from "@/components/ui/FloridaMap";
 
-const cities = [
-  "Jacksonville", "Tallahassee", "Gainesville", "Ocala",
-  "Daytona Beach", "Orlando", "Tampa", "St. Petersburg",
-  "Clearwater", "Sarasota", "Fort Myers", "Naples",
-  "West Palm Beach", "Boca Raton", "Fort Lauderdale",
-  "Hollywood", "Miami", "Miami Lakes", "Hialeah",
-  "Homestead", "Key West",
+// City name → /areas/[slug] mapping
+const cityLinks: { name: string; slug: string }[] = [
+  { name: "Jacksonville",    slug: "jacksonville" },
+  { name: "Tallahassee",     slug: "tallahassee" },
+  { name: "Gainesville",     slug: "gainesville" },
+  { name: "Ocala",           slug: "ocala" },
+  { name: "Daytona Beach",   slug: "daytona-beach" },
+  { name: "Orlando",         slug: "orlando" },
+  { name: "Tampa",           slug: "tampa" },
+  { name: "St. Petersburg",  slug: "st-petersburg" },
+  { name: "Clearwater",      slug: "clearwater" },
+  { name: "Sarasota",        slug: "sarasota" },
+  { name: "Fort Myers",      slug: "fort-myers" },
+  { name: "Naples",          slug: "naples" },
+  { name: "West Palm Beach", slug: "west-palm-beach" },
+  { name: "Boca Raton",      slug: "boca-raton" },
+  { name: "Fort Lauderdale", slug: "fort-lauderdale" },
+  { name: "Hollywood",       slug: "hollywood" },
+  { name: "Miami",           slug: "miami" },
+  { name: "Miami Lakes",     slug: "miami-lakes" },
+  { name: "Hialeah",         slug: "hialeah" },
+  { name: "Homestead",       slug: "homestead" },
+  { name: "Key West",        slug: "key-west" },
 ];
 
 export default function ServiceAreaMap() {
@@ -48,22 +65,26 @@ export default function ServiceAreaMap() {
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2 mb-8">
-              {cities.map((city) => (
-                <span
-                  key={city}
-                  className={`text-sm ${
-                    city === "Miami" || city === "Miami Lakes"
-                      ? "text-[#3b82f6] font-semibold"
-                      : "text-[#9999aa]"
+              {cityLinks.map(({ name, slug }) => (
+                <Link
+                  key={slug}
+                  href={`/areas/${slug}`}
+                  className={`text-sm transition-colors hover:underline underline-offset-2 ${
+                    name === "Miami Lakes"
+                      ? "text-[#3b82f6] font-semibold hover:text-[#60a5fa]"
+                      : "text-[#9999aa] hover:text-[#3b82f6]"
                   }`}
                 >
-                  {city}
-                </span>
+                  {name}
+                </Link>
               ))}
             </div>
 
             <p className="text-sm text-[#666677] mb-4">
-              Serving all of Florida
+              Serving all of Florida —{" "}
+              <Link href="/areas" className="text-[#3b82f6] hover:underline underline-offset-2">
+                view all service areas
+              </Link>
             </p>
             <a
               href="tel:+17862237867"

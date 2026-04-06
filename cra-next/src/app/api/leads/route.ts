@@ -11,7 +11,17 @@ function escapeHtml(str: string): string {
 }
 
 const VALID_HELP_TYPES = new Set(['denied', 'underpaid', 'new_claim', 'protect', 'appraisal', 'other']);
-const VALID_SERVICE_PAGES = new Set(['storm-hurricane', 'water-damage', 'fire-smoke', 'roof-claims', 'appraisal', 'contact', 'homepage']);
+const VALID_SERVICE_PAGES = new Set([
+  // service pages
+  'storm-hurricane', 'water-damage', 'fire-smoke', 'roof-claims', 'appraisal', 'contact', 'homepage',
+  // city area pages
+  'miami-lakes', 'hialeah', 'miami', 'doral', 'miami-gardens', 'homestead', 'kendall',
+  'coral-gables', 'north-miami', 'miami-beach', 'fort-lauderdale', 'hollywood',
+  'pembroke-pines', 'miramar', 'coral-springs', 'pompano-beach', 'boca-raton',
+  'west-palm-beach', 'boynton-beach', 'delray-beach', 'jupiter', 'tampa',
+  'st-petersburg', 'clearwater', 'sarasota', 'fort-myers', 'naples', 'orlando',
+  'jacksonville', 'tallahassee', 'gainesville', 'daytona-beach', 'ocala', 'key-west',
+]);
 
 export async function POST(request: NextRequest) {
   try {
