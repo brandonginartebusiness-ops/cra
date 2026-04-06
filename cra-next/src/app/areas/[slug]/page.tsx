@@ -3,16 +3,18 @@ import type { Metadata } from "next";
 import { getCityBySlug, allSlugs } from "@/data/cities";
 import CityPageLayout from "@/components/templates/CityPageLayout";
 
+// Next.js 15+: params is a Promise
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
   return allSlugs.map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
-  const city = getCityBySlug(params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const city = getCityBySlug(slug);
   if (!city) return {};
 
   const title = `Public Adjuster ${city.city} FL | Claim Remedy Adjusters`;
@@ -46,8 +48,9 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default function CityPage({ params }: Props) {
-  const city = getCityBySlug(params.slug);
+export default async function CityPage({ params }: Props) {
+  const { slug } = await params;
+  const city = getCityBySlug(slug);
   if (!city) notFound();
   return <CityPageLayout city={city} />;
 }
