@@ -19,7 +19,7 @@ export default function WaterDamagePage() {
     <ServicePageLayout
       title="Water Damage Claims"
       subtitle="Hidden moisture causes more destruction than the initial leak."
-      heroImage="/images/service-water-damage.png"
+      heroImage=""
       serviceSlug="water-damage"
       description={[
         "Water damage is one of the most common — and most underestimated — property insurance claims in Florida. A burst pipe, a slow leak behind a wall, or flooding from a failed appliance can saturate drywall, subfloor, and insulation in hours. By the time visible damage appears, the real destruction is already behind your walls.",

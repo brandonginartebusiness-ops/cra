@@ -13,7 +13,7 @@ const serviceCards = [
     title: "Storm & Hurricane",
     description:
       "Hurricane-force winds, tropical storms, and severe weather events cause some of the most extensive property damage Florida homeowners face.",
-    image: "/images/service-storm-hurricane.png",
+    image: "",
     alt: "Aerial view of hurricane damage to Florida neighborhood",
     href: "/services/storm-hurricane",
   },
@@ -21,7 +21,7 @@ const serviceCards = [
     title: "Water Damage",
     description:
       "A burst pipe, a slow leak behind a wall, or flooding from a failed appliance can saturate drywall, subfloor, and insulation in hours.",
-    image: "/images/service-water-damage.png",
+    image: "",
     alt: "Interior water damage with standing water and peeling walls",
     href: "/services/water-damage",
   },
@@ -29,7 +29,7 @@ const serviceCards = [
     title: "Fire & Smoke",
     description:
       "Fire and smoke damage extends far beyond the burn zone. Smoke particles penetrate HVAC systems, embed in soft furnishings, and corrode fixtures.",
-    image: "/images/service-fire-smoke.png",
+    image: "",
     alt: "Exterior of fire-damaged building with charred structure",
     href: "/services/fire-smoke",
   },
@@ -37,7 +37,7 @@ const serviceCards = [
     title: "Roof Claims",
     description:
       "Roof claims are the most contested category in Florida. Without independent engineering evidence, homeowners are fighting blind.",
-    image: "/images/service-roof-claims.png",
+    image: "",
     alt: "Aerial view of storm-damaged roof",
     href: "/services/roof-claims",
   },

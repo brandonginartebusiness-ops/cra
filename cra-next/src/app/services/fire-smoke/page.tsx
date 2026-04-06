@@ -19,7 +19,7 @@ export default function FireSmokePage() {
     <ServicePageLayout
       title="Fire & Smoke Damage Claims"
       subtitle="The damage doesn't stop when the flames do."
-      heroImage="/images/service-fire-smoke.png"
+      heroImage=""
       serviceSlug="fire-smoke"
       description={[
         "Fire and smoke damage extends far beyond the burn zone. Smoke particles penetrate HVAC systems, embed in soft furnishings, and corrode wiring and metal fixtures throughout the property. Soot damage alone can render rooms uninhabitable even when there's no visible structural fire damage.",
