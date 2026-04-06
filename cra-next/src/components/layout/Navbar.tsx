@@ -49,7 +49,7 @@ export default function Navbar() {
               src="/brand_assets/logo-transparent.png"
               alt="Claim Remedy Adjusters"
               width={120}
-              height={36}
+              height={35}
               priority
             />
           </Link>

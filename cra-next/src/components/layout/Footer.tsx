@@ -11,7 +11,7 @@ export default function Footer() {
               src="/brand_assets/logo-transparent.png"
               alt="Claim Remedy Adjusters"
               width={130}
-              height={40}
+              height={38}
               className="mb-4"
             />
             <p className="text-sm text-[#666677] leading-relaxed max-w-xs">
