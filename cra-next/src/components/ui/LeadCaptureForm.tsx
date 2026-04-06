@@ -160,6 +160,10 @@ export default function LeadCaptureForm({
       variants={fadeInUp}
       className="bg-[#16161f] border border-white/5 rounded-2xl p-8 flex flex-col gap-5"
     >
+      {/* Honeypot — visually hidden, bots fill it, humans don't */}
+      <input type="text" name="website" tabIndex={-1} aria-hidden="true" style={{ display: "none" }} />
+      <input type="text" name="company" tabIndex={-1} aria-hidden="true" style={{ display: "none" }} />
+
       {status === "error" && (
         <div className="bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-3 text-sm text-red-400">
           Something went wrong. Please try again or call us directly at{" "}

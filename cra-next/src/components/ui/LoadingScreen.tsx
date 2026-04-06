@@ -22,6 +22,7 @@ export default function LoadingScreen() {
           initial={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
+          style={{ pointerEvents: "none" }}
           className="fixed inset-0 z-[9999] bg-[#0a0a0f] flex flex-col items-center justify-center"
         >
           {/* Logo */}

@@ -98,8 +98,8 @@ export default function ReviewsContent() {
           />
           <p className="text-lg text-[#9999aa] mt-4">
             5.0{" "}
-            <span className="text-[#d4a853]">&#9733;</span> &middot; 45 Reviews
-            on Google
+            <span className="text-[#d4a853]">&#9733;</span> &middot; Verified
+            Google Reviews
           </p>
         </motion.div>
 

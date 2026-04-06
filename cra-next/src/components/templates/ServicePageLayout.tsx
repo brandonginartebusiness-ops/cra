@@ -189,7 +189,7 @@ export default function ServicePageLayout({
             viewport={{ once: true, margin: "-60px" }}
             variants={fadeInUp}
           >
-            <motion.div
+            <motion.button
               layoutId={cardLayoutId}
               onClick={() =>
                 setModalResult({
@@ -206,7 +206,8 @@ export default function ServicePageLayout({
                   },
                 })
               }
-              className="block bg-[#16161f] border border-white/5 rounded-2xl p-8 cursor-pointer hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/20 transition-[box-shadow,border-color] duration-300"
+              className="text-left w-full bg-[#16161f] border border-white/5 rounded-2xl p-8 cursor-pointer hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/20 transition-[box-shadow,border-color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3b82f6]/60"
+              aria-label={`${caseResult.type} case result — press to see details`}
             >
               {/* Tag */}
               <p className="text-xs font-semibold uppercase tracking-widest text-[#3b82f6] mb-4">
@@ -246,7 +247,7 @@ export default function ServicePageLayout({
               <p className="text-[0.7rem] text-[#666677] mt-1">
                 Google Review &middot; {caseResult.review.timeAgo}
               </p>
-            </motion.div>
+            </motion.button>
           </motion.div>
 
           <CaseResultModal

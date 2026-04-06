@@ -42,7 +42,7 @@ export default function Results() {
           {caseResults.map((r) => {
             const layoutId = `result-card-${r.type}`;
             return (
-              <motion.div
+              <motion.button
                 key={r.type}
                 layoutId={layoutId}
                 variants={fadeInUp}
@@ -58,8 +58,8 @@ export default function Results() {
                     review: r.review,
                   })
                 }
-                className="bg-[#16161f] border border-white/5 rounded-2xl p-6 flex flex-col gap-4 cursor-pointer hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/20 transition-shadow transition-colors duration-300"
-                aria-label={`${r.type} case result — click for details`}
+                className="text-left w-full bg-[#16161f] border border-white/5 rounded-2xl p-6 flex flex-col gap-4 cursor-pointer hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/20 transition-shadow transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3b82f6]/60"
+                aria-label={`${r.type} case result — press to see details`}
               >
                 {/* Tag */}
                 <p className="text-xs font-semibold uppercase tracking-widest text-[#3b82f6]">
@@ -99,7 +99,7 @@ export default function Results() {
                     Google Review &middot; {r.review.timeAgo}
                   </p>
                 </div>
-              </motion.div>
+              </motion.button>
             );
           })}
         </motion.div>

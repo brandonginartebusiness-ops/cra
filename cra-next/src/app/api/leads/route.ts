@@ -10,9 +10,23 @@ function escapeHtml(str: string): string {
     .replace(/'/g, '&#x27;');
 }
 
+const VALID_HELP_TYPES = new Set(['denied', 'underpaid', 'new_claim', 'protect', 'appraisal', 'other']);
+const VALID_SERVICE_PAGES = new Set(['storm-hurricane', 'water-damage', 'fire-smoke', 'roof-claims', 'appraisal', 'contact', 'homepage']);
+
 export async function POST(request: NextRequest) {
   try {
+    // Payload size guard — reject anything over 32 KB
+    const contentLength = request.headers.get('content-length');
+    if (contentLength && parseInt(contentLength, 10) > 32_768) {
+      return NextResponse.json({ error: 'Payload too large' }, { status: 413 });
+    }
+
     const body = await request.json();
+
+    // Honeypot — bots fill hidden fields, humans don't
+    if (body.website || body.company) {
+      return NextResponse.json({ message: 'Lead submitted successfully' }, { status: 201 });
+    }
 
     const { full_name, phone, email, help_type, service_page } = body;
     if (!full_name || !phone || !email || !help_type || !service_page) {
@@ -22,12 +36,31 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Field length caps
+    if (
+      full_name.length > 120 ||
+      phone.length > 30 ||
+      email.length > 254 ||
+      (body.claim_number && body.claim_number.length > 60) ||
+      (body.message && body.message.length > 2000)
+    ) {
+      return NextResponse.json({ error: 'Field value too long' }, { status: 400 });
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
         { error: 'Invalid email address' },
         { status: 400 }
       );
+    }
+
+    // Allowlist enum fields to prevent junk data
+    if (!VALID_HELP_TYPES.has(help_type)) {
+      return NextResponse.json({ error: 'Invalid help_type' }, { status: 400 });
+    }
+    if (!VALID_SERVICE_PAGES.has(service_page)) {
+      return NextResponse.json({ error: 'Invalid service_page' }, { status: 400 });
     }
 
     const payload = {
@@ -75,8 +108,7 @@ async function sendEmailNotification(lead: Record<string, string>) {
   const resendApiKey = process.env.RESEND_API_KEY;
 
   if (!resendApiKey || resendApiKey === 're_PLACEHOLDER_GET_FROM_RESEND') {
-    console.log('Resend API key not configured — skipping email notification');
-    console.log('New lead received:', JSON.stringify(lead, null, 2));
+    console.warn('[leads] RESEND_API_KEY not configured — email notification skipped');
     return;
   }
 
