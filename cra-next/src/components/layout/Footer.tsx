@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/brand_assets/logo-transparent.png"
+              src="/brand_assets/logo.png"
               alt="Claim Remedy Adjusters"
               style={{ height: 40, width: "auto", marginBottom: "1rem" }}
             />

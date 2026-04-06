@@ -32,7 +32,7 @@ export default function LoadingScreen() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/brand_assets/logo-transparent.png"
+              src="/brand_assets/logo.png"
               alt="Claim Remedy Adjusters"
               style={{ height: 60, width: "auto" }}
             />

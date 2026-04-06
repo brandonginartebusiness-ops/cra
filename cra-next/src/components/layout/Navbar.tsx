@@ -46,7 +46,7 @@ export default function Navbar() {
           <Link href="/" aria-label="Home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/brand_assets/logo-transparent.png"
+              src="/brand_assets/logo.png"
               alt="Claim Remedy Adjusters"
               width={120}
               height={35}
