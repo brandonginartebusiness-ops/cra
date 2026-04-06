@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -7,14 +6,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div>
-            <Image
-              src="/brand_assets/logo-transparent.png"
-              alt="Claim Remedy Adjusters"
-              width={130}
-              height={38}
-              unoptimized
-              className="mb-4"
-            />
+            <div className="flex flex-col leading-none mb-4">
+              <span className="font-bebas text-xl tracking-widest text-[#f0f0f5]">Claim Remedy</span>
+              <span className="font-bebas text-sm tracking-[0.3em] text-[#3b82f6]">Adjusters</span>
+            </div>
             <p className="text-sm text-[#666677] leading-relaxed max-w-xs">
               Licensed Florida Public Adjusting Firm. We represent homeowners —
               never insurance companies.

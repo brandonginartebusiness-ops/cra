@@ -7,8 +7,6 @@ export default function LocalBusinessSchema() {
         "@id": "https://claimremedyadjusters.com/#business",
         name: "Claim Remedy Adjusters",
         url: "https://claimremedyadjusters.com",
-        logo: "https://claimremedyadjusters.com/brand_assets/logo-transparent.png",
-        image: "https://claimremedyadjusters.com/brand_assets/logo-transparent.png",
         description:
           "Licensed Florida Public Adjusters representing homeowners and commercial property owners. We fight for the settlement you deserve on hurricane, water, fire, roof, and mold damage claims. No recovery, no fee.",
         telephone: "+17862237867",

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -44,15 +43,9 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <Link href="/" aria-label="Home">
-            <Image
-              src="/brand_assets/logo-transparent.png"
-              alt="Claim Remedy Adjusters"
-              width={120}
-              height={35}
-              priority
-              unoptimized
-            />
+          <Link href="/" aria-label="Home" className="flex flex-col leading-none">
+            <span className="font-bebas text-xl tracking-widest text-[#f0f0f5]">Claim Remedy</span>
+            <span className="font-bebas text-sm tracking-[0.3em] text-[#3b82f6]">Adjusters</span>
           </Link>
 
           {/* Desktop links */}

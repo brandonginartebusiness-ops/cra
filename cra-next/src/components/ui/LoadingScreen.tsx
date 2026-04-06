@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 
 export default function LoadingScreen() {
   const [visible, setVisible] = useState(false);
@@ -30,15 +29,10 @@ export default function LoadingScreen() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+            className="flex flex-col items-center leading-none"
           >
-            <Image
-              src="/brand_assets/logo-transparent.png"
-              alt="Claim Remedy Adjusters"
-              width={165}
-              height={48}
-              priority
-              unoptimized
-            />
+            <span className="font-bebas text-3xl tracking-widest text-[#f0f0f5]">Claim Remedy</span>
+            <span className="font-bebas text-lg tracking-[0.3em] text-[#3b82f6]">Adjusters</span>
           </motion.div>
 
           {/* Brand name */}
