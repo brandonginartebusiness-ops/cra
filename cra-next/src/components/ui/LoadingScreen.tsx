@@ -29,10 +29,13 @@ export default function LoadingScreen() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-            className="flex flex-col items-center leading-none"
           >
-            <span className="font-bebas text-3xl tracking-widest text-[#f0f0f5]">Claim Remedy</span>
-            <span className="font-bebas text-lg tracking-[0.3em] text-[#3b82f6]">Adjusters</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand_assets/logo-transparent.png"
+              alt="Claim Remedy Adjusters"
+              style={{ height: 60, width: "auto" }}
+            />
           </motion.div>
 
           {/* Brand name */}

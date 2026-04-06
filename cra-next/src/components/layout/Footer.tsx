@@ -6,10 +6,12 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div>
-            <div className="flex flex-col leading-none mb-4">
-              <span className="font-bebas text-xl tracking-widest text-[#f0f0f5]">Claim Remedy</span>
-              <span className="font-bebas text-sm tracking-[0.3em] text-[#3b82f6]">Adjusters</span>
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand_assets/logo-transparent.png"
+              alt="Claim Remedy Adjusters"
+              style={{ height: 40, width: "auto", marginBottom: "1rem" }}
+            />
             <p className="text-sm text-[#666677] leading-relaxed max-w-xs">
               Licensed Florida Public Adjusting Firm. We represent homeowners —
               never insurance companies.
