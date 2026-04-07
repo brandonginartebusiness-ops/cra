@@ -10,7 +10,7 @@ export default function Footer() {
             <img
               src="/brand_assets/logo.png"
               alt="Claim Remedy Adjusters"
-              style={{ height: 40, width: "auto", marginBottom: "1rem", filter: "brightness(0) invert(1)" }}
+              style={{ height: 40, width: "auto", marginBottom: "1rem" }}
             />
             <p className="text-sm text-[#666677] leading-relaxed max-w-xs">
               Licensed Florida Public Adjusting Firm. We represent homeowners —

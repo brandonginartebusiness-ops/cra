@@ -35,7 +35,7 @@ export default function LoadingScreen() {
             <img
               src="/brand_assets/logo.png"
               alt="Claim Remedy Adjusters"
-              style={{ height: 72, width: "auto", filter: "brightness(0) invert(1)" }}
+              style={{ height: 72, width: "auto" }}
             />
           </motion.div>
 
