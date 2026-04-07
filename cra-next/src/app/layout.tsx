@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, DM_Sans, DM_Serif_Display } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -77,6 +78,7 @@ export default function RootLayout({
         <Footer />
         <WhatsAppFAB />
         <ChatWidget />
+        <Analytics />
       </body>
     </html>
   );
