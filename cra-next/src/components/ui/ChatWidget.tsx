@@ -24,7 +24,7 @@ export default function ChatWidget() {
           {
             role: "assistant",
             content:
-              "Hi! I'm the Claim Remedy AI assistant. I can walk you through the insurance claims process, explain your rights as a Florida homeowner, and help you understand how a public adjuster can help. What questions do you have?",
+              "Hey! If your home was damaged and you're not sure what to do next — you're in the right place. Whether your insurance company lowballed you, denied your claim, or you just don't know where to start, I can help. What's going on?",
           },
         ]);
       }, 300);
