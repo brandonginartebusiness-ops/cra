@@ -33,7 +33,7 @@ const panels = [
 
 export default function Proof() {
   return (
-    <section className="bg-[#111118] py-24 lg:py-32 border-t border-white/8">
+    <section className="bg-[#111118] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-5"

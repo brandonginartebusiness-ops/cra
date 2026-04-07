@@ -32,7 +32,7 @@ const cityLinks: { name: string; slug: string }[] = [
 
 export default function ServiceAreaMap() {
   return (
-    <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/8">
+    <section className="bg-[#111118] py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           {/* Map */}

@@ -25,7 +25,7 @@ export default function SectionHeading({
         </p>
       )}
       <h2
-        className="font-bebas text-4xl md:text-5xl lg:text-6xl leading-none tracking-tight text-[#f0f0f5]"
+        className="font-bebas text-5xl md:text-6xl lg:text-7xl leading-none tracking-tight text-[#f0f0f5]"
         dangerouslySetInnerHTML={{ __html: heading }}
       />
       {subheading && (

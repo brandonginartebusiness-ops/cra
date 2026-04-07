@@ -24,7 +24,7 @@ export default function Results() {
         >
           <SectionHeading
             label="Featured results"
-            heading="Real recoveries.<br/>Not projections."
+            heading='Real recoveries.<br/><span class="text-gradient">Not projections.</span>'
           />
           <p className="text-sm text-[#9999aa] max-w-sm lg:text-right leading-relaxed">
             Six claim types. Six real outcomes. Every quote below is a verified

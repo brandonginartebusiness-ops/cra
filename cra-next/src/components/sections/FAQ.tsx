@@ -10,7 +10,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="bg-[#111118] py-24 lg:py-32 border-t border-white/8">
+    <section id="faq" className="bg-[#111118] py-24 lg:py-32">
       <div className="max-w-3xl mx-auto px-6">
         <motion.div
           initial="hidden"
