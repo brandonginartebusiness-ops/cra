@@ -22,8 +22,8 @@ export default function LoadingScreen() {
           initial={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          style={{ pointerEvents: "none" }}
-          className="fixed inset-0 z-[9999] bg-[#1a1a1f] flex flex-col items-center justify-center"
+          style={{ pointerEvents: "none", backgroundColor: "#1a1a1f" }}
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
         >
           {/* Logo */}
           <motion.div
