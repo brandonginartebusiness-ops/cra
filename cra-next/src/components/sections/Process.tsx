@@ -7,7 +7,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Process() {
   return (
-    <section id="process" className="bg-[#0a0a0f] py-24 lg:py-32 border-t border-white/5">
+    <section id="process" className="bg-[#0a0a0f] py-24 lg:py-32 border-t border-white/8">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -23,7 +23,7 @@ export default function Process() {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5 rounded-2xl overflow-hidden"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#111118] border border-white/8 rounded-2xl overflow-hidden"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"

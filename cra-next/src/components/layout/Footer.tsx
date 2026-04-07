@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0a0a0f] border-t border-white/5 pt-16 pb-8">
+    <footer className="bg-[#1d1d1f] pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div>
@@ -10,7 +10,7 @@ export default function Footer() {
             <img
               src="/brand_assets/logo.png"
               alt="Claim Remedy Adjusters"
-              style={{ height: 40, width: "auto", marginBottom: "1rem" }}
+              style={{ height: 40, width: "auto", marginBottom: "1rem", filter: "brightness(0) invert(1)" }}
             />
             <p className="text-sm text-[#666677] leading-relaxed max-w-xs">
               Licensed Florida Public Adjusting Firm. We represent homeowners —
@@ -35,7 +35,7 @@ export default function Footer() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-sm text-[#9999aa] hover:text-[#f0f0f5] transition-colors"
+                    className="text-sm text-[#666677] hover:text-white transition-colors"
                   >
                     {label}
                   </Link>
@@ -48,11 +48,11 @@ export default function Footer() {
             <h4 className="text-xs font-semibold uppercase tracking-widest text-[#666677] mb-4">
               Contact
             </h4>
-            <ul className="flex flex-col gap-2.5 text-sm text-[#9999aa]">
+            <ul className="flex flex-col gap-2.5 text-sm text-[#666677]">
               <li>
                 <a
                   href="tel:+17862237867"
-                  className="hover:text-[#f0f0f5] transition-colors"
+                  className="hover:text-white transition-colors"
                 >
                   (786) 223-7867
                 </a>
@@ -60,7 +60,7 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:office@cradjusters.com"
-                  className="hover:text-[#f0f0f5] transition-colors"
+                  className="hover:text-white transition-colors"
                 >
                   office@cradjusters.com
                 </a>
@@ -71,7 +71,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-[#666677]">
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-[#666677]">
           <p>
             &copy; {new Date().getFullYear()} Claim Remedy Adjusters. All rights
             reserved.

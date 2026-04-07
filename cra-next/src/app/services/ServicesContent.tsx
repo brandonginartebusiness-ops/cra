@@ -85,7 +85,7 @@ export default function ServicesContent() {
                 >
                   <Link
                     href={s.href}
-                    className="group block bg-[#16161f] border border-white/5 rounded-2xl overflow-hidden hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/20 transition-shadow transition-colors duration-300"
+                    className="group block bg-[#0a0a0f] border border-white/8 rounded-2xl overflow-hidden hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/20 transition-shadow transition-colors duration-300"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden">
                       {s.image ? (
@@ -97,7 +97,7 @@ export default function ServicesContent() {
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-[#1a1a2e] to-[#0a0a0f] flex items-center justify-center">
+                        <div className="w-full h-full bg-gradient-to-br from-[#1a1a2e] to-white flex items-center justify-center">
                           <span className="font-bebas text-2xl text-[#3b82f6]/40">
                             {s.title}
                           </span>

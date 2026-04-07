@@ -6,7 +6,7 @@ import LeadCaptureForm from "@/components/ui/LeadCaptureForm";
 
 export default function ContactForm() {
   return (
-    <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/5">
+    <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/8">
       <div className="max-w-xl mx-auto px-6">
         <motion.div
           initial="hidden"

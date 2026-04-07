@@ -33,7 +33,7 @@ const panels = [
 
 export default function Proof() {
   return (
-    <section className="bg-[#111118] py-24 lg:py-32 border-t border-white/5">
+    <section className="bg-[#111118] py-24 lg:py-32 border-t border-white/8">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-5"
@@ -46,7 +46,7 @@ export default function Proof() {
             <motion.div
               key={p.title}
               variants={fadeInUp}
-              className="bg-[#16161f] border border-white/5 rounded-2xl overflow-hidden"
+              className="bg-[#0a0a0f] border border-white/8 rounded-2xl overflow-hidden"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
@@ -56,8 +56,8 @@ export default function Proof() {
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#16161f] via-transparent to-transparent" />
-                <span className="absolute bottom-3 left-3 text-xs bg-black/60 text-[#f0f0f5] border border-white/10 px-3 py-1 rounded-full">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#f5f5f7] via-transparent to-transparent" />
+                <span className="absolute bottom-3 left-3 text-xs bg-black/60 text-[#f0f0f5] border border-white/8 px-3 py-1 rounded-full">
                   {p.tag}
                 </span>
               </div>

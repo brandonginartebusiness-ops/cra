@@ -23,7 +23,7 @@ export default function LoadingScreen() {
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
           style={{ pointerEvents: "none" }}
-          className="fixed inset-0 z-[9999] bg-[#0a0a0f] flex flex-col items-center justify-center"
+          className="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center"
         >
           {/* Logo */}
           <motion.div
@@ -35,26 +35,16 @@ export default function LoadingScreen() {
             <img
               src="/brand_assets/logo.png"
               alt="Claim Remedy Adjusters"
-              style={{ height: 60, width: "auto" }}
+              style={{ height: 72, width: "auto" }}
             />
           </motion.div>
 
-          {/* Brand name */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.35 }}
-            className="font-bebas text-[#666677] tracking-[0.35em] text-xs mt-4"
-          >
-            CLAIM REMEDY ADJUSTERS
-          </motion.p>
-
-          {/* Progress bar track */}
+          {/* Progress bar — enlarged */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.4 }}
-            className="mt-10 w-52 h-[3px] bg-white/8 rounded-full overflow-hidden"
+            transition={{ duration: 0.3, delay: 0.35 }}
+            className="mt-12 w-72 h-[4px] bg-[#e5e5e7] rounded-full overflow-hidden"
           >
             <motion.div
               initial={{ width: "0%" }}
@@ -63,9 +53,10 @@ export default function LoadingScreen() {
               onAnimationComplete={() => {
                 setTimeout(() => setVisible(false), 120);
               }}
-              className="h-full bg-[#3b82f6] rounded-full"
+              className="h-full rounded-full"
               style={{
-                boxShadow: "0 0 10px rgba(59,130,246,0.7), 0 0 20px rgba(59,130,246,0.3)",
+                background: "linear-gradient(90deg, #3b82f6 0%, #0d9488 100%)",
+                boxShadow: "0 0 12px rgba(59,130,246,0.5), 0 0 24px rgba(13,148,136,0.3)",
               }}
             />
           </motion.div>

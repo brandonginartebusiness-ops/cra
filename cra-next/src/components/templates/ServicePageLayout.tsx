@@ -63,7 +63,7 @@ export default function ServicePageLayout({
               className="object-cover opacity-[0.15]"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f]/60 via-[#0a0a0f]/80 to-[#0a0a0f]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/80 to-white" />
           </div>
         )}
         <div className="relative max-w-7xl mx-auto px-6">
@@ -96,7 +96,7 @@ export default function ServicePageLayout({
       </section>
 
       {/* ─── Section 2: Service Description ─── */}
-      <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/5">
+      <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
             <motion.div
@@ -155,7 +155,7 @@ export default function ServicePageLayout({
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-[#16161f] to-[#0a0a0f] flex items-center justify-center">
+                <div className="w-full h-full bg-gradient-to-br from-[#f5f5f7] to-white flex items-center justify-center">
                   <span className="font-bebas text-3xl text-[#3b82f6]/40">
                     {title}
                   </span>
@@ -167,7 +167,7 @@ export default function ServicePageLayout({
       </section>
 
       {/* ─── Section 3: Case Result Card ─── */}
-      <section className="bg-[#0a0a0f] py-20 lg:py-28 border-t border-white/5">
+      <section className="bg-[#0a0a0f] py-20 lg:py-28 border-t border-white/8">
         <div className="max-w-2xl mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -206,7 +206,7 @@ export default function ServicePageLayout({
                   },
                 })
               }
-              className="text-left w-full bg-[#16161f] border border-white/5 rounded-2xl p-8 cursor-pointer hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/20 transition-[box-shadow,border-color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3b82f6]/60"
+              className="text-left w-full bg-[#0a0a0f] border border-white/8 rounded-2xl p-8 cursor-pointer hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/20 transition-[box-shadow,border-color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3b82f6]/60"
               aria-label={`${caseResult.type} case result — press to see details`}
             >
               {/* Tag */}
@@ -258,7 +258,7 @@ export default function ServicePageLayout({
       </section>
 
       {/* ─── Section 4: Lead Capture Form ─── */}
-      <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/5">
+      <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/8">
         <div className="max-w-xl mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -281,7 +281,7 @@ export default function ServicePageLayout({
       </section>
 
       {/* ─── Section 5: CTA Banner ─── */}
-      <section className="bg-[#0a0a0f] py-16 lg:py-20 border-t border-white/5">
+      <section className="bg-[#0a0a0f] py-16 lg:py-20 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial="hidden"
@@ -306,7 +306,7 @@ export default function ServicePageLayout({
               </a>
               <a
                 href="tel:+17862237867"
-                className="inline-flex items-center gap-3 bg-[#16161f] border border-white/10 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300"
+                className="inline-flex items-center gap-3 bg-[#0a0a0f] border border-white/8 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300"
               >
                 <svg
                   width="18"

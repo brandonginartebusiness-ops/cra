@@ -40,7 +40,7 @@ export default function InstagramFeed() {
   }, []);
 
   return (
-    <section className="bg-[#111118] py-24 lg:py-32 border-t border-white/5">
+    <section className="bg-[#111118] py-24 lg:py-32 border-t border-white/8">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -62,7 +62,7 @@ export default function InstagramFeed() {
             {Array.from({ length: 9 }).map((_, i) => (
               <div
                 key={i}
-                className="aspect-square rounded-xl bg-[#16161f] animate-pulse"
+                className="aspect-square rounded-xl bg-[#0a0a0f] animate-pulse"
               />
             ))}
           </div>
@@ -81,7 +81,7 @@ export default function InstagramFeed() {
                 target="_blank"
                 rel="noopener noreferrer"
                 variants={fadeInUp}
-                className="group relative aspect-square rounded-xl overflow-hidden border border-white/5 bg-[#16161f] hover:scale-[1.02] hover:border-[#3b82f6]/20 transition-transform duration-300"
+                className="group relative aspect-square rounded-xl overflow-hidden border border-white/8 bg-[#0a0a0f] hover:scale-[1.02] hover:border-[#3b82f6]/20 transition-transform duration-300"
               >
                 {post.imageUrl && !isPlaceholder ? (
                   <>
@@ -130,7 +130,7 @@ export default function InstagramFeed() {
             href="https://instagram.com/claimremedyadjusters"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#16161f] border border-white/10 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300"
+            className="inline-flex items-center gap-2 bg-[#0a0a0f] border border-white/8 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300"
           >
             Follow Us on Instagram
             <svg

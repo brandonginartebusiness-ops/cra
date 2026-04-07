@@ -46,7 +46,7 @@ export default function AreasContent() {
       </section>
 
       {/* ── Map + Stats ───────────────────────────────────────────── */}
-      <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/5">
+      <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <motion.div
@@ -75,22 +75,22 @@ export default function AreasContent() {
                 claim.
               </p>
               <div className="grid grid-cols-3 gap-5 mb-8">
-                <div className="bg-[#16161f] border border-white/5 rounded-xl p-5 text-center">
+                <div className="bg-[#0a0a0f] border border-white/8 rounded-xl p-5 text-center">
                   <p className="font-bebas text-3xl text-[#3b82f6]">{cities.length}</p>
                   <p className="text-xs text-[#666677] mt-1">Cities Covered</p>
                 </div>
-                <div className="bg-[#16161f] border border-white/5 rounded-xl p-5 text-center">
+                <div className="bg-[#0a0a0f] border border-white/8 rounded-xl p-5 text-center">
                   <p className="font-bebas text-3xl text-[#3b82f6]">67</p>
                   <p className="text-xs text-[#666677] mt-1">FL Counties</p>
                 </div>
-                <div className="bg-[#16161f] border border-white/5 rounded-xl p-5 text-center">
+                <div className="bg-[#0a0a0f] border border-white/8 rounded-xl p-5 text-center">
                   <p className="font-bebas text-3xl text-[#3b82f6]">5.0★</p>
                   <p className="text-xs text-[#666677] mt-1">Google Rating</p>
                 </div>
               </div>
               <a
                 href="tel:+17862237867"
-                className="inline-flex items-center gap-3 bg-[#16161f] border border-white/10 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300"
+                className="inline-flex items-center gap-3 bg-[#0a0a0f] border border-white/8 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
@@ -103,7 +103,7 @@ export default function AreasContent() {
       </section>
 
       {/* ── City Grid by Region ───────────────────────────────────── */}
-      <section className="bg-[#0a0a0f] py-20 lg:py-28 border-t border-white/5">
+      <section className="bg-[#0a0a0f] py-20 lg:py-28 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -144,7 +144,7 @@ export default function AreasContent() {
                       <motion.div key={city.slug} variants={fadeInUp}>
                         <Link
                           href={`/areas/${city.slug}`}
-                          className="flex flex-col bg-[#16161f] border border-white/5 rounded-xl p-5 hover:border-[#3b82f6]/25 hover:shadow-[0_4px_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300 group h-full"
+                          className="flex flex-col bg-[#0a0a0f] border border-white/8 rounded-xl p-5 hover:border-[#3b82f6]/25 hover:shadow-[0_4px_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300 group h-full"
                         >
                           <p className="text-xs text-[#666677] mb-1">{city.county}</p>
                           <p className="text-base font-semibold text-[#f0f0f5] group-hover:text-[#3b82f6] transition-colors mb-3">
@@ -171,7 +171,7 @@ export default function AreasContent() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────────── */}
-      <section className="bg-[#111118] py-16 lg:py-20 border-t border-white/5">
+      <section className="bg-[#111118] py-16 lg:py-20 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial="hidden"
@@ -194,7 +194,7 @@ export default function AreasContent() {
               </Link>
               <a
                 href="tel:+17862237867"
-                className="inline-flex items-center gap-3 bg-[#16161f] border border-white/10 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 transition-[border-color] duration-300"
+                className="inline-flex items-center gap-3 bg-[#0a0a0f] border border-white/8 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 transition-[border-color] duration-300"
               >
                 Call (786) 223-7867
               </a>

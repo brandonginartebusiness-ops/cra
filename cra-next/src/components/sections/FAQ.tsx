@@ -10,7 +10,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="bg-[#111118] py-24 lg:py-32 border-t border-white/5">
+    <section id="faq" className="bg-[#111118] py-24 lg:py-32 border-t border-white/8">
       <div className="max-w-3xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -34,11 +34,11 @@ export default function FAQ() {
               viewport={{ once: true, margin: "-40px" }}
               variants={fadeInUp}
               transition={{ delay: i * 0.06 }}
-              className="border border-white/5 rounded-xl overflow-hidden"
+              className="border border-white/8 rounded-xl overflow-hidden"
             >
               <button
                 onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left text-[#f0f0f5] font-medium hover:bg-white/2 transition-colors cursor-pointer"
+                className="w-full flex items-center justify-between px-6 py-5 text-left text-[#f0f0f5] font-medium hover:bg-[#0a0a0f]/2 transition-colors cursor-pointer"
                 aria-expanded={open === i}
               >
                 <span className="text-sm md:text-base">{faq.question}</span>

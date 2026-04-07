@@ -2,36 +2,34 @@ interface Props {
   label?: string;
   heading: string;
   subheading?: string;
-  light?: boolean;
+  accent?: "blue" | "teal";
   className?: string;
+  /** @deprecated — kept for backwards compat; light is always true now */
+  light?: boolean;
 }
 
 export default function SectionHeading({
   label,
   heading,
   subheading,
-  light = false,
+  accent = "blue",
   className,
 }: Props) {
-  const textColor = light ? "text-[#141314]" : "text-[#f0f0f5]";
-  const mutedColor = light ? "text-[#696869]" : "text-[#9999aa]";
-  const labelColor = light ? "text-[#3b82f6]" : "text-[#3b82f6]";
+  const labelColor = accent === "teal" ? "text-[#0d9488]" : "text-[#3b82f6]";
 
   return (
     <div className={className}>
       {label && (
-        <p
-          className={`text-xs font-semibold uppercase tracking-[0.1em] ${labelColor} mb-3`}
-        >
+        <p className={`font-serif text-sm ${labelColor} mb-3 tracking-wide`}>
           {label}
         </p>
       )}
       <h2
-        className={`font-bebas text-4xl md:text-5xl lg:text-6xl leading-none tracking-tight ${textColor}`}
+        className="font-bebas text-4xl md:text-5xl lg:text-6xl leading-none tracking-tight text-[#f0f0f5]"
         dangerouslySetInnerHTML={{ __html: heading }}
       />
       {subheading && (
-        <p className={`mt-4 text-base leading-relaxed ${mutedColor} max-w-xl`}>
+        <p className="mt-4 text-base leading-relaxed text-[#9999aa] max-w-xl">
           {subheading}
         </p>
       )}

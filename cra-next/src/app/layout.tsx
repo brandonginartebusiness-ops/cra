@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, DM_Sans } from "next/font/google";
+import { Bebas_Neue, DM_Sans, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFAB from "@/components/layout/WhatsAppFAB";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+import ChatWidget from "@/components/ui/ChatWidget";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 
 const bebasNeue = Bebas_Neue({
@@ -17,6 +18,13 @@ const bebasNeue = Bebas_Neue({
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-dm-sans",
+  display: "swap",
+});
+
+const dmSerifDisplay = DM_Serif_Display({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-dm-serif",
   display: "swap",
 });
 
@@ -59,7 +67,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bebasNeue.variable} ${dmSans.variable}`}
+      className={`${bebasNeue.variable} ${dmSans.variable} ${dmSerifDisplay.variable}`}
     >
       <body>
         <LocalBusinessSchema />
@@ -68,6 +76,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <WhatsAppFAB />
+        <ChatWidget />
       </body>
     </html>
   );

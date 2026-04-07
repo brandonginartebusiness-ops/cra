@@ -110,7 +110,7 @@ export default function CityPageLayout({ city }: Props) {
               </Link>
               <a
                 href="tel:+17862237867"
-                className="inline-flex items-center justify-center gap-2 bg-white/5 border border-white/10 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 transition-[border-color] duration-300"
+                className="inline-flex items-center justify-center gap-2 bg-[#111118] border border-white/8 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 transition-[border-color] duration-300"
               >
                 Call (786) 223-7867
               </a>
@@ -120,7 +120,7 @@ export default function CityPageLayout({ city }: Props) {
       </section>
 
       {/* ── Section 2: City-Specific Content ─────────────────────────── */}
-      <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/5">
+      <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20">
             <motion.div
@@ -149,7 +149,7 @@ export default function CityPageLayout({ city }: Props) {
               viewport={{ once: true, margin: "-80px" }}
               variants={slideInRight}
             >
-              <div className="bg-[#16161f] border border-white/5 rounded-2xl p-8 h-fit">
+              <div className="bg-[#0a0a0f] border border-white/8 rounded-2xl p-8 h-fit">
                 <h3 className="font-bebas text-2xl text-[#f0f0f5] mb-6 tracking-tight">
                   {city.city} Property Facts
                 </h3>
@@ -192,7 +192,7 @@ export default function CityPageLayout({ city }: Props) {
       </section>
 
       {/* ── Section 3: Damage Types ───────────────────────────────────── */}
-      <section className="bg-[#0a0a0f] py-20 lg:py-28 border-t border-white/5">
+      <section className="bg-[#0a0a0f] py-20 lg:py-28 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -217,7 +217,7 @@ export default function CityPageLayout({ city }: Props) {
               <motion.div key={dt.label} variants={fadeInUp}>
                 <Link
                   href={SERVICE_LINKS[dt.slug] ?? "/services"}
-                  className="flex items-center gap-4 bg-[#16161f] border border-white/5 rounded-xl p-5 hover:border-[#3b82f6]/25 hover:shadow-[0_4px_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300 group"
+                  className="flex items-center gap-4 bg-[#0a0a0f] border border-white/8 rounded-xl p-5 hover:border-[#3b82f6]/25 hover:shadow-[0_4px_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300 group"
                 >
                   <span className="text-[#3b82f6] shrink-0 group-hover:scale-110 transition-transform duration-200">
                     {DAMAGE_ICONS[dt.slug] ?? DAMAGE_ICONS["roof-claims"]}
@@ -234,7 +234,7 @@ export default function CityPageLayout({ city }: Props) {
       </section>
 
       {/* ── Section 4: Case Result ────────────────────────────────────── */}
-      <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/5">
+      <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/8">
         <div className="max-w-2xl mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -272,7 +272,7 @@ export default function CityPageLayout({ city }: Props) {
                   },
                 })
               }
-              className="text-left w-full bg-[#16161f] border border-white/5 rounded-2xl p-8 cursor-pointer hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/20 transition-[transform,box-shadow,border-color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3b82f6]/60"
+              className="text-left w-full bg-[#0a0a0f] border border-white/8 rounded-2xl p-8 cursor-pointer hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/20 transition-[transform,box-shadow,border-color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3b82f6]/60"
               aria-label={`${caseResult.type} case result — press to see details`}
             >
               <p className="text-xs font-semibold uppercase tracking-widest text-[#3b82f6] mb-4">
@@ -305,7 +305,7 @@ export default function CityPageLayout({ city }: Props) {
       </section>
 
       {/* ── Section 5: Lead Form ──────────────────────────────────────── */}
-      <section className="bg-[#0a0a0f] py-20 lg:py-28 border-t border-white/5">
+      <section className="bg-[#0a0a0f] py-20 lg:py-28 border-t border-white/8">
         <div className="max-w-xl mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -327,7 +327,7 @@ export default function CityPageLayout({ city }: Props) {
 
       {/* ── Section 6: Nearby Areas ───────────────────────────────────── */}
       {city.nearbyAreas.length > 0 && (
-        <section className="bg-[#111118] py-16 lg:py-20 border-t border-white/5">
+        <section className="bg-[#111118] py-16 lg:py-20 border-t border-white/8">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div
               initial="hidden"
@@ -343,7 +343,7 @@ export default function CityPageLayout({ city }: Props) {
                   <Link
                     key={area.slug}
                     href={`/areas/${area.slug}`}
-                    className="inline-flex items-center gap-1.5 bg-[#16161f] border border-white/8 text-sm text-[#9999aa] px-4 py-2 rounded-full hover:border-[#3b82f6]/30 hover:text-[#f0f0f5] transition-[border-color,color] duration-200"
+                    className="inline-flex items-center gap-1.5 bg-[#0a0a0f] border border-white/8 text-sm text-[#9999aa] px-4 py-2 rounded-full hover:border-[#3b82f6]/30 hover:text-[#f0f0f5] transition-[border-color,color] duration-200"
                   >
                     {area.name}
                     <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -353,7 +353,7 @@ export default function CityPageLayout({ city }: Props) {
                 ))}
                 <Link
                   href="/areas"
-                  className="inline-flex items-center gap-1.5 bg-[#16161f] border border-white/8 text-sm text-[#3b82f6] px-4 py-2 rounded-full hover:border-[#3b82f6]/30 transition-[border-color] duration-200"
+                  className="inline-flex items-center gap-1.5 bg-[#0a0a0f] border border-white/8 text-sm text-[#3b82f6] px-4 py-2 rounded-full hover:border-[#3b82f6]/30 transition-[border-color] duration-200"
                 >
                   All service areas →
                 </Link>
@@ -364,7 +364,7 @@ export default function CityPageLayout({ city }: Props) {
       )}
 
       {/* ── Section 7: CTA Banner ─────────────────────────────────────── */}
-      <section className="bg-[#0a0a0f] py-16 lg:py-20 border-t border-white/5">
+      <section className="bg-[#0a0a0f] py-16 lg:py-20 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial="hidden"
@@ -389,7 +389,7 @@ export default function CityPageLayout({ city }: Props) {
               </a>
               <a
                 href="tel:+17862237867"
-                className="inline-flex items-center gap-3 bg-[#16161f] border border-white/10 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300"
+                className="inline-flex items-center gap-3 bg-[#0a0a0f] border border-white/8 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />

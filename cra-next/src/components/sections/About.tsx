@@ -18,7 +18,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="bg-[#0a0a0f] py-24 lg:py-32 border-t border-white/5"
+      className="bg-[#0a0a0f] py-24 lg:py-32 border-t border-white/8"
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
@@ -75,7 +75,7 @@ export default function About() {
                 <div
                   key={f.label}
                   className={`flex flex-col gap-0.5 px-5 py-4 ${
-                    i < facts.length - 1 ? "border-b border-white/5" : ""
+                    i < facts.length - 1 ? "border-b border-white/8" : ""
                   }`}
                 >
                   <span className="text-[0.68rem] font-semibold uppercase tracking-widest text-[#666677]">

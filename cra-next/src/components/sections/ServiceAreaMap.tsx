@@ -32,7 +32,7 @@ const cityLinks: { name: string; slug: string }[] = [
 
 export default function ServiceAreaMap() {
   return (
-    <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/5">
+    <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/8">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           {/* Map */}
@@ -88,7 +88,7 @@ export default function ServiceAreaMap() {
             </p>
             <a
               href="tel:+17862237867"
-              className="inline-flex items-center gap-3 bg-[#16161f] border border-white/10 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300"
+              className="inline-flex items-center gap-3 bg-[#0a0a0f] border border-white/8 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300"
             >
               <svg
                 width="18"

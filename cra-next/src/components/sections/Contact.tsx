@@ -9,7 +9,7 @@ const WA_LINK =
 
 export default function Contact() {
   return (
-    <section id="connect" className="bg-[#0a0a0f] py-24 lg:py-32 border-t border-white/5">
+    <section id="connect" className="bg-[#0a0a0f] py-24 lg:py-32 border-t border-white/8">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
           <motion.div
@@ -38,7 +38,7 @@ export default function Contact() {
               href={WA_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 bg-[#16161f] border border-white/5 rounded-2xl p-6 hover:border-[#25d366]/30 hover:shadow-[0_0_24px_rgba(37,211,102,0.08)] transition-[border-color,box-shadow] group"
+              className="flex items-center gap-4 bg-[#0a0a0f] border border-white/8 rounded-2xl p-6 hover:border-[#25d366]/30 hover:shadow-[0_0_24px_rgba(37,211,102,0.08)] transition-[border-color,box-shadow] group"
             >
               <div className="w-11 h-11 rounded-full bg-[#25d366]/10 flex items-center justify-center shrink-0">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="#25d366">
@@ -59,7 +59,7 @@ export default function Contact() {
             <motion.a
               variants={fadeInUp}
               href="tel:+17862237867"
-              className="flex items-center gap-4 bg-[#16161f] border border-white/5 rounded-2xl p-6 hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] group"
+              className="flex items-center gap-4 bg-[#0a0a0f] border border-white/8 rounded-2xl p-6 hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] group"
             >
               <div className="w-11 h-11 rounded-full bg-[#3b82f6]/10 flex items-center justify-center shrink-0">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -77,9 +77,9 @@ export default function Contact() {
             {/* Address */}
             <motion.div
               variants={fadeInUp}
-              className="flex items-center gap-4 bg-[#16161f] border border-white/5 rounded-2xl p-6"
+              className="flex items-center gap-4 bg-[#0a0a0f] border border-white/8 rounded-2xl p-6"
             >
-              <div className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+              <div className="w-11 h-11 rounded-full bg-[#111118] flex items-center justify-center shrink-0">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9999aa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
                 </svg>

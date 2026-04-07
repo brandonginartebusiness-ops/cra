@@ -43,10 +43,10 @@ function ReviewCard({
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.25 }}
-      className={`block bg-[#16161f] rounded-2xl p-6 flex flex-col gap-4 cursor-pointer hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] transition-[box-shadow,border-color] duration-300 ${
+      className={`block bg-[#0a0a0f] rounded-2xl p-6 flex flex-col gap-4 cursor-pointer hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] transition-[box-shadow,border-color] duration-300 ${
         featured
           ? "border-2 border-[#d4a853]/30 hover:border-[#d4a853]/50"
-          : "border border-white/5 hover:border-[#3b82f6]/20"
+          : "border border-white/8 hover:border-[#3b82f6]/20"
       }`}
     >
       <div className="flex items-center justify-between">
@@ -117,7 +117,7 @@ export default function ReviewsContent() {
               className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer ${
                 activeFilter === f.key
                   ? "bg-[#3b82f6] text-white"
-                  : "bg-[#16161f] text-[#9999aa] border border-white/5 hover:border-[#3b82f6]/30 hover:text-[#f0f0f5]"
+                  : "bg-[#0a0a0f] text-[#9999aa] border border-white/8 hover:border-[#3b82f6]/30 hover:text-[#f0f0f5]"
               }`}
             >
               {f.label}

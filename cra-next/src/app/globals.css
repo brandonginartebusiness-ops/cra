@@ -1,25 +1,43 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cra-bg: #0a0a0f;
+  /* ── Backgrounds (dark) ────────────────────────── */
+  --color-cra-bg:           #0a0a0f;
   --color-cra-bg-secondary: #111118;
-  --color-cra-card: #16161f;
-  --color-cra-card-hover: #1c1c28;
-  --color-cra-text: #f0f0f5;
-  --color-cra-muted: #9999aa;
-  --color-cra-dim: #666677;
-  --color-cra-accent: #3b82f6;
-  --color-cra-gold: #d4a853;
-  --color-cra-border: rgba(255,255,255,0.06);
-  --font-bebas: var(--font-bebas-neue);
-  --font-body: var(--font-dm-sans);
+  --color-cra-card:         #16161f;
+  --color-cra-card-hover:   #1c1c26;
+
+  /* ── Text ──────────────────────────────────────── */
+  --color-cra-text:    #f0f0f5;
+  --color-cra-muted:   #9999aa;
+  --color-cra-dim:     #666677;
+
+  /* ── Accents ───────────────────────────────────── */
+  --color-cra-blue:    #3b82f6;
+  --color-cra-teal:    #0d9488;
+  --color-cra-gold:    #d4a853;
+
+  /* ── Borders ───────────────────────────────────── */
+  --color-cra-border:  rgba(255,255,255,0.08);
+
+  /* ── Fonts ─────────────────────────────────────── */
+  --font-bebas:  var(--font-bebas-neue);
+  --font-body:   var(--font-dm-sans);
+  --font-serif:  var(--font-dm-serif);
 }
 
 :root {
-  --cra-accent-glow: rgba(59,130,246,0.15);
+  --cra-accent-glow:  rgba(59,130,246,0.12);
+  --cra-teal-glow:    rgba(13,148,136,0.12);
+  --cra-shadow-card:  0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
+  --cra-shadow-hover: 0 4px 20px rgba(0,0,0,0.08), 0 8px 40px rgba(0,0,0,0.06);
 }
 
-html { scroll-behavior: smooth; }
+/* 25% text size increase — scales all rem-based Tailwind classes */
+html {
+  font-size: 20px;
+  scroll-behavior: smooth;
+}
 
 body {
   background-color: #0a0a0f;
@@ -29,7 +47,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Serif utility class (DM Serif Display) */
+.font-serif {
+  font-family: var(--font-dm-serif), Georgia, serif;
+}
+
 ::selection {
   background-color: #3b82f6;
   color: #fff;
+}
+
+/* Apple-style subtle card shadow */
+.card-shadow {
+  box-shadow: var(--cra-shadow-card);
+}
+.card-shadow-hover:hover {
+  box-shadow: var(--cra-shadow-hover);
+}
+
+/* Teal gradient text utility */
+.text-gradient {
+  background: linear-gradient(135deg, #3b82f6 0%, #0d9488 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

@@ -16,7 +16,7 @@ const reviews = [
 
 export default function Reviews() {
   return (
-    <section id="testimonials" className="bg-[#0a0a0f] py-24 lg:py-32 border-t border-white/5">
+    <section id="testimonials" className="bg-[#0a0a0f] py-24 lg:py-32 border-t border-white/8">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -42,7 +42,7 @@ export default function Reviews() {
               viewport={{ once: true, margin: "-60px" }}
               variants={fadeInUp}
               transition={{ delay: i * 0.08 }}
-              className="bg-[#16161f] border border-white/5 rounded-2xl p-6 flex flex-col gap-4"
+              className="bg-[#0a0a0f] border border-white/8 rounded-2xl p-6 flex flex-col gap-4"
             >
               <StarRating className="text-sm" />
               <p className="text-sm text-[#9999aa] italic leading-relaxed flex-1">

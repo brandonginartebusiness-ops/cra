@@ -111,7 +111,7 @@ export default function LeadCaptureForm({
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-[#16161f] border border-white/5 rounded-2xl p-8 text-center"
+        className="bg-[#0a0a0f] border border-white/8 rounded-2xl p-8 text-center"
       >
         <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-[#22c55e]/10 flex items-center justify-center">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -158,7 +158,7 @@ export default function LeadCaptureForm({
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
       variants={fadeInUp}
-      className="bg-[#16161f] border border-white/5 rounded-2xl p-8 flex flex-col gap-5"
+      className="bg-[#0a0a0f] border border-white/8 rounded-2xl p-8 flex flex-col gap-5"
     >
       {/* Honeypot — visually hidden, bots fill it, humans don't */}
       <input type="text" name="website" tabIndex={-1} aria-hidden="true" style={{ display: "none" }} />
@@ -183,7 +183,7 @@ export default function LeadCaptureForm({
           value={formData.fullName}
           onChange={handleChange}
           disabled={status === "submitting"}
-          className={`${inputClass} ${errors.fullName ? "border-red-500/50" : "border-white/10"}`}
+          className={`${inputClass} ${errors.fullName ? "border-red-500/50" : "border-white/8"}`}
           placeholder="Your full name"
         />
         {errors.fullName && <p className="text-xs text-red-400 mt-1">{errors.fullName}</p>}
@@ -201,7 +201,7 @@ export default function LeadCaptureForm({
           value={formData.phone}
           onChange={handleChange}
           disabled={status === "submitting"}
-          className={`${inputClass} ${errors.phone ? "border-red-500/50" : "border-white/10"}`}
+          className={`${inputClass} ${errors.phone ? "border-red-500/50" : "border-white/8"}`}
           placeholder="(555) 123-4567"
         />
         {errors.phone && <p className="text-xs text-red-400 mt-1">{errors.phone}</p>}
@@ -219,7 +219,7 @@ export default function LeadCaptureForm({
           value={formData.email}
           onChange={handleChange}
           disabled={status === "submitting"}
-          className={`${inputClass} ${errors.email ? "border-red-500/50" : "border-white/10"}`}
+          className={`${inputClass} ${errors.email ? "border-red-500/50" : "border-white/8"}`}
           placeholder="you@email.com"
         />
         {errors.email && <p className="text-xs text-red-400 mt-1">{errors.email}</p>}
@@ -237,7 +237,7 @@ export default function LeadCaptureForm({
           value={formData.claimNumber}
           onChange={handleChange}
           disabled={status === "submitting"}
-          className={`${inputClass} border-white/10`}
+          className={`${inputClass} border-white/8`}
           placeholder="If you have one"
         />
       </div>
@@ -253,7 +253,7 @@ export default function LeadCaptureForm({
           value={formData.helpType}
           onChange={handleChange}
           disabled={status === "submitting"}
-          className={`${inputClass} appearance-none ${errors.helpType ? "border-red-500/50" : "border-white/10"}`}
+          className={`${inputClass} appearance-none ${errors.helpType ? "border-red-500/50" : "border-white/8"}`}
         >
           <option value="">Select an option...</option>
           <option value="denied">My claim was denied</option>
@@ -278,7 +278,7 @@ export default function LeadCaptureForm({
           value={formData.message}
           onChange={handleChange}
           disabled={status === "submitting"}
-          className={`${inputClass} border-white/10 resize-none`}
+          className={`${inputClass} border-white/8 resize-none`}
           placeholder="Tell us about your situation..."
         />
       </div>
