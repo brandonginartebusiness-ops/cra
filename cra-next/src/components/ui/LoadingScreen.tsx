@@ -23,7 +23,7 @@ export default function LoadingScreen() {
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
           style={{ pointerEvents: "none" }}
-          className="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center"
+          className="fixed inset-0 z-[9999] bg-[#1a1a1f] flex flex-col items-center justify-center"
         >
           {/* Logo */}
           <motion.div
@@ -35,7 +35,7 @@ export default function LoadingScreen() {
             <img
               src="/brand_assets/logo.png"
               alt="Claim Remedy Adjusters"
-              style={{ height: 72, width: "auto" }}
+              style={{ height: 72, width: "auto", filter: "brightness(0) invert(1)" }}
             />
           </motion.div>
 
@@ -44,7 +44,7 @@ export default function LoadingScreen() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.35 }}
-            className="mt-12 w-72 h-[4px] bg-[#e5e5e7] rounded-full overflow-hidden"
+            className="mt-12 w-72 h-[4px] bg-white/10 rounded-full overflow-hidden"
           >
             <motion.div
               initial={{ width: "0%" }}
@@ -55,8 +55,8 @@ export default function LoadingScreen() {
               }}
               className="h-full rounded-full"
               style={{
-                background: "linear-gradient(90deg, #3b82f6 0%, #0d9488 100%)",
-                boxShadow: "0 0 12px rgba(59,130,246,0.5), 0 0 24px rgba(13,148,136,0.3)",
+                background: "linear-gradient(90deg, #60a5fa 0%, #2563eb 100%)",
+                boxShadow: "0 0 12px rgba(96,165,250,0.5), 0 0 24px rgba(37,99,235,0.4)",
               }}
             />
           </motion.div>
