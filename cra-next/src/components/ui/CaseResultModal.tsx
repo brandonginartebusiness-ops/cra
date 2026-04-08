@@ -127,13 +127,13 @@ export default function CaseResultModal({ result, onClose }: Props) {
               </blockquote>
 
               {/* Reviewer */}
-              <div className="flex items-center gap-2 mb-0.5">
+              <div className="flex items-center justify-center gap-2 mb-0.5">
                 <span className="text-sm font-semibold text-[#f0f0f5]">
                   {result.review.author}
                 </span>
                 <StarRating className="text-sm" />
               </div>
-              <p className="text-[0.7rem] text-[#666677] mb-7">
+              <p className="text-[0.7rem] text-[#666677] mb-7 text-center">
                 Google Review &middot; {result.review.timeAgo}
               </p>
 
