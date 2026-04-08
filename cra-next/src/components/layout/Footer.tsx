@@ -2,27 +2,27 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1d1d1f] pt-16 pb-8">
+    <footer className="bg-[#1d1d1f] pt-8 pb-5">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/brand_assets/logo.png"
               alt="Claim Remedy Adjusters"
-              style={{ height: 40, width: "auto", marginBottom: "1rem" }}
+              style={{ height: 30, width: "auto", marginBottom: "0.6rem" }}
             />
-            <p className="text-sm text-[#666677] leading-relaxed max-w-xs">
+            <p className="text-xs text-[#666677] leading-relaxed max-w-xs">
               Licensed Florida Public Adjusting Firm. We represent homeowners —
               never insurance companies.
             </p>
           </div>
 
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-widest text-[#666677] mb-4">
+            <h4 className="text-xs font-semibold uppercase tracking-widest text-[#666677] mb-3">
               Company
             </h4>
-            <ul className="flex flex-col gap-2.5">
+            <ul className="flex flex-col gap-1.5">
               {[
                 ["Services", "/services"],
                 ["Results", "/results"],
@@ -35,7 +35,7 @@ export default function Footer() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-sm text-[#666677] hover:text-white transition-colors"
+                    className="text-xs text-[#666677] hover:text-white transition-colors"
                   >
                     {label}
                   </Link>
@@ -45,10 +45,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-widest text-[#666677] mb-4">
+            <h4 className="text-xs font-semibold uppercase tracking-widest text-[#666677] mb-3">
               Contact
             </h4>
-            <ul className="flex flex-col gap-2.5 text-sm text-[#666677]">
+            <ul className="flex flex-col gap-1.5 text-xs text-[#666677]">
               <li>
                 <a
                   href="tel:+17862237867"
@@ -71,7 +71,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-[#666677]">
+        <div className="border-t border-white/10 pt-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-[0.7rem] text-[#666677]">
           <p>
             &copy; {new Date().getFullYear()} Claim Remedy Adjusters. All rights
             reserved.
