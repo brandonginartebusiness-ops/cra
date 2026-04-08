@@ -105,7 +105,7 @@ export default function CaseResultModal({ result, onClose }: Props) {
               {/* Amounts row */}
               <div className="flex items-center justify-center gap-4 mb-6">
                 {initialDisplay && (
-                  <span className="text-2xl font-semibold text-[#ef4444]/80 line-through">
+                  <span className="text-3xl font-semibold text-[#ef4444] line-through drop-shadow-[0_0_10px_rgba(239,68,68,0.6)]">
                     {initialDisplay}
                   </span>
                 )}
