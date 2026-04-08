@@ -12,8 +12,8 @@ export default function WhatsAppFAB() {
   return (
     <div className="fixed bottom-6 left-6 z-50">
       {/* Pulse rings */}
-      <span className="absolute inset-0 rounded-full bg-[#25d366] opacity-30 animate-[wa-ping_2s_ease-out_infinite]" />
-      <span className="absolute inset-0 rounded-full bg-[#25d366] opacity-20 animate-[wa-ping_2s_ease-out_0.6s_infinite]" />
+      <span className="absolute inset-0 rounded-full bg-[#25d366] opacity-20 animate-[wa-ping_3.5s_ease-out_infinite]" />
+      <span className="absolute inset-0 rounded-full bg-[#25d366] opacity-10 animate-[wa-ping_3.5s_ease-out_1s_infinite]" />
 
       <motion.a
         href={WA_LINK}
@@ -63,8 +63,8 @@ export default function WhatsAppFAB() {
 
       <style>{`
         @keyframes wa-ping {
-          0% { transform: scale(1); opacity: 0.3; }
-          80%, 100% { transform: scale(1.9); opacity: 0; }
+          0% { transform: scale(1); opacity: 0.2; }
+          80%, 100% { transform: scale(1.7); opacity: 0; }
         }
       `}</style>
     </div>

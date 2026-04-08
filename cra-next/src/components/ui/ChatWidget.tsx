@@ -97,10 +97,23 @@ export default function ChatWidget() {
   return (
     <>
       {/* Floating button */}
+      <div className="fixed bottom-6 right-6 z-50 w-14 h-14">
+        {!open && (
+          <>
+            <span className="absolute inset-0 rounded-full bg-[#3b82f6] opacity-20 animate-[chat-ping_3.5s_ease-out_infinite]" />
+            <span className="absolute inset-0 rounded-full bg-[#3b82f6] opacity-10 animate-[chat-ping_3.5s_ease-out_1s_infinite]" />
+          </>
+        )}
+        <style>{`
+          @keyframes chat-ping {
+            0% { transform: scale(1); opacity: 0.2; }
+            80%, 100% { transform: scale(1.7); opacity: 0; }
+          }
+        `}</style>
       <button
         onClick={() => setOpen(!open)}
         aria-label={open ? "Close chat" : "Open chat"}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#3b82f6] text-white shadow-[0_4px_24px_rgba(59,130,246,0.4)] flex items-center justify-center hover:scale-105 hover:opacity-90 transition-transform duration-200"
+        className="relative w-14 h-14 rounded-full bg-[#3b82f6] text-white shadow-[0_4px_24px_rgba(59,130,246,0.4)] flex items-center justify-center hover:scale-105 hover:opacity-90 transition-transform duration-200"
       >
         <AnimatePresence mode="wait" initial={false}>
           {open ? (
@@ -140,6 +153,7 @@ export default function ChatWidget() {
           )}
         </AnimatePresence>
       </button>
+      </div>
 
       {/* Chat panel */}
       <AnimatePresence>
