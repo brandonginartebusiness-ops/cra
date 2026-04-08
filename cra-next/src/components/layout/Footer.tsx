@@ -24,20 +24,20 @@ export default function Footer() {
             <img
               src="/brand_assets/logo.png"
               alt="Claim Remedy Adjusters"
-              style={{ height: 42, width: "auto" }}
+              style={{ height: 40, width: "auto" }}
             />
-            <p className="text-xs text-[#555566] leading-relaxed max-w-[280px]">
+            <p className="text-[1rem] text-[#555566] leading-relaxed max-w-[280px]">
               Licensed Florida public adjusters. We fight for homeowners — never insurance companies. No recovery, no fee.
             </p>
           </div>
 
           {/* Col 2 — Company */}
           <div>
-            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-[#444455] mb-3">Company</p>
+            <p className="text-[0.88rem] font-semibold uppercase tracking-widest text-[#444455] mb-3">Company</p>
             <ul className="flex flex-col gap-2">
               {NAV_LINKS.map(([label, href]) => (
                 <li key={href}>
-                  <Link href={href} className="text-xs text-[#666677] hover:text-white transition-colors">
+                  <Link href={href} className="text-[1rem] text-[#666677] hover:text-white transition-colors">
                     {label}
                   </Link>
                 </li>
@@ -47,8 +47,8 @@ export default function Footer() {
 
           {/* Col 3 — Contact */}
           <div>
-            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-[#444455] mb-3">Contact</p>
-            <ul className="flex flex-col gap-2 text-xs text-[#666677]">
+            <p className="text-[0.88rem] font-semibold uppercase tracking-widest text-[#444455] mb-3">Contact</p>
+            <ul className="flex flex-col gap-2 text-[1rem] text-[#666677]">
               <li><a href="tel:+17862237867" className="hover:text-white transition-colors">(786) 223-7867</a></li>
               <li><a href="mailto:office@cradjusters.com" className="hover:text-white transition-colors">office@cradjusters.com</a></li>
               <li>7900 Oak Ln, Suite 400</li>
@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/8 pt-4 flex flex-col sm:flex-row justify-between items-center gap-1 text-[0.65rem] text-[#444455]">
+        <div className="border-t border-white/8 pt-4 flex flex-col sm:flex-row justify-between items-center gap-1 text-[0.88rem] text-[#444455]">
           <p>&copy; {new Date().getFullYear()} Claim Remedy Adjusters. All rights reserved.</p>
           <p>License W549958 &mdash; Licensed in all 67 Florida counties</p>
         </div>
