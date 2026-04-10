@@ -1,0 +1,219 @@
+{
+  "main": {
+    "id": "e8ca10e36d231e92",
+    "type": "split",
+    "children": [
+      {
+        "id": "2c5c8f74161a50c1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "090729370dfa1c06",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "869f26369add289b",
+    "type": "split",
+    "children": [
+      {
+        "id": "86f351c6acd767d2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "65ae7ea2de61b458",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "1fab73d71592ded2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "00-index/moc",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "b9f4b4556ba22bb6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 297.5
+  },
+  "right": {
+    "id": "c25e5ad537af7a99",
+    "type": "split",
+    "children": [
+      {
+        "id": "95d096f46b140640",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d8010b2758b5cc70",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "c5a2d585a8d53e76",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "58c562c229b57726",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "e4924d19806a6c9d",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "97c31f62a3add869",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "090729370dfa1c06",
+  "lastOpenFiles": [
+    "06-Trust-Authority/google-review-strategy.md",
+    "07-Marketing/social-media-formula.md",
+    "04-SEO-Strategy/site-architecture.md",
+    "07-Marketing/seo-content-strategy.md",
+    "00-Index/MOC.md",
+    "index.md",
+    "CRA-REFERENCE.md",
+    "07-Marketing/meta-ads-audience-brief.md",
+    "2026-04-08.md",
+    "Untitled.md",
+    "Untitled.canvas",
+    "05-Claims-Data/hurricane-stats.md",
+    "05-Claims-Data/common-claims-florida.md",
+    "fire-smoke.md",
+    "roof-claims.md",
+    "07-Marketing/google-ads.md",
+    "03-Florida-Law/homeowner-claims-bill-of-rights.md",
+    "03-Florida-Law/hb-837-2023.md",
+    "05-Claims-Data/oppaga-study.md",
+    "05-Claims-Data/complaint-data.md",
+    "Welcome.md",
+    "04-SEO-Strategy/keyword-hierarchy.md",
+    "08-Website-Tech/ada-accessibility.md",
+    "log.md.tmp.72180.1775452016866",
+    "index.md.tmp.72180.1775452008293",
+    "10-Resources/master-link-list.md",
+    "10-Resources/master-link-list.md.tmp.72180.1775451966096",
+    "09-Blog-Topics/blog-master-list.md",
+    "09-Blog-Topics/blog-master-list.md.tmp.72180.1775451925561",
+    "08-Website-Tech/tech-stack.md",
+    "08-Website-Tech/tech-stack.md.tmp.72180.1775451899222",
+    "08-Website-Tech/bilingual-site.md",
+    "08-Website-Tech/ada-accessibility.md.tmp.72180.1775451871496",
+    "08-Website-Tech/core-web-vitals.md.tmp.72180.1775451855863",
+    "08-Website-Tech/conversion-optimization.md.tmp.72180.1775451841680",
+    "07-Marketing/crm-recommendations.md.tmp.72180.1775451824285",
+    "07-Marketing/social-media-formula.md.tmp.72180.1775451781703"
+  ]
+}

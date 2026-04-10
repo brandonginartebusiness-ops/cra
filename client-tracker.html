@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Tracker</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0a0a0f;
+    color: #f0f0f5;
+    min-height: 100vh;
+    padding: 32px 24px;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+
+  header span {
+    font-size: 13px;
+    color: #555566;
+  }
+
+  /* Summary cards */
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .card {
+    background: #111118;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 16px 20px;
+  }
+
+  .card-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #555566;
+    margin-bottom: 6px;
+  }
+
+  .card-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f0f0f5;
+  }
+
+  .card-value.blue { color: #3b82f6; }
+  .card-value.green { color: #10b981; }
+  .card-value.gold { color: #d4a853; }
+
+  /* Toolbar */
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+
+  .btn:hover { opacity: 0.85; }
+  .btn-primary { background: #3b82f6; color: #fff; }
+  .btn-ghost {
+    background: transparent;
+    color: #9999aa;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .search {
+    margin-left: auto;
+    background: #111118;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #f0f0f5;
+    width: 200px;
+    outline: none;
+  }
+
+  .search:focus { border-color: rgba(59,130,246,0.4); }
+  .search::placeholder { color: #444455; }
+
+  /* Table */
+  .table-wrap {
+    background: #111118;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  thead th {
+    background: #0d0d14;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #444455;
+    font-weight: 600;
+    user-select: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  thead th:hover { color: #9999aa; }
+
+  tbody tr {
+    border-top: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.12s;
+  }
+
+  tbody tr:hover { background: rgba(255,255,255,0.025); }
+
+  tbody td {
+    padding: 13px 16px;
+    vertical-align: middle;
+    color: #d0d0dd;
+  }
+
+  .client-name {
+    font-weight: 600;
+    color: #f0f0f5;
+    font-size: 14px;
+  }
+
+  /* Stage badge */
+  .stage {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .stage-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .stage-prospect   { background: rgba(99,102,241,0.15); color: #818cf8; }
+  .stage-prospect .stage-dot { background: #818cf8; }
+  .stage-proposal   { background: rgba(245,158,11,0.12); color: #f59e0b; }
+  .stage-proposal .stage-dot { background: #f59e0b; }
+  .stage-closing    { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .stage-closing .stage-dot { background: #60a5fa; }
+  .stage-active     { background: rgba(16,185,129,0.12); color: #34d399; }
+  .stage-active .stage-dot { background: #34d399; }
+  .stage-completed  { background: rgba(255,255,255,0.06); color: #6b7280; }
+  .stage-completed .stage-dot { background: #6b7280; }
+
+  /* Close % bar */
+  .close-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .close-bar {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 2px;
+    overflow: hidden;
+    min-width: 60px;
+  }
+
+  .close-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #3b82f6, #10b981);
+  }
+
+  .close-pct {
+    font-size: 12px;
+    font-weight: 600;
+    color: #9999aa;
+    min-width: 30px;
+    text-align: right;
+  }
+
+  .due-date { color: #9999aa; font-size: 12px; }
+  .due-date.overdue { color: #ef4444; }
+  .due-date.soon { color: #f59e0b; }
+
+  .revenue { font-weight: 600; color: #10b981; }
+
+  /* Action buttons */
+  .actions { display: flex; gap: 6px; opacity: 0; transition: opacity 0.15s; }
+  tbody tr:hover .actions { opacity: 1; }
+
+  .action-btn {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    border: none;
+    background: rgba(255,255,255,0.06);
+    color: #9999aa;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.12s, color 0.12s;
+    font-size: 13px;
+  }
+
+  .action-btn:hover { background: rgba(255,255,255,0.12); color: #f0f0f5; }
+  .action-btn.del:hover { background: rgba(239,68,68,0.15); color: #ef4444; }
+
+  .next-action-text {
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #9999aa;
+    font-size: 12px;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.15s;
+  }
+
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: #16161f;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 28px 32px;
+    width: 520px;
+    max-width: 95vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(8px);
+    transition: transform 0.15s;
+  }
+
+  .modal-overlay.open .modal { transform: translateY(0); }
+
+  .modal h2 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-group label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #555566;
+    font-weight: 600;
+  }
+
+  .form-control {
+    background: #0d0d14;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-size: 13px;
+    color: #f0f0f5;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.15s;
+    font-family: inherit;
+  }
+
+  .form-control:focus { border-color: rgba(59,130,246,0.5); }
+  .form-control option { background: #16161f; }
+
+  textarea.form-control { resize: vertical; min-height: 72px; }
+
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #444455;
+    font-size: 14px;
+  }
+
+  /* Priority dot in header */
+  .priority-high { color: #ef4444; }
+  .priority-med  { color: #f59e0b; }
+  .priority-low  { color: #6b7280; }
+
+  @media (max-width: 900px) {
+    .summary { grid-template-columns: repeat(2, 1fr); }
+    .hide-mobile { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Client Tracker</h1>
+  <span id="last-updated">—</span>
+</header>
+
+<div class="summary">
+  <div class="card">
+    <div class="card-label">Total Clients</div>
+    <div class="card-value blue" id="stat-total">0</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Pipeline Value</div>
+    <div class="card-value green" id="stat-value">$0</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Closing Soon</div>
+    <div class="card-value gold" id="stat-closing">0</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Active Clients</div>
+    <div class="card-value" id="stat-active">0</div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <button class="btn btn-primary" onclick="openModal()">+ Add Client</button>
+  <select class="btn btn-ghost" id="filter-stage" onchange="renderTable()" style="padding:8px 12px;cursor:pointer;">
+    <option value="">All Stages</option>
+    <option value="Prospect">Prospect</option>
+    <option value="Proposal">Proposal</option>
+    <option value="Closing">Closing</option>
+    <option value="Active">Active</option>
+    <option value="Completed">Completed</option>
+  </select>
+  <input class="search" type="text" id="search" placeholder="Search clients…" oninput="renderTable()">
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th onclick="sortBy('name')">Client</th>
+        <th onclick="sortBy('stage')">Stage</th>
+        <th class="hide-mobile" onclick="sortBy('nextAction')">Next Action</th>
+        <th class="hide-mobile" onclick="sortBy('dueDate')">Due</th>
+        <th onclick="sortBy('revenue')">Revenue</th>
+        <th onclick="sortBy('closeProb')">Close %</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <h2 id="modal-title">Add Client</h2>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label>Client Name</label>
+        <input class="form-control" id="f-name" type="text" placeholder="e.g. Claim Remedy Adjusters">
+      </div>
+      <div class="form-group">
+        <label>Stage</label>
+        <select class="form-control" id="f-stage">
+          <option>Prospect</option>
+          <option>Proposal</option>
+          <option>Closing</option>
+          <option>Active</option>
+          <option>Completed</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Close Probability %</label>
+        <input class="form-control" id="f-close" type="number" min="0" max="100" placeholder="85">
+      </div>
+      <div class="form-group">
+        <label>Revenue Potential ($)</label>
+        <input class="form-control" id="f-revenue" type="number" min="0" placeholder="5000">
+      </div>
+      <div class="form-group">
+        <label>Due Date</label>
+        <input class="form-control" id="f-due" type="date">
+      </div>
+      <div class="form-group full">
+        <label>Next Action</label>
+        <input class="form-control" id="f-action" type="text" placeholder="e.g. Send proposal, Follow up call…">
+      </div>
+      <div class="form-group full">
+        <label>Notes</label>
+        <textarea class="form-control" id="f-notes" placeholder="Context, history, key contacts…"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveClient()">Save Client</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'crm_clients_v1';
+let clients = [];
+let editingId = null;
+let sortCol = 'closeProb';
+let sortDir = -1;
+
+const DEFAULT_CLIENTS = [
+  {
+    id: uid(), name: 'CRA (Claim Remedy Adjusters)', stage: 'Active',
+    nextAction: 'Monitor Meta Ads lead quality — check qualifying form submissions',
+    dueDate: '2026-04-15', revenue: 4000, closeProb: 100,
+    notes: 'Public adjuster client. Meta Ads running. Qualifying form live. Monthly retainer.'
+  },
+  {
+    id: uid(), name: 'PVE', stage: 'Closing',
+    nextAction: 'Close the deal — finalize contract terms',
+    dueDate: '2026-04-14', revenue: 3000, closeProb: 90,
+    notes: '85%+ close probability per client assessment.'
+  },
+  {
+    id: uid(), name: 'JZBIM', stage: 'Closing',
+    nextAction: 'Send proposal / follow up',
+    dueDate: '2026-04-16', revenue: 2500, closeProb: 85,
+    notes: '85%+ close probability.'
+  },
+  {
+    id: uid(), name: "Chi Chi's Aquariums", stage: 'Proposal',
+    nextAction: 'Present social media + content strategy proposal',
+    dueDate: '2026-04-18', revenue: 1500, closeProb: 87,
+    notes: 'Aquarium business. Content/social opportunity. 85%+ close.'
+  },
+  {
+    id: uid(), name: 'GastroMed', stage: 'Closing',
+    nextAction: 'Follow up on proposal — get signature',
+    dueDate: '2026-04-14', revenue: 3500, closeProb: 88,
+    notes: 'Medical/gastro practice. 85%+ close probability.'
+  },
+  {
+    id: uid(), name: 'Pest Control', stage: 'Proposal',
+    nextAction: 'Finalize ad strategy and send proposal',
+    dueDate: '2026-04-17', revenue: 2000, closeProb: 85,
+    notes: 'Pest control client. Ads + lead gen opportunity. 85%+ close.'
+  },
+  {
+    id: uid(), name: 'Alex Chow', stage: 'Closing',
+    nextAction: 'Schedule closing call this week',
+    dueDate: '2026-04-13', revenue: 2500, closeProb: 90,
+    notes: 'Personal client. 85%+ close. High priority — earliest due date.'
+  },
+];
+
+function uid() {
+  return Math.random().toString(36).slice(2) + Date.now().toString(36);
+}
+
+function load() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { clients = JSON.parse(raw); } catch { clients = [...DEFAULT_CLIENTS]; }
+  } else {
+    clients = [...DEFAULT_CLIENTS];
+    save();
+  }
+}
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(clients));
+  document.getElementById('last-updated').textContent = 'Saved ' + new Date().toLocaleTimeString();
+}
+
+function stageClass(stage) {
+  return 'stage-' + stage.toLowerCase();
+}
+
+function formatRevenue(n) {
+  if (!n) return '—';
+  if (n >= 1000) return '$' + (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'k';
+  return '$' + n;
+}
+
+function dueDateClass(d) {
+  if (!d) return '';
+  const diff = (new Date(d) - new Date()) / 86400000;
+  if (diff < 0) return 'overdue';
+  if (diff < 3) return 'soon';
+  return '';
+}
+
+function formatDate(d) {
+  if (!d) return '—';
+  const dt = new Date(d + 'T12:00:00');
+  return dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+function updateStats() {
+  document.getElementById('stat-total').textContent = clients.length;
+  const pipeline = clients.reduce((s, c) => s + (c.revenue || 0), 0);
+  document.getElementById('stat-value').textContent = pipeline >= 1000
+    ? '$' + (pipeline / 1000).toFixed(1) + 'k'
+    : '$' + pipeline;
+  document.getElementById('stat-closing').textContent =
+    clients.filter(c => c.stage === 'Closing').length;
+  document.getElementById('stat-active').textContent =
+    clients.filter(c => c.stage === 'Active').length;
+}
+
+function sortBy(col) {
+  if (sortCol === col) sortDir *= -1;
+  else { sortCol = col; sortDir = -1; }
+  renderTable();
+}
+
+function renderTable() {
+  const query = document.getElementById('search').value.toLowerCase();
+  const stageFilter = document.getElementById('filter-stage').value;
+
+  let rows = clients.filter(c => {
+    const match = c.name.toLowerCase().includes(query) ||
+      (c.nextAction || '').toLowerCase().includes(query) ||
+      (c.notes || '').toLowerCase().includes(query);
+    const stageMatch = !stageFilter || c.stage === stageFilter;
+    return match && stageMatch;
+  });
+
+  rows.sort((a, b) => {
+    let av = a[sortCol] ?? '';
+    let bv = b[sortCol] ?? '';
+    if (typeof av === 'string') av = av.toLowerCase();
+    if (typeof bv === 'string') bv = bv.toLowerCase();
+    return av < bv ? sortDir : av > bv ? -sortDir : 0;
+  });
+
+  const tbody = document.getElementById('table-body');
+
+  if (rows.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="7"><div class="empty-state">No clients found.</div></td></tr>`;
+    updateStats();
+    return;
+  }
+
+  tbody.innerHTML = rows.map(c => `
+    <tr>
+      <td>
+        <div class="client-name">${esc(c.name)}</div>
+      </td>
+      <td>
+        <span class="stage ${stageClass(c.stage)}">
+          <span class="stage-dot"></span>${esc(c.stage)}
+        </span>
+      </td>
+      <td class="hide-mobile">
+        <div class="next-action-text" title="${esc(c.nextAction || '')}">${esc(c.nextAction || '—')}</div>
+      </td>
+      <td class="hide-mobile">
+        <span class="due-date ${dueDateClass(c.dueDate)}">${formatDate(c.dueDate)}</span>
+      </td>
+      <td>
+        <span class="revenue">${formatRevenue(c.revenue)}</span>
+      </td>
+      <td>
+        <div class="close-wrap">
+          <div class="close-bar">
+            <div class="close-fill" style="width:${c.closeProb || 0}%"></div>
+          </div>
+          <span class="close-pct">${c.closeProb || 0}%</span>
+        </div>
+      </td>
+      <td>
+        <div class="actions">
+          <button class="action-btn" onclick="editClient('${c.id}')" title="Edit">✏️</button>
+          <button class="action-btn del" onclick="deleteClient('${c.id}')" title="Delete">🗑</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+
+  updateStats();
+}
+
+function esc(str) {
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function openModal(id) {
+  editingId = id || null;
+  document.getElementById('modal-title').textContent = id ? 'Edit Client' : 'Add Client';
+
+  if (id) {
+    const c = clients.find(x => x.id === id);
+    document.getElementById('f-name').value = c.name || '';
+    document.getElementById('f-stage').value = c.stage || 'Prospect';
+    document.getElementById('f-close').value = c.closeProb || '';
+    document.getElementById('f-revenue').value = c.revenue || '';
+    document.getElementById('f-due').value = c.dueDate || '';
+    document.getElementById('f-action').value = c.nextAction || '';
+    document.getElementById('f-notes').value = c.notes || '';
+  } else {
+    document.getElementById('f-name').value = '';
+    document.getElementById('f-stage').value = 'Prospect';
+    document.getElementById('f-close').value = '';
+    document.getElementById('f-revenue').value = '';
+    document.getElementById('f-due').value = '';
+    document.getElementById('f-action').value = '';
+    document.getElementById('f-notes').value = '';
+  }
+
+  document.getElementById('modal-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('f-name').focus(), 100);
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  editingId = null;
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+function saveClient() {
+  const name = document.getElementById('f-name').value.trim();
+  if (!name) { alert('Client name is required.'); return; }
+
+  const data = {
+    name,
+    stage: document.getElementById('f-stage').value,
+    closeProb: parseInt(document.getElementById('f-close').value) || 0,
+    revenue: parseInt(document.getElementById('f-revenue').value) || 0,
+    dueDate: document.getElementById('f-due').value,
+    nextAction: document.getElementById('f-action').value.trim(),
+    notes: document.getElementById('f-notes').value.trim(),
+  };
+
+  if (editingId) {
+    const idx = clients.findIndex(c => c.id === editingId);
+    if (idx !== -1) clients[idx] = { ...clients[idx], ...data };
+  } else {
+    clients.push({ id: uid(), ...data });
+  }
+
+  save();
+  renderTable();
+  closeModal();
+}
+
+function editClient(id) { openModal(id); }
+
+function deleteClient(id) {
+  const c = clients.find(x => x.id === id);
+  if (!c) return;
+  if (!confirm(`Remove "${c.name}"?`)) return;
+  clients = clients.filter(x => x.id !== id);
+  save();
+  renderTable();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+load();
+renderTable();
+</script>
+</body>
+</html>
