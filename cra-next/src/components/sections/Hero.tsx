@@ -1,9 +1,8 @@
 "use client";
 
+import { useRef, useEffect, useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import { fadeInLeft, fadeInRight } from "@/lib/animations";
-
-let firstHeroMount = true;
 
 const heroStagger = (delay: number): Variants => ({
   hidden: {},
@@ -19,9 +18,16 @@ const badges = [
 ];
 
 export default function Hero() {
-  const isFirst = firstHeroMount;
-  if (firstHeroMount) firstHeroMount = false;
-  const animDelay = isFirst ? 2.0 : 0;
+  const mountedRef = useRef(false);
+  const [animDelay, setAnimDelay] = useState(2.0);
+
+  useEffect(() => {
+    if (!mountedRef.current) {
+      mountedRef.current = true;
+    } else {
+      setAnimDelay(0);
+    }
+  }, []);
 
   return (
     <section

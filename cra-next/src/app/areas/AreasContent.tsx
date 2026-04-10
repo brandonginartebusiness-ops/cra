@@ -153,7 +153,7 @@ export default function AreasContent() {
                           <p className="text-xs text-[#666677] leading-relaxed flex-1 line-clamp-2">
                             {city.commonDamageTypes.map((d) => d.label).join(" · ")}
                           </p>
-                          <span className="inline-flex items-center gap-1 text-xs text-[#3b82f6] mt-3 group-hover:gap-2 transition-all duration-200">
+                          <span className="inline-flex items-center gap-1 text-xs text-[#3b82f6] mt-3 group-hover:gap-2 transition-[gap] duration-200">
                             Learn more
                             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

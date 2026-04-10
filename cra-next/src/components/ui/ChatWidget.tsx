@@ -89,7 +89,14 @@ export default function ChatWidget() {
   }
 
   function formatText(text: string) {
-    return text
+    // Escape HTML first to prevent XSS, then apply safe markdown-like transforms
+    const escaped = text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#x27;");
+    return escaped
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
       .replace(/\n/g, "<br />");
   }

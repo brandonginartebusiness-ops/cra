@@ -12,7 +12,7 @@ const NAV_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1d1d1f] pt-10 pb-5">
+    <footer className="bg-[#111118] pt-10 pb-5">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* 3-col grid */}

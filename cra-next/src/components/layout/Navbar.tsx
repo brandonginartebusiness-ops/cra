@@ -85,7 +85,9 @@ export default function Navbar() {
             <button
               onClick={() => setOpen(!open)}
               className="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer"
-              aria-label="Menu"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
             >
               <span
                 className={`block w-5 h-0.5 bg-[#f0f0f5] transition-transform ${open ? "rotate-45 translate-y-2" : ""}`}
@@ -103,6 +105,8 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
+        id="mobile-menu"
+        aria-hidden={!open}
         className={`fixed inset-0 z-40 bg-[#0a0a0f]/98 backdrop-blur-lg flex flex-col justify-center px-8 transition-opacity duration-300 lg:hidden ${
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
