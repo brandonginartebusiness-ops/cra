@@ -1,9 +1,0 @@
-node_modules
-temporary screenshots
-serve.mjs
-screenshot.mjs
-CLAUDE.md
-.cursor
-*.pdf
-# Do NOT ignore cra-bot/ — api/chat.js requires cra-bot/system-prompt.js at runtime.
-CONTEXT.md
