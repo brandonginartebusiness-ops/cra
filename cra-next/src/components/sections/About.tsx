@@ -12,14 +12,13 @@ const facts = [
     label: "Claims handled",
     value: "Hurricane · Water · Fire · Roof · Mold · Commercial",
   },
+  { label: "Adjuster license (Eddy D Gomez)", value: "W549958" },
+  { label: "Firm license (Claim Remedy Adjusters)", value: "G084250" },
 ];
 
 export default function About() {
   return (
-    <section
-      id="about"
-      className="bg-[#0a0a0f] py-24 lg:py-32"
-    >
+    <section id="about" className="bg-[#faf8f5] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
           {/* Left: photo → name → title → bio */}
@@ -30,7 +29,7 @@ export default function About() {
             variants={slideInLeft}
             className="flex flex-col items-start gap-5"
           >
-            <div className="w-48 rounded-2xl overflow-hidden border border-white/8 shadow-2xl">
+            <div className="w-48 rounded-2xl overflow-hidden border border-[#1a1a2e]/10 shadow-md">
               <Image
                 src="/brand_assets/eddy_headshot.jpeg"
                 alt="Eddy D Gomez, Licensed Public Adjuster"
@@ -41,15 +40,15 @@ export default function About() {
             </div>
 
             <div>
-              <h2 className="font-bebas text-4xl md:text-5xl text-[#f0f0f5] leading-none tracking-tight">
+              <h2 className="font-bebas text-4xl md:text-5xl text-[#1a1a2e] leading-none tracking-tight">
                 Eddy D Gomez
               </h2>
-              <p className="font-bebas text-base text-[#3b82f6] tracking-[0.2em] mt-1">
-                Public Adjuster
+              <p className="font-bebas text-base text-[#2563eb] tracking-[0.2em] mt-1">
+                Licensed Public Adjuster
               </p>
             </div>
 
-            <p className="text-sm text-[#9999aa] leading-relaxed max-w-xs">
+            <p className="text-sm text-[#5a5a72] leading-relaxed max-w-xs">
               Licensed by the State of Florida to represent homeowners and
               commercial property owners during the insurance claims process —
               never the insurance company.
@@ -63,25 +62,25 @@ export default function About() {
             viewport={{ once: true, margin: "-80px" }}
             variants={slideInRight}
           >
-            <p className="font-bebas text-3xl md:text-4xl text-[#9999aa] leading-tight mb-10">
-              <strong className="text-[#f0f0f5]">
+            <p className="font-bebas text-3xl md:text-4xl text-[#5a5a72] leading-tight mb-10">
+              <strong className="text-[#1a1a2e]">
                 Every type of property claim.
               </strong>{" "}
               One dedicated advocate who never works for the insurance company.
             </p>
 
-            <div className="border border-white/8 rounded-2xl overflow-hidden">
+            <div className="border border-[#1a1a2e]/10 rounded-2xl overflow-hidden">
               {facts.map((f, i) => (
                 <div
                   key={f.label}
-                  className={`flex flex-col gap-0.5 px-5 py-4 ${
-                    i < facts.length - 1 ? "border-b border-white/8" : ""
+                  className={`flex flex-col gap-0.5 px-5 py-4 bg-[#ffffff] ${
+                    i < facts.length - 1 ? "border-b border-[#1a1a2e]/8" : ""
                   }`}
                 >
-                  <span className="text-[0.68rem] font-semibold uppercase tracking-widest text-[#666677]">
+                  <span className="text-[0.68rem] font-semibold uppercase tracking-widest text-[#8888a0]">
                     {f.label}
                   </span>
-                  <span className="text-sm font-medium text-[#f0f0f5]">
+                  <span className="text-sm font-medium text-[#1a1a2e]">
                     {f.value}
                   </span>
                 </div>

@@ -40,7 +40,7 @@ export default function InstagramFeed() {
   }, []);
 
   return (
-    <section className="bg-[#111118] py-24 lg:py-32">
+    <section className="bg-[#faf8f5] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -52,7 +52,7 @@ export default function InstagramFeed() {
           <SectionHeading
             label="Follow our work"
             heading="@claimremedyadjusters"
-            className="text-center"
+            className="text-center [&_h2]:text-5xl [&_h2]:md:text-7xl [&_h2]:lg:text-8xl"
           />
         </motion.div>
 
@@ -62,7 +62,7 @@ export default function InstagramFeed() {
             {Array.from({ length: 9 }).map((_, i) => (
               <div
                 key={i}
-                className="aspect-square rounded-xl bg-[#0a0a0f] animate-pulse"
+                className="aspect-square rounded-xl bg-[#f0ede8] animate-pulse"
               />
             ))}
           </div>
@@ -81,7 +81,7 @@ export default function InstagramFeed() {
                 target="_blank"
                 rel="noopener noreferrer"
                 variants={fadeInUp}
-                className="group relative aspect-square rounded-xl overflow-hidden border border-white/8 bg-[#0a0a0f] hover:scale-[1.02] hover:border-[#3b82f6]/20 transition-transform duration-300"
+                className="group relative aspect-square rounded-xl overflow-hidden border border-[#1a1a2e]/8 bg-[#f0ede8] hover:scale-[1.02] hover:border-[#2563eb]/20 transition-transform duration-300"
               >
                 {post.imageUrl && !isPlaceholder ? (
                   <>
@@ -90,7 +90,7 @@ export default function InstagramFeed() {
                       alt={post.caption.slice(0, 80)}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors duration-300 flex items-end p-4">
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-300 flex items-end p-4">
                       <p className="text-sm text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 line-clamp-3">
                         {post.caption.slice(0, 100)}
                         {post.caption.length > 100 ? "..." : ""}
@@ -99,22 +99,21 @@ export default function InstagramFeed() {
                   </>
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-center px-4">
-                    {/* Instagram icon */}
                     <svg
                       width="32"
                       height="32"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="#9999aa"
+                      stroke="#5a5a72"
                       strokeWidth="1.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
                       <rect x="2" y="2" width="20" height="20" rx="5" />
                       <circle cx="12" cy="12" r="5" />
-                      <circle cx="17.5" cy="6.5" r="1.5" fill="#9999aa" stroke="none" />
+                      <circle cx="17.5" cy="6.5" r="1.5" fill="#5a5a72" stroke="none" />
                     </svg>
-                    <span className="text-xs font-semibold uppercase tracking-widest text-[#666677]">
+                    <span className="text-xs font-semibold uppercase tracking-widest text-[#8888a0]">
                       Coming Soon
                     </span>
                   </div>
@@ -130,7 +129,7 @@ export default function InstagramFeed() {
             href="https://instagram.com/claimremedyadjusters"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#0a0a0f] border border-white/8 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300"
+            className="inline-flex items-center gap-2 bg-[#ffffff] border border-[#1a1a2e]/10 text-[#1a1a2e] font-semibold px-7 py-3.5 rounded-full hover:border-[#2563eb]/30 hover:shadow-[0_0_24px_rgba(37,99,235,0.10)] transition-[border-color,box-shadow] duration-300"
           >
             Follow Us on Instagram
             <svg
@@ -151,12 +150,11 @@ export default function InstagramFeed() {
 
         {/* Social icons */}
         <div className="mt-6 flex items-center justify-center gap-5">
-          {/* Instagram */}
           <a
             href="https://instagram.com/claimremedyadjusters"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#666677] hover:text-[#3b82f6] transition-colors"
+            className="text-[#8888a0] hover:text-[#2563eb] transition-colors"
             aria-label="Instagram"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -165,22 +163,20 @@ export default function InstagramFeed() {
               <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
             </svg>
           </a>
-          {/* Facebook */}
           <a
             href="#"
-            className="text-[#666677] hover:text-[#3b82f6] transition-colors"
+            className="text-[#8888a0] hover:text-[#2563eb] transition-colors"
             aria-label="Facebook"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
             </svg>
           </a>
-          {/* Google Business */}
           <a
             href="https://search.google.com/local/reviews?placeid=ChIJy6vXSOEIMK8RJvzhZzwTlxI"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#666677] hover:text-[#3b82f6] transition-colors"
+            className="text-[#8888a0] hover:text-[#2563eb] transition-colors"
             aria-label="Google Business"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

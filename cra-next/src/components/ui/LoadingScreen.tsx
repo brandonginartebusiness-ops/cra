@@ -22,7 +22,7 @@ export default function LoadingScreen() {
           initial={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          style={{ pointerEvents: "none", backgroundColor: "#faf8f5" }}
+          style={{ pointerEvents: "none", backgroundColor: "#1a1a2e" }}
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
         >
           {/* Logo */}
@@ -44,7 +44,7 @@ export default function LoadingScreen() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.35 }}
-            className="mt-6 w-72 h-[4px] bg-[#1a1a2e]/10 rounded-full overflow-hidden"
+            className="mt-6 w-72 h-[4px] bg-white/15 rounded-full overflow-hidden"
           >
             <motion.div
               initial={{ width: "0%" }}

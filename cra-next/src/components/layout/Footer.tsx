@@ -24,7 +24,7 @@ export default function Footer() {
             <img
               src="/brand_assets/logo.png"
               alt="Claim Remedy Adjusters"
-              style={{ height: 36, width: "auto", maxWidth: 160 }}
+              style={{ height: 36, width: "auto", maxWidth: 160, filter: "brightness(0) opacity(0.75)" }}
             />
             <p className="text-xs text-[#8888a0] leading-relaxed max-w-[220px]">
               Licensed Florida public adjusters. We fight for homeowners — never insurance companies. No recovery, no fee.

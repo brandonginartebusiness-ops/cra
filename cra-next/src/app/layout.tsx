@@ -7,6 +7,7 @@ import WhatsAppFAB from "@/components/layout/WhatsAppFAB";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import ChatWidget from "@/components/ui/ChatWidget";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
+import TransitionWrapper from "@/components/ui/TransitionWrapper";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -87,7 +88,9 @@ export default function RootLayout({
         <LocalBusinessSchema />
         <LoadingScreen />
         <Navbar />
-        <main id="main-content">{children}</main>
+        <main id="main-content">
+          <TransitionWrapper>{children}</TransitionWrapper>
+        </main>
         <Footer />
         <WhatsAppFAB />
         <ChatWidget />

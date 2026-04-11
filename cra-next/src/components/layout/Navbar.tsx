@@ -51,7 +51,7 @@ export default function Navbar() {
               alt="Claim Remedy Adjusters"
               width={120}
               height={35}
-              style={{ height: 35, width: "auto" }}
+              style={{ height: 35, width: "auto", filter: "brightness(0)" }}
             />
           </Link>
 
