@@ -28,7 +28,7 @@ export default function Reviews() {
           <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#b8892e] mb-4">
             <StarRating /> Google Reviews
           </span>
-          <h2 className="font-bebas text-4xl md:text-5xl lg:text-6xl text-[#1a1a2e] leading-none">
+          <h2 className="font-bebas text-5xl md:text-6xl lg:text-7xl text-[#1a1a2e] leading-none">
             What homeowners say
           </h2>
         </motion.div>
