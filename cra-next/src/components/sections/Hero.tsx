@@ -62,7 +62,7 @@ export default function Hero() {
       >
         <motion.h1
           variants={fadeInLeft}
-          className="font-bebas text-[clamp(5.5rem,11vw,14rem)] leading-none tracking-tight text-[#1a1a2e]"
+          className="font-bebas font-extrabold text-[clamp(4rem,9vw,11rem)] leading-none tracking-tight text-[#1a1a2e]"
         >
           Your Claim.
           <br />

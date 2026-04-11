@@ -20,12 +20,12 @@ export default function SectionHeading({
   return (
     <div className={className}>
       {label && (
-        <p className={`font-serif text-3xl md:text-4xl ${labelColor} mb-3 tracking-wide`}>
+        <p className={`font-serif font-semibold text-3xl md:text-4xl ${labelColor} mb-3 tracking-wide`}>
           {label}
         </p>
       )}
       <h2
-        className="font-bebas text-5xl md:text-6xl lg:text-7xl leading-none tracking-tight text-[#1a1a2e]"
+        className="font-bebas font-extrabold text-5xl md:text-6xl lg:text-7xl leading-none tracking-tight text-[#1a1a2e]"
         dangerouslySetInnerHTML={{ __html: heading }}
       />
       {subheading && (

@@ -51,52 +51,51 @@ export default function ServicePageLayout({
   const cardLayoutId = `service-case-result-${serviceSlug}`;
 
   return (
-    <div className="pt-24">
+    <div className="pt-24 bg-[#faf8f5]">
       {/* ─── Section 1: Hero Banner ─── */}
-      <section className="relative overflow-hidden bg-[#0a0a0f] py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-[#faf8f5] py-20 lg:py-28">
         {heroImage && (
           <div className="absolute inset-0">
             <Image
               src={heroImage}
               alt={title}
               fill
-              className="object-cover opacity-[0.15]"
+              className="object-cover opacity-[0.08]"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/80 to-white" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#faf8f5]/60 via-[#faf8f5]/80 to-[#faf8f5]" />
           </div>
         )}
         <div className="relative max-w-7xl mx-auto px-6">
-          {/* Breadcrumb */}
           <motion.nav
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
-            className="flex items-center gap-2 text-xs text-[#666677] mb-8"
+            className="flex items-center gap-2 text-xs text-[#8888a0] mb-8"
             aria-label="Breadcrumb"
           >
-            <Link href="/" className="hover:text-[#f0f0f5] transition-colors">
+            <Link href="/" className="hover:text-[#1a1a2e] transition-colors">
               Home
             </Link>
             <span>/</span>
-            <Link href="/services" className="hover:text-[#f0f0f5] transition-colors">
+            <Link href="/services" className="hover:text-[#1a1a2e] transition-colors">
               Services
             </Link>
             <span>/</span>
-            <span className="text-[#9999aa]">{title}</span>
+            <span className="text-[#5a5a72]">{title}</span>
           </motion.nav>
 
           <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
-            <h1 className="font-bebas text-5xl md:text-6xl lg:text-7xl text-[#f0f0f5] leading-none tracking-tight mb-4">
+            <h1 className="font-bebas font-extrabold text-5xl md:text-6xl lg:text-7xl text-[#1a1a2e] leading-none tracking-tight mb-4">
               {title}
             </h1>
-            <p className="text-lg text-[#9999aa] max-w-xl">{subtitle}</p>
+            <p className="text-lg text-[#5a5a72] max-w-xl">{subtitle}</p>
           </motion.div>
         </div>
       </section>
 
       {/* ─── Section 2: Service Description ─── */}
-      <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/8">
+      <section className="bg-[#ffffff] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
             <motion.div
@@ -108,30 +107,26 @@ export default function ServicePageLayout({
               {description.map((para, i) => (
                 <p
                   key={i}
-                  className="text-base text-[#9999aa] leading-relaxed mb-5 last:mb-8"
+                  className="text-base text-[#5a5a72] leading-relaxed mb-5 last:mb-8"
                 >
                   {para}
                 </p>
               ))}
 
-              <h3 className="font-bebas text-2xl text-[#f0f0f5] mb-4">
+              <h3 className="font-bebas font-bold text-2xl text-[#1a1a2e] mb-4">
                 What We Handle
               </h3>
               <ul className="flex flex-col gap-2.5">
                 {handles.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-[#9999aa]">
+                  <li key={i} className="flex items-start gap-3 text-sm text-[#5a5a72]">
                     <svg
-                      className="w-4 h-4 text-[#3b82f6] shrink-0 mt-0.5"
+                      className="w-4 h-4 text-[#2563eb] shrink-0 mt-0.5"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                       strokeWidth="2"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                     {item}
                   </li>
@@ -144,7 +139,7 @@ export default function ServicePageLayout({
               whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
               variants={slideInRight}
-              className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/8 shadow-2xl"
+              className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-[#1a1a2e]/8 shadow-md"
             >
               {heroImage ? (
                 <Image
@@ -155,8 +150,8 @@ export default function ServicePageLayout({
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-[#f5f5f7] to-white flex items-center justify-center">
-                  <span className="font-bebas text-3xl text-[#3b82f6]/40">
+                <div className="w-full h-full bg-[#f0ede8] flex items-center justify-center">
+                  <span className="font-bebas font-bold text-3xl text-[#2563eb]/40">
                     {title}
                   </span>
                 </div>
@@ -167,7 +162,7 @@ export default function ServicePageLayout({
       </section>
 
       {/* ─── Section 3: Case Result Card ─── */}
-      <section className="bg-[#0a0a0f] py-20 lg:py-28 border-t border-white/8">
+      <section className="bg-[#f0ede8] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-2xl mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -206,59 +201,45 @@ export default function ServicePageLayout({
                   },
                 })
               }
-              className="text-left w-full bg-[#0a0a0f] border border-white/8 rounded-2xl p-8 cursor-pointer hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/20 transition-[box-shadow,border-color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3b82f6]/60"
+              className="text-left w-full bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-8 cursor-pointer hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(37,99,235,0.12)] hover:border-[#2563eb]/20 transition-[box-shadow,border-color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
               aria-label={`${caseResult.type} case result — press to see details`}
             >
-              {/* Tag */}
-              <p className="text-xs font-semibold uppercase tracking-widest text-[#3b82f6] mb-4">
+              <p className="text-xs font-semibold uppercase tracking-widest text-[#2563eb] mb-4">
                 {caseResult.type}
               </p>
-
-              {/* Amounts */}
               <div className="flex items-baseline gap-3 mb-4">
-                <span className="text-lg text-[#666677] line-through">
+                <span className="text-lg text-[#8888a0] line-through">
                   {caseResult.initialLabel ??
-                    (caseResult.initial
-                      ? `$${caseResult.initial.toLocaleString()}`
-                      : "")}
+                    (caseResult.initial ? `$${caseResult.initial.toLocaleString()}` : "")}
                 </span>
-                <span className="text-[#3b82f6] text-xl">&rarr;</span>
+                <span className="text-[#2563eb] text-xl">&rarr;</span>
                 <AnimatedCounter
                   value={caseResult.recovered}
-                  className="font-bebas text-4xl text-[#f0f0f5] tracking-tight"
+                  className="font-bebas font-bold text-4xl text-[#1a1a2e] tracking-tight"
                 />
               </div>
-
-              {/* Divider */}
-              <div className="h-px bg-[#3b82f6]/25 mb-5" />
-
-              {/* Quote */}
-              <blockquote className="text-base text-[#9999aa] italic leading-relaxed mb-5">
+              <div className="h-px bg-[#2563eb]/20 mb-5" />
+              <blockquote className="text-base text-[#5a5a72] italic leading-relaxed mb-5">
                 &ldquo;{caseResult.review.text}&rdquo;
               </blockquote>
-
-              {/* Reviewer */}
               <div className="flex items-center gap-2">
-                <span className="text-sm font-semibold text-[#f0f0f5]">
+                <span className="text-sm font-semibold text-[#1a1a2e]">
                   {caseResult.review.author}
                 </span>
                 <StarRating className="text-sm" />
               </div>
-              <p className="text-[0.7rem] text-[#666677] mt-1">
+              <p className="text-[0.7rem] text-[#8888a0] mt-1">
                 Google Review &middot; {caseResult.review.timeAgo}
               </p>
             </motion.button>
           </motion.div>
 
-          <CaseResultModal
-            result={modalResult}
-            onClose={() => setModalResult(null)}
-          />
+          <CaseResultModal result={modalResult} onClose={() => setModalResult(null)} />
         </div>
       </section>
 
       {/* ─── Section 4: Lead Capture Form ─── */}
-      <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/8">
+      <section className="bg-[#faf8f5] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-xl mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -267,21 +248,19 @@ export default function ServicePageLayout({
             variants={fadeInUp}
             className="text-center mb-10"
           >
-            <h2 className="font-bebas text-4xl md:text-5xl text-[#f0f0f5] leading-none tracking-tight mb-3">
+            <h2 className="font-bebas font-extrabold text-4xl md:text-5xl text-[#1a1a2e] leading-none tracking-tight mb-3">
               Ready to Fight for Your Claim?
             </h2>
-            <p className="text-base text-[#9999aa]">
-              Fill out the form below and our team will review your situation
-              within 24 hours.
+            <p className="text-base text-[#5a5a72]">
+              Fill out the form below and our team will review your situation within 24 hours.
             </p>
           </motion.div>
-
           <LeadCaptureForm servicePage={serviceSlug} ctaText={ctaText} />
         </div>
       </section>
 
       {/* ─── Section 5: CTA Banner ─── */}
-      <section className="bg-[#0a0a0f] py-16 lg:py-20 border-t border-white/8">
+      <section className="bg-[#ffffff] py-16 lg:py-20 border-t border-[#1a1a2e]/8">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial="hidden"
@@ -289,7 +268,7 @@ export default function ServicePageLayout({
             viewport={{ once: true, margin: "-60px" }}
             variants={fadeInUp}
           >
-            <h2 className="font-bebas text-3xl md:text-4xl text-[#f0f0f5] leading-none tracking-tight mb-6">
+            <h2 className="font-bebas font-extrabold text-3xl md:text-4xl text-[#1a1a2e] leading-none tracking-tight mb-6">
               Have Questions? Talk to Us Directly
             </h2>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -306,18 +285,9 @@ export default function ServicePageLayout({
               </a>
               <a
                 href="tel:+17862237867"
-                className="inline-flex items-center gap-3 bg-[#0a0a0f] border border-white/8 text-[#f0f0f5] font-semibold px-7 py-3.5 rounded-full hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] duration-300"
+                className="inline-flex items-center gap-3 bg-[#f0ede8] border border-[#1a1a2e]/12 text-[#1a1a2e] font-semibold px-7 py-3.5 rounded-full hover:border-[#2563eb]/30 hover:shadow-[0_0_24px_rgba(37,99,235,0.08)] transition-[border-color,box-shadow] duration-300"
               >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                 </svg>
                 Call (786) 223-7867
