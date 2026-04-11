@@ -62,7 +62,7 @@ export default function Hero() {
       >
         <motion.h1
           variants={fadeInLeft}
-          className="font-bebas text-[clamp(4.5rem,9vw,9.5rem)] leading-none tracking-tight text-[#1a1a2e]"
+          className="font-bebas text-[clamp(5.5rem,11vw,14rem)] leading-none tracking-tight text-[#1a1a2e]"
         >
           Your Claim.
           <br />
@@ -71,7 +71,7 @@ export default function Hero() {
 
         <motion.p
           variants={fadeInLeft}
-          className="mt-7 text-base md:text-lg text-[#5a5a72] leading-relaxed max-w-lg"
+          className="mt-7 text-sm md:text-base text-[#5a5a72] leading-relaxed max-w-lg"
         >
           Your insurer offered $18K. We recovered $147K. That&apos;s what
           having an advocate means. We represent homeowners &mdash; never

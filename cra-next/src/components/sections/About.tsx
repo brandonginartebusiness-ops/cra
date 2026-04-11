@@ -40,7 +40,7 @@ export default function About() {
             </div>
 
             <div>
-              <h2 className="font-bebas text-4xl md:text-5xl text-[#1a1a2e] leading-none tracking-tight">
+              <h2 className="font-bebas text-5xl md:text-6xl lg:text-7xl text-[#1a1a2e] leading-none tracking-tight">
                 Eddy D Gomez
               </h2>
               <p className="font-bebas text-base text-[#2563eb] tracking-[0.2em] mt-1">
@@ -62,7 +62,7 @@ export default function About() {
             viewport={{ once: true, margin: "-80px" }}
             variants={slideInRight}
           >
-            <p className="font-bebas text-3xl md:text-4xl text-[#5a5a72] leading-tight mb-10">
+            <p className="font-bebas text-4xl md:text-5xl lg:text-6xl text-[#5a5a72] leading-tight mb-10">
               <strong className="text-[#1a1a2e]">
                 Every type of property claim.
               </strong>{" "}

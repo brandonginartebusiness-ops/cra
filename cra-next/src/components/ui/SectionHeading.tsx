@@ -25,11 +25,11 @@ export default function SectionHeading({
         </p>
       )}
       <h2
-        className="font-bebas text-5xl md:text-6xl lg:text-7xl leading-none tracking-tight text-[#1a1a2e]"
+        className="font-bebas text-7xl md:text-8xl lg:text-9xl leading-none tracking-tight text-[#1a1a2e]"
         dangerouslySetInnerHTML={{ __html: heading }}
       />
       {subheading && (
-        <p className="mt-4 text-base leading-relaxed text-[#5a5a72] max-w-xl">
+        <p className="mt-4 text-sm leading-relaxed text-[#5a5a72] max-w-xl">
           {subheading}
         </p>
       )}
