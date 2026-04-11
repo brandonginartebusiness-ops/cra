@@ -37,7 +37,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-2">
               {NAV_LINKS.map(([label, href]) => (
                 <li key={href}>
-                  <Link href={href} className="text-sm text-white/50 hover:text-white transition-colors">
+                  <Link href={href} className="text-sm text-white/50 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm">
                     {label}
                   </Link>
                 </li>
@@ -49,8 +49,8 @@ export default function Footer() {
           <div>
             <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-white/30 mb-3">Contact</p>
             <ul className="flex flex-col gap-2 text-sm text-white/50">
-              <li><a href="tel:+17862237867" className="hover:text-white transition-colors">(786) 223-7867</a></li>
-              <li><a href="mailto:office@cradjusters.com" className="hover:text-white transition-colors">office@cradjusters.com</a></li>
+              <li><a href="tel:+17862237867" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm">(786) 223-7867</a></li>
+              <li><a href="mailto:office@cradjusters.com" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm">office@cradjusters.com</a></li>
               <li>7900 Oak Ln, Suite 400</li>
               <li>Miami Lakes, FL 33016</li>
             </ul>

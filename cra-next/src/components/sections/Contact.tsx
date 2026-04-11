@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 import { slideInLeft, staggerContainer, fadeInUp } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
 
-const WA_LINK =
-  "https://wa.me/17862237867?text=Hi%20Claim%20Remedy%2C%20I%27d%20like%20to%20book%20a%20free%20consultation.";
+const WA_LINK = `https://wa.me/17862237867?text=${encodeURIComponent("Hi Claim Remedy, I'd like to book a free consultation.")}`;
 
 export default function Contact() {
   return (

@@ -129,7 +129,7 @@ export default function InstagramFeed() {
             href="https://instagram.com/claimremedyadjusters"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#ffffff] border border-[#1a1a2e]/10 text-[#1a1a2e] font-semibold px-7 py-3.5 rounded-full hover:border-[#2563eb]/30 hover:shadow-[0_0_24px_rgba(37,99,235,0.10)] transition-[border-color,box-shadow] duration-300"
+            className="inline-flex items-center gap-2 bg-[#ffffff] border border-[#1a1a2e]/10 text-[#1a1a2e] font-semibold px-7 py-3.5 rounded-full hover:border-[#2563eb]/30 hover:shadow-[0_0_24px_rgba(37,99,235,0.10)] transition-[border-color,box-shadow] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
           >
             Follow Us on Instagram
             <svg
@@ -164,9 +164,11 @@ export default function InstagramFeed() {
             </svg>
           </a>
           <a
-            href="#"
-            className="text-[#8888a0] hover:text-[#2563eb] transition-colors"
-            aria-label="Facebook"
+            href="https://www.facebook.com/claimremedyadjusters"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#8888a0] hover:text-[#2563eb] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm"
+            aria-label="Facebook — Claim Remedy Adjusters"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />

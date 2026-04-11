@@ -56,7 +56,7 @@ export default function Pricing() {
                   "Many homeowners recover less than they should",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2 text-sm text-[#5a5a72]">
-                    <span className="text-[#8888a0] mt-0.5">✕</span>
+                    <svg aria-hidden="true" className="w-4 h-4 text-[#8888a0] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                     {item}
                   </li>
                 ))}
@@ -94,7 +94,7 @@ export default function Pricing() {
                   "Average 3–5× higher settlements",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2 text-sm text-[#1a1a2e]">
-                    <span className="text-[#2563eb] mt-0.5">✓</span>
+                    <svg aria-hidden="true" className="w-4 h-4 text-[#2563eb] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 13l4 4L19 7"/></svg>
                     {item}
                   </li>
                 ))}

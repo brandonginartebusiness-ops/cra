@@ -36,7 +36,7 @@ export default function Process() {
               className="bg-[#ffffff] p-8 flex flex-col gap-4"
             >
               <motion.div
-                className="font-bebas text-6xl text-[#2563eb]/12 leading-none"
+                className="font-bebas text-6xl text-[#2563eb]/25 leading-none"
                 variants={scaleIn}
                 initial="hidden"
                 whileInView="visible"

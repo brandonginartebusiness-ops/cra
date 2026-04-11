@@ -36,7 +36,7 @@ export default function Services() {
             <motion.div key={s.title} variants={fadeInUp}>
               <Link
                 href={s.href}
-                className="group block bg-[#ffffff] rounded-2xl overflow-hidden border border-[#1a1a2e]/8 hover:-translate-y-1 hover:shadow-[0_8px_40px_rgba(37,99,235,0.12)] hover:border-[#2563eb]/20 transition-[transform,box-shadow,border-color] duration-300"
+                className="group block bg-[#ffffff] rounded-2xl overflow-hidden border border-[#1a1a2e]/8 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(37,99,235,0.12)] hover:border-[#2563eb]/20 transition-[transform,box-shadow,border-color] duration-300"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image

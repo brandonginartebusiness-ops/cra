@@ -1,6 +1,9 @@
+import type { ReactNode } from "react";
+
 interface Props {
   label?: string;
-  heading: string;
+  /** Pass a string for plain text, or JSX for styled content (e.g. gradient spans). */
+  heading: string | ReactNode;
   subheading?: string;
   accent?: "blue" | "teal";
   className?: string;
@@ -24,10 +27,15 @@ export default function SectionHeading({
           {label}
         </p>
       )}
-      <h2
-        className="font-bebas font-extrabold text-5xl md:text-6xl lg:text-7xl leading-none tracking-tight text-[#1a1a2e]"
-        dangerouslySetInnerHTML={{ __html: heading }}
-      />
+      <h2 className="font-bebas font-extrabold text-5xl md:text-6xl lg:text-7xl leading-none tracking-tight text-[#1a1a2e]">
+        {typeof heading === "string" ? (
+          /* Internal-only strings may contain <br/> and <span> for styling.
+             All values are hardcoded in our own components — never user input. */
+          <span dangerouslySetInnerHTML={{ __html: heading }} />
+        ) : (
+          heading
+        )}
+      </h2>
       {subheading && (
         <p className="mt-4 text-sm leading-relaxed text-[#5a5a72] max-w-xl mx-auto">
           {subheading}

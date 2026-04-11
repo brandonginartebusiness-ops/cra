@@ -11,6 +11,7 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="bg-[#f0ede8] py-24 lg:py-32">
+      {/* max-w-3xl intentional — narrow container improves Q&A readability; don't widen to 7xl */}
       <div className="max-w-3xl mx-auto px-6">
         <motion.div
           initial="hidden"

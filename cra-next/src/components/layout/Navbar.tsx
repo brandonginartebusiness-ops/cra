@@ -116,10 +116,10 @@ export default function Navbar() {
             <li key={l.href}>
               <Link
                 href={l.href}
-                className={`text-2xl font-semibold transition-colors ${
+                className={`text-2xl font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm ${
                   pathname === l.href || pathname.startsWith(l.href + "/")
-                    ? "text-[#2563eb]"
-                    : "text-white hover:text-[#2563eb]"
+                    ? "text-white"
+                    : "text-white/60 hover:text-white"
                 }`}
               >
                 {l.label}

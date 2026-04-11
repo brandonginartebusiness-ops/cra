@@ -73,7 +73,7 @@ export default function About() {
               {facts.map((f, i) => (
                 <div
                   key={f.label}
-                  className={`flex flex-col gap-0.5 px-5 py-4 bg-[#ffffff] ${
+                  className={`flex flex-col gap-0.5 px-5 py-3.5 bg-[#ffffff] ${
                     i < facts.length - 1 ? "border-b border-[#1a1a2e]/8" : ""
                   }`}
                 >
