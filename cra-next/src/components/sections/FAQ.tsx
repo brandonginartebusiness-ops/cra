@@ -10,7 +10,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="bg-[#111118] py-24 lg:py-32">
+    <section id="faq" className="bg-[#f0ede8] py-24 lg:py-32">
       <div className="max-w-3xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -34,18 +34,18 @@ export default function FAQ() {
               viewport={{ once: true, margin: "-40px" }}
               variants={fadeInUp}
               transition={{ delay: i * 0.06 }}
-              className="border border-white/8 rounded-xl overflow-hidden"
+              className="border border-[#1a1a2e]/8 rounded-xl overflow-hidden bg-[#ffffff]"
             >
               <button
                 onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left text-[#f0f0f5] font-medium hover:bg-[#0a0a0f]/2 transition-colors cursor-pointer"
+                className="w-full flex items-center justify-between px-6 py-5 text-left text-[#1a1a2e] font-medium hover:bg-[#1a1a2e]/4 transition-colors cursor-pointer"
                 aria-expanded={open === i}
               >
                 <span className="text-sm md:text-base">{faq.question}</span>
                 <motion.svg
                   animate={{ rotate: open === i ? 45 : 0 }}
                   transition={{ duration: 0.2 }}
-                  className="shrink-0 ml-4 text-[#3b82f6]"
+                  className="shrink-0 ml-4 text-[#2563eb]"
                   width="18"
                   height="18"
                   viewBox="0 0 24 24"
@@ -69,7 +69,7 @@ export default function FAQ() {
                     transition={{ duration: 0.28, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <p className="px-6 pb-5 text-sm text-[#9999aa] leading-relaxed">
+                    <p className="px-6 pb-5 text-sm text-[#5a5a72] leading-relaxed">
                       {faq.answer}
                     </p>
                   </motion.div>
@@ -77,6 +77,15 @@ export default function FAQ() {
               </AnimatePresence>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 bg-[#2563eb] text-white font-semibold text-sm uppercase tracking-wider px-7 py-3.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)] transition-[opacity,transform,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
+          >
+            Get Your Free Claim Review
+          </a>
         </div>
       </div>
     </section>

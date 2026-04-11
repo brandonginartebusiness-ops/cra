@@ -40,7 +40,7 @@ export default function InstagramFeed() {
   }, []);
 
   return (
-    <section className="bg-[#faf8f5] py-24 lg:py-32">
+    <section className="bg-[#ffffff] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"

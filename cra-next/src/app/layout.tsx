@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, DM_Sans, DM_Serif_Display } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -9,23 +9,16 @@ import ChatWidget from "@/components/ui/ChatWidget";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import TransitionWrapper from "@/components/ui/TransitionWrapper";
 
-const bebasNeue = Bebas_Neue({
-  weight: "400",
+const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-bebas-neue",
+  variable: "--font-playfair",
   display: "swap",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
-  display: "swap",
-});
-
-const dmSerifDisplay = DM_Serif_Display({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-dm-serif",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -76,7 +69,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bebasNeue.variable} ${dmSans.variable} ${dmSerifDisplay.variable}`}
+      className={`${playfairDisplay.variable} ${inter.variable}`}
     >
       <body>
         <a

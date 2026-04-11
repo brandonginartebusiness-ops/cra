@@ -7,7 +7,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Process() {
   return (
-    <section id="process" className="bg-[#faf8f5] py-24 lg:py-32">
+    <section id="process" className="bg-[#f0ede8] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -53,6 +53,15 @@ export default function Process() {
             </motion.div>
           ))}
         </motion.div>
+
+        <div className="mt-12 text-center">
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 bg-[#2563eb] text-white font-semibold text-sm uppercase tracking-wider px-7 py-3.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)] transition-[opacity,transform,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
+          >
+            Get Your Free Claim Review
+          </a>
+        </div>
       </div>
     </section>
   );
