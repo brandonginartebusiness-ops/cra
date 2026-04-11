@@ -18,7 +18,7 @@ export default function SectionHeading({
   const labelColor = accent === "teal" ? "text-[#0d9488]" : "text-[#2563eb]";
 
   return (
-    <div className={className}>
+    <div className={`text-center ${className ?? ""}`}>
       {label && (
         <p className={`font-serif font-semibold text-3xl md:text-4xl ${labelColor} mb-3 tracking-wide`}>
           {label}
@@ -29,7 +29,7 @@ export default function SectionHeading({
         dangerouslySetInnerHTML={{ __html: heading }}
       />
       {subheading && (
-        <p className="mt-4 text-sm leading-relaxed text-[#5a5a72] max-w-xl">
+        <p className="mt-4 text-sm leading-relaxed text-[#5a5a72] max-w-xl mx-auto">
           {subheading}
         </p>
       )}

@@ -16,7 +16,7 @@ export default function Results() {
     <section id="results" className="bg-[#f0ede8] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
-          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14"
+          className="flex flex-col items-center text-center gap-4 mb-14"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -26,7 +26,7 @@ export default function Results() {
             label="Featured results"
             heading='Real recoveries.<br/><span class="text-gradient">Not projections.</span>'
           />
-          <p className="text-sm text-[#5a5a72] max-w-sm lg:text-right leading-relaxed">
+          <p className="text-sm text-[#5a5a72] max-w-md mx-auto leading-relaxed">
             Six claim types. Six real outcomes. Every quote below is a verified
             Google review from a Florida homeowner or business we represented.
           </p>

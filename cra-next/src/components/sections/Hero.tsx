@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import { motion, type Variants } from "framer-motion";
-import { fadeInLeft, fadeInRight } from "@/lib/animations";
+import { fadeInLeft } from "@/lib/animations";
 
 const heroStagger = (delay: number): Variants => ({
   hidden: {},
@@ -32,7 +32,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-stretch overflow-hidden bg-[#faf8f5]"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#faf8f5]"
     >
       {/* Blue top-right accent blob */}
       <div
@@ -53,9 +53,9 @@ export default function Hero() {
         }}
       />
 
-      {/* Left content */}
+      {/* Centered content */}
       <motion.div
-        className="relative z-10 w-full lg:w-3/5 flex flex-col justify-center px-8 md:px-14 lg:px-20 pt-24 pb-16"
+        className="relative z-10 flex flex-col items-center text-center px-6 md:px-14 pt-32 pb-20 max-w-4xl mx-auto"
         variants={heroStagger(animDelay)}
         initial="hidden"
         animate="visible"
@@ -78,7 +78,7 @@ export default function Hero() {
           insurance companies.
         </motion.p>
 
-        <motion.div variants={fadeInLeft} className="mt-8 flex flex-wrap gap-3">
+        <motion.div variants={fadeInLeft} className="mt-8 flex flex-wrap justify-center gap-3">
           <a
             href="/contact"
             className="inline-flex items-center gap-2 bg-[#2563eb] text-white font-semibold text-sm uppercase tracking-wider px-7 py-3.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)] transition-[opacity,transform,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
@@ -93,10 +93,10 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Trust badges — pill style */}
+        {/* Trust badges */}
         <motion.div
           variants={fadeInLeft}
-          className="mt-10 flex flex-wrap items-center gap-3"
+          className="mt-10 flex flex-wrap items-center justify-center gap-3"
         >
           {badges.map((badge) => (
             <span
@@ -109,22 +109,7 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Right image */}
-      <motion.div
-        className="hidden lg:block absolute inset-y-0 right-0 w-2/5 bg-cover bg-center rounded-l-3xl overflow-hidden"
-        variants={fadeInRight}
-        initial="hidden"
-        animate="visible"
-        transition={{ delay: animDelay + 0.3, duration: 0.7 }}
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=1200&auto=format&fit=crop&q=80')",
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-[#faf8f5] via-[#faf8f5]/20 to-transparent" />
-      </motion.div>
-
-      {/* Seamless bottom fade into next section */}
+      {/* Seamless bottom fade */}
       <div
         className="pointer-events-none absolute bottom-0 left-0 right-0 h-32"
         aria-hidden="true"

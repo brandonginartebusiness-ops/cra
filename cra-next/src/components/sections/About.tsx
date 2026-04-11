@@ -27,7 +27,7 @@ export default function About() {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             variants={slideInLeft}
-            className="flex flex-col items-start gap-5"
+            className="flex flex-col items-center text-center gap-5"
           >
             <div className="w-48 rounded-2xl overflow-hidden border border-[#1a1a2e]/10 shadow-md">
               <Image
