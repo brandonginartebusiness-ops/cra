@@ -39,8 +39,8 @@ export default function Navbar() {
         transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-[padding,box-shadow] duration-300 ${
           scrolled
-            ? "bg-[#faf8f5]/92 backdrop-blur-md border-b border-[#1a1a2e]/10 shadow-sm py-3"
-            : "bg-[#faf8f5]/92 backdrop-blur-md py-5"
+            ? "bg-[#1a1a2e]/95 backdrop-blur-md border-b border-white/8 shadow-lg py-3"
+            : "bg-[#1a1a2e]/95 backdrop-blur-md py-5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -51,7 +51,7 @@ export default function Navbar() {
               alt="Claim Remedy Adjusters"
               width={120}
               height={35}
-              style={{ height: 35, width: "auto", filter: "brightness(0)" }}
+              style={{ height: 35, width: "auto" }}
             />
           </Link>
 
@@ -63,8 +63,8 @@ export default function Navbar() {
                   href={l.href}
                   className={`text-sm transition-colors ${
                     pathname === l.href || pathname.startsWith(l.href + "/")
-                      ? "text-[#1a1a2e]"
-                      : "text-[#5a5a72] hover:text-[#1a1a2e]"
+                      ? "text-white"
+                      : "text-white/60 hover:text-white"
                   }`}
                 >
                   {l.label}
@@ -90,13 +90,13 @@ export default function Navbar() {
               aria-controls="mobile-menu"
             >
               <span
-                className={`block w-5 h-0.5 bg-[#1a1a2e] transition-transform ${open ? "rotate-45 translate-y-2" : ""}`}
+                className={`block w-5 h-0.5 bg-white transition-transform ${open ? "rotate-45 translate-y-2" : ""}`}
               />
               <span
-                className={`block w-5 h-0.5 bg-[#1a1a2e] transition-opacity ${open ? "opacity-0" : ""}`}
+                className={`block w-5 h-0.5 bg-white transition-opacity ${open ? "opacity-0" : ""}`}
               />
               <span
-                className={`block w-5 h-0.5 bg-[#1a1a2e] transition-transform ${open ? "-rotate-45 -translate-y-2" : ""}`}
+                className={`block w-5 h-0.5 bg-white transition-transform ${open ? "-rotate-45 -translate-y-2" : ""}`}
               />
             </button>
           </div>
@@ -107,7 +107,7 @@ export default function Navbar() {
       <div
         id="mobile-menu"
         aria-hidden={!open}
-        className={`fixed inset-0 z-40 bg-[#faf8f5]/98 backdrop-blur-lg flex flex-col justify-center px-8 transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-[#1a1a2e]/98 backdrop-blur-lg flex flex-col justify-center px-8 transition-opacity duration-300 lg:hidden ${
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
@@ -119,7 +119,7 @@ export default function Navbar() {
                 className={`text-2xl font-semibold transition-colors ${
                   pathname === l.href || pathname.startsWith(l.href + "/")
                     ? "text-[#2563eb]"
-                    : "text-[#1a1a2e] hover:text-[#2563eb]"
+                    : "text-white hover:text-[#2563eb]"
                 }`}
               >
                 {l.label}

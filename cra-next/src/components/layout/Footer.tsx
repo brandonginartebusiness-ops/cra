@@ -12,7 +12,7 @@ const NAV_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#f0ede8] pt-10 pb-5 border-t border-[#1a1a2e]/10">
+    <footer className="bg-[#1a1a2e] pt-10 pb-5">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* 3-col grid */}
@@ -24,20 +24,20 @@ export default function Footer() {
             <img
               src="/brand_assets/logo.png"
               alt="Claim Remedy Adjusters"
-              style={{ height: 36, width: "auto", maxWidth: 160, filter: "brightness(0) opacity(0.75)" }}
+              style={{ height: 36, width: "auto", maxWidth: 160 }}
             />
-            <p className="text-xs text-[#8888a0] leading-relaxed max-w-[220px]">
+            <p className="text-xs text-white/40 leading-relaxed max-w-[220px]">
               Licensed Florida public adjusters. We fight for homeowners — never insurance companies. No recovery, no fee.
             </p>
           </div>
 
           {/* Col 2 — Company */}
           <div>
-            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-[#8888a0] mb-3">Company</p>
+            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-white/30 mb-3">Company</p>
             <ul className="flex flex-col gap-2">
               {NAV_LINKS.map(([label, href]) => (
                 <li key={href}>
-                  <Link href={href} className="text-sm text-[#5a5a72] hover:text-[#1a1a2e] transition-colors">
+                  <Link href={href} className="text-sm text-white/50 hover:text-white transition-colors">
                     {label}
                   </Link>
                 </li>
@@ -47,10 +47,10 @@ export default function Footer() {
 
           {/* Col 3 — Contact */}
           <div>
-            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-[#8888a0] mb-3">Contact</p>
-            <ul className="flex flex-col gap-2 text-sm text-[#5a5a72]">
-              <li><a href="tel:+17862237867" className="hover:text-[#1a1a2e] transition-colors">(786) 223-7867</a></li>
-              <li><a href="mailto:office@cradjusters.com" className="hover:text-[#1a1a2e] transition-colors">office@cradjusters.com</a></li>
+            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-white/30 mb-3">Contact</p>
+            <ul className="flex flex-col gap-2 text-sm text-white/50">
+              <li><a href="tel:+17862237867" className="hover:text-white transition-colors">(786) 223-7867</a></li>
+              <li><a href="mailto:office@cradjusters.com" className="hover:text-white transition-colors">office@cradjusters.com</a></li>
               <li>7900 Oak Ln, Suite 400</li>
               <li>Miami Lakes, FL 33016</li>
             </ul>
@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-[#1a1a2e]/10 pt-4 flex flex-col sm:flex-row justify-between items-center gap-1 text-xs text-[#8888a0]">
+        <div className="border-t border-white/10 pt-4 flex flex-col sm:flex-row justify-between items-center gap-1 text-xs text-white/30">
           <p>&copy; {new Date().getFullYear()} Claim Remedy Adjusters. All rights reserved.</p>
           <p>License W549958 &mdash; Licensed in all 67 Florida counties</p>
         </div>
