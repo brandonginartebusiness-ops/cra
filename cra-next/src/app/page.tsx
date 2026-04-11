@@ -18,11 +18,11 @@ export default function Home() {
       <Hero />
       <Services />
       <Results />
+      <Reviews />
       <Process />
       <Proof />
       <About />
       <Pricing />
-      <Reviews />
       <FAQ />
       <Contact />
       <InstagramFeed />

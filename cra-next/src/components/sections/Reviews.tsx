@@ -16,7 +16,7 @@ const reviews = [
 
 export default function Reviews() {
   return (
-    <section id="testimonials" className="bg-[#faf8f5] py-24 lg:py-32">
+    <section id="testimonials" className="bg-[#ffffff] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
