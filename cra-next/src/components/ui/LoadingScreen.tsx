@@ -22,7 +22,7 @@ export default function LoadingScreen() {
           initial={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          style={{ pointerEvents: "none", backgroundColor: "#1a1a1f" }}
+          style={{ pointerEvents: "none", backgroundColor: "#faf8f5" }}
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
         >
           {/* Logo */}
@@ -39,12 +39,12 @@ export default function LoadingScreen() {
             />
           </motion.div>
 
-          {/* Progress bar — enlarged */}
+          {/* Progress bar */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.35 }}
-            className="mt-6 w-72 h-[4px] bg-white/10 rounded-full overflow-hidden"
+            className="mt-6 w-72 h-[4px] bg-[#1a1a2e]/10 rounded-full overflow-hidden"
           >
             <motion.div
               initial={{ width: "0%" }}
@@ -55,8 +55,8 @@ export default function LoadingScreen() {
               }}
               className="h-full rounded-full"
               style={{
-                background: "linear-gradient(90deg, #60a5fa 0%, #2563eb 100%)",
-                boxShadow: "0 0 12px rgba(96,165,250,0.5), 0 0 24px rgba(37,99,235,0.4)",
+                background: "linear-gradient(90deg, #2563eb 0%, #0d9488 100%)",
+                boxShadow: "0 0 12px rgba(37,99,235,0.4), 0 0 24px rgba(13,148,136,0.3)",
               }}
             />
           </motion.div>

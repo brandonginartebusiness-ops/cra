@@ -15,7 +15,7 @@ export default function SectionHeading({
   accent = "blue",
   className,
 }: Props) {
-  const labelColor = accent === "teal" ? "text-[#0d9488]" : "text-[#3b82f6]";
+  const labelColor = accent === "teal" ? "text-[#0d9488]" : "text-[#2563eb]";
 
   return (
     <div className={className}>
@@ -25,11 +25,11 @@ export default function SectionHeading({
         </p>
       )}
       <h2
-        className="font-bebas text-5xl md:text-6xl lg:text-7xl leading-none tracking-tight text-[#f0f0f5]"
+        className="font-bebas text-5xl md:text-6xl lg:text-7xl leading-none tracking-tight text-[#1a1a2e]"
         dangerouslySetInnerHTML={{ __html: heading }}
       />
       {subheading && (
-        <p className="mt-4 text-base leading-relaxed text-[#9999aa] max-w-xl">
+        <p className="mt-4 text-base leading-relaxed text-[#5a5a72] max-w-xl">
           {subheading}
         </p>
       )}

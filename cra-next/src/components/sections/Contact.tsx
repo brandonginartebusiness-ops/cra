@@ -9,7 +9,7 @@ const WA_LINK =
 
 export default function Contact() {
   return (
-    <section id="connect" className="bg-[#0a0a0f] py-24 lg:py-32">
+    <section id="connect" className="bg-[#f0ede8] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
           <motion.div
@@ -38,7 +38,7 @@ export default function Contact() {
               href={WA_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 bg-[#0a0a0f] border border-white/8 rounded-2xl p-6 hover:border-[#25d366]/30 hover:shadow-[0_0_24px_rgba(37,211,102,0.08)] transition-[border-color,box-shadow] group"
+              className="flex items-center gap-4 bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-6 hover:border-[#25d366]/30 hover:shadow-[0_0_24px_rgba(37,211,102,0.10)] transition-[border-color,box-shadow] group"
             >
               <div className="w-11 h-11 rounded-full bg-[#25d366]/10 flex items-center justify-center shrink-0">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="#25d366">
@@ -46,10 +46,10 @@ export default function Contact() {
                 </svg>
               </div>
               <div>
-                <p className="font-semibold text-[#f0f0f5] group-hover:text-[#25d366] transition-colors">
+                <p className="font-semibold text-[#1a1a2e] group-hover:text-[#25d366] transition-colors">
                   Message on WhatsApp
                 </p>
-                <p className="text-sm text-[#9999aa]">
+                <p className="text-sm text-[#5a5a72]">
                   Start a free, pressure-free conversation
                 </p>
               </div>
@@ -59,34 +59,34 @@ export default function Contact() {
             <motion.a
               variants={fadeInUp}
               href="tel:+17862237867"
-              className="flex items-center gap-4 bg-[#0a0a0f] border border-white/8 rounded-2xl p-6 hover:border-[#3b82f6]/30 hover:shadow-[0_0_24px_rgba(59,130,246,0.08)] transition-[border-color,box-shadow] group"
+              className="flex items-center gap-4 bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-6 hover:border-[#2563eb]/30 hover:shadow-[0_0_24px_rgba(37,99,235,0.10)] transition-[border-color,box-shadow] group"
             >
-              <div className="w-11 h-11 rounded-full bg-[#3b82f6]/10 flex items-center justify-center shrink-0">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="w-11 h-11 rounded-full bg-[#2563eb]/10 flex items-center justify-center shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
                 </svg>
               </div>
               <div>
-                <p className="font-semibold text-[#f0f0f5] group-hover:text-[#3b82f6] transition-colors">
+                <p className="font-semibold text-[#1a1a2e] group-hover:text-[#2563eb] transition-colors">
                   Call (786) 223-7867
                 </p>
-                <p className="text-sm text-[#9999aa]">Speak directly with the team</p>
+                <p className="text-sm text-[#5a5a72]">Speak directly with the team</p>
               </div>
             </motion.a>
 
             {/* Address */}
             <motion.div
               variants={fadeInUp}
-              className="flex items-center gap-4 bg-[#0a0a0f] border border-white/8 rounded-2xl p-6"
+              className="flex items-center gap-4 bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-6"
             >
-              <div className="w-11 h-11 rounded-full bg-[#111118] flex items-center justify-center shrink-0">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9999aa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="w-11 h-11 rounded-full bg-[#f0ede8] flex items-center justify-center shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5a5a72" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
                 </svg>
               </div>
               <div>
-                <p className="font-semibold text-[#f0f0f5]">Miami Lakes Office</p>
-                <p className="text-sm text-[#9999aa]">7900 Oak Ln, Suite 400, Miami Lakes, FL 33016</p>
+                <p className="font-semibold text-[#1a1a2e]">Miami Lakes Office</p>
+                <p className="text-sm text-[#5a5a72]">7900 Oak Ln, Suite 400, Miami Lakes, FL 33016</p>
               </div>
             </motion.div>
           </motion.div>

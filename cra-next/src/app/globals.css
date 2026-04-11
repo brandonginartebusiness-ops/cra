@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Backgrounds (dark) ────────────────────────── */
-  --color-cra-bg:           #0a0a0f;
-  --color-cra-bg-secondary: #111118;
-  --color-cra-card:         #16161f;
-  --color-cra-card-hover:   #1c1c26;
+  /* ── Backgrounds (warm light) ──────────────────── */
+  --color-cra-bg:           #faf8f5;
+  --color-cra-bg-secondary: #f0ede8;
+  --color-cra-card:         #ffffff;
+  --color-cra-card-hover:   #f5f3f0;
 
   /* ── Text ──────────────────────────────────────── */
-  --color-cra-text:    #f0f0f5;
-  --color-cra-muted:   #9999aa;
-  --color-cra-dim:     #666677;
+  --color-cra-text:    #1a1a2e;
+  --color-cra-muted:   #5a5a72;
+  --color-cra-dim:     #8888a0;
 
   /* ── Accents ───────────────────────────────────── */
-  --color-cra-blue:    #3b82f6;
+  --color-cra-blue:    #2563eb;
   --color-cra-teal:    #0d9488;
-  --color-cra-gold:    #d4a853;
+  --color-cra-gold:    #b8892e;
 
   /* ── Borders ───────────────────────────────────── */
-  --color-cra-border:  rgba(255,255,255,0.08);
+  --color-cra-border:  rgba(26,26,46,0.10);
 
   /* ── Fonts ─────────────────────────────────────── */
   --font-bebas:  var(--font-bebas-neue);
@@ -27,10 +27,10 @@
 }
 
 :root {
-  --cra-accent-glow:  rgba(59,130,246,0.12);
-  --cra-teal-glow:    rgba(13,148,136,0.12);
-  --cra-shadow-card:  0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
-  --cra-shadow-hover: 0 4px 20px rgba(0,0,0,0.08), 0 8px 40px rgba(0,0,0,0.06);
+  --cra-accent-glow:  rgba(37,99,235,0.10);
+  --cra-teal-glow:    rgba(13,148,136,0.10);
+  --cra-shadow-card:  0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.08);
+  --cra-shadow-hover: 0 4px 20px rgba(0,0,0,0.12), 0 8px 40px rgba(0,0,0,0.08);
 }
 
 /* 25% text size increase — scales all rem-based Tailwind classes */
@@ -40,8 +40,8 @@ html {
 }
 
 body {
-  background-color: #0a0a0f;
-  color: #f0f0f5;
+  background-color: #faf8f5;
+  color: #1a1a2e;
   font-family: var(--font-dm-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -53,7 +53,7 @@ body {
 }
 
 ::selection {
-  background-color: #3b82f6;
+  background-color: #2563eb;
   color: #fff;
 }
 
@@ -67,7 +67,7 @@ body {
 
 /* Blue gradient text utility */
 .text-gradient {
-  background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #0d9488 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

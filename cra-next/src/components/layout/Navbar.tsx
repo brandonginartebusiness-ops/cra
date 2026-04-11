@@ -39,8 +39,8 @@ export default function Navbar() {
         transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-[padding,box-shadow] duration-300 ${
           scrolled
-            ? "bg-[#0a0a0f]/90 backdrop-blur-md border-b border-white/8 shadow-lg py-3"
-            : "bg-[#0a0a0f]/90 backdrop-blur-md py-5"
+            ? "bg-[#faf8f5]/92 backdrop-blur-md border-b border-[#1a1a2e]/10 shadow-sm py-3"
+            : "bg-[#faf8f5]/92 backdrop-blur-md py-5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -63,8 +63,8 @@ export default function Navbar() {
                   href={l.href}
                   className={`text-sm transition-colors ${
                     pathname === l.href || pathname.startsWith(l.href + "/")
-                      ? "text-[#f0f0f5]"
-                      : "text-[#9999aa] hover:text-[#f0f0f5]"
+                      ? "text-[#1a1a2e]"
+                      : "text-[#5a5a72] hover:text-[#1a1a2e]"
                   }`}
                 >
                   {l.label}
@@ -76,7 +76,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="hidden sm:inline-flex items-center gap-2 bg-[#3b82f6] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 transition-[opacity,transform]"
+              className="hidden sm:inline-flex items-center gap-2 bg-[#2563eb] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 transition-[opacity,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
             >
               Free Claim Review
             </Link>
@@ -90,13 +90,13 @@ export default function Navbar() {
               aria-controls="mobile-menu"
             >
               <span
-                className={`block w-5 h-0.5 bg-[#f0f0f5] transition-transform ${open ? "rotate-45 translate-y-2" : ""}`}
+                className={`block w-5 h-0.5 bg-[#1a1a2e] transition-transform ${open ? "rotate-45 translate-y-2" : ""}`}
               />
               <span
-                className={`block w-5 h-0.5 bg-[#f0f0f5] transition-opacity ${open ? "opacity-0" : ""}`}
+                className={`block w-5 h-0.5 bg-[#1a1a2e] transition-opacity ${open ? "opacity-0" : ""}`}
               />
               <span
-                className={`block w-5 h-0.5 bg-[#f0f0f5] transition-transform ${open ? "-rotate-45 -translate-y-2" : ""}`}
+                className={`block w-5 h-0.5 bg-[#1a1a2e] transition-transform ${open ? "-rotate-45 -translate-y-2" : ""}`}
               />
             </button>
           </div>
@@ -107,7 +107,7 @@ export default function Navbar() {
       <div
         id="mobile-menu"
         aria-hidden={!open}
-        className={`fixed inset-0 z-40 bg-[#0a0a0f]/98 backdrop-blur-lg flex flex-col justify-center px-8 transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-[#faf8f5]/98 backdrop-blur-lg flex flex-col justify-center px-8 transition-opacity duration-300 lg:hidden ${
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
@@ -118,8 +118,8 @@ export default function Navbar() {
                 href={l.href}
                 className={`text-2xl font-semibold transition-colors ${
                   pathname === l.href || pathname.startsWith(l.href + "/")
-                    ? "text-[#3b82f6]"
-                    : "text-[#f0f0f5] hover:text-[#3b82f6]"
+                    ? "text-[#2563eb]"
+                    : "text-[#1a1a2e] hover:text-[#2563eb]"
                 }`}
               >
                 {l.label}
@@ -129,7 +129,7 @@ export default function Navbar() {
         </ul>
         <a
           href="tel:+17862237867"
-          className="mt-10 inline-flex items-center justify-center bg-[#3b82f6] text-white font-semibold py-4 rounded-full text-lg"
+          className="mt-10 inline-flex items-center justify-center bg-[#2563eb] text-white font-semibold py-4 rounded-full text-lg"
         >
           Call Now
         </a>

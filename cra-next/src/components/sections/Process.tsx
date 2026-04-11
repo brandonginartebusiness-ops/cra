@@ -7,7 +7,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Process() {
   return (
-    <section id="process" className="bg-[#0a0a0f] py-24 lg:py-32">
+    <section id="process" className="bg-[#faf8f5] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -23,7 +23,7 @@ export default function Process() {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#111118] border border-white/8 rounded-2xl overflow-hidden"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#f0ede8] border border-[#1a1a2e]/8 rounded-2xl overflow-hidden"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -33,10 +33,10 @@ export default function Process() {
             <motion.div
               key={step.step}
               variants={fadeInUp}
-              className="bg-[#0a0a0f] p-8 flex flex-col gap-4"
+              className="bg-[#ffffff] p-8 flex flex-col gap-4"
             >
               <motion.div
-                className="font-bebas text-6xl text-[#3b82f6]/10 leading-none"
+                className="font-bebas text-6xl text-[#2563eb]/12 leading-none"
                 variants={scaleIn}
                 initial="hidden"
                 whileInView="visible"
@@ -44,10 +44,10 @@ export default function Process() {
               >
                 {step.step}
               </motion.div>
-              <h3 className="font-semibold text-[#f0f0f5] text-lg">
+              <h3 className="font-semibold text-[#1a1a2e] text-lg">
                 {step.title}
               </h3>
-              <p className="text-sm text-[#9999aa] leading-relaxed">
+              <p className="text-sm text-[#5a5a72] leading-relaxed">
                 {step.description}
               </p>
             </motion.div>

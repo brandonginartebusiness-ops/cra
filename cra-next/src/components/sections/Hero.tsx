@@ -32,7 +32,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-stretch overflow-hidden bg-[#0a0a0f]"
+      className="relative min-h-screen flex items-stretch overflow-hidden bg-[#faf8f5]"
     >
       {/* Blue top-right accent blob */}
       <div
@@ -40,16 +40,16 @@ export default function Hero() {
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(ellipse 80% 70% at 85% 30%, rgba(96,165,250,0.09) 0%, transparent 70%)",
+            "radial-gradient(ellipse 80% 70% at 85% 30%, rgba(37,99,235,0.06) 0%, transparent 70%)",
         }}
       />
-      {/* Deep blue bottom-left soft glow */}
+      {/* Teal bottom-left soft glow */}
       <div
         className="pointer-events-none absolute bottom-0 left-0 w-[40%] h-1/2"
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 10% 90%, rgba(37,99,235,0.08) 0%, transparent 70%)",
+            "radial-gradient(ellipse 80% 60% at 10% 90%, rgba(13,148,136,0.06) 0%, transparent 70%)",
         }}
       />
 
@@ -62,7 +62,7 @@ export default function Hero() {
       >
         <motion.h1
           variants={fadeInLeft}
-          className="font-bebas text-[clamp(4.5rem,9vw,9.5rem)] leading-none tracking-tight text-[#f0f0f5]"
+          className="font-bebas text-[clamp(4.5rem,9vw,9.5rem)] leading-none tracking-tight text-[#1a1a2e]"
         >
           Your Claim.
           <br />
@@ -71,7 +71,7 @@ export default function Hero() {
 
         <motion.p
           variants={fadeInLeft}
-          className="mt-7 text-base md:text-lg text-[#9999aa] leading-relaxed max-w-lg"
+          className="mt-7 text-base md:text-lg text-[#5a5a72] leading-relaxed max-w-lg"
         >
           Your insurer offered $18K. We recovered $147K. That&apos;s what
           having an advocate means. We represent homeowners &mdash; never
@@ -81,13 +81,13 @@ export default function Hero() {
         <motion.div variants={fadeInLeft} className="mt-8 flex flex-wrap gap-3">
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 bg-[#3b82f6] text-white font-semibold text-sm uppercase tracking-wider px-7 py-3.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(59,130,246,0.3)] transition-[opacity,transform,box-shadow] duration-200"
+            className="inline-flex items-center gap-2 bg-[#2563eb] text-white font-semibold text-sm uppercase tracking-wider px-7 py-3.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)] transition-[opacity,transform,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
           >
             Get Your Free Claim Review
           </a>
           <a
             href="tel:+17862237867"
-            className="inline-flex items-center gap-2 bg-[#111118] border border-white/8 text-[#f0f0f5] font-semibold text-sm px-7 py-3.5 rounded-full hover:border-white/20 transition-[border-color] duration-200"
+            className="inline-flex items-center gap-2 bg-[#f0ede8] border border-[#1a1a2e]/12 text-[#1a1a2e] font-semibold text-sm px-7 py-3.5 rounded-full hover:border-[#1a1a2e]/25 transition-[border-color] duration-200"
           >
             (786) 223-7867
           </a>
@@ -101,7 +101,7 @@ export default function Hero() {
           {badges.map((badge) => (
             <span
               key={badge}
-              className="px-4 py-1.5 rounded-full border border-[#60a5fa]/25 bg-[#60a5fa]/8 text-[#93c5fd] text-sm font-medium tracking-wide"
+              className="px-4 py-1.5 rounded-full border border-[#2563eb]/20 bg-[#2563eb]/8 text-[#2563eb] text-sm font-medium tracking-wide"
             >
               {badge}
             </span>
@@ -121,7 +121,7 @@ export default function Hero() {
             "url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=1200&auto=format&fit=crop&q=80')",
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f] via-[#0a0a0f]/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#faf8f5] via-[#faf8f5]/20 to-transparent" />
       </motion.div>
 
       {/* Seamless bottom fade into next section */}
@@ -129,7 +129,7 @@ export default function Hero() {
         className="pointer-events-none absolute bottom-0 left-0 right-0 h-32"
         aria-hidden="true"
         style={{
-          background: "linear-gradient(to bottom, transparent 0%, #111118 100%)",
+          background: "linear-gradient(to bottom, transparent 0%, #f0ede8 100%)",
         }}
       />
     </section>

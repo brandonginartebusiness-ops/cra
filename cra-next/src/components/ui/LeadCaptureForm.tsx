@@ -28,7 +28,7 @@ interface FieldErrors {
 }
 
 const inputClass =
-  "w-full bg-[#0a0a0f] border rounded-lg px-4 py-3 text-sm text-[#f0f0f5] placeholder-[#666677] focus:outline-none focus:ring-2 focus:ring-[#3b82f6]/50 focus:border-[#3b82f6]/50 transition-colors";
+  "w-full bg-[#faf8f5] border rounded-lg px-4 py-3 text-sm text-[#1a1a2e] placeholder-[#8888a0] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/40 focus:border-[#2563eb]/50 transition-colors";
 
 export default function LeadCaptureForm({
   servicePage,
@@ -111,20 +111,20 @@ export default function LeadCaptureForm({
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-[#0a0a0f] border border-white/8 rounded-2xl p-8 text-center"
+        className="bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-8 text-center"
       >
         <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-[#22c55e]/10 flex items-center justify-center">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M20 6L9 17l-5-5" />
           </svg>
         </div>
-        <h3 className="font-bebas text-2xl text-[#f0f0f5] mb-2">
+        <h3 className="font-bebas text-2xl text-[#1a1a2e] mb-2">
           Your claim review request has been submitted.
         </h3>
-        <p className="text-sm text-[#9999aa] mb-6">
+        <p className="text-sm text-[#5a5a72] mb-6">
           Our team will contact you within 24 hours.
         </p>
-        <p className="text-xs text-[#666677] mb-3">You can also reach us directly:</p>
+        <p className="text-xs text-[#8888a0] mb-3">You can also reach us directly:</p>
         <div className="flex items-center justify-center gap-4">
           <a
             href="https://wa.me/17862237867"
@@ -139,9 +139,9 @@ export default function LeadCaptureForm({
           </a>
           <a
             href="tel:+17862237867"
-            className="inline-flex items-center gap-2 text-sm text-[#3b82f6] hover:underline"
+            className="inline-flex items-center gap-2 text-sm text-[#2563eb] hover:underline"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
             </svg>
             (786) 223-7867
@@ -158,14 +158,14 @@ export default function LeadCaptureForm({
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
       variants={fadeInUp}
-      className="bg-[#0a0a0f] border border-white/8 rounded-2xl p-8 flex flex-col gap-5"
+      className="bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-8 flex flex-col gap-5"
     >
       {/* Honeypot — visually hidden, bots fill it, humans don't */}
       <input type="text" name="website" tabIndex={-1} aria-hidden="true" style={{ display: "none" }} />
       <input type="text" name="company" tabIndex={-1} aria-hidden="true" style={{ display: "none" }} />
 
       {status === "error" && (
-        <div className="bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-3 text-sm text-red-400">
+        <div className="bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-3 text-sm text-red-600">
           Something went wrong. Please try again or call us directly at{" "}
           <a href="tel:+17862237867" className="underline font-semibold">(786) 223-7867</a>.
         </div>
@@ -173,7 +173,7 @@ export default function LeadCaptureForm({
 
       {/* Full Name */}
       <div>
-        <label htmlFor="fullName" className="block text-sm font-medium text-[#f0f0f5] mb-1.5">
+        <label htmlFor="fullName" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
           Full Name
         </label>
         <input
@@ -183,15 +183,15 @@ export default function LeadCaptureForm({
           value={formData.fullName}
           onChange={handleChange}
           disabled={status === "submitting"}
-          className={`${inputClass} ${errors.fullName ? "border-red-500/50" : "border-white/8"}`}
+          className={`${inputClass} ${errors.fullName ? "border-red-500/50" : "border-[#1a1a2e]/12"}`}
           placeholder="Your full name"
         />
-        {errors.fullName && <p className="text-xs text-red-400 mt-1">{errors.fullName}</p>}
+        {errors.fullName && <p className="text-xs text-red-500 mt-1">{errors.fullName}</p>}
       </div>
 
       {/* Phone */}
       <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-[#f0f0f5] mb-1.5">
+        <label htmlFor="phone" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
           Phone Number
         </label>
         <input
@@ -201,15 +201,15 @@ export default function LeadCaptureForm({
           value={formData.phone}
           onChange={handleChange}
           disabled={status === "submitting"}
-          className={`${inputClass} ${errors.phone ? "border-red-500/50" : "border-white/8"}`}
+          className={`${inputClass} ${errors.phone ? "border-red-500/50" : "border-[#1a1a2e]/12"}`}
           placeholder="(555) 123-4567"
         />
-        {errors.phone && <p className="text-xs text-red-400 mt-1">{errors.phone}</p>}
+        {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
       </div>
 
       {/* Email */}
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-[#f0f0f5] mb-1.5">
+        <label htmlFor="email" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
           Email
         </label>
         <input
@@ -219,16 +219,16 @@ export default function LeadCaptureForm({
           value={formData.email}
           onChange={handleChange}
           disabled={status === "submitting"}
-          className={`${inputClass} ${errors.email ? "border-red-500/50" : "border-white/8"}`}
+          className={`${inputClass} ${errors.email ? "border-red-500/50" : "border-[#1a1a2e]/12"}`}
           placeholder="you@email.com"
         />
-        {errors.email && <p className="text-xs text-red-400 mt-1">{errors.email}</p>}
+        {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
       </div>
 
       {/* Claim Number */}
       <div>
-        <label htmlFor="claimNumber" className="block text-sm font-medium text-[#f0f0f5] mb-1.5">
-          Claim Number <span className="text-[#666677]">(optional)</span>
+        <label htmlFor="claimNumber" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
+          Claim Number <span className="text-[#8888a0]">(optional)</span>
         </label>
         <input
           type="text"
@@ -237,14 +237,14 @@ export default function LeadCaptureForm({
           value={formData.claimNumber}
           onChange={handleChange}
           disabled={status === "submitting"}
-          className={`${inputClass} border-white/8`}
+          className={`${inputClass} border-[#1a1a2e]/12`}
           placeholder="If you have one"
         />
       </div>
 
       {/* How can we help? */}
       <div>
-        <label htmlFor="helpType" className="block text-sm font-medium text-[#f0f0f5] mb-1.5">
+        <label htmlFor="helpType" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
           How can we help?
         </label>
         <select
@@ -253,7 +253,7 @@ export default function LeadCaptureForm({
           value={formData.helpType}
           onChange={handleChange}
           disabled={status === "submitting"}
-          className={`${inputClass} appearance-none ${errors.helpType ? "border-red-500/50" : "border-white/8"}`}
+          className={`${inputClass} appearance-none ${errors.helpType ? "border-red-500/50" : "border-[#1a1a2e]/12"}`}
         >
           <option value="">Select an option...</option>
           <option value="denied">My claim was denied</option>
@@ -263,13 +263,13 @@ export default function LeadCaptureForm({
           <option value="appraisal">I need appraisal services</option>
           <option value="other">Other</option>
         </select>
-        {errors.helpType && <p className="text-xs text-red-400 mt-1">{errors.helpType}</p>}
+        {errors.helpType && <p className="text-xs text-red-500 mt-1">{errors.helpType}</p>}
       </div>
 
       {/* Message */}
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-[#f0f0f5] mb-1.5">
-          Message <span className="text-[#666677]">(optional)</span>
+        <label htmlFor="message" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
+          Message <span className="text-[#8888a0]">(optional)</span>
         </label>
         <textarea
           id="message"
@@ -278,7 +278,7 @@ export default function LeadCaptureForm({
           value={formData.message}
           onChange={handleChange}
           disabled={status === "submitting"}
-          className={`${inputClass} border-white/8 resize-none`}
+          className={`${inputClass} border-[#1a1a2e]/12 resize-none`}
           placeholder="Tell us about your situation..."
         />
       </div>
@@ -287,7 +287,7 @@ export default function LeadCaptureForm({
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full bg-[#3b82f6] text-white font-semibold py-3.5 rounded-lg hover:opacity-90 hover:shadow-[0_0_24px_rgba(59,130,246,0.3)] transition-[opacity,box-shadow] duration-300 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full bg-[#2563eb] text-white font-semibold py-3.5 rounded-lg hover:opacity-90 hover:shadow-[0_0_24px_rgba(37,99,235,0.25)] transition-[opacity,box-shadow] duration-300 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {status === "submitting" ? (
           <>

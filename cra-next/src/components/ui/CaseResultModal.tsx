@@ -66,22 +66,22 @@ export default function CaseResultModal({ result, onClose }: Props) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[100] backdrop-blur-md bg-black/60"
+            className="fixed inset-0 z-[100] backdrop-blur-md bg-black/50"
             onClick={onClose}
           />
 
-          {/* Centering wrapper — pointer-events-none so backdrop click still fires */}
+          {/* Centering wrapper */}
           <div className="fixed inset-0 z-[101] flex items-center justify-center p-4 pointer-events-none">
             <motion.div
               key="modal-card"
               layoutId={result.layoutId}
-              className="relative bg-[#16161f] border border-white/10 rounded-2xl p-8 w-full max-w-[500px] pointer-events-auto shadow-[0_32px_80px_rgba(0,0,0,0.7)]"
+              className="relative bg-[#ffffff] border border-[#1a1a2e]/10 rounded-2xl p-8 w-full max-w-[500px] pointer-events-auto shadow-[0_32px_80px_rgba(0,0,0,0.2)]"
             >
               {/* Close button */}
               <button
                 onClick={onClose}
                 aria-label="Close"
-                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/12 text-[#9999aa] hover:text-[#f0f0f5] transition-colors"
+                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#1a1a2e]/5 hover:bg-[#1a1a2e]/10 text-[#5a5a72] hover:text-[#1a1a2e] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/50"
               >
                 <svg
                   width="13"
@@ -98,42 +98,42 @@ export default function CaseResultModal({ result, onClose }: Props) {
               </button>
 
               {/* Claim type */}
-              <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#3b82f6] mb-6 text-center drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]">
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#2563eb] mb-6 text-center">
                 {result.type}
               </p>
 
               {/* Amounts row */}
               <div className="flex items-center justify-center gap-4 mb-6">
                 {initialDisplay && (
-                  <span className="text-3xl font-semibold text-[#ef4444] line-through drop-shadow-[0_0_10px_rgba(239,68,68,0.6)]">
+                  <span className="text-3xl font-semibold text-[#ef4444] line-through drop-shadow-[0_0_10px_rgba(239,68,68,0.4)]">
                     {initialDisplay}
                   </span>
                 )}
-                <span className="text-[#3b82f6] text-2xl font-bold leading-none drop-shadow-[0_0_6px_rgba(59,130,246,0.7)]">
+                <span className="text-[#2563eb] text-2xl font-bold leading-none">
                   →
                 </span>
                 <AnimatedCounter
                   value={result.recovered}
-                  className="font-bebas text-6xl text-[#22c55e] tracking-tight leading-none drop-shadow-[0_0_16px_rgba(34,197,94,0.7)]"
+                  className="font-bebas text-6xl text-[#16a34a] tracking-tight leading-none drop-shadow-[0_0_16px_rgba(22,163,74,0.4)]"
                 />
               </div>
 
               {/* Divider */}
-              <div className="h-px bg-[#3b82f6]/20 mb-5" />
+              <div className="h-px bg-[#2563eb]/15 mb-5" />
 
               {/* Full review quote */}
-              <blockquote className="text-sm text-[#9999aa] italic leading-relaxed mb-5">
+              <blockquote className="text-sm text-[#5a5a72] italic leading-relaxed mb-5">
                 &ldquo;{result.review.text}&rdquo;
               </blockquote>
 
               {/* Reviewer */}
               <div className="flex items-center justify-center gap-2 mb-0.5">
-                <span className="text-sm font-semibold text-[#f0f0f5]">
+                <span className="text-sm font-semibold text-[#1a1a2e]">
                   {result.review.author}
                 </span>
                 <StarRating className="text-sm" />
               </div>
-              <p className="text-[0.7rem] text-[#666677] mb-7 text-center">
+              <p className="text-[0.7rem] text-[#8888a0] mb-7 text-center">
                 Google Review &middot; {result.review.timeAgo}
               </p>
 
@@ -143,7 +143,7 @@ export default function CaseResultModal({ result, onClose }: Props) {
                   href={reviewUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-1 bg-white/5 border border-white/10 text-[#f0f0f5] text-xs font-semibold px-3 py-2.5 rounded-full hover:border-white/20 transition-colors"
+                  className="flex-1 inline-flex items-center justify-center gap-1 bg-[#1a1a2e]/5 border border-[#1a1a2e]/10 text-[#1a1a2e] text-xs font-semibold px-3 py-2.5 rounded-full hover:border-[#1a1a2e]/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/50"
                 >
                   Google Reviews
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -153,7 +153,7 @@ export default function CaseResultModal({ result, onClose }: Props) {
                 <Link
                   href="/contact"
                   onClick={onClose}
-                  className="flex-1 inline-flex items-center justify-center bg-[#3b82f6] text-white text-xs font-semibold px-3 py-2.5 rounded-full hover:opacity-90 transition-opacity"
+                  className="flex-1 inline-flex items-center justify-center bg-[#2563eb] text-white text-xs font-semibold px-3 py-2.5 rounded-full hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
                 >
                   Free Claim Review
                 </Link>
