@@ -21,7 +21,7 @@ export default function LoadingScreen() {
           key="loading-screen"
           initial={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 1.02 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
           style={{ pointerEvents: "none", backgroundColor: "#1a1a2e" }}
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
         >
@@ -49,9 +49,9 @@ export default function LoadingScreen() {
             <motion.div
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
-              transition={{ duration: 1.8, ease: [0.25, 0.1, 0.25, 1], delay: 0.4 }}
+              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
               onAnimationComplete={() => {
-                setTimeout(() => setVisible(false), 120);
+                setTimeout(() => setVisible(false), 50);
               }}
               className="h-full rounded-full"
               style={{
