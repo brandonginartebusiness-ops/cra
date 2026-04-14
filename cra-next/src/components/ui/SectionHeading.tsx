@@ -23,11 +23,11 @@ export default function SectionHeading({
   return (
     <div className={`text-center ${className ?? ""}`}>
       {label && (
-        <p className={`font-serif font-semibold text-3xl md:text-4xl ${labelColor} mb-3 tracking-wide`}>
+        <p className={`font-serif font-semibold text-4xl md:text-5xl ${labelColor} mb-2 tracking-wide`}>
           {label}
         </p>
       )}
-      <h2 className="font-bebas font-extrabold text-5xl md:text-6xl lg:text-7xl leading-none tracking-tight text-[#1a1a2e]">
+      <h2 className="font-bebas font-extrabold text-2xl md:text-3xl leading-snug tracking-tight text-[#1a1a2e]">
         {typeof heading === "string" ? (
           /* Internal-only strings may contain <br/> and <span> for styling.
              All values are hardcoded in our own components — never user input. */
@@ -37,7 +37,7 @@ export default function SectionHeading({
         )}
       </h2>
       {subheading && (
-        <p className="mt-4 text-sm leading-relaxed text-[#5a5a72] max-w-xl mx-auto">
+        <p className="mt-4 text-lg md:text-xl leading-relaxed text-[#5a5a72] max-w-2xl mx-auto">
           {subheading}
         </p>
       )}

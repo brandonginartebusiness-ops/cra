@@ -9,7 +9,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Services() {
   return (
-    <section id="services" className="bg-[#ffffff] py-24 lg:py-32">
+    <section id="services" className="bg-[#f5f3f0] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"

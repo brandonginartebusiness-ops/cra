@@ -16,7 +16,7 @@ const reviews = [
 
 export default function Reviews() {
   return (
-    <section id="testimonials" className="bg-[#ffffff] py-24 lg:py-32">
+    <section id="testimonials" className="bg-[#f5f3f0] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -25,10 +25,10 @@ export default function Reviews() {
           variants={fadeInUp}
           className="text-center mb-14"
         >
-          <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#b8892e] mb-4">
+          <span className="inline-flex items-center gap-2 text-base font-semibold uppercase tracking-widest text-[#b8892e] mb-4">
             <StarRating /> Google Reviews
           </span>
-          <h2 className="font-bebas text-5xl md:text-6xl lg:text-7xl text-[#1a1a2e] leading-none">
+          <h2 className="font-bebas text-2xl md:text-3xl text-[#1a1a2e] leading-snug">
             What homeowners say
           </h2>
         </motion.div>
