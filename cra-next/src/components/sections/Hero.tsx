@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import { fadeInLeft } from "@/lib/animations";
 
@@ -18,17 +17,6 @@ const badges = [
 ];
 
 export default function Hero() {
-  const mountedRef = useRef(false);
-  const [animDelay, setAnimDelay] = useState(2.0);
-
-  useEffect(() => {
-    if (!mountedRef.current) {
-      mountedRef.current = true;
-    } else {
-      setAnimDelay(0);
-    }
-  }, []);
-
   return (
     <section
       id="hero"
@@ -56,7 +44,7 @@ export default function Hero() {
       {/* Centered content */}
       <motion.div
         className="relative z-10 flex flex-col items-center text-center px-6 md:px-14 pt-32 pb-20 max-w-4xl mx-auto"
-        variants={heroStagger(animDelay)}
+        variants={heroStagger(0)}
         initial="hidden"
         animate="visible"
       >

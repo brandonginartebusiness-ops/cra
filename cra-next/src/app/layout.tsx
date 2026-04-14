@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFAB from "@/components/layout/WhatsAppFAB";
-import LoadingScreen from "@/components/ui/LoadingScreen";
 import ChatWidget from "@/components/ui/ChatWidget";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import TransitionWrapper from "@/components/ui/TransitionWrapper";
@@ -81,7 +80,6 @@ export default function RootLayout({
           Skip to content
         </a>
         <LocalBusinessSchema />
-        <LoadingScreen />
         <Navbar />
         <main id="main-content">
           <TransitionWrapper>{children}</TransitionWrapper>
