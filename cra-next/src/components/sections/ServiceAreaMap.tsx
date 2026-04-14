@@ -53,13 +53,13 @@ export default function ServiceAreaMap() {
             viewport={{ once: true, margin: "-80px" }}
             variants={slideInRight}
           >
-            <span className="inline-block text-xs font-semibold uppercase tracking-widest text-[#3b82f6] mb-3">
+            <span className="inline-block font-serif font-semibold text-3xl md:text-4xl text-[#3b82f6] mb-2">
               Service Area
             </span>
-            <h2 className="font-bebas text-4xl md:text-5xl text-[#f0f0f5] leading-none tracking-tight mb-4">
+            <h2 className="font-bebas text-2xl md:text-3xl text-[#f0f0f5] leading-snug tracking-tight mb-4">
               Statewide Coverage
             </h2>
-            <p className="text-base text-[#9999aa] leading-relaxed mb-8">
+            <p className="text-lg text-[#9999aa] leading-relaxed mb-8">
               Licensed to represent homeowners and businesses across all 67
               Florida counties.
             </p>

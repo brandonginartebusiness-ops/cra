@@ -67,10 +67,7 @@ export default function ServicePageLayout({
           </div>
         )}
         <div className="relative max-w-7xl mx-auto px-6">
-          <motion.nav
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
+          <nav
             className="flex items-center gap-2 text-xs text-[#8888a0] mb-8"
             aria-label="Breadcrumb"
           >
@@ -83,14 +80,14 @@ export default function ServicePageLayout({
             </Link>
             <span>/</span>
             <span className="text-[#5a5a72]">{title}</span>
-          </motion.nav>
+          </nav>
 
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+          <div>
             <h1 className="font-bebas font-extrabold text-5xl md:text-6xl lg:text-7xl text-[#1a1a2e] leading-none tracking-tight mb-4">
               {title}
             </h1>
             <p className="text-lg text-[#5a5a72] max-w-xl">{subtitle}</p>
-          </motion.div>
+          </div>
         </div>
       </section>
 

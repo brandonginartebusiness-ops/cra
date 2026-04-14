@@ -69,10 +69,7 @@ export default function CityPageLayout({ city }: Props) {
       {/* ── Section 1: Hero ──────────────────────────────────────────── */}
       <section className="bg-[#faf8f5] py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-6">
-          <motion.nav
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
+          <nav
             className="flex items-center gap-2 text-xs text-[#8888a0] mb-8"
             aria-label="Breadcrumb"
           >
@@ -81,14 +78,9 @@ export default function CityPageLayout({ city }: Props) {
             <Link href="/areas" className="hover:text-[#1a1a2e] transition-colors">Service Areas</Link>
             <span>/</span>
             <span className="text-[#5a5a72]">{city.city}</span>
-          </motion.nav>
+          </nav>
 
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            className="max-w-3xl"
-          >
+          <div className="max-w-3xl">
             <span className="inline-block text-xs font-semibold uppercase tracking-widest text-[#2563eb] mb-4">
               {city.county} · {city.region}
             </span>
@@ -113,7 +105,7 @@ export default function CityPageLayout({ city }: Props) {
                 Call (786) 223-7867
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

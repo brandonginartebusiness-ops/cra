@@ -37,7 +37,7 @@ export default function SectionHeading({
         )}
       </h2>
       {subheading && (
-        <p className="mt-4 text-lg md:text-xl leading-relaxed text-[#5a5a72] max-w-2xl mx-auto">
+        <p className="mt-4 text-lg md:text-xl leading-relaxed text-[#3a3a52] max-w-2xl mx-auto">
           {subheading}
         </p>
       )}
