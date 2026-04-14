@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function ReviewsPage() {
   return (
     <PageTransition>
-      <div className="pt-24">
+      <div className="pt-24 bg-[#0a0a0f]">
         <ReviewsContent />
       </div>
     </PageTransition>

@@ -1,3 +1,23 @@
+"use client";
+
+import { motion, type Variants } from "framer-motion";
+
+const heroStagger: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.07 },
+  },
+};
+
+const heroItem: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] },
+  },
+};
+
 const badges = [
   "No recovery, no fee",
   "Licensed in all 67 FL counties",
@@ -30,20 +50,31 @@ export default function Hero() {
       />
 
       {/* Centered content */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6 md:px-14 pt-32 pb-20 max-w-4xl mx-auto">
-        <h1 className="font-bebas font-extrabold text-[clamp(2.5rem,6vw,7rem)] leading-none tracking-tight text-[#1a1a2e]">
+      <motion.div
+        className="relative z-10 flex flex-col items-center text-center px-6 md:px-14 pt-32 pb-20 max-w-4xl mx-auto"
+        variants={heroStagger}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.h1
+          variants={heroItem}
+          className="font-bebas font-extrabold text-[clamp(2.5rem,6vw,7rem)] leading-none tracking-tight text-[#1a1a2e]"
+        >
           Your Claim.
           <br />
           <span className="text-gradient">Our Fight.</span>
-        </h1>
+        </motion.h1>
 
-        <p className="mt-7 text-sm md:text-base text-[#5a5a72] leading-relaxed max-w-lg">
+        <motion.p
+          variants={heroItem}
+          className="mt-7 text-sm md:text-base text-[#5a5a72] leading-relaxed max-w-lg"
+        >
           Your insurer offered $18K. We recovered $147K. That&apos;s what
           having an advocate means. We represent homeowners &mdash; never
           insurance companies.
-        </p>
+        </motion.p>
 
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <motion.div variants={heroItem} className="mt-8 flex flex-wrap justify-center gap-3">
           <a
             href="/contact"
             className="inline-flex items-center gap-2 bg-[#2563eb] text-white font-semibold text-sm uppercase tracking-wider px-7 py-3.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)] transition-[opacity,transform,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
@@ -56,10 +87,13 @@ export default function Hero() {
           >
             (786) 223-7867
           </a>
-        </div>
+        </motion.div>
 
         {/* Trust badges */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+        <motion.div
+          variants={heroItem}
+          className="mt-10 flex flex-wrap items-center justify-center gap-3"
+        >
           {badges.map((badge) => (
             <span
               key={badge}
@@ -68,8 +102,8 @@ export default function Hero() {
               {badge}
             </span>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Seamless bottom fade */}
       <div

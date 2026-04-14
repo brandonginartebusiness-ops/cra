@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function ResultsPage() {
   return (
     <PageTransition>
-      <div className="pt-24">
+      <div className="pt-24 bg-[#f0ede8]">
         <Results />
       </div>
     </PageTransition>

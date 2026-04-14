@@ -54,7 +54,7 @@ const serviceCards = [
 export default function ServicesContent() {
   return (
     <PageTransition>
-      <div className="pt-24">
+      <div className="pt-24 bg-[#0a0a0f]">
         <section className="bg-[#0a0a0f] py-20 lg:py-28">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div
@@ -67,6 +67,7 @@ export default function ServicesContent() {
                 label="Our services"
                 heading="Property damage claims handled<br/>with Florida-specific experience."
                 subheading="We focus exclusively on property damage insurance claims in Florida. Claim Remedy is built to move quickly, document thoroughly, and fight for the recovery your policy should support."
+                dark
               />
             </motion.div>
 

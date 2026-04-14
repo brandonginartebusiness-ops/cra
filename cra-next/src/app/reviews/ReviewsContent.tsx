@@ -95,6 +95,7 @@ export default function ReviewsContent() {
             label="Google Reviews"
             heading="What homeowners say"
             className="text-center"
+            dark
           />
           <p className="text-lg text-[#9999aa] mt-4">
             5.0{" "}

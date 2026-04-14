@@ -20,7 +20,7 @@ export default function FAQPage() {
   return (
     <PageTransition>
       <FAQSchema />
-      <div className="pt-24">
+      <div className="pt-24 bg-[#f0ede8]">
         <FAQ />
       </div>
     </PageTransition>
