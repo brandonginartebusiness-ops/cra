@@ -8,6 +8,7 @@ import ChatWidget from "@/components/ui/ChatWidget";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import TransitionWrapper from "@/components/ui/TransitionWrapper";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -88,6 +89,18 @@ export default function RootLayout({
         <WhatsAppFAB />
         <ChatWidget />
         <Analytics />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-X5LQHW4BZR"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-X5LQHW4BZR');
+          `}
+        </Script>
       </body>
     </html>
   );
