@@ -8,6 +8,7 @@ import LoadingScreen from "@/components/ui/LoadingScreen";
 import ChatWidget from "@/components/ui/ChatWidget";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import TransitionWrapper from "@/components/ui/TransitionWrapper";
+import { Analytics } from "@vercel/analytics/next";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -88,6 +89,7 @@ export default function RootLayout({
         <Footer />
         <WhatsAppFAB />
         <ChatWidget />
+        <Analytics />
       </body>
     </html>
   );
