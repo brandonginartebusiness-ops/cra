@@ -42,10 +42,10 @@ export default function Pricing() {
             </div>
             <div>
               <div className="text-2xl font-bebas text-[#8888a0] mb-1">
-                Time
+                Lowball offers
               </div>
               <div className="text-xs text-[#8888a0]">
-                More pressure, more paperwork
+                Average solo settlement runs 3–5× lower
               </div>
               <ul className="mt-5 flex flex-col gap-3">
                 {[

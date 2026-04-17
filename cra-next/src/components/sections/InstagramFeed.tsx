@@ -56,16 +56,45 @@ export default function InstagramFeed() {
           />
         </motion.div>
 
-        {/* Grid */}
+        {/* Grid or placeholder hero */}
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {Array.from({ length: 9 }).map((_, i) => (
+            {Array.from({ length: 3 }).map((_, i) => (
               <div
                 key={i}
                 className="aspect-square rounded-xl bg-[#f0ede8] animate-pulse"
               />
             ))}
           </div>
+        ) : isPlaceholder ? (
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            className="mx-auto max-w-xl rounded-2xl border border-[#1a1a2e]/8 bg-[#faf8f5] px-8 py-12 flex flex-col items-center text-center gap-4"
+          >
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#5a5a72"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="5" />
+              <circle cx="17.5" cy="6.5" r="1.5" fill="#5a5a72" stroke="none" />
+            </svg>
+            <p className="text-lg font-semibold text-[#1a1a2e]">
+              Our Instagram feed is launching soon.
+            </p>
+            <p className="text-sm text-[#5a5a72] max-w-sm">
+              Follow along for before/after claim documentation, team updates, and Florida property-damage tips.
+            </p>
+          </motion.div>
         ) : (
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
@@ -83,7 +112,7 @@ export default function InstagramFeed() {
                 variants={fadeInUp}
                 className="group relative aspect-square rounded-xl overflow-hidden border border-[#1a1a2e]/8 bg-[#f0ede8] hover:scale-[1.02] hover:border-[#2563eb]/20 transition-transform duration-300"
               >
-                {post.imageUrl && !isPlaceholder ? (
+                {post.imageUrl && (
                   <>
                     <img
                       src={post.imageUrl}
@@ -97,26 +126,6 @@ export default function InstagramFeed() {
                       </p>
                     </div>
                   </>
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-center px-4">
-                    <svg
-                      width="32"
-                      height="32"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#5a5a72"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <rect x="2" y="2" width="20" height="20" rx="5" />
-                      <circle cx="12" cy="12" r="5" />
-                      <circle cx="17.5" cy="6.5" r="1.5" fill="#5a5a72" stroke="none" />
-                    </svg>
-                    <span className="text-xs font-semibold uppercase tracking-widest text-[#8888a0]">
-                      Coming Soon
-                    </span>
-                  </div>
                 )}
               </motion.a>
             ))}
