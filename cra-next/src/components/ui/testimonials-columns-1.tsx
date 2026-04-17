@@ -7,7 +7,6 @@ export interface Testimonial {
   text: string;
   name: string;
   role: string;
-  image?: string;
 }
 
 export const TestimonialsColumn = (props: {
@@ -29,7 +28,7 @@ export const TestimonialsColumn = (props: {
       >
         {[...new Array(2).fill(0)].map((_, loopIndex) => (
           <React.Fragment key={loopIndex}>
-            {props.testimonials.map(({ text, image, name, role }, i) => (
+            {props.testimonials.map(({ text, name, role }, i) => (
               <div
                 key={i}
                 className="p-8 rounded-3xl border border-[#1a1a2e]/10 bg-[#ffffff] shadow-lg shadow-[#2563eb]/5 max-w-xs w-full"
@@ -38,22 +37,12 @@ export const TestimonialsColumn = (props: {
                   &ldquo;{text}&rdquo;
                 </div>
                 <div className="flex items-center gap-3 mt-5">
-                  {image ? (
-                    <img
-                      width={40}
-                      height={40}
-                      src={image}
-                      alt={name}
-                      className="h-10 w-10 rounded-full object-cover"
-                    />
-                  ) : (
-                    <div
-                      aria-hidden="true"
-                      className="flex-shrink-0 h-10 w-10 rounded-full bg-[#2563eb]/10 flex items-center justify-center text-sm font-semibold text-[#2563eb]"
-                    >
-                      {name.trim().charAt(0).toUpperCase()}
-                    </div>
-                  )}
+                  <div
+                    aria-hidden="true"
+                    className="flex-shrink-0 h-10 w-10 rounded-full bg-[#2563eb]/10 flex items-center justify-center text-sm font-semibold text-[#2563eb]"
+                  >
+                    {name.trim().charAt(0).toUpperCase()}
+                  </div>
                   <div className="flex flex-col">
                     <div className="font-semibold tracking-tight leading-5 text-[#1a1a2e]">
                       {name}
