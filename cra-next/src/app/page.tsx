@@ -1,11 +1,10 @@
 import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
-import Results from "@/components/sections/Results";
+import SocialProof from "@/components/sections/SocialProof";
 import Process from "@/components/sections/Process";
 import Proof from "@/components/sections/Proof";
 import About from "@/components/sections/About";
 import Pricing from "@/components/sections/Pricing";
-import Reviews from "@/components/sections/Reviews";
 import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 import InstagramFeed from "@/components/sections/InstagramFeed";
@@ -17,9 +16,8 @@ export default function Home() {
       <FAQSchema />
       <Hero />
       <Services />
-      <Results />
+      <SocialProof />
       <About />
-      <Reviews />
       <Process />
       <Proof />
       <Pricing />

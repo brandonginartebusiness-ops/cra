@@ -2,7 +2,6 @@ import Link from "next/link";
 
 const NAV_LINKS = [
   ["Services", "/services"],
-  ["Results", "/results"],
   ["Process", "/process"],
   ["About", "/about"],
   ["Reviews", "/reviews"],

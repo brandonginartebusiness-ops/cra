@@ -15,7 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/services/roof-claims`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/appraisal`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/areas`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE}/results`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/process`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/reviews`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },

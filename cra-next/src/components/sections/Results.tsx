@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import { caseResults } from "@/data/results";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
-import StarRating from "@/components/ui/StarRating";
 import SectionHeading from "@/components/ui/SectionHeading";
 import CaseResultModal, { type ModalResult } from "@/components/ui/CaseResultModal";
 
@@ -27,8 +27,8 @@ export default function Results() {
             heading={<>Real recoveries.<br /><span className="text-gradient">Not projections.</span></>}
           />
           <p className="text-sm text-[#5a5a72] max-w-md mx-auto leading-relaxed">
-            Six claim types. Six real outcomes. Every quote below is a verified
-            Google review from a Florida homeowner or business we represented.
+            Six claim types. Six real recoveries for Florida homeowners and
+            businesses we represented. Tap any card for the full story.
           </p>
         </motion.div>
 
@@ -58,7 +58,7 @@ export default function Results() {
                     review: r.review,
                   })
                 }
-                className="text-left w-full bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-6 flex flex-col gap-4 cursor-pointer hover:shadow-[0_8px_40px_rgba(37,99,235,0.12)] hover:border-[#2563eb]/20 transition-[shadow,border-color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
+                className="text-left w-full bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-6 flex flex-col gap-5 cursor-pointer hover:shadow-[0_8px_40px_rgba(37,99,235,0.12)] hover:border-[#2563eb]/20 transition-[shadow,border-color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
                 aria-label={`${r.type} case result — press to see details`}
               >
                 {/* Tag */}
@@ -67,42 +67,51 @@ export default function Results() {
                 </p>
 
                 {/* Amounts */}
-                <div className="flex items-baseline gap-3">
-                  <span className="text-base text-[#8888a0] line-through">
+                <div className="flex flex-col gap-1">
+                  <span className="text-xs uppercase tracking-widest text-[#8888a0]">
+                    Insurer&apos;s initial offer
+                  </span>
+                  <span className="text-lg text-[#8888a0] line-through">
                     {r.initialLabel ??
                       (r.initial ? `$${r.initial.toLocaleString()}` : "")}
                   </span>
-                  <span className="text-[#2563eb]">&rarr;</span>
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <span className="text-xs uppercase tracking-widest text-[#2563eb]">
+                    Recovered for client
+                  </span>
                   <AnimatedCounter
                     value={r.recovered}
-                    className="font-bebas text-3xl text-[#1a1a2e] tracking-tight"
+                    className="font-bebas text-4xl text-[#1a1a2e] tracking-tight leading-none"
                   />
                 </div>
 
-                {/* Divider */}
-                <div className="h-px bg-[#2563eb]/20" />
-
-                {/* Quote */}
-                <blockquote className="text-sm text-[#5a5a72] italic leading-relaxed flex-1">
-                  &ldquo;{r.review.text}&rdquo;
-                </blockquote>
-
-                {/* Reviewer */}
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-[#1a1a2e]">
-                      {r.review.author}
-                    </span>
-                    <StarRating className="text-sm" />
-                  </div>
-                  <p className="text-[0.7rem] text-[#8888a0] mt-0.5">
-                    Google Review &middot; {r.review.timeAgo}
-                  </p>
-                </div>
+                {/* CTA cue */}
+                <span className="mt-auto inline-flex items-center gap-1.5 text-xs font-semibold text-[#2563eb]">
+                  See the full story
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="M12 5l7 7-7 7" />
+                  </svg>
+                </span>
               </motion.button>
             );
           })}
         </motion.div>
+
+        <div className="mt-10 text-center">
+          <Link
+            href="/reviews"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#2563eb] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm"
+          >
+            See all verified Google reviews
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M5 12h14" />
+              <path d="M12 5l7 7-7 7" />
+            </svg>
+          </Link>
+        </div>
       </div>
 
       <CaseResultModal result={selected} onClose={() => setSelected(null)} />

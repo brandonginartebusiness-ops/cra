@@ -11,6 +11,11 @@ export interface GoogleReview {
 export const googleReviewsUrl =
   "https://search.google.com/local/reviews?placeid=ChIJy6vXSOEIMK8RJvzhZzwTlxI";
 
+// Total verified Google reviews on the live business profile.
+// Keep this in sync with the actual count on Google — not derived from
+// the `allReviews` array (which only holds a curated subset for display).
+export const totalGoogleReviewCount = 45;
+
 export const featuredReviews: GoogleReview[] = [
   {
     id: "judy-vasquez",
