@@ -154,6 +154,7 @@ export default function LeadCaptureForm({
   return (
     <motion.form
       onSubmit={handleSubmit}
+      method="post"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}

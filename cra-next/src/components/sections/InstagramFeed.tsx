@@ -40,7 +40,7 @@ export default function InstagramFeed() {
   }, []);
 
   return (
-    <section className="bg-[#ffffff] py-24 lg:py-32">
+    <section className="bg-[#ffffff] py-24 lg:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -52,7 +52,7 @@ export default function InstagramFeed() {
           <SectionHeading
             label="Follow our work"
             heading="@claimremedyadjusters"
-            className="text-center [&_h2]:text-5xl [&_h2]:md:text-7xl [&_h2]:lg:text-8xl"
+            className="text-center [&_h2]:text-3xl [&_h2]:sm:text-5xl [&_h2]:md:text-7xl [&_h2]:lg:text-8xl [&_h2]:break-all"
           />
         </motion.div>
 
