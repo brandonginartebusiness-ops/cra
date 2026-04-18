@@ -285,10 +285,28 @@ export default function LeadCaptureForm({
         />
       </div>
 
-      {/* Trust line */}
-      <p className="text-center text-sm font-semibold text-[#1a1a2e] -mb-1">
-        No recovery, no fee. Licensed Florida public adjusters.
-      </p>
+      {/* Trust strip */}
+      <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-2 sm:gap-x-4 sm:gap-y-1.5 text-xs text-[#5a5a72] font-medium">
+        <span className="inline-flex items-center gap-1.5">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0110 0v4" />
+          </svg>
+          Info stays private &mdash; never sold
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          Free review &mdash; no obligation
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          No recovery, no fee
+        </span>
+      </div>
 
       {/* Submit */}
       <button

@@ -7,118 +7,99 @@
 - **Phone:** (786) 223-7867
 - **Instagram:** @claimremedyadjusters
 - **Live URL:** https://claimremedyadjusters.com
-- **Audience:** Florida homeowners dealing with property damage claims (hurricane, water, fire, roof, mold, flood). They're stressed, often confused by insurance, and looking for someone trustworthy.
+- **Audience:** Florida homeowners dealing with property damage claims (hurricane, water, fire, roof, mold, flood). Stressed, often confused by insurance, looking for someone trustworthy.
 - **Tone:** Warm and approachable — "we're here to help." Confident but never aggressive. Think helpful neighbor who happens to be an expert.
 
-## Design System
+## Stack (current — Next.js 16)
 
-### Palette
-- Black: `#080810` (`--black`, body background)
-- Navy: `#0A1628` (`--navy`, headings, footer, accents)
-- Gold: `#C9922A` (`--gold`, CTAs, highlights)
-- Electric blue: `#1E6FFF` (`--blue`, interactive accents, cursor hover)
-- Cream: `#F2F0EC` (`--cream`, text on dark, light surfaces)
-- Muted: `#8A8A9A` (`--mid`, secondary text)
-- CSS variables defined in `:root` — always use `var(--navy)`, `var(--gold)`, `var(--cream)`, etc.
+- **Framework:** Next.js 16, App Router, TypeScript
+- **Styling:** Tailwind CSS v4 via `@import "tailwindcss"` in `globals.css`
+- **Animations:** Framer Motion — animate `transform` and `opacity` only, never `transition-all`
+- **Database:** Supabase (lead storage)
+- **AI:** Anthropic API via `/api/chat` route (chat widget)
+- **Hosting:** Vercel project `cra-opal`, root dir = `cra-next/`, auto-deploys from `main` branch
+- **No GSAP, no vanilla JS, no jQuery, no CDN scripts**
 
-### Typography
-- Headings: `Cormorant Garamond` (`var(--serif)`) — loaded via Google Fonts
-- Display/marquee: `Bebas Neue` (`var(--bebas)`) — loaded via Google Fonts
-- Body: `DM Sans` (`var(--sans)`) — weights 300/400/500
-- Tone: high-end, authoritative, cinematic
+## Design System (globals.css `@theme`)
 
-### Design philosophy
-- Dark base (`--black`) with cream text; sections use depth via layered z-index
-- Film grain overlay (`.grain` div, `aria-hidden`) on every page at ~3% opacity
-- Custom cursor (`#cur` + `#cur-r`) on desktop (`pointer: fine`), hidden on touch
-- GSAP reveal defaults: `y:60, opacity:0, duration:1, ease:power3.out, start:'top 85%'`; stagger `0.1–0.15s`
-- Parallax scrub on hero and CTA backgrounds; disabled ≤768px
-- Animate `transform` and `opacity` only — never `transition-all`
+| Token | Value | Usage |
+|---|---|---|
+| `--color-cra-bg` | `#0a0a0f` | Page background |
+| `--color-cra-bg-secondary` | `#111118` | Section alternate bg |
+| `--color-cra-card` | `#16161f` | Card background |
+| `--color-cra-text` | `#f0f0f5` | Primary text |
+| `--color-cra-muted` | `#9999aa` | Secondary text |
+| `--color-cra-blue` | `#3b82f6` | CTAs, links, accents |
+| `--color-cra-teal` | `#0d9488` | Secondary accent |
+| `--color-cra-gold` | `#d4a853` | Review stars, highlights |
+| `--font-bebas` | Bebas Neue | Display/headings |
+| `--font-body` | DM Sans | Body text |
+| `--font-serif` | DM Serif Display | Section labels |
 
-### Components
-- `.btn` — Gold background, white text, hover → navy + lift
-- `.btn-navy` — Navy background, hover → gold
-- `.card` — White bg, 8px radius, shadow, hover lifts + gold top border
-- `.fade-up` — Scroll-triggered animation (opacity + translateY), activated by `.visible` class via IntersectionObserver in main.js
+Use Tailwind utilities like `text-cra-blue`, `bg-cra-card`. Never hardcode hex values.
 
 ## File Structure
 
-**Production marketing site = single page:** **`index.html` at the repo root** (`/`). Do **not** add sibling marketing HTML files (`services.html`, `contact.html`, etc.) or a multipage nav unless the owner explicitly asks. **`CLAUDE.md`** has the full rule.
-
 ```
-repo root/
-├── index.html              ← Live marketing page (single-page site)
-├── 404.html                ← Error page (if present)
-├── api/                    ← Vercel serverless routes
-├── CLAUDE.md, CONTEXT.md, PROJECT_HANDOFF.md
-└── brand_assets/
-
-cra/                        ← Legacy / secondary (redirects to /)
-├── css/style.css
-├── js/main.js
-└── data/reviews.json       ← Fallback testimonials when Google API unavailable
+F:\cra website\               ← Repo root
+├── cra-next/                 ← ALL production code lives here
+│   ├── src/app/              ← Next.js App Router pages
+│   │   ├── page.tsx          ← Homepage
+│   │   ├── globals.css       ← Design tokens + global styles
+│   │   ├── layout.tsx        ← Root layout
+│   │   └── api/              ← Serverless routes (chat, google-reviews)
+│   ├── src/components/
+│   │   ├── layout/           ← Header, Footer, etc.
+│   │   ├── sections/         ← Page sections (Hero, Services, Testimonials…)
+│   │   ├── seo/              ← SEO/meta components
+│   │   ├── ui/               ← Primitive UI components
+│   │   └── templates/        ← Page-level templates
+│   └── public/               ← Static assets
+│       ├── brand_assets/     ← Logos, brand images
+│       └── images/
+├── brand_assets/             ← Source brand assets (reference)
+├── CLAUDE.md                 ← Workflow rules (source of truth)
+├── CONTEXT.md                ← This file — brand + design system
+├── AGENTS.md                 ← Which agents to use for which tasks
+├── SKILLS.md                 ← Which skills to invoke for which tasks
+└── screenshot.mjs            ← Screenshot helper (run from repo root)
 ```
 
-**Local workflow:** `serve.mjs` serves the **repo root** at **`http://localhost:3000/`** (see **`CLAUDE.md`**). `screenshot.mjs` → `temporary screenshots/`. Run `npm install` once, then `npm run serve`.
+**Do not edit files outside `cra-next/` for live site changes.**
 
-## Tech Stack
+## Components Built
 
-- Vanilla HTML / CSS / JS — no frameworks, no build tools
-- **[GSAP](https://greensock.com/gsap/) 3.12.5** + **[ScrollTrigger](https://greensock.com/docs/v3/Plugins/ScrollTrigger)** (CDN on all pages, before `main.js`) — hero intro timeline, hero background parallax (~`yPercent: 10`, scrub; disabled ≤768px), stats count-up on scroll, `.grid-3` card stagger, section label/title reveals + animated underline (`cra/js/main.js`). Fade-up still uses `IntersectionObserver` for `.fade-up` elements.
-- Hosted on Vercel (auto-deploys from GitHub on push)
-- Lead paths on **root `index.html`** (e.g. Calendly, phone, chat) — no separate contact page in the default architecture
-- Testimonials: `/api/google-reviews` when configured → fallback data → static content in HTML as applicable
+- `Header` — sticky, mobile hamburger nav
+- `Hero` — Framer Motion reveal, scroll hint
+- `ServicesGrid` — service cards
+- `TrustStats` — animated count-up stats bar
+- `Testimonials` — carousel with Google Reviews API + JSON fallback
+- `InstagramGrid` — 6-tile grid linking to @claimremedyadjusters
+- `ContactForm` — lead capture → Supabase
+- `ChatWidget` — AI chat via Anthropic API
+- `Footer` — address, phone, social links
+- `MobileCTA` — sticky bottom bar (Call Now / Free Review)
 
-## Current State (What's Built)
+## Current Priorities
 
-### Homepage (index.html)
-- ✅ Sticky header with mobile hamburger nav
-- ✅ Hero: word-by-word GSAP reveal, subtitle/CTA/trust-pill sequence, scroll hint; `.hero__bg` + Ken Burns + navy overlay; ScrollTrigger parallax (subtle; off on small screens)
-- ✅ Marquee strip (services keywords) between hero and stats
-- ✅ SVG curved section dividers between major bands
-- ✅ Trust stats bar (glass) overlapping hero area — ScrollTrigger count-up — values: $4M+, 500+, $0, 10+
-- ✅ Service areas (county chips + map pin, navy band)
-- ✅ Testimonials carousel (single slide, dots, crossfade, Google API + JSON + static)
-- ✅ Instagram grid (6 placeholders linking to @claimremedyadjusters)
-- ✅ Mobile sticky CTA bar (Call Now / Free Review) — hidden on contact page
-- ✅ Footer (navy bg, address, phone)
+### Priority 1: Real Assets
+- Swap placeholder hero image for real client photo
+- Connect Google Reviews API or add real testimonial quotes
+- Swap IG grid placeholders with real post images
+- Add client logo to header (current: text only)
 
-### CSS Features Already In Place
-- Nav link underline animation (::after slide-in)
-- Card hover: lift + shadow + gold top border transition
-- Button hover: lift + box-shadow
-- Section title gold underline (::after)
-- Mobile responsive: nav collapse, stats 2x2, stacked cards
-- Ken Burns hero background animation
-- Sticky header, sticky mobile CTA bar
-- **Elevation pass:** Shared `--shadow-elevated`, deeper trust-stats bar, header soft shadow, refined fade-up easing, chip + IG tile micro-interactions
-- **Color blocking:** `.section-block-navy` (homepage service areas) alternates with cream / white sections
-- **Editorial split:** `.editorial-split` two-column layout for service areas on wide viewports
-
-## What Needs Work
-
-### Priority 1: Visual Elevation (Awwwards-inspired)
-Ongoing polish — core upgrades are in place; can still push further:
-- Bolder typography — hero tightened; continue tuning sections on **`index.html`** as needed
-- Layered depth — trust bar + cards elevated; consider more overlaps / asymmetry
-- Generous whitespace — section padding uses fluid clamp; tune per section as needed
-- Strong color blocking — navy band on service areas; consider additional bands or accents elsewhere
-- Subtle motion — chips, cards, IG grid, fade-up refined; optional scroll-linked or accent motion later
-- Editorial layout — service areas split; extend pattern to other sections if desired
-
-### Priority 2: Real Assets
-- Swap Unsplash hero for real client photo
-- Swap placeholder testimonials with real quotes (or connect Google Reviews API)
-- Swap IG placeholder images with real posts
-- Add client logo to header (replace text)
-- Add real case study numbers and license copy on **`index.html`** where those sections live
+### Priority 2: Visual Polish
+- Continue Awwwards-level elevation: bold type, layered depth, generous whitespace
+- Expand editorial split layout pattern to more sections
+- Fine-tune motion timing across sections
 
 ### Priority 3: SEO & Schema
-- ✅ Canonical URLs updated to claimremedyadjusters.com (custom domain live)
-- Tune meta / structured data on **`index.html`** as needed
+- Tune meta / structured data
 - Add branded OG image
-- Location-target service copy (Miami, Broward, Palm Beach keywords) within **`index.html`**
+- Strengthen location-targeted copy (Miami, Broward, Palm Beach keywords)
 
 ## Design Direction
 
-Inspired by Awwwards references (bold typography, layered depth, generous whitespace, confident color usage). Translate that polish into a warm, approachable feel for worried homeowners — not cold/corporate, not techy. Think: "this company is legit AND they actually care about me."
+Awwwards-inspired: bold typography, layered depth, generous whitespace, confident color use.
+Translated into warmth for worried homeowners — not cold/corporate, not techy.
+"This company is legit AND they actually care about me."

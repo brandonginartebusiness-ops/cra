@@ -1,9 +1,13 @@
 # CLAUDE.md — CRA site workflow
 
-## Always do first
+## Always do first — read in this order
 
-- Read **CONTEXT.md** for brand, design system, and current site state.
-- Check **brand_assets/** for logos and reference images before using placeholders.
+1. **`AGENTS.md`** — decide if any work should be delegated to a subagent and which type
+2. **`CONTEXT.md`** — confirm brand, design system, current stack, and file structure
+3. **Memory** (`C:\Users\capit\.claude\projects\F--cra-website\memory\MEMORY.md`) — load project and user context from past sessions
+4. **`SKILLS.md`** — identify which skill(s) apply to the task, then invoke before writing code
+
+Also check **`brand_assets/`** for logos and reference images before using placeholders.
 
 ## Production deployment
 
