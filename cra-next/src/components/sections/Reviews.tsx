@@ -3,8 +3,7 @@
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import StarRating from "@/components/ui/StarRating";
-import { TestimonialsColumn, type Testimonial } from "@/components/ui/testimonials-columns-1";
-import { allReviews, googleReviewsUrl } from "@/data/reviews";
+import { allReviews, googleReviewsUrl, totalGoogleReviewCount } from "@/data/reviews";
 
 const claimLabel = (t?: string) => {
   switch (t) {
@@ -25,17 +24,10 @@ const claimLabel = (t?: string) => {
   }
 };
 
-const testimonials: Testimonial[] = allReviews.map((r) => ({
-  text: r.text,
-  name: r.author,
-  role: claimLabel(r.claimType),
-}));
-
-const firstColumn = testimonials.slice(0, 4);
-const secondColumn = testimonials.slice(4, 8);
-const thirdColumn = testimonials.slice(8, 12);
-
 export default function Reviews() {
+  const [hero, ...rest] = allReviews;
+  const supporting = rest.slice(0, 3);
+
   return (
     <section id="testimonials" className="bg-[#f5f3f0] py-24 lg:py-32 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
@@ -47,11 +39,14 @@ export default function Reviews() {
           variants={fadeInUp}
           className="flex flex-col items-center text-center mb-14"
         >
-          <span className="inline-flex items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#8888a0] mb-3">
+          <span className="inline-flex items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#8888a0] mb-4">
+            <span className="w-6 h-px bg-[#8888a0]" />
             Social proof
+            <span className="w-6 h-px bg-[#8888a0]" />
           </span>
           <h2 className="font-bebas text-4xl md:text-5xl lg:text-6xl text-[#1a1a2e] leading-none tracking-tight mb-6">
-            What homeowners say
+            What homeowners{" "}
+            <em className="font-serif italic font-medium text-[#2563eb]">say</em>
           </h2>
 
           <div className="inline-flex flex-wrap items-center justify-center gap-x-5 gap-y-2 rounded-full border border-[#1a1a2e]/10 bg-[#ffffff] px-6 py-3 shadow-sm">
@@ -61,7 +56,7 @@ export default function Reviews() {
             </span>
             <span className="h-4 w-px bg-[#1a1a2e]/10 hidden sm:block" />
             <span className="text-sm text-[#5a5a72]">
-              <strong className="text-[#1a1a2e]">{allReviews.length}+</strong> verified Google reviews
+              <strong className="text-[#1a1a2e]">{totalGoogleReviewCount}+</strong> verified Google reviews
             </span>
             <span className="h-4 w-px bg-[#1a1a2e]/10 hidden sm:block" />
             <span className="inline-flex items-center gap-1.5 text-xs text-[#5a5a72]">
@@ -76,12 +71,74 @@ export default function Reviews() {
           </div>
         </motion.div>
 
-        {/* Scrolling columns */}
-        <div className="flex justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)] max-h-[740px] overflow-hidden">
-          <TestimonialsColumn testimonials={firstColumn} duration={22} />
-          <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={28} />
-          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={25} />
-        </div>
+        {/* Hero pull-quote */}
+        <motion.figure
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeInUp}
+          className="relative bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl px-8 py-14 md:px-20 md:py-20 mb-5 overflow-hidden"
+        >
+          <span
+            aria-hidden="true"
+            className="pointer-events-none select-none absolute font-bebas font-extrabold leading-none"
+            style={{
+              top: "-0.12em",
+              left: "-0.02em",
+              fontSize: "clamp(180px, 22vw, 320px)",
+              color: "rgba(37,99,235,0.10)",
+            }}
+          >
+            &ldquo;
+          </span>
+          <div className="relative max-w-3xl mx-auto text-center">
+            <div className="text-[#b8892e] tracking-[2px] text-base mb-5">★★★★★</div>
+            <blockquote className="font-serif italic text-[clamp(1.1rem,1.8vw,1.5rem)] leading-snug text-[#1a1a2e]">
+              &ldquo;{hero.text}&rdquo;
+            </blockquote>
+            <figcaption className="mt-8 flex flex-col items-center gap-1">
+              <span className="font-serif italic text-lg text-[#1a1a2e]">— {hero.author}</span>
+              <span className="text-[0.55rem] font-bold tracking-[0.22em] uppercase text-[#2563eb]">
+                {claimLabel(hero.claimType)} · {hero.timeAgo}
+              </span>
+            </figcaption>
+          </div>
+        </motion.figure>
+
+        {/* 3 supporting cards */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-3"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+          variants={fadeInUp}
+        >
+          {supporting.map((r) => (
+            <article
+              key={r.id}
+              className="bg-[#ffffff] border border-[#1a1a2e]/8 rounded-xl p-6 flex flex-col gap-3"
+            >
+              <div className="text-[#b8892e] tracking-[1px] text-sm">★★★★★</div>
+              <p
+                className="text-sm leading-relaxed text-[#1a1a2e]"
+                style={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 5,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }}
+              >
+                &ldquo;{r.text}&rdquo;
+              </p>
+              <div className="mt-auto pt-3 border-t border-[#1a1a2e]/8 flex justify-between items-center">
+                <span className="text-sm font-semibold text-[#1a1a2e]">{r.author}</span>
+                <span className="text-[0.55rem] tracking-[0.15em] uppercase text-[#8888a0]">
+                  {r.timeAgo}
+                </span>
+              </div>
+            </article>
+          ))}
+        </motion.div>
 
         <div className="mt-10 text-center">
           <a

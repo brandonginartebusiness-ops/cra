@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { staggerContainer, fadeInUp, scaleIn } from "@/lib/animations";
+import { staggerContainer, fadeInUp } from "@/lib/animations";
 import { processSteps } from "@/data/process";
 import SectionHeading from "@/components/ui/SectionHeading";
 
@@ -23,7 +23,7 @@ export default function Process() {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#f0ede8] border border-[#1a1a2e]/8 rounded-2xl overflow-hidden"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#1a1a2e]/8 border border-[#1a1a2e]/8 rounded-2xl overflow-hidden"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -33,23 +33,36 @@ export default function Process() {
             <motion.div
               key={step.step}
               variants={fadeInUp}
-              className="bg-[#ffffff] p-8 flex flex-col gap-4"
+              className="relative bg-[#ffffff] p-10 min-h-[320px] flex flex-col overflow-hidden"
             >
-              <motion.div
-                className="font-bebas text-6xl text-[#2563eb]/25 leading-none"
-                variants={scaleIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-40px" }}
+              {/* Oversized background numeral */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none select-none absolute font-bebas font-extrabold leading-none text-[#2563eb] tracking-tighter"
+                style={{
+                  top: "-0.18em",
+                  right: "-0.05em",
+                  fontSize: "clamp(140px, 16vw, 220px)",
+                  opacity: 0.08,
+                  letterSpacing: "-0.04em",
+                }}
               >
                 {step.step}
-              </motion.div>
-              <h3 className="font-semibold text-[#1a1a2e] text-lg">
-                {step.title}
-              </h3>
-              <p className="text-sm text-[#5a5a72] leading-relaxed">
-                {step.description}
-              </p>
+              </span>
+
+              {/* Content sits bottom-left, on top of numeral */}
+              <div className="relative mt-auto flex flex-col gap-3">
+                <div className="inline-flex items-center gap-2 text-[0.55rem] font-bold uppercase tracking-[0.22em] text-[#2563eb]">
+                  <span className="w-5 h-px bg-[#2563eb]" />
+                  Step {step.step}
+                </div>
+                <h3 className="font-semibold text-[#1a1a2e] text-lg leading-tight">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-[#5a5a72] leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
             </motion.div>
           ))}
         </motion.div>

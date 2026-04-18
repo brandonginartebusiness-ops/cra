@@ -7,49 +7,7 @@ import { staggerContainer, fadeInUp } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceAreaMap from "@/components/sections/ServiceAreaMap";
 import PageTransition from "@/components/ui/PageTransition";
-
-const serviceCards = [
-  {
-    title: "Storm & Hurricane",
-    description:
-      "Hurricane-force winds, tropical storms, and severe weather events cause some of the most extensive property damage Florida homeowners face.",
-    image: "",
-    alt: "Aerial view of hurricane damage to Florida neighborhood",
-    href: "/services/storm-hurricane",
-  },
-  {
-    title: "Water Damage",
-    description:
-      "A burst pipe, a slow leak behind a wall, or flooding from a failed appliance can saturate drywall, subfloor, and insulation in hours.",
-    image: "",
-    alt: "Interior water damage with standing water and peeling walls",
-    href: "/services/water-damage",
-  },
-  {
-    title: "Fire & Smoke",
-    description:
-      "Fire and smoke damage extends far beyond the burn zone. Smoke particles penetrate HVAC systems, embed in soft furnishings, and corrode fixtures.",
-    image: "",
-    alt: "Exterior of fire-damaged building with charred structure",
-    href: "/services/fire-smoke",
-  },
-  {
-    title: "Roof Claims",
-    description:
-      "Roof claims are the most contested category in Florida. Without independent engineering evidence, homeowners are fighting blind.",
-    image: "",
-    alt: "Aerial view of storm-damaged roof",
-    href: "/services/roof-claims",
-  },
-  {
-    title: "Appraisal Services",
-    description:
-      "When you and your insurance company cannot agree on the amount of a covered loss, the appraisal process puts valuation in independent hands.",
-    image: "",
-    alt: "Appraisal services",
-    href: "/services/appraisal",
-  },
-];
+import { services } from "@/data/services";
 
 export default function ServicesContent() {
   return (
@@ -77,7 +35,7 @@ export default function ServicesContent() {
               initial="hidden"
               animate="visible"
             >
-              {serviceCards.map((s) => (
+              {services.map((s) => (
                 <motion.div
                   key={s.title}
                   variants={fadeInUp}
@@ -112,8 +70,23 @@ export default function ServicesContent() {
                       <p className="text-sm text-[#9999aa] leading-relaxed mb-3">
                         {s.description}
                       </p>
-                      <span className="text-sm text-[#3b82f6] font-medium group-hover:underline">
-                        Learn More &rarr;
+                      <span className="text-sm text-[#3b82f6] font-medium group-hover:underline inline-flex items-center gap-1.5">
+                        {s.ctaLabel}
+                        <svg
+                          width="11"
+                          height="11"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="transition-transform duration-200 group-hover:translate-x-0.5"
+                          aria-hidden="true"
+                        >
+                          <path d="M5 12h14" />
+                          <path d="M12 5l7 7-7 7" />
+                        </svg>
                       </span>
                     </div>
                   </Link>

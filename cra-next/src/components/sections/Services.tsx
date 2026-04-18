@@ -54,8 +54,23 @@ export default function Services() {
                   <p className="text-sm text-[#5a5a72] leading-relaxed mb-3">
                     {s.description}
                   </p>
-                  <span className="text-sm text-[#2563eb] font-medium group-hover:underline">
-                    Learn More
+                  <span className="text-sm text-[#2563eb] font-medium group-hover:underline inline-flex items-center gap-1.5">
+                    {s.ctaLabel}
+                    <svg
+                      width="11"
+                      height="11"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="transition-transform duration-200 group-hover:translate-x-0.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M5 12h14" />
+                      <path d="M12 5l7 7-7 7" />
+                    </svg>
                   </span>
                 </div>
               </Link>
