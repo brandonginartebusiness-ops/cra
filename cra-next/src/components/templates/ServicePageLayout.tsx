@@ -249,7 +249,7 @@ export default function ServicePageLayout({
               Ready to Fight for Your Claim?
             </h2>
             <p className="text-base text-[#5a5a72]">
-              Fill out the form below and our team will review your situation within 24 hours.
+              Fill out the form below and our team will call you within the hour.
             </p>
           </motion.div>
           <LeadCaptureForm servicePage={serviceSlug} ctaText={ctaText} />

@@ -307,7 +307,7 @@ export default function CityPageLayout({ city }: Props) {
               Free Claim Review in {city.city}
             </h2>
             <p className="text-base text-[#5a5a72]">
-              Our team will review your situation within 24 hours. No recovery, no fee.
+              Our team will call you within the hour. No recovery, no fee.
             </p>
           </motion.div>
           <LeadCaptureForm servicePage={city.slug} ctaText="Get Your Free Claim Review" />

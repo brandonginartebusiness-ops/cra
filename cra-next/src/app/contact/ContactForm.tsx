@@ -19,8 +19,7 @@ export default function ContactForm() {
             Or Submit a Claim Review Request
           </h2>
           <p className="text-base text-[#9999aa]">
-            Fill out the form below and our team will review your situation
-            within 24 hours.
+            Fill out the form below and our team will call you within the hour.
           </p>
         </motion.div>
 

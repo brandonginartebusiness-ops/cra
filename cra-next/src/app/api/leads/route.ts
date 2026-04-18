@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseServer } from '@/lib/supabaseServer';
 import { sendMetaCapiLead } from '@/lib/metaCapi';
+import { sendLeadSms } from '@/lib/twilioSms';
 
 const UUID_REGEX =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -157,6 +158,16 @@ export async function POST(request: NextRequest) {
             console.error('[capi] unexpected error', capiError);
           })
         : Promise.resolve(),
+      sendLeadSms({
+        full_name: body.full_name,
+        phone: body.phone,
+        email: body.email,
+        help_type: body.help_type,
+        service_page: body.service_page,
+        message: body.message || null,
+      }).catch((smsError) => {
+        console.error('[twilio] unexpected error', smsError);
+      }),
     ]);
 
     return NextResponse.json(

@@ -16,7 +16,6 @@ interface FormData {
   fullName: string;
   phone: string;
   email: string;
-  claimNumber: string;
   helpType: string;
   message: string;
 }
@@ -39,7 +38,6 @@ export default function LeadCaptureForm({
     fullName: "",
     phone: "",
     email: "",
-    claimNumber: "",
     helpType: "",
     message: "",
   });
@@ -92,7 +90,6 @@ export default function LeadCaptureForm({
           full_name: formData.fullName,
           phone: formData.phone,
           email: formData.email,
-          claim_number: formData.claimNumber || undefined,
           help_type: formData.helpType,
           message: formData.message || undefined,
           service_page: servicePage,
@@ -118,7 +115,7 @@ export default function LeadCaptureForm({
 
       setStatus("success");
       setTimeout(() => {
-        setFormData({ fullName: "", phone: "", email: "", claimNumber: "", helpType: "", message: "" });
+        setFormData({ fullName: "", phone: "", email: "", helpType: "", message: "" });
         setStatus("idle");
       }, 5000);
     } catch {
@@ -143,7 +140,7 @@ export default function LeadCaptureForm({
           Your claim review request has been submitted.
         </h3>
         <p className="text-sm text-[#5a5a72] mb-6">
-          Our team will contact you within 24 hours.
+          Our team will call you within the hour.
         </p>
         <p className="text-xs text-[#8888a0] mb-3">You can also reach us directly:</p>
         <div className="flex items-center justify-center gap-4">
@@ -247,23 +244,6 @@ export default function LeadCaptureForm({
         {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
       </div>
 
-      {/* Claim Number */}
-      <div>
-        <label htmlFor="claimNumber" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
-          Claim Number <span className="text-[#8888a0]">(optional)</span>
-        </label>
-        <input
-          type="text"
-          id="claimNumber"
-          name="claimNumber"
-          value={formData.claimNumber}
-          onChange={handleChange}
-          disabled={status === "submitting"}
-          className={`${inputClass} border-[#1a1a2e]/12`}
-          placeholder="If you have one"
-        />
-      </div>
-
       {/* How can we help? */}
       <div>
         <label htmlFor="helpType" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
@@ -305,6 +285,11 @@ export default function LeadCaptureForm({
         />
       </div>
 
+      {/* Trust line */}
+      <p className="text-center text-sm font-semibold text-[#1a1a2e] -mb-1">
+        No recovery, no fee. Licensed Florida public adjusters.
+      </p>
+
       {/* Submit */}
       <button
         type="submit"
@@ -323,6 +308,11 @@ export default function LeadCaptureForm({
           ctaText
         )}
       </button>
+
+      {/* TCPA opt-in */}
+      <p className="text-xs text-[#8888a0] leading-relaxed text-center">
+        By submitting, you agree to receive calls and SMS from Claim Remedy Adjusters about your claim. Reply STOP to opt out. Msg &amp; data rates may apply. Your info is never shared.
+      </p>
     </motion.form>
   );
 }
