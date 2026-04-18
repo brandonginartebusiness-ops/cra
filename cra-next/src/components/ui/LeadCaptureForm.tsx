@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
+import { trackLead } from "@/lib/tracking";
 
 interface LeadCaptureFormProps {
   servicePage: string;
@@ -78,6 +79,11 @@ export default function LeadCaptureForm({
     if (!validate()) return;
     setStatus("submitting");
 
+    const eventId =
+      typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
+        ? crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
     try {
       const response = await fetch("/api/leads", {
         method: "POST",
@@ -90,10 +96,25 @@ export default function LeadCaptureForm({
           help_type: formData.helpType,
           message: formData.message || undefined,
           service_page: servicePage,
+          event_id: eventId,
         }),
       });
 
       if (!response.ok) throw new Error("Submission failed");
+
+      const trimmedName = formData.fullName.trim();
+      const spaceIdx = trimmedName.indexOf(" ");
+      const firstName = spaceIdx === -1 ? trimmedName : trimmedName.slice(0, spaceIdx);
+      const lastName = spaceIdx === -1 ? "" : trimmedName.slice(spaceIdx + 1).trim();
+
+      void trackLead({
+        eventId,
+        email: formData.email,
+        phone: formData.phone,
+        firstName,
+        lastName,
+        state: "FL",
+      });
 
       setStatus("success");
       setTimeout(() => {

@@ -9,6 +9,7 @@ import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import TransitionWrapper from "@/components/ui/TransitionWrapper";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
+import TrackingScripts from "@/components/analytics/TrackingScripts";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -74,6 +75,7 @@ export default function RootLayout({
       className={`${montserrat.variable} ${roboto.variable}`}
     >
       <body>
+        <TrackingScripts />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-[#3b82f6] focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold"

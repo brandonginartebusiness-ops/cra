@@ -1,5 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseServer } from '@/lib/supabaseServer';
+import { sendMetaCapiLead } from '@/lib/metaCapi';
+
+const UUID_REGEX =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+function parseCookies(header: string | null): Record<string, string> {
+  if (!header) return {};
+  const out: Record<string, string> = {};
+  for (const part of header.split(";")) {
+    const idx = part.indexOf("=");
+    if (idx === -1) continue;
+    const name = part.slice(0, idx).trim();
+    const value = part.slice(idx + 1).trim();
+    if (name) out[name] = value;
+  }
+  return out;
+}
+
+function firstIp(header: string | null): string | null {
+  if (!header) return null;
+  const first = header.split(",")[0]?.trim();
+  return first || null;
+}
 
 function escapeHtml(str: string): string {
   return str
@@ -94,12 +117,47 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send email notification (non-blocking)
-    try {
-      await sendEmailNotification(body);
-    } catch (emailError) {
-      console.error('Email notification failed:', emailError);
-    }
+    // Side-effects (email + Meta CAPI) — non-blocking, must never fail the response
+    const eventId =
+      typeof body.event_id === 'string' && UUID_REGEX.test(body.event_id)
+        ? body.event_id
+        : null;
+
+    const cookies = parseCookies(request.headers.get('cookie'));
+    const clientIp =
+      firstIp(request.headers.get('x-forwarded-for')) ??
+      request.headers.get('x-real-ip');
+    const userAgent = request.headers.get('user-agent');
+    const referer = request.headers.get('referer');
+    const origin = request.headers.get('origin');
+    const eventSourceUrl =
+      referer ||
+      (origin ? `${origin}/${body.service_page || ''}`.replace(/\/$/, '') : '') ||
+      `https://claimremedyadjusters.com/${body.service_page || ''}`.replace(/\/$/, '');
+
+    await Promise.allSettled([
+      sendEmailNotification(body).catch((emailError) => {
+        console.error('Email notification failed:', emailError);
+      }),
+      eventId
+        ? sendMetaCapiLead({
+            eventId,
+            eventSourceUrl,
+            clientIp,
+            userAgent,
+            fbc: cookies._fbc ?? null,
+            fbp: cookies._fbp ?? null,
+            lead: {
+              full_name: body.full_name,
+              email: body.email,
+              phone: body.phone,
+              state: 'FL',
+            },
+          }).catch((capiError) => {
+            console.error('[capi] unexpected error', capiError);
+          })
+        : Promise.resolve(),
+    ]);
 
     return NextResponse.json(
       { message: 'Lead submitted successfully' },
