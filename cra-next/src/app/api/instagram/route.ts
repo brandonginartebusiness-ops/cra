@@ -63,60 +63,78 @@ export async function GET(request: Request) {
       return NextResponse.json({ posts: cachedData, isPlaceholder: false });
     }
 
-    const probeUrl = `https://graph.facebook.com/${GRAPH_API_VERSION}/${configuredId}?fields=username,instagram_business_account&access_token=${accessToken}`;
-    const probeResp = await fetch(probeUrl, {
-      next: { revalidate: 86400 },
-    });
-
-    if (!probeResp.ok) {
-      const body = await probeResp.text();
-      console.error(
-        "FB Graph probe error:",
-        probeResp.status,
-        body.slice(0, 500)
-      );
-      if (debugMode) {
-        return NextResponse.json({
-          branch: "probe-failed",
-          step: "probing configured INSTAGRAM_USER_ID against FB Graph",
-          accessTokenFirst6: accessToken.slice(0, 6),
-          accessTokenLength: accessToken.length,
-          configuredIdLength: configuredId.length,
-          status: probeResp.status,
-          statusText: probeResp.statusText,
-          bodySnippet: body.slice(0, 500),
-        });
-      }
-      return NextResponse.json({
-        posts: cachedData ?? getPlaceholderPosts(),
-        isPlaceholder: !cachedData,
-      });
-    }
-
-    const probeData: {
-      username?: string;
-      instagram_business_account?: { id: string };
-      id?: string;
-    } = await probeResp.json();
-
     let igBusinessId: string | null = null;
     let resolvedFrom: "configured-id-is-ig-business-account" | "page-link" | null =
       null;
+    const probeTrace: Array<{
+      step: string;
+      status: number;
+      bodySnippet: string;
+    }> = [];
 
-    if (probeData.username) {
-      igBusinessId = configuredId;
-      resolvedFrom = "configured-id-is-ig-business-account";
-    } else if (probeData.instagram_business_account?.id) {
-      igBusinessId = probeData.instagram_business_account.id;
-      resolvedFrom = "page-link";
+    // Probe 1: is configuredId an IG Business Account? (has `username` field)
+    const probe1Url = `https://graph.facebook.com/${GRAPH_API_VERSION}/${configuredId}?fields=username&access_token=${accessToken}`;
+    const probe1 = await fetch(probe1Url, { next: { revalidate: 86400 } });
+    if (probe1.ok) {
+      const data: { username?: string } = await probe1.json();
+      if (data.username) {
+        igBusinessId = configuredId;
+        resolvedFrom = "configured-id-is-ig-business-account";
+        probeTrace.push({
+          step: `probe1: ${configuredId} has username "${data.username}" → IGBA`,
+          status: 200,
+          bodySnippet: JSON.stringify(data),
+        });
+      }
+    } else {
+      const body = await probe1.text();
+      probeTrace.push({
+        step: `probe1: ${configuredId}?fields=username failed`,
+        status: probe1.status,
+        bodySnippet: body.slice(0, 300),
+      });
+    }
+
+    // Probe 2: if not an IGBA, is it a Page with a linked IG account?
+    if (!igBusinessId) {
+      const probe2Url = `https://graph.facebook.com/${GRAPH_API_VERSION}/${configuredId}?fields=instagram_business_account&access_token=${accessToken}`;
+      const probe2 = await fetch(probe2Url, { next: { revalidate: 86400 } });
+      if (probe2.ok) {
+        const data: { instagram_business_account?: { id: string } } =
+          await probe2.json();
+        if (data.instagram_business_account?.id) {
+          igBusinessId = data.instagram_business_account.id;
+          resolvedFrom = "page-link";
+          probeTrace.push({
+            step: `probe2: page links to IGBA ${data.instagram_business_account.id}`,
+            status: 200,
+            bodySnippet: JSON.stringify(data),
+          });
+        } else {
+          probeTrace.push({
+            step: "probe2: page has no instagram_business_account linked",
+            status: 200,
+            bodySnippet: JSON.stringify(data),
+          });
+        }
+      } else {
+        const body = await probe2.text();
+        probeTrace.push({
+          step: `probe2: ${configuredId}?fields=instagram_business_account failed`,
+          status: probe2.status,
+          bodySnippet: body.slice(0, 300),
+        });
+      }
     }
 
     if (!igBusinessId) {
       if (debugMode) {
         return NextResponse.json({
-          branch: "no-ig-business-account",
+          branch: "id-resolution-failed",
           step: "configured ID is neither an IG Business Account nor a Page with one linked",
-          probeData,
+          accessTokenFirst6: accessToken.slice(0, 6),
+          configuredIdLength: configuredId.length,
+          probeTrace,
         });
       }
       return NextResponse.json({
@@ -146,6 +164,7 @@ export async function GET(request: Request) {
           branch: "media-fetch-error",
           igBusinessId,
           resolvedFrom,
+          probeTrace,
           status: response.status,
           statusText: response.statusText,
           bodySnippet: body.slice(0, 500),
@@ -187,6 +206,7 @@ export async function GET(request: Request) {
         branch: "success",
         igBusinessId,
         resolvedFrom,
+        probeTrace,
         rawCount: data.data.length,
         keptCount: posts.length,
         firstMediaTypes: data.data.slice(0, 3).map((p) => p.media_type),
