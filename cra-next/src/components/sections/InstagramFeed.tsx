@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -114,10 +115,13 @@ export default function InstagramFeed() {
               >
                 {post.imageUrl && (
                   <>
-                    <img
+                    <Image
                       src={post.imageUrl}
-                      alt={post.caption.slice(0, 80)}
-                      className="w-full h-full object-cover"
+                      alt={post.caption.slice(0, 80) || "Instagram post"}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover"
+                      unoptimized
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-300 flex items-end p-4">
                       <p className="text-sm text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 line-clamp-3">
