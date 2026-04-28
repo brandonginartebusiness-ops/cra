@@ -7,28 +7,25 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 const panels = [
   {
-    image: "/images/proof-storm-evidence.png",
+    image:
+      "https://images.unsplash.com/photo-1601275338399-a41e3a3ec38d?w=1200&auto=format&fit=crop&q=80",
     tag: "Storm damage evidence",
     title: "Storm damage evidence",
     body: "Thorough photo documentation of every affected surface — structural compromise, interior water intrusion, and overlooked secondary damage — captured before repairs begin.",
-    fallback:
-      "https://images.unsplash.com/photo-1601275338399-a41e3a3ec38d?w=800&auto=format&fit=crop&q=80",
-  },
-  {
-    image: "/images/proof-claim-file.png",
-    tag: "Engineering & estimate depth",
-    title: "Claim file depth",
-    body: "Engineering reports, moisture mapping, and line-by-line Xactimate estimates that insurers can't easily dispute — the paperwork that drives larger recoveries.",
-    fallback:
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&auto=format&fit=crop&q=80",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1734328819658-0c3ceef27c46?w=1200&auto=format&fit=crop&q=80",
+    tag: "Engineering & estimate depth",
+    title: "Claim file depth",
+    body: "Engineering reports, moisture mapping, and line-by-line Xactimate estimates that insurers can't easily dispute — the paperwork that drives larger recoveries.",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&auto=format&fit=crop&q=80",
     tag: "Roof · Water · Mold · Fire · Denial",
     title: "Range of claim types",
     body: "Hurricane, water, mold, fire, denied claims, and commercial losses — every property damage scenario Florida homeowners face, handled under one roof.",
-    fallback: null,
   },
 ];
 

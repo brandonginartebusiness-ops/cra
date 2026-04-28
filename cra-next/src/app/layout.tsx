@@ -42,19 +42,12 @@ export const metadata: Metadata = {
     title: "Public Adjuster Miami | Claim Remedy Adjusters",
     description:
       "Licensed Florida Public Adjusters. We fight for the settlement you deserve on hurricane, water, fire, and roof damage claims. No recovery, no fee.",
-    images: [
-      {
-        url: "https://claimremedyadjusters.com/brand_assets/logo.png",
-        alt: "Claim Remedy Adjusters — Your Claim. Our Fight.",
-      },
-    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Public Adjuster Miami | Claim Remedy Adjusters",
     description:
       "Licensed Florida Public Adjusters. We fight for the settlement you deserve. No recovery, no fee.",
-    images: ["https://claimremedyadjusters.com/brand_assets/logo.png"],
   },
   alternates: {
     canonical: "https://claimremedyadjusters.com",
