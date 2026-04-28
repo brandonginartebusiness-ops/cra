@@ -74,7 +74,16 @@ export async function GET(request: Request) {
         return NextResponse.json({
           branch: "graph-api-error",
           accessTokenLength: accessToken.length,
+          accessTokenFirst6: accessToken.slice(0, 6),
+          accessTokenLast4: accessToken.slice(-4),
+          accessTokenHasWhitespace: /\s/.test(accessToken),
+          accessTokenStartsWithQuote:
+            accessToken.startsWith('"') || accessToken.startsWith("'"),
+          accessTokenEndsWithQuote:
+            accessToken.endsWith('"') || accessToken.endsWith("'"),
           userIdLength: userId.length,
+          userIdFirst3: userId.slice(0, 3),
+          userIdHasWhitespace: /\s/.test(userId),
           status: response.status,
           statusText: response.statusText,
           bodySnippet: body.slice(0, 500),
