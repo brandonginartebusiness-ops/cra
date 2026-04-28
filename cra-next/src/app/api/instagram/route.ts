@@ -22,7 +22,10 @@ let cachedData: InstagramPost[] | null = null;
 let cacheTimestamp = 0;
 const CACHE_DURATION = 60 * 60 * 1000; // 1 hour
 
+let cachedIgBusinessId: string | null = null;
+
 const PLACEHOLDER_TOKEN = "PLACEHOLDER_WILL_ADD_AFTER_META_SETUP";
+const GRAPH_API_VERSION = "v22.0";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -32,17 +35,17 @@ export async function GET(request: Request) {
 
   try {
     const accessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
-    const userId = process.env.INSTAGRAM_USER_ID;
+    const configuredId = process.env.INSTAGRAM_USER_ID;
 
-    if (!accessToken || accessToken === PLACEHOLDER_TOKEN || !userId) {
+    if (!accessToken || accessToken === PLACEHOLDER_TOKEN || !configuredId) {
       if (debugMode) {
         return NextResponse.json({
           branch: "env-check-failed",
           hasAccessToken: Boolean(accessToken),
           accessTokenLength: accessToken?.length ?? 0,
           accessTokenIsPlaceholder: accessToken === PLACEHOLDER_TOKEN,
-          hasUserId: Boolean(userId),
-          userIdLength: userId?.length ?? 0,
+          hasUserId: Boolean(configuredId),
+          userIdLength: configuredId?.length ?? 0,
           hasRefreshKey: Boolean(refreshKey),
         });
       }
@@ -52,15 +55,83 @@ export async function GET(request: Request) {
       });
     }
 
-    if (cachedData && Date.now() - cacheTimestamp < CACHE_DURATION && !debugMode) {
+    if (
+      cachedData &&
+      Date.now() - cacheTimestamp < CACHE_DURATION &&
+      !debugMode
+    ) {
       return NextResponse.json({ posts: cachedData, isPlaceholder: false });
     }
 
+    const probeUrl = `https://graph.facebook.com/${GRAPH_API_VERSION}/${configuredId}?fields=username,instagram_business_account&access_token=${accessToken}`;
+    const probeResp = await fetch(probeUrl, {
+      next: { revalidate: 86400 },
+    });
+
+    if (!probeResp.ok) {
+      const body = await probeResp.text();
+      console.error(
+        "FB Graph probe error:",
+        probeResp.status,
+        body.slice(0, 500)
+      );
+      if (debugMode) {
+        return NextResponse.json({
+          branch: "probe-failed",
+          step: "probing configured INSTAGRAM_USER_ID against FB Graph",
+          accessTokenFirst6: accessToken.slice(0, 6),
+          accessTokenLength: accessToken.length,
+          configuredIdLength: configuredId.length,
+          status: probeResp.status,
+          statusText: probeResp.statusText,
+          bodySnippet: body.slice(0, 500),
+        });
+      }
+      return NextResponse.json({
+        posts: cachedData ?? getPlaceholderPosts(),
+        isPlaceholder: !cachedData,
+      });
+    }
+
+    const probeData: {
+      username?: string;
+      instagram_business_account?: { id: string };
+      id?: string;
+    } = await probeResp.json();
+
+    let igBusinessId: string | null = null;
+    let resolvedFrom: "configured-id-is-ig-business-account" | "page-link" | null =
+      null;
+
+    if (probeData.username) {
+      igBusinessId = configuredId;
+      resolvedFrom = "configured-id-is-ig-business-account";
+    } else if (probeData.instagram_business_account?.id) {
+      igBusinessId = probeData.instagram_business_account.id;
+      resolvedFrom = "page-link";
+    }
+
+    if (!igBusinessId) {
+      if (debugMode) {
+        return NextResponse.json({
+          branch: "no-ig-business-account",
+          step: "configured ID is neither an IG Business Account nor a Page with one linked",
+          probeData,
+        });
+      }
+      return NextResponse.json({
+        posts: cachedData ?? getPlaceholderPosts(),
+        isPlaceholder: !cachedData,
+      });
+    }
+
+    cachedIgBusinessId = igBusinessId;
+
     const fields =
       "id,caption,media_type,media_url,thumbnail_url,permalink,timestamp";
-    const graphUrl = `https://graph.instagram.com/${userId}/media?fields=${fields}&limit=12&access_token=${accessToken}`;
+    const mediaUrl = `https://graph.facebook.com/${GRAPH_API_VERSION}/${igBusinessId}/media?fields=${fields}&limit=12&access_token=${accessToken}`;
 
-    const response = await fetch(graphUrl, { next: { revalidate: 3600 } });
+    const response = await fetch(mediaUrl, { next: { revalidate: 3600 } });
 
     if (!response.ok) {
       const body = await response.text();
@@ -72,18 +143,9 @@ export async function GET(request: Request) {
       );
       if (debugMode) {
         return NextResponse.json({
-          branch: "graph-api-error",
-          accessTokenLength: accessToken.length,
-          accessTokenFirst6: accessToken.slice(0, 6),
-          accessTokenLast4: accessToken.slice(-4),
-          accessTokenHasWhitespace: /\s/.test(accessToken),
-          accessTokenStartsWithQuote:
-            accessToken.startsWith('"') || accessToken.startsWith("'"),
-          accessTokenEndsWithQuote:
-            accessToken.endsWith('"') || accessToken.endsWith("'"),
-          userIdLength: userId.length,
-          userIdFirst3: userId.slice(0, 3),
-          userIdHasWhitespace: /\s/.test(userId),
+          branch: "media-fetch-error",
+          igBusinessId,
+          resolvedFrom,
           status: response.status,
           statusText: response.statusText,
           bodySnippet: body.slice(0, 500),
@@ -123,6 +185,8 @@ export async function GET(request: Request) {
     if (debugMode) {
       return NextResponse.json({
         branch: "success",
+        igBusinessId,
+        resolvedFrom,
         rawCount: data.data.length,
         keptCount: posts.length,
         firstMediaTypes: data.data.slice(0, 3).map((p) => p.media_type),
@@ -135,6 +199,7 @@ export async function GET(request: Request) {
     if (debugMode) {
       return NextResponse.json({
         branch: "exception",
+        cachedIgBusinessId,
         message: error instanceof Error ? error.message : String(error),
       });
     }
