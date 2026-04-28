@@ -19,7 +19,6 @@ export default function RoofClaimsPage() {
     <ServicePageLayout
       title="Roof Damage Claims"
       subtitle="Proving storm damage versus wear is where claims are won or lost."
-      heroImage=""
       serviceSlug="roof-claims"
       description={[
         "Roof claims are the most contested category of property insurance claims in Florida. Insurers invest heavily in strategies to deny or minimize roof damage payouts — attributing legitimate storm damage to age, wear and tear, or improper maintenance. Without independent engineering evidence, homeowners are fighting blind.",

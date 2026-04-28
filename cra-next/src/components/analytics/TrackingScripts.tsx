@@ -1,6 +1,10 @@
 import Script from "next/script";
 
+const GA4_MEASUREMENT_ID = "G-X5LQHW4BZR";
+
 export default function TrackingScripts() {
+  if (process.env.NODE_ENV !== "production") return null;
+
   const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
   const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID;
   const tiktokPixelId = process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID;
@@ -8,6 +12,21 @@ export default function TrackingScripts() {
 
   return (
     <>
+      <Script
+        id="gtag-src"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="gtag-init" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA4_MEASUREMENT_ID}');
+          ${googleAdsId ? `gtag('config', '${googleAdsId}');` : ""}
+        `}
+      </Script>
+
       {metaPixelId ? (
         <>
           <Script id="meta-pixel" strategy="afterInteractive">
@@ -34,24 +53,6 @@ export default function TrackingScripts() {
               src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`}
             />
           </noscript>
-        </>
-      ) : null}
-
-      {googleAdsId ? (
-        <>
-          <Script
-            id="google-ads-src"
-            src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}
-            strategy="afterInteractive"
-          />
-          <Script id="google-ads-init" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${googleAdsId}');
-            `}
-          </Script>
         </>
       ) : null}
 

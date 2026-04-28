@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
-  const updated = "April 6, 2026";
+  const updated = "April 28, 2026";
 
   return (
     <main className="bg-[#0a0a0f] min-h-screen pt-32 pb-24">
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="font-bebas text-2xl text-[#f0f0f5] mb-3">1. Who We Are</h2>
             <p>
-              Claim Remedy Adjusters LLC ("CRA", "we", "us", or "our") is a licensed Florida
+              Claim Remedy Adjusters LLC (&ldquo;CRA&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) is a licensed Florida
               public adjusting firm located at 7900 Oak Ln, Suite 400, Miami Lakes, FL 33016.
               We operate the website <strong className="text-[#f0f0f5]">claimremedyadjusters.com</strong> and
               related services. FL License W549958.
@@ -141,7 +141,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="font-bebas text-2xl text-[#f0f0f5] mb-3">11. Changes to This Policy</h2>
             <p>
-              We may update this policy from time to time. The "Last updated" date at the top of
+              We may update this policy from time to time. The &ldquo;Last updated&rdquo; date at the top of
               this page reflects the most recent revision. Continued use of the site after changes
               constitutes acceptance of the updated policy.
             </p>

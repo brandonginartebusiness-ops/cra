@@ -240,6 +240,7 @@ export default function ChatWidget() {
                 }}
                 onKeyDown={handleKey}
                 placeholder="Ask about your claim..."
+                aria-label="Ask about your claim"
                 rows={1}
                 className="flex-1 resize-none bg-[#ffffff] border border-[#1a1a2e]/10 rounded-xl px-3.5 py-2.5 text-sm text-[#1a1a2e] placeholder-[#8888a0] focus:outline-none focus:border-[#2563eb] transition-colors leading-relaxed"
                 style={{ maxHeight: 96 }}

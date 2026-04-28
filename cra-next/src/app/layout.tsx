@@ -8,7 +8,6 @@ import ChatWidget from "@/components/ui/ChatWidget";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import TransitionWrapper from "@/components/ui/TransitionWrapper";
 import { Analytics } from "@vercel/analytics/next";
-import Script from "next/script";
 import TrackingScripts from "@/components/analytics/TrackingScripts";
 
 const montserrat = Montserrat({
@@ -45,19 +44,17 @@ export const metadata: Metadata = {
       "Licensed Florida Public Adjusters. We fight for the settlement you deserve on hurricane, water, fire, and roof damage claims. No recovery, no fee.",
     images: [
       {
-        url: "https://claimremedyadjusters.com/brand_assets/og-image.png",
-        width: 1200,
-        height: 630,
+        url: "https://claimremedyadjusters.com/brand_assets/logo.png",
         alt: "Claim Remedy Adjusters — Your Claim. Our Fight.",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Public Adjuster Miami | Claim Remedy Adjusters",
     description:
       "Licensed Florida Public Adjusters. We fight for the settlement you deserve. No recovery, no fee.",
-    images: ["https://claimremedyadjusters.com/brand_assets/og-image.png"],
+    images: ["https://claimremedyadjusters.com/brand_assets/logo.png"],
   },
   alternates: {
     canonical: "https://claimremedyadjusters.com",
@@ -91,18 +88,6 @@ export default function RootLayout({
         <WhatsAppFAB />
         <ChatWidget />
         <Analytics />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-X5LQHW4BZR"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-X5LQHW4BZR');
-          `}
-        </Script>
       </body>
     </html>
   );

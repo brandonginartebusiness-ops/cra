@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export default function LoadingScreen() {
   const [visible, setVisible] = useState(false);
@@ -10,6 +11,8 @@ export default function LoadingScreen() {
     const seen = sessionStorage.getItem("cra_loaded");
     if (!seen) {
       sessionStorage.setItem("cra_loaded", "1");
+      // First-visit-only init; runs at most once per session.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setVisible(true);
     }
   }, []);
@@ -31,11 +34,13 @@ export default function LoadingScreen() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/brand_assets/logo.png"
               alt="Claim Remedy Adjusters"
+              width={240}
+              height={72}
               style={{ height: 72, width: "auto" }}
+              priority
             />
           </motion.div>
 

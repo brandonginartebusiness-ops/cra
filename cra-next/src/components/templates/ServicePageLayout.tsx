@@ -11,13 +11,10 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import LeadCaptureForm from "@/components/ui/LeadCaptureForm";
 import CaseResultModal, { type ModalResult } from "@/components/ui/CaseResultModal";
 
-const GOOGLE_REVIEWS_URL =
-  "https://search.google.com/local/reviews?placeid=ChIJy6vXSOEIMK8RJvzhZzwTlxI";
-
 interface ServicePageProps {
   title: string;
   subtitle: string;
-  heroImage: string;
+  heroImage?: string;
   description: string[];
   handles: string[];
   caseResult: {

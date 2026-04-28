@@ -19,7 +19,6 @@ export default function AppraisalPage() {
     <ServicePageLayout
       title="Appraisal Services"
       subtitle="When you and your insurer can't agree on the value, we step in."
-      heroImage=""
       serviceSlug="appraisal"
       description={[
         "The appraisal process is a policyholder's right under most Florida insurance policies. When you and your insurance company cannot agree on the amount of a covered loss, either party can invoke the appraisal clause — bringing in independent appraisers to determine the fair value of the claim.",

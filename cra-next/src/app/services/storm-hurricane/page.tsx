@@ -19,7 +19,6 @@ export default function StormHurricanePage() {
     <ServicePageLayout
       title="Storm & Hurricane Claims"
       subtitle="Florida's storm season doesn't wait — neither should your claim."
-      heroImage=""
       serviceSlug="storm-hurricane"
       description={[
         "Hurricane-force winds, tropical storms, and severe weather events cause some of the most extensive property damage Florida homeowners face. From torn-off roofing and broken windows to structural compromise and interior water intrusion, storm damage is rarely as simple as what's visible from the outside.",
