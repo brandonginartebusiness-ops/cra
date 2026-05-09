@@ -6,7 +6,7 @@ import LeadCaptureForm from "@/components/ui/LeadCaptureForm";
 
 export default function ContactForm() {
   return (
-    <section className="bg-[#111118] py-20 lg:py-28 border-t border-white/8">
+    <section className="bg-[#f0ede8] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
       <div className="max-w-xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -15,10 +15,10 @@ export default function ContactForm() {
           variants={fadeInUp}
           className="text-center mb-10"
         >
-          <h2 className="font-bebas text-4xl md:text-5xl text-[#f0f0f5] leading-none tracking-tight mb-3">
+          <h2 className="font-bebas text-4xl md:text-5xl text-[#1a1a2e] leading-none tracking-tight mb-3">
             Or Submit a Claim Review Request
           </h2>
-          <p className="text-base text-[#9999aa]">
+          <p className="text-base text-[#5a5a72]">
             Fill out the form below and our team will call you within the hour.
           </p>
         </motion.div>
