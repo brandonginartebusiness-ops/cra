@@ -19,11 +19,11 @@ export default function SectionHeading({
   subheading,
   accent = "blue",
   className,
-  dark = false,
+  dark = true,
 }: Props) {
   const labelColor = accent === "teal" ? "text-[#0d9488]" : "text-[#2563eb]";
   const headingColor = dark ? "text-[#f0f0f5]" : "text-[#1a1a2e]";
-  const subheadingColor = dark ? "text-[#9999aa]" : "text-[#3a3a52]";
+  const subheadingColor = dark ? "text-[#c0c0d0]" : "text-[#3a3a52]";
 
   return (
     <div className={`text-center ${className ?? ""}`}>

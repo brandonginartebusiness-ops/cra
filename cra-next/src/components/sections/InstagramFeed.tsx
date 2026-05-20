@@ -41,7 +41,7 @@ export default function InstagramFeed() {
   }, []);
 
   return (
-    <section className="bg-[#ffffff] py-24 lg:py-32 overflow-hidden">
+    <section className="py-24 lg:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -63,7 +63,7 @@ export default function InstagramFeed() {
             {Array.from({ length: 3 }).map((_, i) => (
               <div
                 key={i}
-                className="aspect-square rounded-xl bg-[#f0ede8] animate-pulse"
+                className="aspect-square rounded-xl bg-white/5 animate-pulse"
               />
             ))}
           </div>
@@ -73,7 +73,7 @@ export default function InstagramFeed() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
-            className="mx-auto max-w-xl rounded-2xl border border-[#1a1a2e]/8 bg-[#faf8f5] px-8 py-12 flex flex-col items-center text-center gap-4"
+            className="mx-auto max-w-xl rounded-2xl border border-[#1a1a2e]/8 bg-[#ffffff] px-8 py-12 flex flex-col items-center text-center gap-4"
           >
             <svg
               width="40"
@@ -111,7 +111,7 @@ export default function InstagramFeed() {
                 target="_blank"
                 rel="noopener noreferrer"
                 variants={fadeInUp}
-                className="group relative aspect-square rounded-xl overflow-hidden border border-[#1a1a2e]/8 bg-[#f0ede8] hover:scale-[1.02] hover:border-[#2563eb]/20 transition-transform duration-300"
+                className="group relative aspect-square rounded-xl overflow-hidden border border-[#1a1a2e]/8 bg-white/5 hover:scale-[1.02] hover:border-[#2563eb]/20 transition-transform duration-300"
               >
                 {post.imageUrl && (
                   <>

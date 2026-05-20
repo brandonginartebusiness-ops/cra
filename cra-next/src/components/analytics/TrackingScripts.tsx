@@ -9,6 +9,7 @@ export default function TrackingScripts() {
   const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID;
   const tiktokPixelId = process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID;
   const clarityId = process.env.NEXT_PUBLIC_MS_CLARITY_ID;
+  const callRailAccountId = process.env.NEXT_PUBLIC_CALLRAIL_ACCOUNT_ID;
 
   return (
     <>
@@ -78,6 +79,14 @@ export default function TrackingScripts() {
             })(window, document, "clarity", "script", "${clarityId}");
           `}
         </Script>
+      ) : null}
+
+      {callRailAccountId ? (
+        <Script
+          id="callrail"
+          src={`//cdn.callrail.com/companies/${callRailAccountId}/swap.js`}
+          strategy="afterInteractive"
+        />
       ) : null}
     </>
   );

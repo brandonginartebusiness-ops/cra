@@ -92,7 +92,7 @@ export default function Reviews() {
             &ldquo;
           </span>
           <div className="relative max-w-3xl mx-auto text-center">
-            <div className="text-[#b8892e] tracking-[2px] text-base mb-5">★★★★★</div>
+            <div className="text-[#2563eb] tracking-[2px] text-base mb-5">★★★★★</div>
             <blockquote className="font-serif italic text-[clamp(1.1rem,1.8vw,1.5rem)] leading-snug text-[#1a1a2e]">
               &ldquo;{hero.text}&rdquo;
             </blockquote>
@@ -118,7 +118,7 @@ export default function Reviews() {
               key={r.id}
               className="bg-[#ffffff] border border-[#1a1a2e]/8 rounded-xl p-6 flex flex-col gap-3"
             >
-              <div className="text-[#b8892e] tracking-[1px] text-sm">★★★★★</div>
+              <div className="text-[#2563eb] tracking-[1px] text-sm">★★★★★</div>
               <p
                 className="text-sm leading-relaxed text-[#1a1a2e]"
                 style={{

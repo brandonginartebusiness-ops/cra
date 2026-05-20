@@ -1,6 +1,8 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
+import LeadCaptureForm from "@/components/ui/LeadCaptureForm";
 
 const heroStagger: Variants = {
   hidden: {},
@@ -18,17 +20,22 @@ const heroItem: Variants = {
   },
 };
 
-const scorecard = [
-  { val: "5.0", suffix: "/ 5", label: "Google rating" },
-  { val: "67", suffix: "/ 67", label: "FL counties" },
-  { val: "$0", suffix: "", label: "Upfront, ever", emphasis: true },
+type ScoreItem =
+  | { kind: "decimal"; value: number; decimals: number; suffix: string; label: string; emphasis?: boolean }
+  | { kind: "integer"; value: number; suffix: string; label: string; emphasis?: boolean }
+  | { kind: "static"; val: string; suffix: string; label: string; emphasis?: boolean };
+
+const scorecard: ScoreItem[] = [
+  { kind: "decimal", value: 5.0, decimals: 1, suffix: "/ 5", label: "Google rating" },
+  { kind: "integer", value: 67, suffix: "/ 67", label: "FL counties" },
+  { kind: "static", val: "$0", suffix: "", label: "Upfront, ever", emphasis: true },
 ];
 
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#faf8f5]"
+      className="relative min-h-screen overflow-hidden"
     >
       {/* Blue top-right accent blob */}
       <div
@@ -49,80 +56,111 @@ export default function Hero() {
         }}
       />
 
-      {/* Centered content */}
       <motion.div
-        className="relative z-10 flex flex-col items-center text-center px-6 md:px-14 pt-32 pb-20 max-w-4xl mx-auto"
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-14 pt-32 pb-16 min-h-screen grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center"
         variants={heroStagger}
         initial="hidden"
         animate="visible"
       >
-        <motion.h1
-          variants={heroItem}
-          className="font-bebas font-extrabold text-[clamp(2.5rem,6vw,7rem)] leading-none tracking-tight text-[#1a1a2e]"
-        >
-          Your Claim.
-          <br />
-          <span className="text-gradient">Our Fight.</span>
-        </motion.h1>
-
-        <motion.p
-          variants={heroItem}
-          className="mt-7 text-sm md:text-base text-[#5a5a72] leading-relaxed max-w-lg"
-        >
-          Your insurer offered $18K. We recovered $147K.{" "}
-          <em className="font-serif not-italic text-[#1a1a2e] font-medium italic">
-            That&apos;s what having an advocate means.
-          </em>{" "}
-          We represent homeowners &mdash; never insurance companies.
-        </motion.p>
-
-        <motion.div variants={heroItem} className="mt-8 flex flex-wrap justify-center gap-3">
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-[#2563eb] text-white font-semibold text-sm uppercase tracking-wider px-7 py-3.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)] transition-[opacity,transform,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
+        {/* LEFT — copy + trust */}
+        <div className="flex flex-col items-start text-left">
+          <motion.div
+            variants={heroItem}
+            className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full bg-white/5 border border-white/12 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#c0c0d0]"
           >
-            Get Your Free Claim Review
-          </a>
-          <a
-            href="tel:+17862237867"
-            className="inline-flex items-center gap-2 bg-[#f0ede8] border border-[#1a1a2e]/12 text-[#1a1a2e] font-semibold text-sm px-7 py-3.5 rounded-full hover:border-[#1a1a2e]/25 transition-[border-color] duration-200"
-          >
-            (786) 223-7867
-          </a>
-        </motion.div>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M9 12l2 2 4-4" />
+              <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" />
+            </svg>
+            <span>Licensed FL Public Adjuster <span className="text-[#f0f0f5]">#W549958</span></span>
+          </motion.div>
 
-        {/* Scorecard — replaces pill chips */}
-        <motion.div
-          variants={heroItem}
-          className="mt-13 w-full max-w-lg border-t border-[#1a1a2e]/10 pt-7 grid grid-cols-3 gap-4"
-        >
-          {scorecard.map((c) => (
-            <div
-              key={c.label}
-              className="flex flex-col items-start text-left"
+          <motion.h1
+            variants={heroItem}
+            className="font-bebas font-extrabold leading-[0.95] tracking-tight text-[#f0f0f5]"
+          >
+            <span className="block text-[clamp(0.78rem,1.3vw,1rem)] font-bold tracking-[0.22em] text-[#60a5fa] mb-3 font-body">
+              FLORIDA HOMEOWNERS:
+            </span>
+            <span className="block text-[clamp(2.25rem,4.8vw,4.75rem)]">
+              We recover what
+              <br />
+              your insurer{" "}
+              <span className="text-gradient">won&apos;t pay.</span>
+            </span>
+          </motion.h1>
+
+          <motion.p
+            variants={heroItem}
+            className="mt-6 text-sm md:text-base text-[#c0c0d0] leading-relaxed max-w-lg"
+          >
+            You were offered $18K. We got our last client $147K.{" "}
+            <em className="font-serif not-italic text-[#f0f0f5] font-medium italic">
+              That&apos;s what an advocate does.
+            </em>{" "}
+            No recovery, no fee.
+          </motion.p>
+
+          {/* Phone CTA — secondary on desktop (form is primary), still tap-friendly on mobile */}
+          <motion.div variants={heroItem} className="mt-7 flex flex-wrap gap-3">
+            <a
+              href="tel:+17862237867"
+              className="inline-flex items-center gap-2 bg-white/8 border border-white/15 text-[#f0f0f5] font-semibold text-sm px-6 py-3 rounded-full hover:bg-white/12 hover:border-white/25 transition-[background-color,border-color] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
             >
-              <div className="font-bebas font-extrabold text-[1.95rem] leading-none tabular-nums text-[#1a1a2e]">
-                <span className={c.emphasis ? "text-[#2563eb]" : ""}>{c.val}</span>
-                {c.suffix && (
-                  <span className="text-[#8888a0] font-semibold ml-1">{c.suffix}</span>
-                )}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+              </svg>
+              Or call (786) 223-7867
+            </a>
+          </motion.div>
+
+          {/* Scorecard */}
+          <motion.div
+            variants={heroItem}
+            className="mt-10 w-full max-w-lg border-t border-white/15 pt-6 grid grid-cols-3 gap-4"
+          >
+            {scorecard.map((c) => (
+              <div
+                key={c.label}
+                className="flex flex-col items-start text-left"
+              >
+                <div className="font-bebas font-extrabold text-[1.7rem] leading-none tabular-nums text-[#f0f0f5]">
+                  {c.kind === "decimal" ? (
+                    <AnimatedCounter
+                      value={c.value}
+                      format="decimal"
+                      decimals={c.decimals}
+                      className={c.emphasis ? "text-[#60a5fa]" : ""}
+                    />
+                  ) : c.kind === "integer" ? (
+                    <AnimatedCounter
+                      value={c.value}
+                      format="integer"
+                      className={c.emphasis ? "text-[#60a5fa]" : ""}
+                    />
+                  ) : (
+                    <span className={c.emphasis ? "text-[#60a5fa]" : ""}>{c.val}</span>
+                  )}
+                  {c.suffix && (
+                    <span className="text-[#8888a0] font-semibold ml-1">{c.suffix}</span>
+                  )}
+                </div>
+                <div className="mt-1.5 text-[0.55rem] font-bold uppercase tracking-[0.18em] text-[#c0c0d0]">
+                  {c.label}
+                </div>
               </div>
-              <div className="mt-1.5 text-[0.55rem] font-bold uppercase tracking-[0.18em] text-[#5a5a72]">
-                {c.label}
-              </div>
-            </div>
-          ))}
+            ))}
+          </motion.div>
+        </div>
+
+        {/* RIGHT — lead form */}
+        <motion.div variants={heroItem} className="w-full">
+          <LeadCaptureForm
+            servicePage="home"
+            ctaText="Get my free claim review"
+          />
         </motion.div>
       </motion.div>
-
-      {/* Seamless bottom fade */}
-      <div
-        className="pointer-events-none absolute bottom-0 left-0 right-0 h-32"
-        aria-hidden="true"
-        style={{
-          background: "linear-gradient(to bottom, transparent 0%, #f0ede8 100%)",
-        }}
-      />
     </section>
   );
 }

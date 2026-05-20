@@ -65,8 +65,8 @@ export default function Results() {
           aria-label={`${featured.type} featured case result — press to see details`}
         >
           {/* Ribbon */}
-          <div className="absolute top-7 right-7 flex items-center gap-2 text-[0.55rem] font-bold tracking-[0.22em] uppercase text-[#b8892e] font-mono">
-            <span className="hidden sm:block w-6 h-px bg-[#b8892e]" />
+          <div className="absolute top-7 right-7 flex items-center gap-2 text-[0.55rem] font-bold tracking-[0.22em] uppercase text-[#2563eb] font-mono">
+            <span className="hidden sm:block w-6 h-px bg-[#2563eb]" />
             Signature recovery
           </div>
 
@@ -84,7 +84,7 @@ export default function Results() {
                   (featured.initial ? `$${featured.initial.toLocaleString()}` : "")}
               </div>
 
-              <blockquote className="mt-6 pl-5 border-l-2 border-[#b8892e] font-serif italic text-base md:text-lg leading-snug text-[#1a1a2e]">
+              <blockquote className="mt-6 pl-5 border-l-2 border-[#2563eb] font-serif italic text-base md:text-lg leading-snug text-[#1a1a2e]">
                 &ldquo;{featured.review.text}&rdquo;
                 <footer className="mt-3 not-italic font-sans font-semibold text-[0.55rem] tracking-[0.18em] uppercase text-[#5a5a72]">
                   — {featured.review.author} · {featured.review.timeAgo}

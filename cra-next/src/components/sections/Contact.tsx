@@ -1,36 +1,36 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { slideInLeft, staggerContainer, fadeInUp } from "@/lib/animations";
+import { staggerContainer, fadeInUp } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const WA_LINK = `https://wa.me/17862237867?text=${encodeURIComponent("Hi Claim Remedy, I'd like to book a free consultation.")}`;
 
 export default function Contact() {
   return (
-    <section id="connect" className="bg-[#faf8f5] py-24 lg:py-32">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={slideInLeft}
-          >
-            <SectionHeading
-              label="Contact us"
-              heading="Choose the fastest way<br/>to reach Claim Remedy."
-              subheading="Reach the Claim Remedy team directly and get clear guidance on the next step for your claim."
-            />
-          </motion.div>
+    <section id="connect" className="py-24 lg:py-32">
+      <div className="max-w-3xl mx-auto px-6">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeInUp}
+          className="mb-12 lg:mb-14"
+        >
+          <SectionHeading
+            label="Contact us"
+            heading="Choose the fastest way<br/>to reach Claim Remedy."
+            subheading="Reach the Claim Remedy team directly and get clear guidance on the next step for your claim."
+          />
+        </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={staggerContainer}
-            className="flex flex-col gap-4"
-          >
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={staggerContainer}
+          className="flex flex-col gap-4"
+        >
             {/* WhatsApp */}
             <motion.a
               variants={fadeInUp}
@@ -73,12 +73,34 @@ export default function Contact() {
               </div>
             </motion.a>
 
+            {/* Email */}
+            <motion.a
+              variants={fadeInUp}
+              href="mailto:office@cradjusters.com?subject=Claim%20Review%20Request"
+              className="flex items-center gap-4 bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-6 hover:border-[#0d9488]/30 hover:shadow-[0_0_24px_rgba(13,148,136,0.10)] transition-[border-color,box-shadow] group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0d9488]/60"
+            >
+              <div className="w-11 h-11 rounded-full bg-[#0d9488]/10 flex items-center justify-center shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0d9488" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-semibold text-[#1a1a2e] group-hover:text-[#0d9488] transition-colors">
+                  Email office@cradjusters.com
+                </p>
+                <p className="text-sm text-[#5a5a72]">
+                  Send claim details, photos, or policy documents
+                </p>
+              </div>
+            </motion.a>
+
             {/* Address */}
             <motion.div
               variants={fadeInUp}
               className="flex items-center gap-4 bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-6"
             >
-              <div className="w-11 h-11 rounded-full bg-[#f0ede8] flex items-center justify-center shrink-0">
+              <div className="w-11 h-11 rounded-full bg-[#1a1a2e]/6 flex items-center justify-center shrink-0">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5a5a72" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
                 </svg>
@@ -88,8 +110,7 @@ export default function Contact() {
                 <p className="text-sm text-[#5a5a72]">7900 Oak Ln, Suite 400, Miami Lakes, FL 33016</p>
               </div>
             </motion.div>
-          </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

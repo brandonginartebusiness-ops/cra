@@ -1,3 +1,19 @@
+import { featuredReviews, totalGoogleReviewCount } from "@/data/reviews";
+
+function relativeTimeToISODate(timeAgo: string): string {
+  const now = new Date();
+  const m = timeAgo.match(/(\d+)\s*(year|month|week|day)s?\s*ago/i);
+  if (!m) return now.toISOString().slice(0, 10);
+  const n = parseInt(m[1], 10);
+  const unit = m[2].toLowerCase();
+  const d = new Date(now);
+  if (unit === "year") d.setFullYear(d.getFullYear() - n);
+  else if (unit === "month") d.setMonth(d.getMonth() - n);
+  else if (unit === "week") d.setDate(d.getDate() - n * 7);
+  else d.setDate(d.getDate() - n);
+  return d.toISOString().slice(0, 10);
+}
+
 export default function LocalBusinessSchema() {
   const schema = {
     "@context": "https://schema.org",
@@ -64,6 +80,27 @@ export default function LocalBusinessSchema() {
           "@type": "Place",
           name: "Miami Lakes, Florida",
         },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "5.0",
+          bestRating: "5",
+          worstRating: "1",
+          reviewCount: totalGoogleReviewCount,
+        },
+        review: featuredReviews.map((r) => ({
+          "@type": "Review",
+          author: { "@type": "Person", name: r.author },
+          reviewRating: {
+            "@type": "Rating",
+            ratingValue: r.rating,
+            bestRating: 5,
+            worstRating: 1,
+          },
+          reviewBody: r.text,
+          datePublished: relativeTimeToISODate(r.timeAgo),
+          itemReviewed: { "@id": "https://claimremedyadjusters.com/#business" },
+          publisher: { "@type": "Organization", name: "Google" },
+        })),
       },
     ],
   };

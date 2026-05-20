@@ -206,21 +206,6 @@ export default function LeadCaptureForm({
         </p>
 
         <div>
-          <label htmlFor="fullName" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
-            Full Name <span className="text-[#8888a0] font-normal">(optional)</span>
-          </label>
-          <input
-            type="text"
-            id="fullName"
-            name="fullName"
-            value={formData.fullName}
-            onChange={handleChange}
-            className={`${inputClass} border-[#1a1a2e]/12`}
-            placeholder="Your full name"
-          />
-        </div>
-
-        <div>
           <label htmlFor="email" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
             Email <span className="text-[#8888a0] font-normal">(optional)</span>
           </label>
@@ -294,6 +279,24 @@ export default function LeadCaptureForm({
           <a href="tel:+17862237867" className="underline font-semibold">(786) 223-7867</a>.
         </div>
       )}
+
+      {/* Name (optional, helps personalize the callback) */}
+      <div>
+        <label htmlFor="fullName" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
+          Your Name <span className="text-[#8888a0] font-normal">(optional)</span>
+        </label>
+        <input
+          type="text"
+          id="fullName"
+          name="fullName"
+          value={formData.fullName}
+          onChange={handleChange}
+          disabled={status === "submitting"}
+          autoComplete="name"
+          className={`${inputClass} border-[#1a1a2e]/12`}
+          placeholder="First name is fine"
+        />
+      </div>
 
       {/* Phone */}
       <div>

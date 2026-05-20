@@ -49,4 +49,12 @@ export const services: Service[] = [
     href: "/services/appraisal",
     ctaLabel: "When to invoke appraisal",
   },
+  {
+    title: "Mold Damage",
+    description: "Hidden moisture often leads to mold that insurers try to exclude. We tie the mold back to a covered water event so it isn't denied as maintenance.",
+    image: "https://images.unsplash.com/photo-1657069344364-db3781b8dcf1?w=1200&auto=format&fit=crop&q=80",
+    alt: "Interior wall with moisture and mold damage",
+    href: "/contact",
+    ctaLabel: "Get a mold claim review",
+  },
 ];

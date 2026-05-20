@@ -65,6 +65,7 @@ export default function RootLayout({
       className={`${montserrat.variable} ${roboto.variable}`}
     >
       <body>
+        <div className="cra-aurora" aria-hidden="true" />
         <TrackingScripts />
         <a
           href="#main-content"

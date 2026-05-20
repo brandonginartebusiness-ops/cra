@@ -12,8 +12,8 @@ import { services } from "@/data/services";
 export default function ServicesContent() {
   return (
     <PageTransition>
-      <div className="pt-24 bg-[#0a0a0f]">
-        <section className="bg-[#0a0a0f] py-20 lg:py-28">
+      <div className="pt-24">
+        <section className="py-20 lg:py-28">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div
               initial="hidden"
@@ -44,7 +44,7 @@ export default function ServicesContent() {
                 >
                   <Link
                     href={s.href}
-                    className="group block bg-[#0a0a0f] border border-white/8 rounded-2xl overflow-hidden hover:shadow-[0_8px_40px_rgba(59,130,246,0.12)] hover:border-[#3b82f6]/20 transition-shadow transition-colors duration-300"
+                    className="group block bg-[#ffffff] rounded-2xl overflow-hidden hover:shadow-[0_8px_40px_rgba(59,130,246,0.18)] hover:border-[#3b82f6]/30 transition-[border-color,box-shadow] duration-300"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden">
                       {s.image ? (

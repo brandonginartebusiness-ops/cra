@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Backgrounds (warm light) ──────────────────── */
-  --color-cra-bg:           #faf8f5;
-  --color-cra-bg-secondary: #f0ede8;
+  /* ── Backgrounds (dark grey) ───────────────────── */
+  --color-cra-bg:           #21212a;
+  --color-cra-bg-secondary: #2d2d38;
   --color-cra-card:         #ffffff;
-  --color-cra-card-hover:   #f5f3f0;
+  --color-cra-card-hover:   #f5f5f7;
 
   /* ── Text ──────────────────────────────────────── */
   --color-cra-text:    #1a1a2e;
@@ -15,7 +15,6 @@
   /* ── Accents ───────────────────────────────────── */
   --color-cra-blue:    #2563eb;
   --color-cra-teal:    #0d9488;
-  --color-cra-gold:    #b8892e;
 
   /* ── Borders ───────────────────────────────────── */
   --color-cra-border:  rgba(26,26,46,0.10);
@@ -40,11 +39,100 @@ html {
 }
 
 body {
-  background-color: #faf8f5;
-  color: #1a1a2e;
+  background-color: #21212a;
+  background-image: linear-gradient(180deg,
+    #2d2d38 0%,
+    #21212a 28%,
+    #16161e 55%,
+    #21212a 82%,
+    #2d2d38 100%
+  );
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  color: #f0f0f5;
   font-family: var(--font-inter), 'Roboto', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fixed aurora layer — sits behind page content, drifts slowly */
+.cra-aurora {
+  position: fixed;
+  inset: -10%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55vw 45vh at 25% 30%, rgba(37,99,235,0.22), transparent 60%),
+    radial-gradient(ellipse 50vw 45vh at 75% 70%, rgba(37,99,235,0.18), transparent 60%);
+  animation: cra-aurora-drift 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes cra-aurora-drift {
+  0%   { transform: translate3d(-3%, -2%, 0) scale(1); }
+  100% { transform: translate3d(3%,  2%, 0) scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cra-aurora { animation: none; }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   GLOBAL DARK-BG SWEEP
+   Strip light section backgrounds → let the body's dark gradient show.
+   Flip dark-text utilities → light variants by default.
+   Card-internal overrides come AFTER so they still win where needed.
+   ─────────────────────────────────────────────────────────────────── */
+
+/* Light section backgrounds — make transparent so body gradient shows */
+.bg-\[\#faf8f5\],
+.bg-\[\#f0ede8\],
+.bg-\[\#f5f3f0\] {
+  background-color: transparent !important;
+}
+
+/* Top-level borders that were drawn against light bg → subtle white */
+.border-\[\#1a1a2e\]\/8,
+.border-\[\#1a1a2e\]\/10,
+.border-\[\#1a1a2e\]\/12 {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Default-flip dark text utilities → light (readable on dark body) */
+.text-\[\#1a1a2e\] { color: #f0f0f5; }
+.text-\[\#3a3a52\] { color: #d0d0dc; }
+.text-\[\#5a5a72\] { color: #c0c0d0; }
+.text-\[\#8888a0\] { color: #a0a0b0; }
+
+/* Glass cards — translucent, blend with the dark bg */
+.bg-\[\#ffffff\].rounded-2xl,
+.bg-\[\#ffffff\].rounded-3xl,
+.bg-\[\#ffffff\].rounded-xl {
+  background-color: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border-color: rgba(255, 255, 255, 0.10);
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Internal card text (inherits the global flip — listed for explicit intent) */
+.bg-\[\#ffffff\] .text-\[\#1a1a2e\] { color: #f0f0f5; }
+.bg-\[\#ffffff\] .text-\[\#5a5a72\] { color: #c0c0d0; }
+.bg-\[\#ffffff\] .text-\[\#3a3a52\] { color: #c0c0d0; }
+.bg-\[\#ffffff\] .text-\[\#8888a0\] { color: #a0a0b0; }
+
+/* Dividers/borders inside glass cards */
+.bg-\[\#ffffff\] .border-\[\#1a1a2e\]\/8,
+.bg-\[\#ffffff\] .border-\[\#1a1a2e\]\/10 {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.bg-\[\#ffffff\] .divide-\[\#1a1a2e\]\/8 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.bg-\[\#ffffff\] .bg-\[\#1a1a2e\]\/5 {
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 /* Montserrat serif utility */

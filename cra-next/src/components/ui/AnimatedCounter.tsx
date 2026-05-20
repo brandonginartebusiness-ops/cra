@@ -3,12 +3,20 @@
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 
+type Format = "currency" | "integer" | "decimal";
+
 interface Props {
   value: number;
   duration?: number;
   prefix?: string;
   suffix?: string;
   className?: string;
+  /** "currency" formats $X / $X.YK (default — keeps existing callers unchanged).
+   *  "integer" formats whole numbers with thousands separators.
+   *  "decimal" formats with `decimals` digits after the point. */
+  format?: Format;
+  /** Only used when format === "decimal" (default 1) */
+  decimals?: number;
 }
 
 function formatCurrency(n: number): string {
@@ -22,6 +30,8 @@ export default function AnimatedCounter({
   prefix = "",
   suffix = "",
   className,
+  format = "currency",
+  decimals = 1,
 }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
@@ -32,17 +42,26 @@ export default function AnimatedCounter({
     const start = performance.now();
     const raf = (now: number) => {
       const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-      setDisplay(Math.round(eased * value));
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplay(eased * value);
       if (progress < 1) requestAnimationFrame(raf);
     };
     requestAnimationFrame(raf);
   }, [isInView, value, duration]);
 
+  let rendered: string;
+  if (format === "currency") {
+    rendered = formatCurrency(Math.round(display));
+  } else if (format === "decimal") {
+    rendered = display.toFixed(decimals);
+  } else {
+    rendered = Math.round(display).toLocaleString();
+  }
+
   return (
     <span ref={ref} className={className}>
       {prefix}
-      {formatCurrency(display)}
+      {rendered}
       {suffix}
     </span>
   );

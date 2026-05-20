@@ -178,7 +178,7 @@ export default function FloridaMap() {
   return (
     <svg
       viewBox="0 0 400 520"
-      className="w-full max-w-[300px] lg:max-w-[340px] h-auto"
+      className="w-full max-w-[480px] lg:max-w-[600px] xl:max-w-[680px] h-auto"
       aria-label="Florida service area map"
     >
       {/* Service area highlight — South Florida */}

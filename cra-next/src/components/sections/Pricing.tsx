@@ -6,7 +6,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Pricing() {
   return (
-    <section className="bg-[#ffffff] py-24 lg:py-32">
+    <section className="py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -28,7 +28,7 @@ export default function Pricing() {
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
             variants={slideInLeft}
-            className="bg-[#faf8f5] border border-[#1a1a2e]/8 rounded-2xl p-8 flex flex-col gap-6"
+            className="bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-8 flex flex-col gap-6"
           >
             <div>
               <h3 className="font-semibold text-[#1a1a2e] text-xl mb-2">

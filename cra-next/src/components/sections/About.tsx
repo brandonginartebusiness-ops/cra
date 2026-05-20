@@ -19,22 +19,13 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative bg-[#1a1a2e] text-[#faf8f5] py-24 lg:py-32 overflow-hidden"
+      className="relative py-24 lg:py-32"
     >
-      {/* Ambient gradient wash */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 60% at 15% 20%, rgba(184,137,46,0.10), transparent 70%), radial-gradient(ellipse 60% 60% at 90% 90%, rgba(37,99,235,0.15), transparent 70%)",
-        }}
-      />
 
       <div className="relative max-w-7xl mx-auto px-6">
-        {/* Gold eyebrow */}
-        <div className="flex items-center gap-3 mb-10 text-[0.55rem] font-bold uppercase tracking-[0.22em] text-[#b8892e]">
-          <span className="w-8 h-px bg-[#b8892e]" />
+        {/* Blue eyebrow */}
+        <div className="flex items-center gap-3 mb-10 text-[0.55rem] font-bold uppercase tracking-[0.22em] text-[#2563eb]">
+          <span className="w-8 h-px bg-[#2563eb]" />
           Meet your advocate
         </div>
 
@@ -48,8 +39,8 @@ export default function About() {
             className="flex flex-col items-start gap-5 max-w-xs"
           >
             <div
-              className="w-56 rounded-2xl overflow-hidden border border-[#b8892e]/30"
-              style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.5)" }}
+              className="w-56 rounded-2xl overflow-hidden border border-[#1a1a2e]/8"
+              style={{ boxShadow: "0 12px 40px rgba(26,26,46,0.12)" }}
             >
               <Image
                 src="/brand_assets/eddy_headshot.jpeg"
@@ -61,15 +52,15 @@ export default function About() {
             </div>
 
             <div>
-              <h2 className="font-bebas font-extrabold text-[2.2rem] text-[#faf8f5] leading-none tracking-tight">
+              <h2 className="font-bebas font-extrabold text-[2.2rem] text-[#f0f0f5] leading-none tracking-tight">
                 Eddy D Gomez
               </h2>
-              <p className="font-serif italic text-sm text-[#b8892e] mt-1.5">
+              <p className="font-serif italic text-sm text-[#60a5fa] mt-1.5">
                 Licensed Public Adjuster
               </p>
             </div>
 
-            <p className="text-sm text-[#c9c9d6] leading-relaxed">
+            <p className="text-sm text-[#c0c0d0] leading-relaxed">
               Licensed by the State of Florida to represent homeowners and
               commercial property owners during the insurance claims process —
               never the insurance company.
@@ -84,27 +75,27 @@ export default function About() {
             variants={slideInRight}
           >
             <p className="font-bebas font-extrabold text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.15] text-white/40 mb-12 max-w-2xl tracking-tight">
-              <strong className="text-[#faf8f5] font-extrabold">
+              <strong className="text-[#f0f0f5] font-extrabold">
                 Every type of property claim.
               </strong>{" "}
-              <em className="font-serif italic font-medium text-[#b8892e] not-italic" style={{ fontStyle: "italic" }}>
+              <em className="font-serif italic font-medium text-[#60a5fa] not-italic" style={{ fontStyle: "italic" }}>
                 One dedicated advocate
               </em>{" "}
               who never works for the insurance company.
             </p>
 
-            <div className="border border-white/10 rounded-2xl overflow-hidden bg-white/[0.03]">
+            <div className="border border-[#1a1a2e]/8 rounded-2xl overflow-hidden bg-[#ffffff]">
               {facts.map((f, i) => (
                 <div
                   key={f.label}
                   className={`grid grid-cols-[auto_1fr] gap-6 px-6 py-4 ${
-                    i < facts.length - 1 ? "border-b border-white/8" : ""
+                    i < facts.length - 1 ? "border-b border-[#1a1a2e]/8" : ""
                   }`}
                 >
-                  <span className="text-[0.58rem] font-bold uppercase tracking-[0.18em] text-[#b8892e] min-w-[140px]">
+                  <span className="text-[0.58rem] font-bold uppercase tracking-[0.18em] text-[#2563eb] min-w-[140px]">
                     {f.label}
                   </span>
-                  <span className="text-sm font-medium text-[#faf8f5]">
+                  <span className="text-sm font-medium text-[#1a1a2e]">
                     {f.value}
                   </span>
                 </div>

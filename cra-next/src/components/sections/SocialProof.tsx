@@ -30,7 +30,7 @@ const formatK = (n: number) => `$${Math.round(n / 1000)}K`;
 
 export default function SocialProof() {
   return (
-    <section id="social-proof" className="bg-[#f5f3f0] py-24 lg:py-32">
+    <section id="social-proof" className="py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-6">
         {/* Section header */}
         <motion.div
@@ -43,7 +43,7 @@ export default function SocialProof() {
           <span className="inline-flex items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#8888a0] mb-3">
             Social proof
           </span>
-          <h2 className="font-bebas text-4xl md:text-5xl lg:text-6xl text-[#1a1a2e] leading-none tracking-tight">
+          <h2 className="font-bebas text-4xl md:text-5xl lg:text-6xl text-[#f0f0f5] leading-none tracking-tight">
             What clients say.<br className="md:hidden" /> What we recover.
           </h2>
         </motion.div>
@@ -128,7 +128,7 @@ export default function SocialProof() {
               {CLAIM_CHIPS.map((label) => (
                 <span
                   key={label}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-[#1a1a2e]/10 bg-[#faf8f5] px-3 py-1.5 text-xs"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-[#1a1a2e]/10 bg-[#ffffff] px-3 py-1.5 text-xs"
                 >
                   <span className="font-semibold text-[#10b981]">5.0</span>
                   <span className="text-[#1a1a2e]">{label}</span>

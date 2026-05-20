@@ -7,7 +7,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Process() {
   return (
-    <section id="process" className="bg-[#f0ede8] py-24 lg:py-32">
+    <section id="process" className="py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -23,7 +23,7 @@ export default function Process() {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#1a1a2e]/8 border border-[#1a1a2e]/8 rounded-2xl overflow-hidden"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-2xl"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -33,17 +33,17 @@ export default function Process() {
             <motion.div
               key={step.step}
               variants={fadeInUp}
-              className="relative bg-[#ffffff] p-10 min-h-[320px] flex flex-col overflow-hidden"
+              className="relative bg-white/[0.03] p-10 min-h-[320px] flex flex-col overflow-hidden"
             >
               {/* Oversized background numeral */}
               <span
                 aria-hidden="true"
-                className="pointer-events-none select-none absolute font-bebas font-extrabold leading-none text-[#2563eb] tracking-tighter"
+                className="pointer-events-none select-none absolute font-bebas font-extrabold leading-none text-[#60a5fa] tracking-tighter"
                 style={{
                   top: "-0.18em",
                   right: "-0.05em",
                   fontSize: "clamp(140px, 16vw, 220px)",
-                  opacity: 0.08,
+                  opacity: 0.14,
                   letterSpacing: "-0.04em",
                 }}
               >
@@ -52,14 +52,14 @@ export default function Process() {
 
               {/* Content sits bottom-left, on top of numeral */}
               <div className="relative mt-auto flex flex-col gap-3">
-                <div className="inline-flex items-center gap-2 text-[0.55rem] font-bold uppercase tracking-[0.22em] text-[#2563eb]">
-                  <span className="w-5 h-px bg-[#2563eb]" />
+                <div className="inline-flex items-center gap-2 text-[0.55rem] font-bold uppercase tracking-[0.22em] text-[#60a5fa]">
+                  <span className="w-5 h-px bg-[#60a5fa]" />
                   Step {step.step}
                 </div>
-                <h3 className="font-semibold text-[#1a1a2e] text-lg leading-tight">
+                <h3 className="font-semibold text-[#f0f0f5] text-lg leading-tight">
                   {step.title}
                 </h3>
-                <p className="text-sm text-[#5a5a72] leading-relaxed">
+                <p className="text-sm text-[#c0c0d0] leading-relaxed">
                   {step.description}
                 </p>
               </div>
