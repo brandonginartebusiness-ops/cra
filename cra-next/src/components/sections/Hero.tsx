@@ -35,27 +35,8 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen overflow-hidden"
+      className="relative min-h-screen"
     >
-      {/* Blue top-right accent blob */}
-      <div
-        className="pointer-events-none absolute top-0 right-0 w-[55%] h-full"
-        aria-hidden="true"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 70% at 85% 30%, rgba(37,99,235,0.06) 0%, transparent 70%)",
-        }}
-      />
-      {/* Teal bottom-left soft glow */}
-      <div
-        className="pointer-events-none absolute bottom-0 left-0 w-[40%] h-1/2"
-        aria-hidden="true"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 10% 90%, rgba(13,148,136,0.06) 0%, transparent 70%)",
-        }}
-      />
-
       <motion.div
         className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-14 pt-32 pb-16 min-h-screen grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center"
         variants={heroStagger}

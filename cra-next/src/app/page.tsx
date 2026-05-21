@@ -2,7 +2,6 @@ import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
 import SocialProof from "@/components/sections/SocialProof";
 import Process from "@/components/sections/Process";
-import Proof from "@/components/sections/Proof";
 import About from "@/components/sections/About";
 import Pricing from "@/components/sections/Pricing";
 import FAQ from "@/components/sections/FAQ";
@@ -19,7 +18,6 @@ export default function Home() {
       <SocialProof />
       <About />
       <Process />
-      <Proof />
       <Pricing />
       <FAQ />
       <Contact />

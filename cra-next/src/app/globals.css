@@ -39,32 +39,48 @@ html {
 }
 
 body {
-  background-color: #21212a;
+  background-color: #14141c;
+  /* Smooth monotonic gradient — no reversals, no visible stops */
   background-image: linear-gradient(180deg,
-    #2d2d38 0%,
-    #21212a 28%,
-    #16161e 55%,
-    #21212a 82%,
-    #2d2d38 100%
+    #22222d 0%,
+    #161620 50%,
+    #0d0d14 100%
   );
   background-attachment: scroll;
   background-repeat: no-repeat;
+  min-height: 100vh;
   color: #f0f0f5;
   font-family: var(--font-inter), 'Roboto', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Fixed aurora layer — sits behind page content, drifts slowly */
+/* Grain overlay — masks banding in dark gradients, adds premium texture.
+   Inline SVG noise filter, fixed to viewport, subtle opacity. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+}
+
+/* Fixed aurora layer — atmospheric depth, drifts slowly across whole page.
+   Stronger now that per-section blobs are removed; this is the page's ambient layer. */
 .cra-aurora {
   position: fixed;
   inset: -10%;
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 55vw 45vh at 25% 30%, rgba(37,99,235,0.22), transparent 60%),
-    radial-gradient(ellipse 50vw 45vh at 75% 70%, rgba(37,99,235,0.18), transparent 60%);
-  animation: cra-aurora-drift 24s ease-in-out infinite alternate;
+    radial-gradient(ellipse 65vw 55vh at 18% 22%, rgba(37,99,235,0.30), transparent 65%),
+    radial-gradient(ellipse 60vw 50vh at 82% 78%, rgba(37,99,235,0.22), transparent 65%),
+    radial-gradient(ellipse 55vw 45vh at 50% 55%, rgba(13,148,136,0.10), transparent 60%);
+  animation: cra-aurora-drift 28s ease-in-out infinite alternate;
   will-change: transform;
 }
 
