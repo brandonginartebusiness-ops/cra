@@ -100,12 +100,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid service_page' }, { status: 400 });
     }
 
+    // Supabase `leads` table has NOT NULL on full_name/email/help_type and likely
+    // a CHECK constraint on help_type. Use safe defaults for partial Step-1 submits.
     const payload = {
-      full_name: body.full_name || null,
+      full_name: body.full_name || 'Pending',
       phone: body.phone,
-      email: body.email || null,
+      email: body.email || '',
       claim_number: body.claim_number || null,
-      help_type: body.help_type || null,
+      help_type: body.help_type || 'other',
       message: body.message || null,
       service_page: body.service_page,
       status: 'new',
