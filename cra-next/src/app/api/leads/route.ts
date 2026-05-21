@@ -62,35 +62,38 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: 'Lead submitted successfully' }, { status: 201 });
     }
 
-    const { full_name, phone, email, help_type, service_page } = body;
-    if (!full_name || !phone || !email || !help_type || !service_page) {
+    const { phone, service_page } = body;
+    if (!phone || !service_page) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
       );
     }
 
-    // Field length caps
+    // Field length caps — only check fields that were provided
     if (
-      full_name.length > 120 ||
+      (body.full_name && body.full_name.length > 120) ||
       phone.length > 30 ||
-      email.length > 254 ||
+      (body.email && body.email.length > 254) ||
       (body.claim_number && body.claim_number.length > 60) ||
       (body.message && body.message.length > 2000)
     ) {
       return NextResponse.json({ error: 'Field value too long' }, { status: 400 });
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: 'Invalid email address' },
-        { status: 400 }
-      );
+    // Email format only validated if provided (Step 1 of 2-step form has no email yet)
+    if (body.email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(body.email)) {
+        return NextResponse.json(
+          { error: 'Invalid email address' },
+          { status: 400 }
+        );
+      }
     }
 
-    // Allowlist enum fields to prevent junk data
-    if (!VALID_HELP_TYPES.has(help_type)) {
+    // Allowlist enum fields only if provided
+    if (body.help_type && !VALID_HELP_TYPES.has(body.help_type)) {
       return NextResponse.json({ error: 'Invalid help_type' }, { status: 400 });
     }
     if (!VALID_SERVICE_PAGES.has(service_page)) {
@@ -98,11 +101,11 @@ export async function POST(request: NextRequest) {
     }
 
     const payload = {
-      full_name: body.full_name,
+      full_name: body.full_name || null,
       phone: body.phone,
-      email: body.email,
+      email: body.email || null,
       claim_number: body.claim_number || null,
-      help_type: body.help_type,
+      help_type: body.help_type || null,
       message: body.message || null,
       service_page: body.service_page,
       status: 'new',
@@ -149,8 +152,8 @@ export async function POST(request: NextRequest) {
             fbc: cookies._fbc ?? null,
             fbp: cookies._fbp ?? null,
             lead: {
-              full_name: body.full_name,
-              email: body.email,
+              full_name: body.full_name || '',
+              email: body.email || '',
               phone: body.phone,
               state: 'FL',
             },
@@ -159,10 +162,10 @@ export async function POST(request: NextRequest) {
           })
         : Promise.resolve(),
       sendLeadSms({
-        full_name: body.full_name,
+        full_name: body.full_name || '',
         phone: body.phone,
-        email: body.email,
-        help_type: body.help_type,
+        email: body.email || '',
+        help_type: body.help_type || '',
         service_page: body.service_page,
         message: body.message || null,
       }).catch((smsError) => {

@@ -137,7 +137,7 @@ export default function Hero() {
         {/* RIGHT — lead form */}
         <motion.div variants={heroItem} className="w-full">
           <LeadCaptureForm
-            servicePage="home"
+            servicePage="homepage"
             ctaText="Get my free claim review"
           />
         </motion.div>
