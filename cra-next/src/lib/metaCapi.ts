@@ -1,4 +1,5 @@
 import { createHash } from "crypto";
+import { META_PIXEL_ID } from "./meta";
 
 export interface CapiLeadInput {
   full_name: string;
@@ -96,11 +97,11 @@ function buildUserData(args: SendMetaCapiArgs): UserDataPayload {
 }
 
 export async function sendMetaCapiLead(args: SendMetaCapiArgs): Promise<void> {
-  const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+  const pixelId = META_PIXEL_ID;
   const accessToken = process.env.META_CAPI_ACCESS_TOKEN;
 
-  if (!pixelId || !accessToken) {
-    console.warn("[capi] skipped — Meta pixel id or access token not configured");
+  if (!accessToken) {
+    console.warn("[capi] skipped — META_CAPI_ACCESS_TOKEN not configured");
     return;
   }
 

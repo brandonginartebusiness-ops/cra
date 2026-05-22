@@ -1,11 +1,12 @@
 import Script from "next/script";
+import { META_PIXEL_ID } from "@/lib/meta";
 
 const GA4_MEASUREMENT_ID = "G-X5LQHW4BZR";
 
 export default function TrackingScripts() {
   if (process.env.NODE_ENV !== "production") return null;
 
-  const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+  const metaPixelId = META_PIXEL_ID;
   const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID;
   const tiktokPixelId = process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID;
   const clarityId = process.env.NEXT_PUBLIC_MS_CLARITY_ID;
