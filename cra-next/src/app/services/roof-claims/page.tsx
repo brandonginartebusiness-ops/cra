@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     description:
       "Roof claim denied or underpaid? Our Florida public adjusters use engineering reports and storm data to prove your loss.",
     url: "https://claimremedyadjusters.com/services/roof-claims",
+    images: ["/opengraph-image"],
   },
   alternates: { canonical: "https://claimremedyadjusters.com/services/roof-claims" },
 };

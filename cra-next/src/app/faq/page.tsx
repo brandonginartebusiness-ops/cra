@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description:
       "Answers to the most common questions about Florida public adjusters — costs, timelines, denied claims, and more.",
     url: "https://claimremedyadjusters.com/faq",
+    images: ["/opengraph-image"],
   },
   alternates: { canonical: "https://claimremedyadjusters.com/faq" },
 };

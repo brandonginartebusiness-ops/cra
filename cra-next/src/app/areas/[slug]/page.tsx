@@ -12,13 +12,29 @@ export function generateStaticParams() {
   return allSlugs.map((slug) => ({ slug }));
 }
 
+export const dynamicParams = false;
+
+function buildCityDescription(city: ReturnType<typeof getCityBySlug>): string {
+  if (!city) return "";
+  const risks = city.localFacts.uniqueRisks;
+  if (risks) {
+    const shortRisk = risks.length > 70 ? risks.slice(0, 67).trim() + "…" : risks;
+    return `${city.city}, Florida public adjusters. Local expertise on ${shortRisk}. No recovery, no fee. Call (786) 223-7867.`;
+  }
+  const storm = city.localFacts.stormHistory;
+  if (storm) {
+    return `Licensed ${city.city} public adjusters. ${city.county} claim experience including ${storm.split(";")[0]}. No recovery, no fee.`;
+  }
+  return `Licensed public adjusters serving ${city.city}, Florida (${city.county}). Hurricane, water, fire, and roof damage claims. No recovery, no fee.`;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const city = getCityBySlug(slug);
   if (!city) return {};
 
   const title = `Public Adjuster ${city.city} FL | Claim Remedy Adjusters`;
-  const description = `Licensed public adjusters in ${city.city}, Florida. We handle hurricane, water, fire, roof, and mold damage claims. No recovery, no fee. Call (786) 223-7867.`;
+  const description = buildCityDescription(city);
   const url = `https://claimremedyadjusters.com/areas/${city.slug}`;
 
   return {
@@ -28,23 +44,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `Public Adjuster in ${city.city}, Florida — Claim Remedy Adjusters`,
       description,
       url,
+      images: ["/opengraph-image"],
     },
     twitter: {
       card: "summary_large_image",
       title: `Public Adjuster in ${city.city}, Florida`,
       description,
+      images: ["/opengraph-image"],
     },
     alternates: { canonical: url },
-    keywords: [
-      `public adjuster ${city.city}`,
-      `public adjuster ${city.city} Florida`,
-      `insurance claim help ${city.city}`,
-      `${city.city} hurricane damage claim`,
-      `${city.city} water damage claim`,
-      `${city.county} public adjuster`,
-      "public adjuster Florida",
-      "Claim Remedy Adjusters",
-    ],
   };
 }
 

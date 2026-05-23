@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     description:
       "Underpaid or denied hurricane claim? Our licensed Florida public adjusters fight for the recovery you deserve.",
     url: "https://claimremedyadjusters.com/services/storm-hurricane",
+    images: ["/opengraph-image"],
   },
   alternates: { canonical: "https://claimremedyadjusters.com/services/storm-hurricane" },
 };

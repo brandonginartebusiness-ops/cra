@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     description:
       "Fire and smoke damage claim representation in Florida. We document every room, fight for replacement value.",
     url: "https://claimremedyadjusters.com/services/fire-smoke",
+    images: ["/opengraph-image"],
   },
   alternates: { canonical: "https://claimremedyadjusters.com/services/fire-smoke" },
 };

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     description:
       "Know your rights. Florida homeowners can invoke the appraisal clause to get an independent valuation — we represent you.",
     url: "https://claimremedyadjusters.com/services/appraisal",
+    images: ["/opengraph-image"],
   },
   alternates: { canonical: "https://claimremedyadjusters.com/services/appraisal" },
 };

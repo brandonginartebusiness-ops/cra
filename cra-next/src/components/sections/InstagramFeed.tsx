@@ -23,12 +23,12 @@ export default function InstagramFeed() {
     fetch("/api/instagram")
       .then((r) => r.json())
       .then((data) => {
-        setPosts(data.posts);
+        setPosts((data.posts as Post[]).slice(0, 6));
         setIsPlaceholder(data.isPlaceholder);
       })
       .catch(() => {
         setPosts(
-          Array.from({ length: 9 }, (_, i) => ({
+          Array.from({ length: 6 }, (_, i) => ({
             id: `fallback-${i}`,
             imageUrl: null,
             caption: "",

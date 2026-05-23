@@ -147,7 +147,7 @@ export async function GET(request: Request) {
 
     const fields =
       "id,caption,media_type,media_url,thumbnail_url,permalink,timestamp";
-    const mediaUrl = `https://graph.facebook.com/${GRAPH_API_VERSION}/${igBusinessId}/media?fields=${fields}&limit=12&access_token=${accessToken}`;
+    const mediaUrl = `https://graph.facebook.com/${GRAPH_API_VERSION}/${igBusinessId}/media?fields=${fields}&limit=6&access_token=${accessToken}`;
 
     const response = await fetch(mediaUrl, { next: { revalidate: 3600 } });
 
@@ -231,7 +231,7 @@ export async function GET(request: Request) {
 }
 
 function getPlaceholderPosts(): InstagramPost[] {
-  return Array.from({ length: 9 }, (_, i) => ({
+  return Array.from({ length: 6 }, (_, i) => ({
     id: `placeholder-${i}`,
     imageUrl: null,
     caption: "Follow @claimremedyadjusters for claim updates and results",

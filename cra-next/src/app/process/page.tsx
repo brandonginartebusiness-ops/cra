@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description:
       "Four steps from damage to recovery. See how Florida public adjusters at Claim Remedy handle your claim.",
     url: "https://claimremedyadjusters.com/process",
+    images: ["/opengraph-image"],
   },
   alternates: { canonical: "https://claimremedyadjusters.com/process" },
 };

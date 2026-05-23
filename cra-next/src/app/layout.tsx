@@ -31,8 +31,6 @@ export const metadata: Metadata = {
   },
   description:
     "Licensed Florida Public Adjusters representing homeowners across South Florida. We fight for the settlement you deserve on hurricane, water, fire, and roof damage claims. No recovery, no fee.",
-  keywords:
-    "public adjuster Miami, public adjuster Florida, public adjuster near me, hurricane damage claim help Florida, water damage claim, roof damage insurance claim, underpaid insurance claim Florida, denied insurance claim help",
   metadataBase: new URL("https://claimremedyadjusters.com"),
   openGraph: {
     type: "website",
@@ -42,12 +40,14 @@ export const metadata: Metadata = {
     title: "Public Adjuster Miami | Claim Remedy Adjusters",
     description:
       "Licensed Florida Public Adjusters. We fight for the settlement you deserve on hurricane, water, fire, and roof damage claims. No recovery, no fee.",
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Public Adjuster Miami | Claim Remedy Adjusters",
     description:
       "Licensed Florida Public Adjusters. We fight for the settlement you deserve. No recovery, no fee.",
+    images: ["/opengraph-image"],
   },
   alternates: {
     canonical: "https://claimremedyadjusters.com",

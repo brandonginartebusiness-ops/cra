@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     description:
       "Licensed to represent homeowners and businesses across all of Florida. Find your city for local claim expertise.",
     url: "https://claimremedyadjusters.com/areas",
+    images: ["/opengraph-image"],
   },
   alternates: { canonical: "https://claimremedyadjusters.com/areas" },
 };

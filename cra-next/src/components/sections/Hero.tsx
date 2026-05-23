@@ -27,7 +27,7 @@ type ScoreItem =
 
 const scorecard: ScoreItem[] = [
   { kind: "decimal", value: 5.0, decimals: 1, suffix: "/ 5", label: "Google rating" },
-  { kind: "integer", value: 67, suffix: "/ 67", label: "FL counties" },
+  { kind: "static", val: "FL", suffix: "", label: "Licensed statewide", emphasis: true },
   { kind: "static", val: "$0", suffix: "", label: "Upfront, ever", emphasis: true },
 ];
 
@@ -61,7 +61,7 @@ export default function Hero() {
             className="font-bebas font-extrabold leading-[0.95] tracking-tight text-[#f0f0f5]"
           >
             <span className="block text-[clamp(0.78rem,1.3vw,1rem)] font-bold tracking-[0.22em] text-[#60a5fa] mb-3 font-body">
-              FLORIDA HOMEOWNERS:
+              FLORIDA PUBLIC ADJUSTER
             </span>
             <span className="block text-[clamp(2.25rem,4.8vw,4.75rem)]">
               We recover what

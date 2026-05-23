@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description:
       "Meet Eddy D Gomez, licensed Florida public adjuster representing homeowners — never insurance companies.",
     url: "https://claimremedyadjusters.com/about",
+    images: ["/opengraph-image"],
   },
   alternates: { canonical: "https://claimremedyadjusters.com/about" },
 };

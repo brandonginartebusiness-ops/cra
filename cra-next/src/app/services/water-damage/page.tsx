@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     description:
       "Florida public adjuster for water damage claims. We use moisture mapping and thermal imaging to document the full loss.",
     url: "https://claimremedyadjusters.com/services/water-damage",
+    images: ["/opengraph-image"],
   },
   alternates: { canonical: "https://claimremedyadjusters.com/services/water-damage" },
 };

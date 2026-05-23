@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description:
       "Verified Google reviews and real case recoveries from Florida homeowners we've helped recover fair insurance settlements.",
     url: "https://claimremedyadjusters.com/reviews",
+    images: ["/opengraph-image"],
   },
   alternates: { canonical: "https://claimremedyadjusters.com/reviews" },
 };

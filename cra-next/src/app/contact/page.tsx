@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description:
       "Call, WhatsApp, or visit our Miami Lakes office for a free Florida insurance claim review.",
     url: "https://claimremedyadjusters.com/contact",
+    images: ["/opengraph-image"],
   },
   alternates: { canonical: "https://claimremedyadjusters.com/contact" },
 };
