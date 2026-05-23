@@ -100,6 +100,25 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid service_page' }, { status: 400 });
     }
 
+    // Validate attachments shape if provided
+    let attachments: Array<{ name: string; path: string; size: number; type: string }> = [];
+    if (Array.isArray(body.attachments) && body.attachments.length > 0) {
+      if (body.attachments.length > 5) {
+        return NextResponse.json({ error: 'Too many attachments' }, { status: 400 });
+      }
+      attachments = body.attachments
+        .filter(
+          (a: unknown): a is { name: string; path: string; size: number; type: string } =>
+            typeof a === 'object' &&
+            a !== null &&
+            typeof (a as { name: unknown }).name === 'string' &&
+            typeof (a as { path: unknown }).path === 'string' &&
+            typeof (a as { size: unknown }).size === 'number' &&
+            typeof (a as { type: unknown }).type === 'string'
+        )
+        .slice(0, 5);
+    }
+
     // Supabase `leads` table has NOT NULL on full_name/email/help_type and likely
     // a CHECK constraint on help_type. Use safe defaults for partial Step-1 submits.
     const payload = {
@@ -111,6 +130,7 @@ export async function POST(request: NextRequest) {
       message: body.message || null,
       service_page: body.service_page,
       status: 'new',
+      attachments,
     };
 
     const { error } = await supabaseServer.from('leads').insert([payload]);
@@ -142,7 +162,7 @@ export async function POST(request: NextRequest) {
       `https://claimremedyadjusters.com/${body.service_page || ''}`.replace(/\/$/, '');
 
     await Promise.allSettled([
-      sendEmailNotification(body).catch((emailError) => {
+      sendEmailNotification(body, attachments).catch((emailError) => {
         console.error('Email notification failed:', emailError);
       }),
       eventId
@@ -188,7 +208,34 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function sendEmailNotification(lead: Record<string, string>) {
+async function generateAttachmentLinks(
+  attachments: Array<{ name: string; path: string; size: number; type: string }>
+): Promise<Array<{ name: string; size: number; signedUrl: string }>> {
+  if (attachments.length === 0) return [];
+  // 30-day signed URLs so Brandon can click straight from email
+  const expiresIn = 60 * 60 * 24 * 30;
+  const results: Array<{ name: string; size: number; signedUrl: string }> = [];
+  for (const att of attachments) {
+    const { data, error } = await supabaseServer.storage
+      .from('lead-attachments')
+      .createSignedUrl(att.path, expiresIn);
+    if (!error && data?.signedUrl) {
+      results.push({ name: att.name, size: att.size, signedUrl: data.signedUrl });
+    }
+  }
+  return results;
+}
+
+function formatBytes(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+async function sendEmailNotification(
+  lead: Record<string, string>,
+  attachments: Array<{ name: string; path: string; size: number; type: string }> = []
+) {
   const resendApiKey = process.env.RESEND_API_KEY;
 
   if (!resendApiKey || resendApiKey === 're_PLACEHOLDER_GET_FROM_RESEND') {
@@ -222,6 +269,28 @@ async function sendEmailNotification(lead: Record<string, string>) {
   const message = lead.message ? escapeHtml(lead.message) : null;
   const helpTypeLabel = helpTypeLabels[lead.help_type] ?? escapeHtml(lead.help_type ?? '');
   const servicePageLabel = servicePageLabels[lead.service_page] ?? escapeHtml(lead.service_page ?? '');
+
+  const signedAttachments = await generateAttachmentLinks(attachments);
+  const attachmentsHtml = signedAttachments.length
+    ? `
+        <tr>
+          <td style="padding: 8px 0; color: #9999aa; vertical-align: top;">Attachments</td>
+          <td style="padding: 8px 0;">
+            ${signedAttachments
+              .map(
+                (a) => `
+              <div style="margin-bottom: 6px;">
+                <a href="${a.signedUrl}" style="color: #3b82f6; text-decoration: underline;">${escapeHtml(a.name)}</a>
+                <span style="color: #666677; font-size: 12px;"> · ${formatBytes(a.size)}</span>
+              </div>
+            `
+              )
+              .join('')}
+            <div style="color: #666677; font-size: 11px; margin-top: 4px;">Links expire in 30 days.</div>
+          </td>
+        </tr>
+      `
+    : '';
 
   const emailHtml = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -261,6 +330,7 @@ async function sendEmailNotification(lead: Record<string, string>) {
             <td style="padding: 8px 0;">${message}</td>
           </tr>
           ` : ''}
+          ${attachmentsHtml}
         </table>
         <hr style="border-color: #222233;">
         <p style="color: #666677; font-size: 12px; margin-bottom: 0;">

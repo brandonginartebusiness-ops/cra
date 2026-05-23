@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, useRef, type FormEvent, type ChangeEvent } from "react";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import { trackLead } from "@/lib/tracking";
@@ -25,6 +25,24 @@ interface FieldErrors {
   email?: string;
 }
 
+interface Attachment {
+  name: string;
+  path: string;
+  size: number;
+  type: string;
+}
+
+const MAX_FILES = 5;
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
+const ACCEPT =
+  ".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif,.doc,.docx,.txt,application/pdf,image/jpeg,image/png,image/webp,image/heic,image/heif,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain";
+
+function formatBytes(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
 const inputClass =
   "w-full bg-[#faf8f5] border rounded-lg px-4 py-3 text-sm text-[#1a1a2e] placeholder-[#8888a0] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/40 focus:border-[#2563eb]/50 transition-colors";
 
@@ -41,6 +59,10 @@ export default function LeadCaptureForm({
   });
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errors, setErrors] = useState<FieldErrors>({});
+  const [attachments, setAttachments] = useState<Attachment[]>([]);
+  const [uploadingFiles, setUploadingFiles] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const validateStep1 = (): boolean => {
     const newErrors: FieldErrors = {};
@@ -63,6 +85,49 @@ export default function LeadCaptureForm({
     }
   };
 
+  const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    setUploadError(null);
+    const picked = Array.from(e.target.files ?? []);
+    if (picked.length === 0) return;
+
+    const remainingSlots = MAX_FILES - attachments.length;
+    if (picked.length > remainingSlots) {
+      setUploadError(`You can attach up to ${MAX_FILES} files. ${remainingSlots} slot${remainingSlots === 1 ? "" : "s"} remaining.`);
+      e.target.value = "";
+      return;
+    }
+    for (const f of picked) {
+      if (f.size > MAX_FILE_SIZE) {
+        setUploadError(`${f.name} is over 10 MB. Try compressing or splitting it.`);
+        e.target.value = "";
+        return;
+      }
+    }
+
+    setUploadingFiles(true);
+    try {
+      const fd = new FormData();
+      picked.forEach((f) => fd.append("files", f));
+      const res = await fetch("/api/leads/upload", { method: "POST", body: fd });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        setUploadError(err.error || "Upload failed");
+      } else {
+        const { attachments: uploaded } = (await res.json()) as { attachments: Attachment[] };
+        setAttachments((prev) => [...prev, ...uploaded]);
+      }
+    } catch {
+      setUploadError("Upload failed. Please try again.");
+    } finally {
+      setUploadingFiles(false);
+      e.target.value = "";
+    }
+  };
+
+  const removeAttachment = (path: string) => {
+    setAttachments((prev) => prev.filter((a) => a.path !== path));
+  };
+
   const submitLead = async (final: boolean) => {
     const eventId =
       typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
@@ -82,6 +147,7 @@ export default function LeadCaptureForm({
           service_page: servicePage,
           event_id: eventId,
           step: final ? "complete" : "initial",
+          attachments: final ? attachments : undefined,
         }),
       });
 
@@ -126,14 +192,20 @@ export default function LeadCaptureForm({
     setStatus("success");
     setTimeout(() => {
       setFormData({ fullName: "", phone: "", email: "", helpType: "", message: "" });
+      setAttachments([]);
       setStatus("idle");
     }, 5000);
   };
 
-  const skipStep2 = () => {
+  const skipStep2 = async () => {
+    if (attachments.length > 0) {
+      setStatus("submitting");
+      await submitLead(true);
+    }
     setStatus("success");
     setTimeout(() => {
       setFormData({ fullName: "", phone: "", email: "", helpType: "", message: "" });
+      setAttachments([]);
       setStatus("idle");
     }, 5000);
   };
@@ -241,11 +313,96 @@ export default function LeadCaptureForm({
           </select>
         </div>
 
+        {/* File uploads — denial letters, claim photos, policy documents */}
+        <div>
+          <label className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
+            Attach documents <span className="text-[#8888a0] font-normal">(optional)</span>
+          </label>
+          <p className="text-xs text-[#5a5a72] mb-2">
+            Denial letters, claim photos, your insurance policy — anything that helps us prep for the call.
+          </p>
+
+          {attachments.length > 0 && (
+            <ul className="mb-3 flex flex-col gap-2">
+              {attachments.map((a) => (
+                <li
+                  key={a.path}
+                  className="flex items-center gap-2 bg-[#faf8f5] border border-[#1a1a2e]/8 rounded-lg px-3 py-2 text-sm"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                  </svg>
+                  <span className="flex-1 truncate text-[#1a1a2e]">{a.name}</span>
+                  <span className="text-xs text-[#5a5a72]">{formatBytes(a.size)}</span>
+                  <button
+                    type="button"
+                    onClick={() => removeAttachment(a.path)}
+                    className="text-[#5a5a72] hover:text-red-500 transition-colors p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded"
+                    aria-label={`Remove ${a.name}`}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {attachments.length < MAX_FILES && (
+            <>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept={ACCEPT}
+                multiple
+                onChange={handleFileChange}
+                disabled={uploadingFiles}
+                className="sr-only"
+                id="lead-attachments"
+              />
+              <label
+                htmlFor="lead-attachments"
+                className={`inline-flex items-center gap-2 cursor-pointer bg-[#faf8f5] border border-dashed border-[#1a1a2e]/20 text-sm text-[#1a1a2e] px-4 py-2.5 rounded-lg hover:border-[#2563eb]/40 hover:bg-[#f0ede8] transition-colors ${uploadingFiles ? "opacity-60 cursor-wait" : ""}`}
+              >
+                {uploadingFiles ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                    </svg>
+                    Uploading…
+                  </>
+                ) : (
+                  <>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                      <polyline points="17 8 12 3 7 8" />
+                      <line x1="12" y1="3" x2="12" y2="15" />
+                    </svg>
+                    {attachments.length === 0 ? "Choose files" : "Add more"}
+                  </>
+                )}
+              </label>
+              <p className="text-xs text-[#8888a0] mt-1.5">
+                PDF, JPG, PNG, DOC up to 10 MB each · {MAX_FILES - attachments.length} slot{MAX_FILES - attachments.length === 1 ? "" : "s"} remaining
+              </p>
+            </>
+          )}
+
+          {uploadError && (
+            <p className="text-xs text-red-500 mt-2">{uploadError}</p>
+          )}
+        </div>
+
         <button
           type="submit"
-          className="w-full bg-[#2563eb] text-white font-semibold py-3.5 rounded-lg hover:opacity-90 hover:shadow-[0_0_24px_rgba(37,99,235,0.25)] transition-[opacity,box-shadow] duration-300 disabled:opacity-60"
+          disabled={uploadingFiles}
+          className="w-full bg-[#2563eb] text-white font-semibold py-3.5 rounded-lg hover:opacity-90 hover:shadow-[0_0_24px_rgba(37,99,235,0.25)] transition-[opacity,box-shadow] duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Send these details
+          {attachments.length > 0 ? `Send details + ${attachments.length} file${attachments.length === 1 ? "" : "s"}` : "Send these details"}
         </button>
         <button
           type="button"
