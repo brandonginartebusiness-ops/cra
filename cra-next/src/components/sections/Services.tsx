@@ -33,10 +33,10 @@ export default function Services() {
           viewport={{ once: true, margin: "-60px" }}
         >
           {services.map((s) => (
-            <motion.div key={s.title} variants={fadeInUp}>
+            <motion.div key={s.title} variants={fadeInUp} className="h-full">
               <Link
                 href={s.href}
-                className="group block bg-[#ffffff] rounded-2xl overflow-hidden border border-[#1a1a2e]/8 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(37,99,235,0.12)] hover:border-[#2563eb]/20 transition-[transform,box-shadow,border-color] duration-300"
+                className="group block h-full flex flex-col bg-[#ffffff] rounded-2xl overflow-hidden border border-[#1a1a2e]/8 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(37,99,235,0.12)] hover:border-[#2563eb]/20 transition-[transform,box-shadow,border-color] duration-300"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
@@ -47,14 +47,14 @@ export default function Services() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                 </div>
-                <div className="p-5">
+                <div className="p-5 flex flex-col flex-1">
                   <h3 className="font-semibold text-[#1a1a2e] text-base mb-1.5">
                     {s.title}
                   </h3>
                   <p className="text-sm text-[#5a5a72] leading-relaxed mb-3">
                     {s.description}
                   </p>
-                  <span className="text-sm text-[#2563eb] font-medium group-hover:underline inline-flex items-center gap-1.5">
+                  <span className="mt-auto text-sm text-[#2563eb] font-medium group-hover:underline inline-flex items-center gap-1.5">
                     {s.ctaLabel}
                     <svg
                       width="11"

@@ -116,7 +116,7 @@ export default function Reviews() {
           {supporting.map((r) => (
             <article
               key={r.id}
-              className="bg-[#ffffff] border border-[#1a1a2e]/8 rounded-xl p-6 flex flex-col gap-3"
+              className="h-full bg-[#ffffff] border border-[#1a1a2e]/8 rounded-xl p-6 flex flex-col gap-3"
             >
               <div className="text-[#2563eb] tracking-[1px] text-sm">★★★★★</div>
               <p

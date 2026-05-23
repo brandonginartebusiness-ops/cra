@@ -74,7 +74,7 @@ export default function About() {
             viewport={{ once: true, margin: "-80px" }}
             variants={slideInRight}
           >
-            <p className="font-bebas font-extrabold text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.15] text-white/40 mb-12 max-w-2xl tracking-tight">
+            <p className="font-bebas font-extrabold text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.15] text-white/70 mb-12 max-w-2xl tracking-tight">
               <strong className="text-[#f0f0f5] font-extrabold">
                 Every type of property claim.
               </strong>{" "}

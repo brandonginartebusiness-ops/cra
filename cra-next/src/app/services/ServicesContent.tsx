@@ -41,10 +41,11 @@ export default function ServicesContent() {
                   variants={fadeInUp}
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.2 }}
+                  className="h-full"
                 >
                   <Link
                     href={s.href}
-                    className="group block bg-[#ffffff] rounded-2xl overflow-hidden hover:shadow-[0_8px_40px_rgba(59,130,246,0.18)] hover:border-[#3b82f6]/30 transition-[border-color,box-shadow] duration-300"
+                    className="group block h-full flex flex-col bg-[#ffffff] rounded-2xl overflow-hidden border border-[#1a1a2e]/8 hover:shadow-[0_8px_40px_rgba(37,99,235,0.18)] hover:border-[#2563eb]/30 transition-[border-color,box-shadow] duration-300"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden">
                       {s.image ? (
@@ -57,20 +58,20 @@ export default function ServicesContent() {
                         />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-[#1a1a2e] to-white flex items-center justify-center">
-                          <span className="font-bebas text-2xl text-[#3b82f6]/40">
+                          <span className="font-bebas text-2xl text-[#2563eb]/40">
                             {s.title}
                           </span>
                         </div>
                       )}
                     </div>
-                    <div className="p-5">
-                      <h3 className="font-semibold text-[#f0f0f5] text-base mb-1.5">
+                    <div className="p-5 flex flex-col flex-1">
+                      <h3 className="font-semibold text-[#1a1a2e] text-base mb-1.5">
                         {s.title}
                       </h3>
-                      <p className="text-sm text-[#9999aa] leading-relaxed mb-3">
+                      <p className="text-sm text-[#5a5a72] leading-relaxed mb-3">
                         {s.description}
                       </p>
-                      <span className="text-sm text-[#3b82f6] font-medium group-hover:underline inline-flex items-center gap-1.5">
+                      <span className="mt-auto text-sm text-[#2563eb] font-medium group-hover:underline inline-flex items-center gap-1.5">
                         {s.ctaLabel}
                         <svg
                           width="11"

@@ -28,7 +28,7 @@ export default function Pricing() {
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
             variants={slideInLeft}
-            className="bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-8 flex flex-col gap-6"
+            className="h-full bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-8 flex flex-col gap-6"
           >
             <div>
               <h3 className="font-semibold text-[#1a1a2e] text-xl mb-2">
@@ -70,7 +70,7 @@ export default function Pricing() {
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
             variants={slideInRight}
-            className="bg-[#ffffff] border border-[#2563eb]/30 rounded-2xl p-8 flex flex-col gap-6 shadow-[0_0_40px_rgba(37,99,235,0.08)]"
+            className="h-full bg-[#ffffff] border border-[#2563eb]/30 rounded-2xl p-8 flex flex-col gap-6 shadow-[0_0_40px_rgba(37,99,235,0.08)]"
           >
             <div>
               <h3 className="font-semibold text-[#1a1a2e] text-xl mb-2">

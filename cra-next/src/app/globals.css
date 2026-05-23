@@ -120,6 +120,10 @@ body::before {
 .text-\[\#5a5a72\] { color: #c0c0d0; }
 .text-\[\#8888a0\] { color: #a0a0b0; }
 
+/* Placeholder text in form inputs — light theme dim color → readable on dark */
+.placeholder-\[\#8888a0\]::placeholder { color: #a0a0b0; opacity: 1; }
+.placeholder-\[\#5a5a72\]::placeholder { color: #c0c0d0; opacity: 1; }
+
 /* Glass cards — translucent, blend with the dark bg */
 .bg-\[\#ffffff\].rounded-2xl,
 .bg-\[\#ffffff\].rounded-3xl,

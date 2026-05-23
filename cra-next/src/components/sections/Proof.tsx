@@ -58,7 +58,7 @@ export default function Proof() {
             <motion.div
               key={p.title}
               variants={fadeInUp}
-              className="bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl overflow-hidden"
+              className="h-full flex flex-col bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl overflow-hidden"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image

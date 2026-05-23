@@ -122,7 +122,7 @@ export default function CityPageLayout({ city }: Props) {
             </div>
 
             <div>
-              <div className="bg-[#faf8f5] border border-[#1a1a2e]/8 rounded-2xl p-8 h-fit">
+              <div className="bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-8 h-fit">
                 <h2 className="font-bebas font-bold text-2xl text-[#1a1a2e] mb-6 tracking-tight">
                   {city.city} Property Facts
                 </h2>
