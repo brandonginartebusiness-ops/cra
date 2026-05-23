@@ -1,14 +1,9 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
 import LeadCaptureForm from "@/components/ui/LeadCaptureForm";
-import CaseResultModal, { type ModalResult } from "@/components/ui/CaseResultModal";
-import AnimatedCounter from "@/components/ui/AnimatedCounter";
-import StarRating from "@/components/ui/StarRating";
+import CityCaseResultCard from "@/components/ui/CityCaseResultCard";
+import CityServiceSchema from "@/components/seo/CityServiceSchema";
 import { caseResults } from "@/data/results";
 import type { CityData } from "@/data/cities";
 
@@ -54,18 +49,17 @@ interface Props {
 }
 
 export default function CityPageLayout({ city }: Props) {
-  const [modalResult, setModalResult] = useState<ModalResult | null>(null);
-
   const caseResult =
     caseResults.find((r) =>
       city.featuredCaseType ? r.type === city.featuredCaseType : r.type === "Hurricane Claim"
     ) ?? caseResults[0];
 
-  const cardLayoutId = `city-result-${city.slug}`;
   const waLink = `https://wa.me/17862237867?text=Hi%20Claim%20Remedy%2C%20I%27d%20like%20to%20discuss%20a%20claim%20in%20${encodeURIComponent(city.city)}%2C%20Florida.`;
 
   return (
     <div className="pt-24 bg-[#faf8f5]">
+      <CityServiceSchema city={city} />
+
       {/* ── Section 1: Hero ──────────────────────────────────────────── */}
       <section className="bg-[#faf8f5] py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-6">
@@ -81,7 +75,7 @@ export default function CityPageLayout({ city }: Props) {
           </nav>
 
           <div className="max-w-3xl">
-            <span className="inline-block text-xs font-semibold uppercase tracking-widest text-[#2563eb] mb-4">
+            <span className="inline-block text-xs font-semibold uppercase tracking-widest text-cra-blue mb-4">
               {city.county} · {city.region}
             </span>
             <h1 className="font-bebas font-extrabold text-5xl md:text-6xl lg:text-7xl text-[#1a1a2e] leading-none tracking-tight mb-5">
@@ -94,7 +88,7 @@ export default function CityPageLayout({ city }: Props) {
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-[#2563eb] text-white font-semibold px-7 py-3.5 rounded-full hover:opacity-90 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)] transition-[opacity,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
+                className="inline-flex items-center justify-center gap-2 bg-cra-blue text-white font-semibold px-7 py-3.5 rounded-full hover:opacity-90 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)] transition-[opacity,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cra-blue/60"
               >
                 Get Your Free Claim Review
               </Link>
@@ -113,69 +107,59 @@ export default function CityPageLayout({ city }: Props) {
       <section className="bg-[#ffffff] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              variants={slideInLeft}
-            >
+            <div>
               <SectionHeading
                 label={`${city.city} Claims`}
                 heading={`Insurance claims in<br/>${city.city}.`}
               />
               <div className="mt-8 flex flex-col gap-5">
                 {city.description.map((para, i) => (
-                  <p key={i} className="text-base text-[#5a5a72] leading-relaxed">
+                  <p key={i} className="text-base text-[#3a3a52] leading-relaxed">
                     {para}
                   </p>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              variants={slideInRight}
-            >
+            <div>
               <div className="bg-[#faf8f5] border border-[#1a1a2e]/8 rounded-2xl p-8 h-fit">
-                <h3 className="font-bebas font-bold text-2xl text-[#1a1a2e] mb-6 tracking-tight">
+                <h2 className="font-bebas font-bold text-2xl text-[#1a1a2e] mb-6 tracking-tight">
                   {city.city} Property Facts
-                </h3>
+                </h2>
                 <dl className="flex flex-col gap-5">
                   {city.localFacts.population && (
                     <div>
-                      <dt className="text-xs font-semibold uppercase tracking-widest text-[#8888a0] mb-1">Population</dt>
+                      <dt className="text-xs font-semibold uppercase tracking-widest text-[#5a5a72] mb-1">Population</dt>
                       <dd className="text-sm text-[#1a1a2e]">{city.localFacts.population}</dd>
                     </div>
                   )}
                   {city.localFacts.commonPropertyTypes && (
                     <div>
-                      <dt className="text-xs font-semibold uppercase tracking-widest text-[#8888a0] mb-1">Common Property Types</dt>
-                      <dd className="text-sm text-[#5a5a72] leading-relaxed">{city.localFacts.commonPropertyTypes}</dd>
+                      <dt className="text-xs font-semibold uppercase tracking-widest text-[#5a5a72] mb-1">Common Property Types</dt>
+                      <dd className="text-sm text-[#3a3a52] leading-relaxed">{city.localFacts.commonPropertyTypes}</dd>
                     </div>
                   )}
                   {city.localFacts.stormHistory && (
                     <div>
-                      <dt className="text-xs font-semibold uppercase tracking-widest text-[#8888a0] mb-1">Storm History</dt>
-                      <dd className="text-sm text-[#5a5a72] leading-relaxed">{city.localFacts.stormHistory}</dd>
+                      <dt className="text-xs font-semibold uppercase tracking-widest text-[#5a5a72] mb-1">Storm History</dt>
+                      <dd className="text-sm text-[#3a3a52] leading-relaxed">{city.localFacts.stormHistory}</dd>
                     </div>
                   )}
                   {city.localFacts.floodZone && (
                     <div>
-                      <dt className="text-xs font-semibold uppercase tracking-widest text-[#8888a0] mb-1">Flood Zone</dt>
-                      <dd className="text-sm text-[#5a5a72] leading-relaxed">{city.localFacts.floodZone}</dd>
+                      <dt className="text-xs font-semibold uppercase tracking-widest text-[#5a5a72] mb-1">Flood Zone</dt>
+                      <dd className="text-sm text-[#3a3a52] leading-relaxed">{city.localFacts.floodZone}</dd>
                     </div>
                   )}
                   {city.localFacts.uniqueRisks && (
                     <div>
-                      <dt className="text-xs font-semibold uppercase tracking-widest text-[#8888a0] mb-1">Unique Risks</dt>
-                      <dd className="text-sm text-[#5a5a72] leading-relaxed">{city.localFacts.uniqueRisks}</dd>
+                      <dt className="text-xs font-semibold uppercase tracking-widest text-[#5a5a72] mb-1">Unique Risks</dt>
+                      <dd className="text-sm text-[#3a3a52] leading-relaxed">{city.localFacts.uniqueRisks}</dd>
                     </div>
                   )}
                 </dl>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -183,133 +167,71 @@ export default function CityPageLayout({ city }: Props) {
       {/* ── Section 3: Damage Types ───────────────────────────────────── */}
       <section className="bg-[#f0ede8] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeInUp}
-            className="mb-12"
-          >
+          <div className="mb-12">
             <SectionHeading
               label="What we handle"
               heading={`Common claims in<br/>${city.city}.`}
             />
-          </motion.div>
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-          >
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {city.commonDamageTypes.map((dt) => (
-              <motion.div key={dt.label} variants={fadeInUp}>
-                <Link
-                  href={SERVICE_LINKS[dt.slug] ?? "/services"}
-                  className="flex items-center gap-4 bg-[#ffffff] border border-[#1a1a2e]/8 rounded-xl p-5 hover:border-[#2563eb]/25 hover:shadow-[0_4px_24px_rgba(37,99,235,0.08)] transition-[border-color,box-shadow] duration-300 group"
-                >
-                  <span className="text-[#2563eb] shrink-0 group-hover:scale-110 transition-transform duration-200">
-                    {DAMAGE_ICONS[dt.slug] ?? DAMAGE_ICONS["roof-claims"]}
-                  </span>
-                  <span className="text-sm font-semibold text-[#1a1a2e]">{dt.label}</span>
-                  <svg className="w-3.5 h-3.5 ml-auto text-[#2563eb]/50 group-hover:text-[#2563eb] transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </motion.div>
+              <Link
+                key={dt.label}
+                href={SERVICE_LINKS[dt.slug] ?? "/services"}
+                className="flex items-center gap-4 bg-[#ffffff] border border-[#1a1a2e]/8 rounded-xl p-5 hover:border-cra-blue/25 hover:shadow-[0_4px_24px_rgba(37,99,235,0.08)] transition-[border-color,box-shadow] duration-300 group min-h-[72px]"
+              >
+                <span className="text-cra-blue shrink-0 group-hover:scale-110 transition-transform duration-200">
+                  {DAMAGE_ICONS[dt.slug] ?? DAMAGE_ICONS["roof-claims"]}
+                </span>
+                <span className="text-sm font-semibold text-[#1a1a2e]">{dt.label}</span>
+                <svg className="w-3.5 h-3.5 ml-auto text-cra-blue/50 group-hover:text-cra-blue transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ── Section 4: Case Result ────────────────────────────────────── */}
       <section className="bg-[#faf8f5] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-2xl mx-auto px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeInUp}
-            className="text-center mb-10"
-          >
+          <div className="text-center mb-10">
             <SectionHeading
               label="Proven result"
               heading="Real recovery.<br/>Real review."
               className="text-center"
             />
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={fadeInUp}
-          >
-            <motion.button
-              layoutId={cardLayoutId}
-              onClick={() =>
-                setModalResult({
-                  layoutId: cardLayoutId,
-                  type: caseResult.type,
-                  initial: caseResult.initial,
-                  initialLabel: caseResult.initialLabel,
-                  recovered: caseResult.recovered,
-                  review: {
-                    text: caseResult.review.text,
-                    author: caseResult.review.author,
-                    timeAgo: caseResult.review.timeAgo,
-                  },
-                })
-              }
-              className="text-left w-full bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-8 cursor-pointer hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(37,99,235,0.12)] hover:border-[#2563eb]/20 transition-[transform,box-shadow,border-color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
-              aria-label={`${caseResult.type} case result — press to see details`}
-            >
-              <p className="text-xs font-semibold uppercase tracking-widest text-[#2563eb] mb-4">
-                {caseResult.type}
-              </p>
-              <div className="flex items-baseline gap-3 mb-4">
-                <span className="text-lg text-[#8888a0] line-through">
-                  {caseResult.initialLabel ?? (caseResult.initial ? `$${caseResult.initial.toLocaleString()}` : "")}
-                </span>
-                <span className="text-[#2563eb] text-xl">&rarr;</span>
-                <AnimatedCounter
-                  value={caseResult.recovered}
-                  className="font-bebas font-bold text-4xl text-[#1a1a2e] tracking-tight"
-                />
-              </div>
-              <div className="h-px bg-[#2563eb]/20 mb-5" />
-              <blockquote className="text-base text-[#5a5a72] italic leading-relaxed mb-5">
-                &ldquo;{caseResult.review.text}&rdquo;
-              </blockquote>
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-semibold text-[#1a1a2e]">{caseResult.review.author}</span>
-                <StarRating className="text-sm" />
-              </div>
-              <p className="text-[0.7rem] text-[#8888a0] mt-1">
-                Google Review · {caseResult.review.timeAgo}
-              </p>
-            </motion.button>
-          </motion.div>
+          <CityCaseResultCard
+            citySlug={city.slug}
+            caseResult={{
+              type: caseResult.type,
+              initial: caseResult.initial,
+              initialLabel: caseResult.initialLabel,
+              recovered: caseResult.recovered,
+              review: {
+                text: caseResult.review.text,
+                author: caseResult.review.author,
+                timeAgo: caseResult.review.timeAgo,
+              },
+            }}
+          />
         </div>
       </section>
 
       {/* ── Section 5: Lead Form ──────────────────────────────────────── */}
       <section className="bg-[#ffffff] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-xl mx-auto px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeInUp}
-            className="text-center mb-10"
-          >
+          <div className="text-center mb-10">
             <h2 className="font-bebas font-extrabold text-4xl md:text-5xl text-[#1a1a2e] leading-none tracking-tight mb-3">
               Free Claim Review in {city.city}
             </h2>
-            <p className="text-base text-[#5a5a72]">
+            <p className="text-base text-[#3a3a52]">
               Our team will call you within the hour. No recovery, no fee.
             </p>
-          </motion.div>
+          </div>
           <LeadCaptureForm servicePage={city.slug} ctaText="Get Your Free Claim Review" />
         </div>
       </section>
@@ -318,36 +240,29 @@ export default function CityPageLayout({ city }: Props) {
       {city.nearbyAreas.length > 0 && (
         <section className="bg-[#f0ede8] py-16 lg:py-20 border-t border-[#1a1a2e]/8">
           <div className="max-w-7xl mx-auto px-6">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-60px" }}
-              variants={fadeInUp}
-            >
-              <p className="text-xs font-semibold uppercase tracking-widest text-[#8888a0] mb-5">
-                We also serve nearby areas
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {city.nearbyAreas.map((area) => (
-                  <Link
-                    key={area.slug}
-                    href={`/areas/${area.slug}`}
-                    className="inline-flex items-center gap-1.5 bg-[#ffffff] border border-[#1a1a2e]/8 text-sm text-[#5a5a72] px-4 py-2 rounded-full hover:border-[#2563eb]/30 hover:text-[#1a1a2e] transition-[border-color,color] duration-200"
-                  >
-                    {area.name}
-                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                ))}
+            <p className="text-xs font-semibold uppercase tracking-widest text-[#5a5a72] mb-5">
+              We also serve nearby areas
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {city.nearbyAreas.map((area) => (
                 <Link
-                  href="/areas"
-                  className="inline-flex items-center gap-1.5 bg-[#ffffff] border border-[#1a1a2e]/8 text-sm text-[#2563eb] px-4 py-2 rounded-full hover:border-[#2563eb]/30 transition-[border-color] duration-200"
+                  key={area.slug}
+                  href={`/areas/${area.slug}`}
+                  className="inline-flex items-center gap-1.5 bg-[#ffffff] border border-[#1a1a2e]/8 text-sm text-[#3a3a52] px-4 py-2 rounded-full hover:border-cra-blue/30 hover:text-[#1a1a2e] transition-[border-color,color] duration-200"
                 >
-                  All service areas →
+                  {area.name}
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
                 </Link>
-              </div>
-            </motion.div>
+              ))}
+              <Link
+                href="/areas"
+                className="inline-flex items-center gap-1.5 bg-[#ffffff] border border-[#1a1a2e]/8 text-sm text-cra-blue px-4 py-2 rounded-full hover:border-cra-blue/30 transition-[border-color] duration-200"
+              >
+                All service areas →
+              </Link>
+            </div>
           </div>
         </section>
       )}
@@ -355,42 +270,33 @@ export default function CityPageLayout({ city }: Props) {
       {/* ── Section 7: CTA Banner ─────────────────────────────────────── */}
       <section className="bg-[#faf8f5] py-16 lg:py-20 border-t border-[#1a1a2e]/8">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={fadeInUp}
-          >
-            <h2 className="font-bebas font-extrabold text-3xl md:text-4xl text-[#1a1a2e] leading-none tracking-tight mb-6">
-              Need a Public Adjuster in {city.city}? Call (786) 223-7867
-            </h2>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href={waLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-[#25d366] text-white font-semibold px-7 py-3.5 rounded-full hover:opacity-90 hover:shadow-[0_0_24px_rgba(37,211,102,0.3)] transition-[opacity,box-shadow] duration-300"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-                WhatsApp Us
-              </a>
-              <a
-                href="tel:+17862237867"
-                className="inline-flex items-center gap-3 bg-[#f0ede8] border border-[#1a1a2e]/12 text-[#1a1a2e] font-semibold px-7 py-3.5 rounded-full hover:border-[#2563eb]/30 hover:shadow-[0_0_24px_rgba(37,99,235,0.08)] transition-[border-color,box-shadow] duration-300"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-                </svg>
-                Call (786) 223-7867
-              </a>
-            </div>
-          </motion.div>
+          <h2 className="font-bebas font-extrabold text-3xl md:text-4xl text-[#1a1a2e] leading-none tracking-tight mb-6">
+            Need a Public Adjuster in {city.city}? Call (786) 223-7867
+          </h2>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-[#25d366] text-white font-semibold px-7 py-3.5 rounded-full hover:opacity-90 hover:shadow-[0_0_24px_rgba(37,211,102,0.3)] transition-[opacity,box-shadow] duration-300"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              WhatsApp Us
+            </a>
+            <a
+              href="tel:+17862237867"
+              className="inline-flex items-center gap-3 bg-[#f0ede8] border border-[#1a1a2e]/12 text-[#1a1a2e] font-semibold px-7 py-3.5 rounded-full hover:border-cra-blue/30 hover:shadow-[0_0_24px_rgba(37,99,235,0.08)] transition-[border-color,box-shadow] duration-300"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+              </svg>
+              Call (786) 223-7867
+            </a>
+          </div>
         </div>
       </section>
-
-      <CaseResultModal result={modalResult} onClose={() => setModalResult(null)} />
     </div>
   );
 }
