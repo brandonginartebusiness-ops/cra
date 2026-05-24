@@ -88,9 +88,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 pt-4 flex flex-col sm:flex-row justify-between items-center gap-1 text-xs text-white/30">
-          <p>&copy; {new Date().getFullYear()} Claim Remedy Adjusters. All rights reserved.</p>
-          <p>License W549958 &mdash; Licensed in all 67 Florida counties</p>
+        <div className="border-t border-white/10 pt-4 flex flex-col gap-3">
+          <p className="text-[11px] text-white/40 leading-relaxed max-w-4xl">
+            <strong className="text-white/60">Disclaimer:</strong> Case results referenced on this website (including any specific recovery amounts) describe outcomes for individual clients in specific circumstances. Individual case results vary based on the facts of the claim, the insurance policy, applicable law, and other factors. Past results do not guarantee future outcomes. This website does not provide legal advice. No attorney-client relationship is created by use of this site.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-1 text-xs text-white/30">
+            <p>&copy; {new Date().getFullYear()} Claim Remedy Adjusters. All rights reserved.</p>
+            <p>License W549958 &mdash; Licensed Florida Public Adjuster</p>
+          </div>
         </div>
 
       </div>
