@@ -52,10 +52,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://claimremedyadjusters.com",
   },
-  verification: {
-    other: {
-      "facebook-domain-verification": "wqv0ywr7k59nzmutvu18bcvlej74b2",
-    },
+  other: {
+    "facebook-domain-verification": "wqv0ywr7k59nzmutvu18bcvlej74b2",
   },
 };
 
