@@ -62,6 +62,7 @@ export default function LeadCaptureForm({
   const [attachments, setAttachments] = useState<Attachment[]>([]);
   const [uploadingFiles, setUploadingFiles] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [leadId, setLeadId] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const validateStep1 = (): boolean => {
@@ -147,25 +148,36 @@ export default function LeadCaptureForm({
           service_page: servicePage,
           event_id: eventId,
           step: final ? "complete" : "initial",
-          attachments: final ? attachments : undefined,
+          attachments: attachments.length > 0 ? attachments : undefined,
+          lead_id: final ? leadId : undefined,
         }),
       });
 
       if (!response.ok) throw new Error("Submission failed");
+
+      // Capture the row id from Step 1 so Step 2 updates it instead of inserting again.
+      const data = (await response.json().catch(() => ({}))) as { leadId?: number | null };
+      if (typeof data.leadId === "number" && leadId === null) {
+        setLeadId(data.leadId);
+      }
 
       const trimmedName = formData.fullName.trim();
       const spaceIdx = trimmedName.indexOf(" ");
       const firstName = spaceIdx === -1 ? trimmedName : trimmedName.slice(0, spaceIdx);
       const lastName = spaceIdx === -1 ? "" : trimmedName.slice(spaceIdx + 1).trim();
 
-      void trackLead({
-        eventId,
-        email: formData.email,
-        phone: formData.phone,
-        firstName,
-        lastName,
-        state: "FL",
-      });
+      // Only fire client-side Meta pixel Lead event on the FIRST submit. Step 2 is
+      // server-side enrichment and shouldn't dedupe a second Lead event.
+      if (!final || leadId === null) {
+        void trackLead({
+          eventId,
+          email: formData.email,
+          phone: formData.phone,
+          firstName,
+          lastName,
+          state: "FL",
+        });
+      }
       return true;
     } catch {
       return false;
@@ -193,6 +205,7 @@ export default function LeadCaptureForm({
     setTimeout(() => {
       setFormData({ fullName: "", phone: "", email: "", helpType: "", message: "" });
       setAttachments([]);
+      setLeadId(null);
       setStatus("idle");
     }, 5000);
   };
@@ -206,6 +219,7 @@ export default function LeadCaptureForm({
     setTimeout(() => {
       setFormData({ fullName: "", phone: "", email: "", helpType: "", message: "" });
       setAttachments([]);
+      setLeadId(null);
       setStatus("idle");
     }, 5000);
   };
@@ -489,6 +503,90 @@ export default function LeadCaptureForm({
           className={`${inputClass} border-[#1a1a2e]/12 resize-none`}
           placeholder="A roof leak after the last storm, a denied claim, water damage in the kitchen…"
         />
+      </div>
+
+      {/* File uploads — denial letters, claim photos, policy documents */}
+      <div>
+        <label className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
+          Attach documents <span className="text-[#8888a0] font-normal">(optional)</span>
+        </label>
+        <p className="text-xs text-[#5a5a72] mb-2">
+          Denial letters, claim photos, your insurance policy — speeds up our review.
+        </p>
+
+        {attachments.length > 0 && (
+          <ul className="mb-3 flex flex-col gap-2">
+            {attachments.map((a) => (
+              <li
+                key={a.path}
+                className="flex items-center gap-2 bg-[#faf8f5] border border-[#1a1a2e]/8 rounded-lg px-3 py-2 text-sm"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                </svg>
+                <span className="flex-1 truncate text-[#1a1a2e]">{a.name}</span>
+                <span className="text-xs text-[#5a5a72]">{formatBytes(a.size)}</span>
+                <button
+                  type="button"
+                  onClick={() => removeAttachment(a.path)}
+                  className="text-[#5a5a72] hover:text-red-500 transition-colors p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded"
+                  aria-label={`Remove ${a.name}`}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {attachments.length < MAX_FILES && (
+          <>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept={ACCEPT}
+              multiple
+              onChange={handleFileChange}
+              disabled={uploadingFiles || status === "submitting"}
+              className="sr-only"
+              id="lead-attachments-step1"
+            />
+            <label
+              htmlFor="lead-attachments-step1"
+              className={`inline-flex items-center gap-2 cursor-pointer bg-[#faf8f5] border border-dashed border-[#1a1a2e]/20 text-sm text-[#1a1a2e] px-4 py-2.5 rounded-lg hover:border-[#2563eb]/40 hover:bg-[#f0ede8] transition-colors ${uploadingFiles ? "opacity-60 cursor-wait" : ""}`}
+            >
+              {uploadingFiles ? (
+                <>
+                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                  </svg>
+                  Uploading…
+                </>
+              ) : (
+                <>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                    <polyline points="17 8 12 3 7 8" />
+                    <line x1="12" y1="3" x2="12" y2="15" />
+                  </svg>
+                  {attachments.length === 0 ? "Choose files" : "Add more"}
+                </>
+              )}
+            </label>
+            <p className="text-xs text-[#8888a0] mt-1.5">
+              PDF, JPG, PNG, DOC up to 10 MB each · {MAX_FILES - attachments.length} slot{MAX_FILES - attachments.length === 1 ? "" : "s"} remaining
+            </p>
+          </>
+        )}
+
+        {uploadError && (
+          <p className="text-xs text-red-500 mt-2">{uploadError}</p>
+        )}
       </div>
 
       {/* Trust line */}

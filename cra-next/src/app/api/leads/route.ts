@@ -119,6 +119,42 @@ export async function POST(request: NextRequest) {
         .slice(0, 5);
     }
 
+    // Step 2 ("complete") with a lead_id from Step 1 → UPDATE the existing row,
+    // skip side effects (already fired on Step 1). Result: 1 row per lead, not 2.
+    const leadIdRaw = body.lead_id;
+    const leadId =
+      typeof leadIdRaw === 'number' || (typeof leadIdRaw === 'string' && /^\d+$/.test(leadIdRaw))
+        ? Number(leadIdRaw)
+        : null;
+    const isEnrichmentUpdate = body.step === 'complete' && leadId !== null;
+
+    if (isEnrichmentUpdate) {
+      const updatePayload: Record<string, unknown> = {};
+      if (body.full_name) updatePayload.full_name = body.full_name;
+      if (body.email) updatePayload.email = body.email;
+      if (body.claim_number) updatePayload.claim_number = body.claim_number;
+      if (body.help_type) updatePayload.help_type = body.help_type;
+      if (body.message) updatePayload.message = body.message;
+      if (attachments.length > 0) updatePayload.attachments = attachments;
+
+      if (Object.keys(updatePayload).length === 0) {
+        return NextResponse.json({ message: 'Nothing to update', leadId }, { status: 200 });
+      }
+
+      const { error: updateError } = await supabaseServer
+        .from('leads')
+        .update(updatePayload)
+        .eq('id', leadId);
+
+      if (updateError) {
+        console.error('Supabase update error:', updateError.code, updateError.message);
+        return NextResponse.json({ error: 'Failed to update lead' }, { status: 500 });
+      }
+
+      return NextResponse.json({ message: 'Lead enriched', leadId }, { status: 200 });
+    }
+
+    // Otherwise: INSERT a new row (Step 1 or single-step submit).
     // Supabase `leads` table has NOT NULL on full_name/email/help_type and likely
     // a CHECK constraint on help_type. Use safe defaults for partial Step-1 submits.
     const payload = {
@@ -133,7 +169,11 @@ export async function POST(request: NextRequest) {
       attachments,
     };
 
-    const { error } = await supabaseServer.from('leads').insert([payload]);
+    const { data: inserted, error } = await supabaseServer
+      .from('leads')
+      .insert([payload])
+      .select('id')
+      .single();
 
     if (error) {
       console.error('Supabase insert error:', error.code, error.message);
@@ -142,6 +182,8 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    const newLeadId = inserted?.id ?? null;
 
     // Side-effects (email + Meta CAPI) — non-blocking, must never fail the response
     const eventId =
@@ -196,7 +238,7 @@ export async function POST(request: NextRequest) {
     ]);
 
     return NextResponse.json(
-      { message: 'Lead submitted successfully' },
+      { message: 'Lead submitted successfully', leadId: newLeadId },
       { status: 201 }
     );
   } catch (err) {
