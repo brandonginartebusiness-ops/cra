@@ -19,7 +19,7 @@ function buildCityDescription(city: ReturnType<typeof getCityBySlug>): string {
   const risks = city.localFacts.uniqueRisks;
   if (risks) {
     const shortRisk = risks.length > 70 ? risks.slice(0, 67).trim() + "…" : risks;
-    return `${city.city}, Florida public adjusters. Local expertise on ${shortRisk}. No recovery, no fee. Call (786) 223-7867.`;
+    return `${city.city}, Florida public adjusters. Local expertise on ${shortRisk}. No recovery, no fee. Call (305) 733-1670.`;
   }
   const storm = city.localFacts.stormHistory;
   if (storm) {

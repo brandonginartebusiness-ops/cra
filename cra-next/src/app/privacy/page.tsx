@@ -32,7 +32,7 @@ export default function PrivacyPage() {
               <a href="mailto:office@cradjusters.com" className="text-[#2563eb] hover:underline">
                 office@cradjusters.com
               </a>{" "}
-              or (786) 223-7867.
+              or (305) 733-1670.
             </p>
           </section>
 

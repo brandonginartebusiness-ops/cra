@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
 
-const WA_LINK = `https://wa.me/17862237867?text=${encodeURIComponent("Hi Claim Remedy, I'd like to book a free consultation.")}`;
+const WA_LINK = `https://wa.me/13057331670?text=${encodeURIComponent("Hi Claim Remedy, I'd like to book a free consultation.")}`;
 
 export default function Contact() {
   return (
@@ -57,7 +57,7 @@ export default function Contact() {
             {/* Call */}
             <motion.a
               variants={fadeInUp}
-              href="tel:+17862237867"
+              href="tel:+13057331670"
               className="flex items-center gap-4 bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-6 hover:border-[#2563eb]/30 hover:shadow-[0_0_24px_rgba(37,99,235,0.10)] transition-[border-color,box-shadow] group"
             >
               <div className="w-11 h-11 rounded-full bg-[#2563eb]/10 flex items-center justify-center shrink-0">
@@ -67,7 +67,7 @@ export default function Contact() {
               </div>
               <div>
                 <p className="font-semibold text-[#1a1a2e] group-hover:text-[#2563eb] transition-colors">
-                  Call (786) 223-7867
+                  Call (305) 733-1670
                 </p>
                 <p className="text-sm text-[#5a5a72]">Speak directly with the team</p>
               </div>

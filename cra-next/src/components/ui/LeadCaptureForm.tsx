@@ -232,7 +232,7 @@ export default function LeadCaptureForm({
         <p className="text-xs text-[#8888a0] mb-3">Need us sooner? Reach out directly:</p>
         <div className="flex items-center justify-center gap-4">
           <a
-            href="https://wa.me/17862237867"
+            href="https://wa.me/13057331670"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm text-[#25d366] hover:underline"
@@ -240,10 +240,10 @@ export default function LeadCaptureForm({
             WhatsApp
           </a>
           <a
-            href="tel:+17862237867"
+            href="tel:+13057331670"
             className="inline-flex items-center gap-2 text-sm text-[#2563eb] hover:underline"
           >
-            (786) 223-7867
+            (305) 733-1670
           </a>
         </div>
       </motion.div>
@@ -433,7 +433,7 @@ export default function LeadCaptureForm({
       {status === "error" && (
         <div className="bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-3 text-sm text-red-600">
           Something went wrong. Please try again or call us directly at{" "}
-          <a href="tel:+17862237867" className="underline font-semibold">(786) 223-7867</a>.
+          <a href="tel:+13057331670" className="underline font-semibold">(305) 733-1670</a>.
         </div>
       )}
 

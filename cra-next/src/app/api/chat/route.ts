@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         error:
-          "Something went wrong. Please try again or call us at (786) 223-7867.",
+          "Something went wrong. Please try again or call us at (305) 733-1670.",
       },
       { status: 500 }
     );

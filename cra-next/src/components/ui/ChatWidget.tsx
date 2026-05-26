@@ -73,7 +73,7 @@ export default function ChatWidget() {
         ...newMessages,
         {
           role: "assistant",
-          content: "Connection issue. Please try again or call us at (786) 223-7867.",
+          content: "Connection issue. Please try again or call us at (305) 733-1670.",
         },
       ]);
     } finally {

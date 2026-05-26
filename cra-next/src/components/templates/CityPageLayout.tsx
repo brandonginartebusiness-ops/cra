@@ -54,7 +54,7 @@ export default function CityPageLayout({ city }: Props) {
       city.featuredCaseType ? r.type === city.featuredCaseType : r.type === "Hurricane Claim"
     ) ?? caseResults[0];
 
-  const waLink = `https://wa.me/17862237867?text=Hi%20Claim%20Remedy%2C%20I%27d%20like%20to%20discuss%20a%20claim%20in%20${encodeURIComponent(city.city)}%2C%20Florida.`;
+  const waLink = `https://wa.me/13057331670?text=Hi%20Claim%20Remedy%2C%20I%27d%20like%20to%20discuss%20a%20claim%20in%20${encodeURIComponent(city.city)}%2C%20Florida.`;
 
   return (
     <div className="pt-24 bg-[#faf8f5]">
@@ -93,10 +93,10 @@ export default function CityPageLayout({ city }: Props) {
                 Get Your Free Claim Review
               </Link>
               <a
-                href="tel:+17862237867"
+                href="tel:+13057331670"
                 className="inline-flex items-center justify-center gap-2 bg-[#f0ede8] border border-[#1a1a2e]/12 text-[#1a1a2e] font-semibold px-7 py-3.5 rounded-full hover:border-[#1a1a2e]/25 transition-[border-color] duration-200"
               >
-                Call (786) 223-7867
+                Call (305) 733-1670
               </a>
             </div>
           </div>
@@ -271,7 +271,7 @@ export default function CityPageLayout({ city }: Props) {
       <section className="bg-[#faf8f5] py-16 lg:py-20 border-t border-[#1a1a2e]/8">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="font-bebas font-extrabold text-3xl md:text-4xl text-[#1a1a2e] leading-none tracking-tight mb-6">
-            Need a Public Adjuster in {city.city}? Call (786) 223-7867
+            Need a Public Adjuster in {city.city}? Call (305) 733-1670
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
@@ -286,13 +286,13 @@ export default function CityPageLayout({ city }: Props) {
               WhatsApp Us
             </a>
             <a
-              href="tel:+17862237867"
+              href="tel:+13057331670"
               className="inline-flex items-center gap-3 bg-[#f0ede8] border border-[#1a1a2e]/12 text-[#1a1a2e] font-semibold px-7 py-3.5 rounded-full hover:border-cra-blue/30 hover:shadow-[0_0_24px_rgba(37,99,235,0.08)] transition-[border-color,box-shadow] duration-300"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
               </svg>
-              Call (786) 223-7867
+              Call (305) 733-1670
             </a>
           </div>
         </div>

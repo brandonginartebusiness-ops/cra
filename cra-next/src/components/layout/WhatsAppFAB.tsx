@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const WA_LINK =
-  "https://wa.me/17862237867?text=Hi%20Claim%20Remedy%2C%20I%27d%20like%20to%20book%20a%20free%20consultation.";
+  "https://wa.me/13057331670?text=Hi%20Claim%20Remedy%2C%20I%27d%20like%20to%20book%20a%20free%20consultation.";
 
 export default function WhatsAppFAB() {
   const [hovered, setHovered] = useState(false);

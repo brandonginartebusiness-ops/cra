@@ -25,7 +25,7 @@ export default function LocalBusinessSchema() {
         url: "https://claimremedyadjusters.com",
         description:
           "Licensed Florida Public Adjusters representing homeowners and commercial property owners. We fight for the settlement you deserve on hurricane, water, fire, roof, and mold damage claims. No recovery, no fee.",
-        telephone: "+17862237867",
+        telephone: "+13057331670",
         email: "office@cradjusters.com",
         address: {
           "@type": "PostalAddress",

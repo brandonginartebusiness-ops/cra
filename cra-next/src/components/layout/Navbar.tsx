@@ -126,7 +126,7 @@ export default function Navbar() {
           ))}
         </ul>
         <a
-          href="tel:+17862237867"
+          href="tel:+13057331670"
           className="mt-10 inline-flex items-center justify-center bg-[#2563eb] text-white font-semibold py-4 rounded-full text-lg"
         >
           Call Now
