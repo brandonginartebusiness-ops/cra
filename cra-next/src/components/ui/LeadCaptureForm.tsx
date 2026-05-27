@@ -18,6 +18,8 @@ interface FormData {
   email: string;
   helpType: string;
   message: string;
+  zip: string;
+  filedClaim: string;
 }
 
 interface FieldErrors {
@@ -56,6 +58,8 @@ export default function LeadCaptureForm({
     email: "",
     helpType: "",
     message: "",
+    zip: "",
+    filedClaim: "",
   });
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -145,6 +149,8 @@ export default function LeadCaptureForm({
           email: formData.email || undefined,
           help_type: formData.helpType || undefined,
           message: formData.message || undefined,
+          zip: formData.zip || undefined,
+          filed_claim: formData.filedClaim || undefined,
           service_page: servicePage,
           event_id: eventId,
           step: final ? "complete" : "initial",
@@ -203,7 +209,7 @@ export default function LeadCaptureForm({
     await submitLead(true);
     setStatus("success");
     setTimeout(() => {
-      setFormData({ fullName: "", phone: "", email: "", helpType: "", message: "" });
+      setFormData({ fullName: "", phone: "", email: "", helpType: "", message: "", zip: "", filedClaim: "" });
       setAttachments([]);
       setLeadId(null);
       setStatus("idle");
@@ -217,7 +223,7 @@ export default function LeadCaptureForm({
     }
     setStatus("success");
     setTimeout(() => {
-      setFormData({ fullName: "", phone: "", email: "", helpType: "", message: "" });
+      setFormData({ fullName: "", phone: "", email: "", helpType: "", message: "", zip: "", filedClaim: "" });
       setAttachments([]);
       setLeadId(null);
       setStatus("idle");
@@ -486,6 +492,63 @@ export default function LeadCaptureForm({
           placeholder="(555) 123-4567"
         />
         {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
+      </div>
+
+      {/* ZIP + filed-yet — quick qualifiers, both optional */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="zip" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
+            Property ZIP <span className="text-[#8888a0] font-normal">(optional)</span>
+          </label>
+          <input
+            type="text"
+            id="zip"
+            name="zip"
+            value={formData.zip}
+            onChange={handleChange}
+            disabled={status === "submitting"}
+            inputMode="numeric"
+            autoComplete="postal-code"
+            maxLength={10}
+            className={`${inputClass} border-[#1a1a2e]/12`}
+            placeholder="e.g. 33016"
+          />
+        </div>
+        <div>
+          <span className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
+            Filed a claim yet? <span className="text-[#8888a0] font-normal">(optional)</span>
+          </span>
+          <div role="radiogroup" aria-label="Have you filed a claim yet?" className="flex gap-2">
+            {[
+              { value: "yes", label: "Yes" },
+              { value: "no", label: "No" },
+            ].map((opt) => {
+              const active = formData.filedClaim === opt.value;
+              return (
+                <button
+                  key={opt.value}
+                  type="button"
+                  role="radio"
+                  aria-checked={active}
+                  disabled={status === "submitting"}
+                  onClick={() =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      filedClaim: prev.filedClaim === opt.value ? "" : opt.value,
+                    }))
+                  }
+                  className={`flex-1 rounded-lg border px-4 py-3 text-sm font-medium transition-[background-color,border-color,color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/40 ${
+                    active
+                      ? "bg-[#2563eb] border-[#2563eb] text-white"
+                      : "bg-[#faf8f5] border-[#1a1a2e]/12 text-[#1a1a2e] hover:border-[#2563eb]/40"
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
       {/* Quick message */}

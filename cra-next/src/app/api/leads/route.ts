@@ -47,6 +47,26 @@ const VALID_SERVICE_PAGES = new Set([
   'jacksonville', 'tallahassee', 'gainesville', 'daytona-beach', 'ocala', 'key-west',
 ]);
 
+/**
+ * Build the persisted message, folding ZIP + "already filed?" into the existing
+ * `message` column so they survive in the DB record without a schema change.
+ * Deterministic from the request body, so Step 1 (insert) and Step 2 (update)
+ * produce the same string — the enrichment update never clobbers these extras.
+ */
+function composeLeadMessage(body: Record<string, unknown>): string | null {
+  const base = typeof body.message === 'string' ? body.message.trim() : '';
+  const extras: string[] = [];
+  if (typeof body.zip === 'string' && body.zip.trim()) {
+    extras.push(`ZIP: ${body.zip.trim()}`);
+  }
+  if (body.filed_claim === 'yes') extras.push('Already filed a claim: Yes');
+  else if (body.filed_claim === 'no') extras.push('Already filed a claim: No');
+  const composed = [base, extras.length ? extras.join(' · ') : '']
+    .filter(Boolean)
+    .join('\n\n');
+  return composed || null;
+}
+
 export async function POST(request: NextRequest) {
   try {
     // Payload size guard — reject anything over 32 KB
@@ -76,6 +96,7 @@ export async function POST(request: NextRequest) {
       phone.length > 30 ||
       (body.email && body.email.length > 254) ||
       (body.claim_number && body.claim_number.length > 60) ||
+      (body.zip && body.zip.length > 10) ||
       (body.message && body.message.length > 2000)
     ) {
       return NextResponse.json({ error: 'Field value too long' }, { status: 400 });
@@ -95,6 +116,9 @@ export async function POST(request: NextRequest) {
     // Allowlist enum fields only if provided
     if (body.help_type && !VALID_HELP_TYPES.has(body.help_type)) {
       return NextResponse.json({ error: 'Invalid help_type' }, { status: 400 });
+    }
+    if (body.filed_claim && body.filed_claim !== 'yes' && body.filed_claim !== 'no') {
+      return NextResponse.json({ error: 'Invalid filed_claim' }, { status: 400 });
     }
     if (!VALID_SERVICE_PAGES.has(service_page)) {
       return NextResponse.json({ error: 'Invalid service_page' }, { status: 400 });
@@ -134,7 +158,9 @@ export async function POST(request: NextRequest) {
       if (body.email) updatePayload.email = body.email;
       if (body.claim_number) updatePayload.claim_number = body.claim_number;
       if (body.help_type) updatePayload.help_type = body.help_type;
-      if (body.message) updatePayload.message = body.message;
+      if (body.message || body.zip || body.filed_claim) {
+        updatePayload.message = composeLeadMessage(body);
+      }
       if (attachments.length > 0) updatePayload.attachments = attachments;
 
       if (Object.keys(updatePayload).length === 0) {
@@ -163,7 +189,7 @@ export async function POST(request: NextRequest) {
       email: body.email || '',
       claim_number: body.claim_number || null,
       help_type: body.help_type || 'other',
-      message: body.message || null,
+      message: composeLeadMessage(body),
       service_page: body.service_page,
       status: 'new',
       attachments,
@@ -231,7 +257,7 @@ export async function POST(request: NextRequest) {
         email: body.email || '',
         help_type: body.help_type || '',
         service_page: body.service_page,
-        message: body.message || null,
+        message: composeLeadMessage(body),
       }).catch((smsError) => {
         console.error('[twilio] unexpected error', smsError);
       }),
@@ -309,6 +335,9 @@ async function sendEmailNotification(
   const email = escapeHtml(lead.email ?? '');
   const claimNumber = lead.claim_number ? escapeHtml(lead.claim_number) : null;
   const message = lead.message ? escapeHtml(lead.message) : null;
+  const zip = lead.zip ? escapeHtml(lead.zip) : null;
+  const filedClaim =
+    lead.filed_claim === 'yes' ? 'Yes' : lead.filed_claim === 'no' ? 'No' : null;
   const helpTypeLabel = helpTypeLabels[lead.help_type] ?? escapeHtml(lead.help_type ?? '');
   const servicePageLabel = servicePageLabels[lead.service_page] ?? escapeHtml(lead.service_page ?? '');
 
@@ -352,6 +381,18 @@ async function sendEmailNotification(
             <td style="padding: 8px 0; color: #9999aa;">Email</td>
             <td style="padding: 8px 0;"><a href="mailto:${email}" style="color: #3b82f6;">${email}</a></td>
           </tr>
+          ${zip ? `
+          <tr>
+            <td style="padding: 8px 0; color: #9999aa;">Property ZIP</td>
+            <td style="padding: 8px 0;">${zip}</td>
+          </tr>
+          ` : ''}
+          ${filedClaim ? `
+          <tr>
+            <td style="padding: 8px 0; color: #9999aa;">Already filed a claim?</td>
+            <td style="padding: 8px 0; font-weight: bold;">${filedClaim}</td>
+          </tr>
+          ` : ''}
           ${claimNumber ? `
           <tr>
             <td style="padding: 8px 0; color: #9999aa;">Claim Number</td>
