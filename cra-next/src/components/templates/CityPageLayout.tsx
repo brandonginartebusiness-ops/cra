@@ -218,6 +218,12 @@ export default function CityPageLayout({ city }: Props) {
               },
             }}
           />
+
+          <p className="mt-8 text-center text-xs text-[#8888a0] leading-relaxed">
+            Recovery shown is an illustrative outcome from an individual client
+            case. Individual results vary by policy, coverage, and the facts of
+            each claim. Past results do not guarantee future outcomes.
+          </p>
         </div>
       </section>
 

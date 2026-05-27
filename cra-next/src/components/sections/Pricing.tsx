@@ -45,7 +45,7 @@ export default function Pricing() {
                 Lowball offers
               </div>
               <div className="text-xs text-[#8888a0]">
-                Average solo settlement runs 3–5× lower
+                Homeowners often settle for a fraction of the claim&apos;s value
               </div>
               <ul className="mt-5 flex flex-col gap-3">
                 {[
@@ -91,7 +91,7 @@ export default function Pricing() {
                   "Full damage inspection & documentation",
                   "Professional claim filing & evidence",
                   "Direct negotiation with insurer",
-                  "Average 3–5× higher settlements",
+                  "Settlements built on full documentation",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2 text-sm text-[#1a1a2e]">
                     <svg aria-hidden="true" className="w-4 h-4 text-[#2563eb] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 13l4 4L19 7"/></svg>
@@ -102,6 +102,14 @@ export default function Pricing() {
             </div>
           </motion.div>
         </div>
+
+        <p className="mt-8 max-w-3xl text-xs leading-relaxed text-[#8888a0]">
+          A 2010 Florida state study (OPPAGA Report 10-06) found that
+          policyholders who used a public adjuster recovered substantially more
+          on their claims, on average, than those who did not. Individual
+          results vary by policy, coverage, and the facts of each claim — past
+          results do not guarantee future outcomes.
+        </p>
       </div>
     </section>
   );

@@ -157,7 +157,13 @@ export default function Results() {
           })}
         </motion.div>
 
-        <div className="mt-12 text-center">
+        <p className="mt-10 text-center text-xs text-[#8888a0] max-w-2xl mx-auto leading-relaxed">
+          Recoveries shown are illustrative outcomes from individual client
+          cases. Individual results vary by policy, coverage, and the facts of
+          each claim. Past results do not guarantee future outcomes.
+        </p>
+
+        <div className="mt-8 text-center">
           <Link
             href="/reviews"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#2563eb] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm"
