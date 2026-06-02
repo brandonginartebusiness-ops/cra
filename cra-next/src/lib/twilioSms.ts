@@ -5,6 +5,8 @@ export interface LeadSmsInput {
   help_type: string;
   service_page: string;
   message?: string | null;
+  /** When true, the DB write failed — flag the notify SMS so Brandon saves it manually. */
+  dbFailed?: boolean;
 }
 
 const HELP_TYPE_LABELS: Record<string, string> = {
@@ -94,6 +96,7 @@ export async function sendLeadSms(lead: LeadSmsInput): Promise<void> {
 
   if (notificationNumber) {
     const notifyBody = [
+      lead.dbFailed ? "⚠️ DB DOWN — LEAD NOT SAVED. Save these details now:" : null,
       `New lead — ${lead.full_name}`,
       `Phone: ${lead.phone}`,
       `Email: ${lead.email}`,

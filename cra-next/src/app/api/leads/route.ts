@@ -201,12 +201,12 @@ export async function POST(request: NextRequest) {
       .select('id')
       .single();
 
+    // Safety net: if the DB write fails, DON'T bail here. Fall through and try to
+    // deliver the lead via email/SMS so a database outage can never silently
+    // swallow a paid lead. The final response is based on whether email got through.
+    const dbFailed = Boolean(error);
     if (error) {
       console.error('Supabase insert error:', error.code, error.message);
-      return NextResponse.json(
-        { error: 'Failed to submit lead' },
-        { status: 500 }
-      );
     }
 
     const newLeadId = inserted?.id ?? null;
@@ -229,10 +229,17 @@ export async function POST(request: NextRequest) {
       (origin ? `${origin}/${body.service_page || ''}`.replace(/\/$/, '') : '') ||
       `https://claimremedyadjusters.com/${body.service_page || ''}`.replace(/\/$/, '');
 
+    // Email is the capture mechanism when the DB is down, so await it explicitly
+    // and track delivery. SMS + CAPI stay best-effort and never block the response.
+    let emailDelivered = false;
+    try {
+      await sendEmailNotification(body, attachments, { dbFailed });
+      emailDelivered = true;
+    } catch (emailError) {
+      console.error('Email notification failed:', emailError);
+    }
+
     await Promise.allSettled([
-      sendEmailNotification(body, attachments).catch((emailError) => {
-        console.error('Email notification failed:', emailError);
-      }),
       eventId
         ? sendMetaCapiLead({
             eventId,
@@ -258,10 +265,21 @@ export async function POST(request: NextRequest) {
         help_type: body.help_type || '',
         service_page: body.service_page,
         message: composeLeadMessage(body),
+        dbFailed,
       }).catch((smsError) => {
         console.error('[twilio] unexpected error', smsError);
       }),
     ]);
+
+    // If the DB write failed AND we couldn't even email it, the lead is genuinely
+    // lost — tell the visitor so they can retry. Otherwise it was captured (via DB
+    // and/or email), so return success and keep the visitor on the thank-you path.
+    if (dbFailed && !emailDelivered) {
+      return NextResponse.json(
+        { error: 'Failed to submit lead' },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(
       { message: 'Lead submitted successfully', leadId: newLeadId },
@@ -302,7 +320,8 @@ function formatBytes(bytes: number): string {
 
 async function sendEmailNotification(
   lead: Record<string, string>,
-  attachments: Array<{ name: string; path: string; size: number; type: string }> = []
+  attachments: Array<{ name: string; path: string; size: number; type: string }> = [],
+  opts: { dbFailed?: boolean } = {}
 ) {
   const resendApiKey = process.env.RESEND_API_KEY;
 
@@ -366,6 +385,7 @@ async function sendEmailNotification(
   const emailHtml = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
       <div style="background: #0a0a0f; color: #f0f0f5; padding: 24px; border-radius: 12px;">
+        ${opts.dbFailed ? `<div style="background:#7f1d1d;color:#ffffff;padding:14px 16px;border-radius:8px;margin-bottom:16px;font-size:14px;line-height:1.5;">⚠️ <strong>DATABASE WRITE FAILED — this lead was NOT saved to your database.</strong><br>Save these details manually now. Your leads database may be down — contact your developer to restore it.</div>` : ''}
         <h2 style="color: #3b82f6; margin-top: 0;">New Lead — Claim Remedy Adjusters</h2>
         <hr style="border-color: #222233;">
         <table style="width: 100%; color: #f0f0f5; font-size: 14px;">
@@ -432,7 +452,7 @@ async function sendEmailNotification(
     body: JSON.stringify({
       from: 'Claim Remedy Leads <leads@claimremedyadjusters.com>',
       to: ['brandonginartebusiness@gmail.com', 'office@cradjusters.com'],
-      subject: `New Lead: ${name} — ${servicePageLabel}`,
+      subject: `${opts.dbFailed ? '⚠️ DB DOWN (unsaved) — ' : ''}New Lead: ${name} — ${servicePageLabel}`,
       html: emailHtml,
     }),
   });
