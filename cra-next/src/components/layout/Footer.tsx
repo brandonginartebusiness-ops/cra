@@ -4,6 +4,7 @@ import Image from "next/image";
 const NAV_LINKS = [
   ["Services", "/services"],
   ["Process", "/process"],
+  ["Do I Need a Public Adjuster?", "/do-i-need-a-public-adjuster"],
   ["About", "/about"],
   ["Reviews", "/reviews"],
   ["FAQ", "/faq"],

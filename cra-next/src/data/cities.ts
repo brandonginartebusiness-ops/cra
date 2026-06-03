@@ -47,7 +47,7 @@ export const cities: CityData[] = [
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Roof Claims", slug: "roof-claims" },
-      { label: "Mold Damage", slug: "water-damage" },
+      { label: "Mold Damage", slug: "mold-claims" },
       { label: "Fire & Smoke", slug: "fire-smoke" },
     ],
     localFacts: {
@@ -78,7 +78,7 @@ export const cities: CityData[] = [
     ],
     commonDamageTypes: [
       { label: "Water Damage", slug: "water-damage" },
-      { label: "Mold Damage", slug: "water-damage" },
+      { label: "Mold Damage", slug: "mold-claims" },
       { label: "Roof Claims", slug: "roof-claims" },
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
     ],
@@ -143,7 +143,7 @@ export const cities: CityData[] = [
       "Because Doral is relatively young as a city, many homeowners are first-time claimants with no experience navigating an insurance dispute. Insurance companies use that inexperience to their advantage. Claim Remedy Adjusters levels that playing field with expert documentation, independent damage estimates, and aggressive negotiation on your behalf.",
     ],
     commonDamageTypes: [
-      { label: "Commercial Property", slug: "storm-hurricane" },
+      { label: "Commercial Property", slug: "commercial-property" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Roof Claims", slug: "roof-claims" },
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
@@ -178,7 +178,7 @@ export const cities: CityData[] = [
       { label: "Roof Claims", slug: "roof-claims" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
-      { label: "Mold Damage", slug: "water-damage" },
+      { label: "Mold Damage", slug: "mold-claims" },
     ],
     localFacts: {
       population: "~115,000",
@@ -190,8 +190,8 @@ export const cities: CityData[] = [
     nearbyAreas: [
       { name: "Miami Lakes", slug: "miami-lakes" },
       { name: "Hialeah", slug: "hialeah" },
-      { name: "North Miami Beach", slug: "north-miami" },
-      { name: "Opa-locka", slug: "miami-gardens" },
+      { name: "North Miami", slug: "north-miami" },
+      { name: "Miami", slug: "miami" },
     ],
     featuredCaseType: "Roof Claim",
   },
@@ -210,7 +210,7 @@ export const cities: CityData[] = [
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Roof Claims", slug: "roof-claims" },
-      { label: "Mold Damage", slug: "water-damage" },
+      { label: "Mold Damage", slug: "mold-claims" },
     ],
     localFacts: {
       population: "~75,000",
@@ -241,7 +241,7 @@ export const cities: CityData[] = [
       { label: "Roof Claims", slug: "roof-claims" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
-      { label: "Mold Damage", slug: "water-damage" },
+      { label: "Mold Damage", slug: "mold-claims" },
     ],
     localFacts: {
       population: "~80,000 (unincorporated)",
@@ -304,7 +304,7 @@ export const cities: CityData[] = [
       { label: "Water Damage", slug: "water-damage" },
       { label: "Roof Claims", slug: "roof-claims" },
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
-      { label: "Mold Damage", slug: "water-damage" },
+      { label: "Mold Damage", slug: "mold-claims" },
     ],
     localFacts: {
       population: "~63,000",
@@ -380,7 +380,7 @@ export const cities: CityData[] = [
     nearbyAreas: [
       { name: "Hollywood", slug: "hollywood" },
       { name: "Pompano Beach", slug: "pompano-beach" },
-      { name: "Oakland Park", slug: "coral-springs" },
+      { name: "Coral Springs", slug: "coral-springs" },
       { name: "Miramar", slug: "miramar" },
     ],
     featuredCaseType: "Hurricane Claim",
@@ -400,7 +400,7 @@ export const cities: CityData[] = [
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Roof Claims", slug: "roof-claims" },
-      { label: "Mold Damage", slug: "water-damage" },
+      { label: "Mold Damage", slug: "mold-claims" },
     ],
     localFacts: {
       population: "~155,000",
@@ -431,7 +431,7 @@ export const cities: CityData[] = [
       { label: "Roof Claims", slug: "roof-claims" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
-      { label: "Mold Damage", slug: "water-damage" },
+      { label: "Mold Damage", slug: "mold-claims" },
     ],
     localFacts: {
       population: "~175,000",
@@ -462,7 +462,7 @@ export const cities: CityData[] = [
       { label: "Water Damage", slug: "water-damage" },
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
       { label: "Roof Claims", slug: "roof-claims" },
-      { label: "Commercial Property", slug: "storm-hurricane" },
+      { label: "Commercial Property", slug: "commercial-property" },
     ],
     localFacts: {
       population: "~140,000",
@@ -493,7 +493,7 @@ export const cities: CityData[] = [
       { label: "Roof Claims", slug: "roof-claims" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
-      { label: "Mold Damage", slug: "water-damage" },
+      { label: "Mold Damage", slug: "mold-claims" },
     ],
     localFacts: {
       population: "~135,000",
@@ -524,7 +524,7 @@ export const cities: CityData[] = [
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Roof Claims", slug: "roof-claims" },
-      { label: "Commercial Property", slug: "storm-hurricane" },
+      { label: "Commercial Property", slug: "commercial-property" },
     ],
     localFacts: {
       population: "~115,000",
@@ -588,7 +588,7 @@ export const cities: CityData[] = [
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Roof Claims", slug: "roof-claims" },
-      { label: "Commercial Property", slug: "storm-hurricane" },
+      { label: "Commercial Property", slug: "commercial-property" },
     ],
     localFacts: {
       population: "~120,000",
@@ -619,7 +619,7 @@ export const cities: CityData[] = [
       { label: "Roof Claims", slug: "roof-claims" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
-      { label: "Mold Damage", slug: "water-damage" },
+      { label: "Mold Damage", slug: "mold-claims" },
     ],
     localFacts: {
       population: "~80,000",
@@ -713,7 +713,7 @@ export const cities: CityData[] = [
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Roof Claims", slug: "roof-claims" },
-      { label: "Commercial Property", slug: "storm-hurricane" },
+      { label: "Commercial Property", slug: "commercial-property" },
     ],
     localFacts: {
       population: "~400,000",
@@ -775,7 +775,7 @@ export const cities: CityData[] = [
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Roof Claims", slug: "roof-claims" },
-      { label: "Commercial Property", slug: "storm-hurricane" },
+      { label: "Commercial Property", slug: "commercial-property" },
     ],
     localFacts: {
       population: "~120,000",
@@ -837,7 +837,7 @@ export const cities: CityData[] = [
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Roof Claims", slug: "roof-claims" },
-      { label: "Denied Claim", slug: "storm-hurricane" },
+      { label: "Denied Claim", slug: "denied-claims" },
     ],
     localFacts: {
       population: "~90,000",
@@ -899,7 +899,7 @@ export const cities: CityData[] = [
       { label: "Roof Claims", slug: "roof-claims" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
-      { label: "Commercial Property", slug: "storm-hurricane" },
+      { label: "Commercial Property", slug: "commercial-property" },
     ],
     localFacts: {
       population: "~320,000 city / ~3M metro",
@@ -932,7 +932,7 @@ export const cities: CityData[] = [
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Roof Claims", slug: "roof-claims" },
-      { label: "Mold Damage", slug: "water-damage" },
+      { label: "Mold Damage", slug: "mold-claims" },
     ],
     localFacts: {
       population: "~975,000",
@@ -1024,7 +1024,7 @@ export const cities: CityData[] = [
       { label: "Hurricane & Wind", slug: "storm-hurricane" },
       { label: "Water Damage", slug: "water-damage" },
       { label: "Roof Claims", slug: "roof-claims" },
-      { label: "Commercial Property", slug: "storm-hurricane" },
+      { label: "Commercial Property", slug: "commercial-property" },
     ],
     localFacts: {
       population: "~70,000",

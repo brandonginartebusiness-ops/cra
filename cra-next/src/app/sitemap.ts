@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/services/mold-claims`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/denied-claims`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/commercial-property`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/do-i-need-a-public-adjuster`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/areas`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/process`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
