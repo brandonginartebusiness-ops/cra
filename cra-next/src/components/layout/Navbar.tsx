@@ -8,7 +8,6 @@ import { usePathname } from "next/navigation";
 const links = [
   { label: "Services", href: "/services" },
   { label: "Areas", href: "/areas" },
-  { label: "Do I Need a PA?", href: "/do-i-need-a-public-adjuster" },
   { label: "Process", href: "/process" },
   { label: "About", href: "/about" },
   { label: "Reviews", href: "/reviews" },
