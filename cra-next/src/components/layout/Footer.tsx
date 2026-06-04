@@ -1,26 +1,91 @@
 import Link from "next/link";
 import Image from "next/image";
+import { services } from "@/data/services";
+import { cities } from "@/data/cities";
 
-const NAV_LINKS = [
-  ["Services", "/services"],
+const COMPANY_LINKS: [string, string][] = [
   ["Process", "/process"],
-  ["Do I Need a Public Adjuster?", "/do-i-need-a-public-adjuster"],
   ["About", "/about"],
   ["Reviews", "/reviews"],
+  ["Do I Need a Public Adjuster?", "/do-i-need-a-public-adjuster"],
   ["FAQ", "/faq"],
   ["Contact", "/contact"],
 ];
 
-export default function Footer() {
+const LEGAL_LINKS: [string, string][] = [
+  ["Privacy Policy", "/privacy"],
+];
+
+// Top service areas surfaced in the footer (full list lives on /areas).
+const FOOTER_CITY_SLUGS = [
+  "miami",
+  "miami-lakes",
+  "hialeah",
+  "fort-lauderdale",
+  "hollywood",
+  "coral-gables",
+  "pembroke-pines",
+  "west-palm-beach",
+];
+const footerCities = FOOTER_CITY_SLUGS.map((slug) =>
+  cities.find((c) => c.slug === slug)
+).filter((c): c is (typeof cities)[number] => Boolean(c));
+
+const linkClass =
+  "text-sm text-white/50 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm";
+const headingClass =
+  "text-[0.65rem] font-semibold uppercase tracking-widest text-white/30 mb-3";
+
+function FooterColumn({
+  heading,
+  links,
+  allHref,
+  allLabel,
+}: {
+  heading: string;
+  links: [string, string][];
+  allHref?: string;
+  allLabel?: string;
+}) {
   return (
-    <footer className="bg-[#1a1a2e] pt-10 pb-20 sm:pb-5">
+    <div>
+      <p className={headingClass}>{heading}</p>
+      <ul className="flex flex-col gap-2">
+        {links.map(([label, href]) => (
+          <li key={href}>
+            <Link href={href} className={linkClass}>
+              {label}
+            </Link>
+          </li>
+        ))}
+        {allHref && (
+          <li>
+            <Link
+              href={allHref}
+              className="text-sm font-semibold text-[#60a5fa] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm"
+            >
+              {allLabel} &rarr;
+            </Link>
+          </li>
+        )}
+      </ul>
+    </div>
+  );
+}
+
+export default function Footer() {
+  const serviceLinks = services.map((s) => [s.title, s.href] as [string, string]);
+  const areaLinks = footerCities.map(
+    (c) => [c.city, `/areas/${c.slug}`] as [string, string]
+  );
+
+  return (
+    <footer className="bg-[#1a1a2e] pt-12 pb-20 sm:pb-5">
       <div className="max-w-7xl mx-auto px-6">
-
-        {/* 3-col grid */}
-        <div className="grid grid-cols-[2fr_1fr_1fr] gap-8 mb-8">
-
-          {/* Col 1 — Brand */}
-          <div className="flex flex-col gap-3">
+        {/* Brand + link columns */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-10">
+          {/* Brand */}
+          <div className="col-span-2 lg:col-span-1 flex flex-col gap-3">
             <Image
               src="/brand_assets/logo.png"
               alt="Claim Remedy Adjusters"
@@ -33,31 +98,41 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Col 2 — Company */}
-          <div>
-            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-white/30 mb-3">Company</p>
-            <ul className="flex flex-col gap-2">
-              {NAV_LINKS.map(([label, href]) => (
-                <li key={href}>
-                  <Link href={href} className="text-sm text-white/50 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm">
-                    {label}
-                  </Link>
+          <FooterColumn
+            heading="Services"
+            links={serviceLinks}
+            allHref="/services"
+            allLabel="All services"
+          />
+          <FooterColumn
+            heading="Service Areas"
+            links={areaLinks}
+            allHref="/areas"
+            allLabel="All areas"
+          />
+          <FooterColumn heading="Company" links={COMPANY_LINKS} />
+
+          {/* Contact + Legal */}
+          <div className="flex flex-col gap-6">
+            <div>
+              <p className={headingClass}>Contact</p>
+              <ul className="flex flex-col gap-2 text-sm text-white/50">
+                <li>
+                  <a href="tel:+13057331670" className={linkClass}>
+                    (305) 733-1670
+                  </a>
                 </li>
-              ))}
-            </ul>
+                <li>
+                  <a href="mailto:office@cradjusters.com" className={linkClass}>
+                    office@cradjusters.com
+                  </a>
+                </li>
+                <li>7900 Oak Ln, Suite 400</li>
+                <li>Miami Lakes, FL 33016</li>
+              </ul>
+            </div>
+            <FooterColumn heading="Legal" links={LEGAL_LINKS} />
           </div>
-
-          {/* Col 3 — Contact */}
-          <div>
-            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-white/30 mb-3">Contact</p>
-            <ul className="flex flex-col gap-2 text-sm text-white/50">
-              <li><a href="tel:+13057331670" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm">(305) 733-1670</a></li>
-              <li><a href="mailto:office@cradjusters.com" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm">office@cradjusters.com</a></li>
-              <li>7900 Oak Ln, Suite 400</li>
-              <li>Miami Lakes, FL 33016</li>
-            </ul>
-          </div>
-
         </div>
 
         {/* Social icons */}
@@ -98,7 +173,6 @@ export default function Footer() {
             <p>License W549958 &mdash; Licensed Florida Public Adjuster</p>
           </div>
         </div>
-
       </div>
     </footer>
   );
