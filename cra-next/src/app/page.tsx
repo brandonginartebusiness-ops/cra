@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
 import SocialProof from "@/components/sections/SocialProof";
+import RecentWins from "@/components/sections/RecentWins";
 import Process from "@/components/sections/Process";
 import About from "@/components/sections/About";
 import Accreditations from "@/components/sections/Accreditations";
@@ -17,6 +18,7 @@ export default function Home() {
       <Hero />
       <Services />
       <SocialProof />
+      <RecentWins />
       <About />
       <Accreditations />
       <Process />
