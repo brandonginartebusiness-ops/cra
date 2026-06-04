@@ -278,7 +278,7 @@ export default function LeadCaptureForm({
         method="post"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-8 flex flex-col gap-5"
+        className="bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-6 sm:p-7 flex flex-col gap-4"
       >
         <div className="flex items-center gap-2 text-[0.6rem] font-bold uppercase tracking-[0.22em] text-[#22c55e]">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -294,12 +294,12 @@ export default function LeadCaptureForm({
           to speed things up
         </h3>
         <p className="text-sm text-[#5a5a72] -mt-2">
-          Skip anything you&apos;d rather tell us on the phone.
+          All optional — skip anything you&apos;d rather tell us on the phone.
         </p>
 
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
-            Email <span className="text-[#8888a0] font-normal">(optional)</span>
+            Email
           </label>
           <input
             type="email"
@@ -314,7 +314,7 @@ export default function LeadCaptureForm({
 
         <div>
           <label htmlFor="helpType" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
-            What kind of help? <span className="text-[#8888a0] font-normal">(optional)</span>
+            What kind of help?
           </label>
           <select
             id="helpType"
@@ -333,13 +333,68 @@ export default function LeadCaptureForm({
           </select>
         </div>
 
+        {/* ZIP + filed-yet — qualifiers, deferred from step 1 to keep first touch light */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="zip-2" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
+              Property ZIP
+            </label>
+            <input
+              type="text"
+              id="zip-2"
+              name="zip"
+              value={formData.zip}
+              onChange={handleChange}
+              inputMode="numeric"
+              autoComplete="postal-code"
+              maxLength={10}
+              className={`${inputClass} border-[#1a1a2e]/12`}
+              placeholder="e.g. 33016"
+            />
+          </div>
+          <div>
+            <span className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
+              Filed a claim yet?
+            </span>
+            <div role="radiogroup" aria-label="Have you filed a claim yet?" className="flex gap-2">
+              {[
+                { value: "yes", label: "Yes" },
+                { value: "no", label: "No" },
+              ].map((opt) => {
+                const active = formData.filedClaim === opt.value;
+                return (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    role="radio"
+                    aria-checked={active}
+                    onClick={() =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        filedClaim: prev.filedClaim === opt.value ? "" : opt.value,
+                      }))
+                    }
+                    className={`flex-1 rounded-lg border px-4 py-3 text-sm font-medium transition-[background-color,border-color,color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/40 ${
+                      active
+                        ? "bg-[#2563eb] border-[#2563eb] text-white"
+                        : "bg-[#faf8f5] border-[#1a1a2e]/12 text-[#1a1a2e] hover:border-[#2563eb]/40"
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
         {/* File uploads — denial letters, claim photos, policy documents */}
         <div>
-          <label className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
-            Attach documents <span className="text-[#8888a0] font-normal">(optional)</span>
+          <label className="block text-sm font-medium text-[#1a1a2e]">
+            Attach documents
           </label>
-          <p className="text-xs text-[#5a5a72] mb-2">
-            Denial letters, claim photos, your insurance policy — anything that helps us prep for the call.
+          <p className="text-xs text-[#8888a0] mb-2">
+            Denial letters, photos, your policy — speeds up the call.
           </p>
 
           {attachments.length > 0 && (
@@ -407,7 +462,7 @@ export default function LeadCaptureForm({
                 )}
               </label>
               <p className="text-xs text-[#8888a0] mt-1.5">
-                PDF, JPG, PNG, DOC up to 10 MB each · {MAX_FILES - attachments.length} slot{MAX_FILES - attachments.length === 1 ? "" : "s"} remaining
+                PDF, JPG, PNG, DOC · 10 MB max · {MAX_FILES - attachments.length} left
               </p>
             </>
           )}
@@ -494,64 +549,7 @@ export default function LeadCaptureForm({
         {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
       </div>
 
-      {/* ZIP + filed-yet — quick qualifiers, both optional */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="zip" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
-            Property ZIP <span className="text-[#8888a0] font-normal">(optional)</span>
-          </label>
-          <input
-            type="text"
-            id="zip"
-            name="zip"
-            value={formData.zip}
-            onChange={handleChange}
-            disabled={status === "submitting"}
-            inputMode="numeric"
-            autoComplete="postal-code"
-            maxLength={10}
-            className={`${inputClass} border-[#1a1a2e]/12`}
-            placeholder="e.g. 33016"
-          />
-        </div>
-        <div>
-          <span className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
-            Filed a claim yet? <span className="text-[#8888a0] font-normal">(optional)</span>
-          </span>
-          <div role="radiogroup" aria-label="Have you filed a claim yet?" className="flex gap-2">
-            {[
-              { value: "yes", label: "Yes" },
-              { value: "no", label: "No" },
-            ].map((opt) => {
-              const active = formData.filedClaim === opt.value;
-              return (
-                <button
-                  key={opt.value}
-                  type="button"
-                  role="radio"
-                  aria-checked={active}
-                  disabled={status === "submitting"}
-                  onClick={() =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      filedClaim: prev.filedClaim === opt.value ? "" : opt.value,
-                    }))
-                  }
-                  className={`flex-1 rounded-lg border px-4 py-3 text-sm font-medium transition-[background-color,border-color,color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/40 ${
-                    active
-                      ? "bg-[#2563eb] border-[#2563eb] text-white"
-                      : "bg-[#faf8f5] border-[#1a1a2e]/12 text-[#1a1a2e] hover:border-[#2563eb]/40"
-                  }`}
-                >
-                  {opt.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* Quick message */}
+      {/* Quick message — one optional line of context, nothing more on step 1 */}
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
           What happened? <span className="text-[#8888a0] font-normal">(optional)</span>
@@ -559,97 +557,13 @@ export default function LeadCaptureForm({
         <textarea
           id="message"
           name="message"
-          rows={3}
+          rows={2}
           value={formData.message}
           onChange={handleChange}
           disabled={status === "submitting"}
           className={`${inputClass} border-[#1a1a2e]/12 resize-none`}
-          placeholder="A roof leak after the last storm, a denied claim, water damage in the kitchen…"
+          placeholder="A roof leak, a denied claim, water damage…"
         />
-      </div>
-
-      {/* File uploads — denial letters, claim photos, policy documents */}
-      <div>
-        <label className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
-          Attach documents <span className="text-[#8888a0] font-normal">(optional)</span>
-        </label>
-        <p className="text-xs text-[#5a5a72] mb-2">
-          Denial letters, claim photos, your insurance policy — speeds up our review.
-        </p>
-
-        {attachments.length > 0 && (
-          <ul className="mb-3 flex flex-col gap-2">
-            {attachments.map((a) => (
-              <li
-                key={a.path}
-                className="flex items-center gap-2 bg-[#faf8f5] border border-[#1a1a2e]/8 rounded-lg px-3 py-2 text-sm"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-                  <polyline points="14 2 14 8 20 8" />
-                </svg>
-                <span className="flex-1 truncate text-[#1a1a2e]">{a.name}</span>
-                <span className="text-xs text-[#5a5a72]">{formatBytes(a.size)}</span>
-                <button
-                  type="button"
-                  onClick={() => removeAttachment(a.path)}
-                  className="text-[#5a5a72] hover:text-red-500 transition-colors p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded"
-                  aria-label={`Remove ${a.name}`}
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                  </svg>
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
-
-        {attachments.length < MAX_FILES && (
-          <>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept={ACCEPT}
-              multiple
-              onChange={handleFileChange}
-              disabled={uploadingFiles || status === "submitting"}
-              className="sr-only"
-              id="lead-attachments-step1"
-            />
-            <label
-              htmlFor="lead-attachments-step1"
-              className={`inline-flex items-center gap-2 cursor-pointer bg-[#faf8f5] border border-dashed border-[#1a1a2e]/20 text-sm text-[#1a1a2e] px-4 py-2.5 rounded-lg hover:border-[#2563eb]/40 hover:bg-[#f0ede8] transition-colors ${uploadingFiles ? "opacity-60 cursor-wait" : ""}`}
-            >
-              {uploadingFiles ? (
-                <>
-                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                  </svg>
-                  Uploading…
-                </>
-              ) : (
-                <>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
-                    <polyline points="17 8 12 3 7 8" />
-                    <line x1="12" y1="3" x2="12" y2="15" />
-                  </svg>
-                  {attachments.length === 0 ? "Choose files" : "Add more"}
-                </>
-              )}
-            </label>
-            <p className="text-xs text-[#8888a0] mt-1.5">
-              PDF, JPG, PNG, DOC up to 10 MB each · {MAX_FILES - attachments.length} slot{MAX_FILES - attachments.length === 1 ? "" : "s"} remaining
-            </p>
-          </>
-        )}
-
-        {uploadError && (
-          <p className="text-xs text-red-500 mt-2">{uploadError}</p>
-        )}
       </div>
 
       {/* Trust line */}
