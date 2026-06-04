@@ -19,7 +19,7 @@ export default function LocalBusinessSchema() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": ["LocalBusiness", "ProfessionalService"],
+        "@type": ["InsuranceAgency", "LocalBusiness", "ProfessionalService"],
         "@id": "https://claimremedyadjusters.com/#business",
         name: "Claim Remedy Adjusters",
         url: "https://claimremedyadjusters.com",

@@ -10,6 +10,7 @@ import StarRating from "@/components/ui/StarRating";
 import SectionHeading from "@/components/ui/SectionHeading";
 import LeadCaptureForm from "@/components/ui/LeadCaptureForm";
 import CaseResultModal, { type ModalResult } from "@/components/ui/CaseResultModal";
+import ServicePageSchema from "@/components/seo/ServicePageSchema";
 
 interface ServicePageProps {
   title: string;
@@ -49,6 +50,8 @@ export default function ServicePageLayout({
 
   return (
     <div className="pt-24 bg-[#faf8f5]">
+      <ServicePageSchema title={title} slug={serviceSlug} description={subtitle} />
+
       {/* ─── Section 1: Hero Banner ─── */}
       <section className="relative overflow-hidden bg-[#faf8f5] py-20 lg:py-28">
         {heroImage && (

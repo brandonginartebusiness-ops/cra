@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ServicesContent from "./ServicesContent";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Property Damage Claims — Florida Public Adjuster Services",
@@ -16,5 +17,15 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
-  return <ServicesContent />;
+  return (
+    <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+        ]}
+      />
+      <ServicesContent />
+    </>
+  );
 }

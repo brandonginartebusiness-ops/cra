@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import About from "@/components/sections/About";
 import PageTransition from "@/components/ui/PageTransition";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "About Our Florida Public Adjuster — Claim Remedy Adjusters",
@@ -19,6 +20,12 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <PageTransition>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ]}
+      />
       <div className="pt-24">
         <About />
       </div>

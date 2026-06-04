@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Process from "@/components/sections/Process";
 import PageTransition from "@/components/ui/PageTransition";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "How We Handle Your Florida Insurance Claim — Our Process",
@@ -19,6 +20,12 @@ export const metadata: Metadata = {
 export default function ProcessPage() {
   return (
     <PageTransition>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Process", path: "/process" },
+        ]}
+      />
       <div className="pt-24 bg-[#f0ede8]">
         <Process />
       </div>

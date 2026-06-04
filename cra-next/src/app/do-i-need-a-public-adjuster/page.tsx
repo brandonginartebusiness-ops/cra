@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SectionHeading from "@/components/ui/SectionHeading";
 import LeadCaptureForm from "@/components/ui/LeadCaptureForm";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const CANONICAL = "https://claimremedyadjusters.com/do-i-need-a-public-adjuster";
 
@@ -108,6 +109,12 @@ export default function DoINeedAPublicAdjusterPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Do I Need a Public Adjuster?", path: "/do-i-need-a-public-adjuster" },
+        ]}
       />
 
       {/* ── Section 1: Hero ──────────────────────────────────────────── */}
