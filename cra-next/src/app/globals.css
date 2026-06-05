@@ -161,6 +161,24 @@ body::before {
   background-color: rgba(255, 255, 255, 0.08);
 }
 
+/* ── Genuinely-white pills / chips / logo tiles ──────────────────────────
+   These small white surfaces are NOT converted to glass cards, so they stay
+   white. Restore dark text on them — the global flip above would otherwise
+   render their text white-on-white (invisible). */
+.bg-white,
+.bg-\[\#ffffff\].rounded-full,
+.bg-\[\#ffffff\].rounded-lg {
+  color: #1a1a2e;
+}
+.bg-white .text-\[\#1a1a2e\],
+.bg-white .text-\[\#3a3a52\],
+.bg-white .text-\[\#5a5a72\],
+.bg-\[\#ffffff\].rounded-full .text-\[\#1a1a2e\],
+.bg-\[\#ffffff\].rounded-full .text-\[\#3a3a52\],
+.bg-\[\#ffffff\].rounded-lg .text-\[\#1a1a2e\] {
+  color: #1a1a2e;
+}
+
 /* Montserrat serif utility */
 .font-serif {
   font-family: var(--font-playfair), 'Montserrat', sans-serif;
