@@ -19,7 +19,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative py-24 lg:py-32"
+      className="relative py-16 lg:py-32"
     >
 
       <div className="relative max-w-7xl mx-auto px-6">

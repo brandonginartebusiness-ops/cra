@@ -53,7 +53,7 @@ export default function ServicePageLayout({
       <ServicePageSchema title={title} slug={serviceSlug} description={subtitle} />
 
       {/* ─── Section 1: Hero Banner ─── */}
-      <section className="relative overflow-hidden bg-[#faf8f5] py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-[#faf8f5] py-14 lg:py-28">
         {heroImage && (
           <div className="absolute inset-0">
             <Image
@@ -92,7 +92,7 @@ export default function ServicePageLayout({
       </section>
 
       {/* ─── Section 2: Service Description ─── */}
-      <section className="bg-[#ffffff] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
+      <section className="bg-[#ffffff] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
             <motion.div
@@ -159,7 +159,7 @@ export default function ServicePageLayout({
       </section>
 
       {/* ─── Section 3: Case Result Card ─── */}
-      <section className="bg-[#f0ede8] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
+      <section className="bg-[#f0ede8] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-2xl mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -242,7 +242,7 @@ export default function ServicePageLayout({
       </section>
 
       {/* ─── Section 4: Lead Capture Form ─── */}
-      <section className="bg-[#faf8f5] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
+      <section className="bg-[#faf8f5] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-xl mx-auto px-6">
           <motion.div
             initial="hidden"

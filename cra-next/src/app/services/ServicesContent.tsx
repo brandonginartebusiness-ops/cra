@@ -13,7 +13,7 @@ export default function ServicesContent() {
   return (
     <PageTransition>
       <div className="pt-24">
-        <section className="py-20 lg:py-28">
+        <section className="py-14 lg:py-28">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div
               initial="hidden"

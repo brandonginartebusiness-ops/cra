@@ -29,7 +29,7 @@ export default function Reviews() {
   const supporting = rest.slice(0, 3);
 
   return (
-    <section id="testimonials" className="bg-[#f5f3f0] py-24 lg:py-32 relative overflow-hidden">
+    <section id="testimonials" className="bg-[#f5f3f0] py-16 lg:py-32 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* Trust header */}
         <motion.div

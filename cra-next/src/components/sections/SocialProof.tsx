@@ -30,7 +30,7 @@ const formatK = (n: number) => `$${Math.round(n / 1000)}K`;
 
 export default function SocialProof() {
   return (
-    <section id="social-proof" className="py-24 lg:py-32">
+    <section id="social-proof" className="py-16 lg:py-32">
       <div className="max-w-6xl mx-auto px-6">
         {/* Section header */}
         <motion.div

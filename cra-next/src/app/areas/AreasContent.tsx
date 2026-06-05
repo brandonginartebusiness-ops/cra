@@ -71,7 +71,7 @@ export default function AreasContent() {
   return (
     <div className="pt-24">
       {/* ── Hero ──────────────────────────────────────────────────── */}
-      <section className="py-20 lg:py-28">
+      <section className="py-14 lg:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -94,7 +94,7 @@ export default function AreasContent() {
       </section>
 
       {/* ── Map + Stats ───────────────────────────────────────────── */}
-      <section className="py-20 lg:py-28 border-t border-white/8">
+      <section className="py-14 lg:py-28 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-14 items-center">
             <motion.div
@@ -166,7 +166,7 @@ export default function AreasContent() {
       </section>
 
       {/* ── County Accordions ─────────────────────────────────────── */}
-      <section className="py-20 lg:py-28 border-t border-white/8">
+      <section className="py-14 lg:py-28 border-t border-white/8">
         <div className="max-w-5xl mx-auto px-6">
           <motion.div
             initial="hidden"

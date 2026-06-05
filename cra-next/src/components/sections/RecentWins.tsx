@@ -28,7 +28,7 @@ function multiplier(c: (typeof caseResults)[number]): string | null {
 
 export default function RecentWins() {
   return (
-    <section id="recent-wins" className="py-24 lg:py-32 bg-[#111118]">
+    <section id="recent-wins" className="py-16 lg:py-32 bg-[#111118]">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -98,7 +98,7 @@ export default function RecentWins() {
                 viewport={{ once: true, margin: "-50px" }}
                 variants={fadeInUp}
                 transition={{ delay: 0.05 * i }}
-                className="bg-[#ffffff] border border-[#1a1a2e]/10 rounded-2xl p-7 flex flex-col"
+                className="bg-[#ffffff] border border-[#1a1a2e]/10 rounded-2xl p-5 sm:p-7 flex flex-col"
               >
                 <div className="flex items-center justify-between gap-3 mb-5">
                   <span className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[#2563eb]">
@@ -112,12 +112,12 @@ export default function RecentWins() {
                 </div>
 
                 {/* Before → After */}
-                <div className="flex items-end gap-4">
-                  <div>
+                <div className="flex items-end gap-3 sm:gap-4">
+                  <div className="min-w-0">
                     <p className="text-[0.65rem] uppercase tracking-wide text-[#8888a0] mb-1">
                       Insurer offered
                     </p>
-                    <p className="font-bebas text-3xl text-[#8888a0] leading-none line-through decoration-[#8888a0]/40">
+                    <p className="font-bebas text-2xl sm:text-3xl text-[#8888a0] leading-none line-through decoration-[#8888a0]/40">
                       {offerLabel(c)}
                     </p>
                   </div>
@@ -136,14 +136,14 @@ export default function RecentWins() {
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
                   </svg>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-[0.65rem] uppercase tracking-wide text-[#0f9d6f] mb-1">
                       We recovered
                     </p>
                     <AnimatedCounter
                       value={c.recovered}
                       format="currency"
-                      className="font-bebas text-5xl text-[#1a1a2e] leading-none block"
+                      className="font-bebas text-4xl sm:text-5xl text-[#1a1a2e] leading-none block"
                     />
                   </div>
                 </div>

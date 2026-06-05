@@ -32,7 +32,7 @@ const footerCities = FOOTER_CITY_SLUGS.map((slug) =>
 ).filter((c): c is (typeof cities)[number] => Boolean(c));
 
 const linkClass =
-  "text-sm text-white/50 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm";
+  "text-sm text-white/50 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm break-words";
 const headingClass =
   "text-[0.65rem] font-semibold uppercase tracking-widest text-white/30 mb-3";
 
@@ -48,7 +48,7 @@ function FooterColumn({
   allLabel?: string;
 }) {
   return (
-    <div>
+    <div className="min-w-0">
       <p className={headingClass}>{heading}</p>
       <ul className="flex flex-col gap-2">
         {links.map(([label, href]) => (
@@ -113,7 +113,7 @@ export default function Footer() {
           <FooterColumn heading="Company" links={COMPANY_LINKS} />
 
           {/* Contact + Legal */}
-          <div className="flex flex-col gap-6">
+          <div className="min-w-0 flex flex-col gap-6">
             <div>
               <p className={headingClass}>Contact</p>
               <ul className="flex flex-col gap-2 text-sm text-white/50">
@@ -123,7 +123,7 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:office@cradjusters.com" className={linkClass}>
+                  <a href="mailto:office@cradjusters.com" className={`${linkClass} break-all`}>
                     office@cradjusters.com
                   </a>
                 </li>

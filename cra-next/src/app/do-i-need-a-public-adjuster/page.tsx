@@ -118,7 +118,7 @@ export default function DoINeedAPublicAdjusterPage() {
       />
 
       {/* ── Section 1: Hero ──────────────────────────────────────────── */}
-      <section className="bg-[#faf8f5] py-20 lg:py-28">
+      <section className="bg-[#faf8f5] py-14 lg:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <nav
             className="flex items-center gap-2 text-xs text-[#8888a0] mb-8"
@@ -160,7 +160,7 @@ export default function DoINeedAPublicAdjusterPage() {
       </section>
 
       {/* ── Section 2: Signs you need one ────────────────────────────── */}
-      <section className="bg-[#faf8f5] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
+      <section className="bg-[#faf8f5] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-12 max-w-2xl">
             <SectionHeading
@@ -205,7 +205,7 @@ export default function DoINeedAPublicAdjusterPage() {
       </section>
 
       {/* ── Section 3: When you may NOT need one (trust / E-E-A-T) ────── */}
-      <section className="bg-[#f0ede8] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
+      <section className="bg-[#f0ede8] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-3xl mx-auto px-6">
           <SectionHeading
             label="The honest part"
@@ -237,7 +237,7 @@ export default function DoINeedAPublicAdjusterPage() {
       </section>
 
       {/* ── Section 4: What it costs in Florida ──────────────────────── */}
-      <section className="bg-[#faf8f5] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
+      <section className="bg-[#faf8f5] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-12">
             <SectionHeading
@@ -295,7 +295,7 @@ export default function DoINeedAPublicAdjusterPage() {
       </section>
 
       {/* ── Section 5: Who does what (comparison) ────────────────────── */}
-      <section className="bg-[#f0ede8] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
+      <section className="bg-[#f0ede8] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-5xl mx-auto px-6">
           <div className="mb-12 max-w-2xl">
             <SectionHeading
@@ -337,7 +337,7 @@ export default function DoINeedAPublicAdjusterPage() {
       </section>
 
       {/* ── Section 6: FAQ ───────────────────────────────────────────── */}
-      <section className="bg-[#faf8f5] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
+      <section className="bg-[#faf8f5] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-3xl mx-auto px-6">
           <div className="mb-12">
             <SectionHeading
@@ -364,7 +364,7 @@ export default function DoINeedAPublicAdjusterPage() {
       </section>
 
       {/* ── Section 7: Lead form ─────────────────────────────────────── */}
-      <section className="bg-[#faf8f5] py-20 lg:py-28 border-t border-[#1a1a2e]/8">
+      <section className="bg-[#faf8f5] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-xl mx-auto px-6">
           <div className="text-center mb-10">
             <h2 className="font-bebas font-extrabold text-4xl md:text-5xl text-[#1a1a2e] leading-none tracking-tight mb-3">

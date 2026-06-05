@@ -8,7 +8,7 @@ const WA_LINK = `https://wa.me/13057331670?text=${encodeURIComponent("Hi Claim R
 
 export default function Contact() {
   return (
-    <section id="connect" className="py-24 lg:py-32">
+    <section id="connect" className="py-16 lg:py-32">
       <div className="max-w-3xl mx-auto px-6">
         <motion.div
           initial="hidden"

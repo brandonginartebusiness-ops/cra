@@ -68,9 +68,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${montserrat.variable} ${roboto.variable}`}
+      className={`${montserrat.variable} ${roboto.variable} overflow-x-hidden`}
     >
-      <body>
+      <body className="overflow-x-clip">
         <div className="cra-aurora" aria-hidden="true" />
         <TrackingScripts />
         <a

@@ -25,7 +25,7 @@ export default function Results() {
   const featuredLayoutId = `result-card-${featured.type}`;
 
   return (
-    <section id="results" className="bg-[#f0ede8] py-24 lg:py-32">
+    <section id="results" className="bg-[#f0ede8] py-16 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           className="flex flex-col items-center text-center gap-4 mb-14"

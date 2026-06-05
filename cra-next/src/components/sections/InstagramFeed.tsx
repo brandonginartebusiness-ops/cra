@@ -41,7 +41,7 @@ export default function InstagramFeed() {
   }, []);
 
   return (
-    <section className="py-24 lg:py-32 overflow-hidden">
+    <section className="py-16 lg:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
