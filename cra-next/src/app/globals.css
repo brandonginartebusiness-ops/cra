@@ -114,11 +114,17 @@ body::before {
   border-color: rgba(255, 255, 255, 0.08);
 }
 
-/* Default-flip dark text utilities → light (readable on dark body) */
+/* Default-flip dark text utilities → light (readable on dark body).
+   Body/secondary text is lifted to near-white so it reads solid, not washed-out;
+   the muted caption tier stays a touch softer to preserve hierarchy. */
 .text-\[\#1a1a2e\] { color: #f0f0f5; }
-.text-\[\#3a3a52\] { color: #d0d0dc; }
-.text-\[\#5a5a72\] { color: #c0c0d0; }
-.text-\[\#8888a0\] { color: #a0a0b0; }
+.text-\[\#3a3a52\] { color: #f0f0f5; }
+.text-\[\#5a5a72\] { color: #f0f0f5; }
+.text-\[\#8888a0\] { color: #cfcfd9; }
+/* Literal light greys some components set directly (bypass the flips above) */
+.text-\[\#c0c0d0\] { color: #f0f0f5; }
+.text-\[\#9999aa\] { color: #f0f0f5; }
+.text-\[\#a0a0b0\] { color: #cfcfd9; }
 
 /* Placeholder text in form inputs — light theme dim color → readable on dark */
 .placeholder-\[\#8888a0\]::placeholder { color: #a0a0b0; opacity: 1; }
@@ -139,9 +145,9 @@ body::before {
 
 /* Internal card text (inherits the global flip — listed for explicit intent) */
 .bg-\[\#ffffff\] .text-\[\#1a1a2e\] { color: #f0f0f5; }
-.bg-\[\#ffffff\] .text-\[\#5a5a72\] { color: #c0c0d0; }
-.bg-\[\#ffffff\] .text-\[\#3a3a52\] { color: #c0c0d0; }
-.bg-\[\#ffffff\] .text-\[\#8888a0\] { color: #a0a0b0; }
+.bg-\[\#ffffff\] .text-\[\#5a5a72\] { color: #f0f0f5; }
+.bg-\[\#ffffff\] .text-\[\#3a3a52\] { color: #f0f0f5; }
+.bg-\[\#ffffff\] .text-\[\#8888a0\] { color: #cfcfd9; }
 
 /* Dividers/borders inside glass cards */
 .bg-\[\#ffffff\] .border-\[\#1a1a2e\]\/8,
