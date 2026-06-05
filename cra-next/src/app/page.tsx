@@ -1,6 +1,5 @@
 import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
-import SocialProof from "@/components/sections/SocialProof";
 import RecentWins from "@/components/sections/RecentWins";
 import Process from "@/components/sections/Process";
 import About from "@/components/sections/About";
@@ -17,7 +16,6 @@ export default function Home() {
       <FAQSchema />
       <Hero />
       <Services />
-      <SocialProof />
       <RecentWins />
       <About />
       <Accreditations />
