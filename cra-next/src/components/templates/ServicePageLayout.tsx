@@ -60,6 +60,7 @@ export default function ServicePageLayout({
               src={heroImage}
               alt={title}
               fill
+              sizes="100vw"
               className="object-cover opacity-[0.08]"
               priority
             />
