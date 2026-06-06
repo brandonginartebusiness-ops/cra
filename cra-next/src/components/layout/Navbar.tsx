@@ -145,6 +145,7 @@ export default function Navbar() {
                 <li key={it.href}>
                   <Link
                     href={it.href}
+                    aria-current={isActive(it.href) ? "page" : undefined}
                     className={`block rounded-lg px-3 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 ${
                       isActive(it.href)
                         ? "bg-white/10 text-white"
@@ -202,6 +203,7 @@ export default function Navbar() {
               <li key={it.href}>
                 <Link
                   href={it.href}
+                  aria-current={isActive(it.href) ? "page" : undefined}
                   className={`text-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm ${
                     isActive(it.href) ? "text-white" : "text-white/55 hover:text-white"
                   }`}
@@ -261,7 +263,11 @@ export default function Navbar() {
             />
             {simpleLinks.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className={linkClass(isActive(l.href))}>
+                <Link
+                  href={l.href}
+                  aria-current={isActive(l.href) ? "page" : undefined}
+                  className={linkClass(isActive(l.href))}
+                >
                   {l.label}
                 </Link>
               </li>
@@ -325,6 +331,7 @@ export default function Navbar() {
             <li key={l.href}>
               <Link
                 href={l.href}
+                aria-current={isActive(l.href) ? "page" : undefined}
                 className={`text-2xl font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm ${
                   isActive(l.href) ? "text-white" : "text-white/60 hover:text-white"
                 }`}
