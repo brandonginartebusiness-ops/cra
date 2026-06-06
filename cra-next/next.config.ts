@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
     root: import.meta.dirname,
   },
   images: {
+    // Serve AVIF (smaller) with automatic WebP/original fallback for browsers
+    // that don't support it. Applies to all optimized images, remote included.
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",
