@@ -27,6 +27,7 @@ export default function AboutPage() {
         ]}
       />
       <div className="pt-24">
+        <h1 className="sr-only">About Claim Remedy Adjusters — Licensed Florida Public Adjusters</h1>
         <About />
       </div>
     </PageTransition>

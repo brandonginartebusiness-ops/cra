@@ -22,6 +22,7 @@ export default function FAQPage() {
     <PageTransition>
       <FAQSchema />
       <div className="pt-24 bg-[#f0ede8]">
+        <h1 className="sr-only">Florida Public Adjuster — Frequently Asked Questions</h1>
         <FAQ />
       </div>
     </PageTransition>

@@ -27,6 +27,7 @@ export default function ProcessPage() {
         ]}
       />
       <div className="pt-24 bg-[#f0ede8]">
+        <h1 className="sr-only">How Our Florida Public Adjuster Claim Process Works</h1>
         <Process />
       </div>
     </PageTransition>
