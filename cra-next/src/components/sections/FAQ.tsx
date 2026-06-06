@@ -39,7 +39,7 @@ export default function FAQ() {
             >
               <button
                 onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left text-[#1a1a2e] font-medium hover:bg-[#1a1a2e]/4 transition-colors cursor-pointer"
+                className="w-full flex items-center justify-between px-6 py-5 text-left text-[#1a1a2e] font-medium hover:bg-[#1a1a2e]/4 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#2563eb]/50"
                 aria-expanded={open === i}
               >
                 <span className="text-sm md:text-base">{faq.question}</span>

@@ -279,7 +279,7 @@ export default function Navbar() {
             {/* Hamburger */}
             <button
               onClick={() => setOpen(!open)}
-              className="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer"
+              className="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               aria-controls="mobile-menu"
