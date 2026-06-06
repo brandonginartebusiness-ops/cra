@@ -25,6 +25,7 @@ export default function ServicesPage() {
           { name: "Services", path: "/services" },
         ]}
       />
+      <h1 className="sr-only">Florida Public Adjuster Services — Property Damage Claims</h1>
       <ServicesContent />
     </>
   );
