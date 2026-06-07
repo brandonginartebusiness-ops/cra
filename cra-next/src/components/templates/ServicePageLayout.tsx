@@ -93,7 +93,7 @@ export default function ServicePageLayout({
       </section>
 
       {/* ─── Section 2: Service Description ─── */}
-      <section className="bg-[#ffffff] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
+      <section className="bg-[#faf8f5] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
             <motion.div
@@ -264,7 +264,7 @@ export default function ServicePageLayout({
       </section>
 
       {/* ─── Section 5: CTA Banner ─── */}
-      <section className="bg-[#ffffff] py-16 lg:py-20 border-t border-[#1a1a2e]/8">
+      <section className="bg-[#faf8f5] py-16 lg:py-20 border-t border-[#1a1a2e]/8">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial="hidden"
