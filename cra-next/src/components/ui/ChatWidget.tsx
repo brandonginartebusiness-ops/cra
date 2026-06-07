@@ -120,7 +120,7 @@ export default function ChatWidget() {
       <button
         onClick={() => setOpen(!open)}
         aria-label={open ? "Close chat" : "Open chat"}
-        className="relative w-14 h-14 rounded-full bg-[#2563eb] text-white shadow-[0_4px_24px_rgba(37,99,235,0.35)] flex items-center justify-center hover:scale-105 hover:opacity-90 transition-transform duration-200"
+        className="relative w-14 h-14 rounded-full bg-[#2563eb] text-white shadow-[0_4px_24px_rgba(37,99,235,0.35)] flex items-center justify-center hover:scale-105 hover:opacity-90 transition-transform duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
       >
         <AnimatePresence mode="wait" initial={false}>
           {open ? (
@@ -248,7 +248,7 @@ export default function ChatWidget() {
               <button
                 onClick={handleSend}
                 disabled={!input.trim() || loading}
-                className="flex-shrink-0 w-9 h-9 rounded-xl bg-[#2563eb] text-white flex items-center justify-center disabled:opacity-40 hover:opacity-90 transition-opacity"
+                className="flex-shrink-0 w-9 h-9 rounded-xl bg-[#2563eb] text-white flex items-center justify-center disabled:opacity-40 hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
                 aria-label="Send"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
