@@ -122,7 +122,7 @@ export default function CityPageLayout({ city }: Props) {
       </section>
 
       {/* ── Section 2: City-Specific Content ─────────────────────────── */}
-      <section className="bg-[#ffffff] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
+      <section className="bg-[#faf8f5] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20">
             <div>
@@ -246,7 +246,7 @@ export default function CityPageLayout({ city }: Props) {
       </section>
 
       {/* ── Section 5: Lead Form ──────────────────────────────────────── */}
-      <section className="bg-[#ffffff] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
+      <section className="bg-[#faf8f5] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-xl mx-auto px-6">
           <div className="text-center mb-10">
             <h2 className="font-bebas font-extrabold text-4xl md:text-5xl text-[#1a1a2e] leading-none tracking-tight mb-3">
