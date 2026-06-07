@@ -31,7 +31,6 @@ const simpleLinks = [
   { label: "Process", href: "/process" },
   { label: "About", href: "/about" },
   { label: "Reviews", href: "/reviews" },
-  { label: "Do I Need a PA?", href: "/do-i-need-a-public-adjuster" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact Us", href: "/contact" },
 ];
