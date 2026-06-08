@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { supabaseServer } from '@/lib/supabaseServer';
 import { sendMetaCapiLead } from '@/lib/metaCapi';
 import { sendLeadSms } from '@/lib/twilioSms';
+import { buildReviewRequestUrl } from '@/lib/reviewRequest';
 
 const UUID_REGEX =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -233,7 +234,7 @@ export async function POST(request: NextRequest) {
     // and track delivery. SMS + CAPI stay best-effort and never block the response.
     let emailDelivered = false;
     try {
-      await sendEmailNotification(body, attachments, { dbFailed });
+      await sendEmailNotification(body, attachments, { dbFailed, leadId: newLeadId });
       emailDelivered = true;
     } catch (emailError) {
       console.error('Email notification failed:', emailError);
@@ -321,7 +322,7 @@ function formatBytes(bytes: number): string {
 async function sendEmailNotification(
   lead: Record<string, string>,
   attachments: Array<{ name: string; path: string; size: number; type: string }> = [],
-  opts: { dbFailed?: boolean } = {}
+  opts: { dbFailed?: boolean; leadId?: number | null } = {}
 ) {
   const resendApiKey = process.env.RESEND_API_KEY;
 
@@ -359,6 +360,18 @@ async function sendEmailNotification(
     lead.filed_claim === 'yes' ? 'Yes' : lead.filed_claim === 'no' ? 'No' : null;
   const helpTypeLabel = helpTypeLabels[lead.help_type] ?? escapeHtml(lead.help_type ?? '');
   const servicePageLabel = servicePageLabels[lead.service_page] ?? escapeHtml(lead.service_page ?? '');
+
+  // "Send review request" CTA — only when the lead was saved (we need its id to
+  // look it up later). One click texts + emails this client a Google-review ask.
+  const reviewRequestUrl = opts.leadId != null ? buildReviewRequestUrl(opts.leadId) : null;
+  const reviewRequestHtml = reviewRequestUrl
+    ? `
+        <div style="margin-top: 8px; padding: 16px; background: #0d1f1c; border: 1px solid #134e4a; border-radius: 8px;">
+          <p style="color: #9999aa; font-size: 13px; margin: 0 0 10px;">Closed this claim? Ask for a review with one tap:</p>
+          <a href="${reviewRequestUrl}" style="display: inline-block; background: #0d9488; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 14px; padding: 12px 22px; border-radius: 6px;">✅ Send review request to ${name || 'this client'}</a>
+        </div>
+      `
+    : '';
 
   const signedAttachments = await generateAttachmentLinks(attachments);
   const attachmentsHtml = signedAttachments.length
@@ -435,6 +448,7 @@ async function sendEmailNotification(
           ` : ''}
           ${attachmentsHtml}
         </table>
+        ${reviewRequestHtml}
         <hr style="border-color: #222233;">
         <p style="color: #666677; font-size: 12px; margin-bottom: 0;">
           This lead was submitted via claimremedyadjusters.com
