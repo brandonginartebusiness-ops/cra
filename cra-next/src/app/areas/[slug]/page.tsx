@@ -33,7 +33,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const city = getCityBySlug(slug);
   if (!city) return {};
 
-  const title = `Public Adjuster ${city.city} FL | Claim Remedy Adjusters`;
+  // Brand suffix is added by the root layout's title template — don't repeat it here.
+  const title = `Public Adjuster ${city.city} FL`;
   const description = buildCityDescription(city);
   const url = `https://claimremedyadjusters.com/areas/${city.slug}`;
 
