@@ -53,7 +53,7 @@ export const caseResults: CaseResult[] = [
   },
   {
     type: "Denied Claim",
-    initialLabel: "$0 denied",
+    initialLabel: "$0",
     recovered: 67200,
     review: {
       text: "The insurance company was very difficult but Eddy was key in staying on top of them to get us best resolution. The team was very transparent from beginning to end.",

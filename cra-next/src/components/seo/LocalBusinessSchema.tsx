@@ -23,6 +23,8 @@ export default function LocalBusinessSchema() {
         "@id": "https://claimremedyadjusters.com/#business",
         name: "Claim Remedy Adjusters",
         url: "https://claimremedyadjusters.com",
+        logo: "https://claimremedyadjusters.com/brand_assets/logo.png",
+        image: "https://claimremedyadjusters.com/brand_assets/logo.png",
         description:
           "Licensed Florida Public Adjusters representing homeowners and commercial property owners. We fight for the settlement you deserve on hurricane, water, fire, roof, and mold damage claims. No recovery, no fee.",
         telephone: "+13057331670",
@@ -101,6 +103,13 @@ export default function LocalBusinessSchema() {
           itemReviewed: { "@id": "https://claimremedyadjusters.com/#business" },
           publisher: { "@type": "Organization", name: "Google" },
         })),
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://claimremedyadjusters.com/#website",
+        url: "https://claimremedyadjusters.com",
+        name: "Claim Remedy Adjusters",
+        publisher: { "@id": "https://claimremedyadjusters.com/#business" },
       },
     ],
   };
