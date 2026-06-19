@@ -104,7 +104,7 @@ export default function ChatWidget() {
   return (
     <>
       {/* Floating button */}
-      <div className="fixed bottom-6 right-6 z-50 w-14 h-14">
+      <div className="fixed bottom-[84px] right-6 md:bottom-6 z-50 w-14 h-14">
         {!open && (
           <>
             <span className="absolute inset-0 rounded-full bg-[#2563eb] opacity-20 animate-[chat-ping_3.5s_ease-out_infinite]" />

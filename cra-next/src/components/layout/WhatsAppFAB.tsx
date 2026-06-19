@@ -7,7 +7,7 @@ export default function WhatsAppFAB() {
   return (
     // Matches the AI chat launcher footprint exactly (w-14 h-14 = 56px circle),
     // pinned to the opposite bottom corner so the two never overlap.
-    <div className="fixed bottom-6 left-6 z-50 w-14 h-14">
+    <div className="fixed bottom-[84px] left-6 md:bottom-6 z-50 w-14 h-14">
       {/* Pulse rings */}
       <span className="absolute inset-0 rounded-full bg-[#25d366] opacity-20 animate-[wa-ping_3.5s_ease-out_infinite]" />
       <span className="absolute inset-0 rounded-full bg-[#25d366] opacity-10 animate-[wa-ping_3.5s_ease-out_1s_infinite]" />

@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFAB from "@/components/layout/WhatsAppFAB";
+import StickyMobileCTA from "@/components/layout/StickyMobileCTA";
 import ChatWidget from "@/components/ui/ChatWidget";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import TransitionWrapper from "@/components/ui/TransitionWrapper";
@@ -71,7 +72,7 @@ export default function RootLayout({
       lang="en"
       className={`${montserrat.variable} ${roboto.variable} overflow-x-hidden`}
     >
-      <body className="overflow-x-clip">
+      <body className="overflow-x-clip pb-20 md:pb-0">
         <div className="cra-aurora" aria-hidden="true" />
         <TrackingScripts />
         <a
@@ -90,6 +91,7 @@ export default function RootLayout({
           <WhatsAppFAB />
           <ChatWidget />
         </MotionProvider>
+        <StickyMobileCTA />
         <Analytics />
       </body>
     </html>
