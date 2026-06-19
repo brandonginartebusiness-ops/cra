@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import {
   allReviews,
@@ -34,7 +34,7 @@ const formatK = (n: number) => `$${Math.round(n / 1000)}K`;
 
 function ReviewCard({ review }: { review: GoogleReview }) {
   return (
-    <motion.a
+    <m.a
       layout
       href={googleReviewsUrl}
       target="_blank"
@@ -72,7 +72,7 @@ function ReviewCard({ review }: { review: GoogleReview }) {
           </p>
         </div>
       </div>
-    </motion.a>
+    </m.a>
   );
 }
 
@@ -89,7 +89,7 @@ export default function ReviewsContent() {
     <section className="bg-[#f5f3f0] py-16 lg:py-24">
       <div className="max-w-6xl mx-auto px-6">
         {/* Hero */}
-        <motion.div
+        <m.div
           initial="hidden"
           animate="visible"
           variants={fadeInUp}
@@ -104,10 +104,10 @@ export default function ReviewsContent() {
           <p className="text-base text-[#5a5a72] max-w-xl">
             Every recovery below is a real Florida client case. Every quote is a verified Google review.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Main proof card — rating + recoveries bar chart */}
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
@@ -149,7 +149,7 @@ export default function ReviewsContent() {
                       className="grid grid-cols-[1fr_auto] items-center gap-4 text-sm"
                     >
                       <div className="h-2.5 bg-[#1a1a2e]/5 rounded-full overflow-hidden">
-                        <motion.div
+                        <m.div
                           initial={{ width: 0 }}
                           whileInView={{ width: `${pct}%` }}
                           viewport={{ once: true, margin: "-40px" }}
@@ -175,7 +175,7 @@ export default function ReviewsContent() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Case results grid */}
         <div id="case-results" className="scroll-mt-24 mb-16">
@@ -188,7 +188,7 @@ export default function ReviewsContent() {
             </p>
           </div>
 
-          <motion.div
+          <m.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
             initial="hidden"
             whileInView="visible"
@@ -197,7 +197,7 @@ export default function ReviewsContent() {
             {caseResults.map((r) => {
               const layoutId = `result-card-${r.type}`;
               return (
-                <motion.button
+                <m.button
                   key={r.type}
                   layoutId={layoutId}
                   variants={fadeInUp}
@@ -247,10 +247,10 @@ export default function ReviewsContent() {
                       <path d="M12 5l7 7-7 7" />
                     </svg>
                   </span>
-                </motion.button>
+                </m.button>
               );
             })}
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Reviews list */}

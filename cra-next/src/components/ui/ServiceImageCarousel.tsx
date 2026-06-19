@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 
 interface Props {
   images: string[];
@@ -40,7 +40,7 @@ export default function ServiceImageCarousel({
   return (
     <div className="absolute inset-0 overflow-hidden group-hover:scale-105 transition-transform duration-500">
       <AnimatePresence initial={false}>
-        <motion.div
+        <m.div
           key={active}
           initial={{ opacity: 0, x: "6%" }}
           animate={{ opacity: 1, x: "0%" }}
@@ -56,7 +56,7 @@ export default function ServiceImageCarousel({
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             priority={priority && active === 0}
           />
-        </motion.div>
+        </m.div>
       </AnimatePresence>
 
       {/* gradient scrim so the dots stay legible over bright photos */}

@@ -1,24 +1,5 @@
-"use client";
-
-import { motion, type Variants } from "framer-motion";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import LeadCaptureForm from "@/components/ui/LeadCaptureForm";
-
-const heroStagger: Variants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.07 },
-  },
-};
-
-const heroItem: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] },
-  },
-};
 
 type ScoreItem =
   | { kind: "decimal"; value: number; decimals: number; suffix: string; label: string; emphasis?: boolean }
@@ -31,35 +12,25 @@ const scorecard: ScoreItem[] = [
   { kind: "static", val: "$0", suffix: "", label: "Upfront, ever", emphasis: true },
 ];
 
+// Server-rendered hero. The LCP element (headline + scorecard) lives in the
+// initial HTML and animates in via CSS (.hero-fade), so it paints at FCP
+// instead of waiting on JS hydration. Only the form and the count-up rating
+// stay as client islands.
 export default function Hero() {
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen"
-    >
-      <motion.div
-        className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-14 pt-32 pb-16 min-h-screen grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center"
-        variants={heroStagger}
-        initial="hidden"
-        animate="visible"
-      >
+    <section id="hero" className="relative min-h-screen">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-14 pt-32 pb-16 min-h-screen grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center">
         {/* LEFT — copy + trust */}
         <div className="flex flex-col items-start text-left">
-          <motion.div
-            variants={heroItem}
-            className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full bg-white/5 border border-white/12 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#c0c0d0]"
-          >
+          <div className="hero-fade inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full bg-white/5 border border-white/12 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#c0c0d0]">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M9 12l2 2 4-4" />
               <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" />
             </svg>
             <span>Licensed FL Public Adjuster <span className="text-[#f0f0f5]">#W549958</span></span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={heroItem}
-            className="font-bebas font-extrabold leading-[0.95] tracking-tight text-[#f0f0f5]"
-          >
+          <h1 className="hero-fade hero-fade-delay-1 font-bebas font-extrabold leading-[0.95] tracking-tight text-[#f0f0f5]">
             <span className="block text-[clamp(0.78rem,1.3vw,1rem)] font-bold tracking-[0.22em] text-[#60a5fa] mb-3 font-body">
               FLORIDA PUBLIC ADJUSTER
             </span>
@@ -69,32 +40,26 @@ export default function Hero() {
               your insurer{" "}
               <span className="text-gradient">won&apos;t pay.</span>
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={heroItem}
-            className="mt-6 text-sm md:text-base text-[#c0c0d0] leading-relaxed max-w-lg"
-          >
+          <p className="hero-fade hero-fade-delay-2 mt-6 text-sm md:text-base text-[#c0c0d0] leading-relaxed max-w-lg">
             You were offered $18K. We got our last client $147K.{" "}
             <em className="font-serif not-italic text-[#f0f0f5] font-medium italic">
               That&apos;s what an advocate does.
             </em>{" "}
             No recovery, no fee.
-          </motion.p>
+          </p>
 
           {/* Positioning — we work for the policyholder, never the carrier */}
-          <motion.p
-            variants={heroItem}
-            className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#f0f0f5]"
-          >
+          <p className="hero-fade hero-fade-delay-3 mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#f0f0f5]">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
             We represent policyholders &mdash; never insurance companies.
-          </motion.p>
+          </p>
 
           {/* Phone CTA — secondary on desktop (form is primary), still tap-friendly on mobile */}
-          <motion.div variants={heroItem} className="mt-7 flex flex-wrap gap-3">
+          <div className="hero-fade hero-fade-delay-4 mt-7 flex flex-wrap gap-3">
             <a
               href="tel:+13057331670"
               className="inline-flex items-center gap-2 bg-white/8 border border-white/15 text-[#f0f0f5] font-semibold text-sm px-6 py-3 rounded-full hover:bg-white/12 hover:border-white/25 transition-[background-color,border-color] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
@@ -104,18 +69,12 @@ export default function Hero() {
               </svg>
               Or call (305) 733-1670
             </a>
-          </motion.div>
+          </div>
 
           {/* Scorecard */}
-          <motion.div
-            variants={heroItem}
-            className="mt-10 w-full max-w-lg border-t border-white/15 pt-6 grid grid-cols-3 gap-4"
-          >
+          <div className="hero-fade hero-fade-delay-5 mt-10 w-full max-w-lg border-t border-white/15 pt-6 grid grid-cols-3 gap-4">
             {scorecard.map((c) => (
-              <div
-                key={c.label}
-                className="flex flex-col items-start text-left"
-              >
+              <div key={c.label} className="flex flex-col items-start text-left">
                 <div className="font-bebas font-extrabold text-[1.7rem] leading-none tabular-nums text-[#f0f0f5]">
                   {c.kind === "decimal" ? (
                     <AnimatedCounter
@@ -142,17 +101,17 @@ export default function Hero() {
                 </div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         {/* RIGHT — lead form */}
-        <motion.div variants={heroItem} className="w-full">
+        <div className="hero-fade hero-fade-delay-2 w-full">
           <LeadCaptureForm
             servicePage="homepage"
             ctaText="Get my free claim review"
           />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

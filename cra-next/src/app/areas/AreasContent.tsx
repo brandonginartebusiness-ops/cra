@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
 import FloridaMap from "@/components/ui/FloridaMap";
@@ -73,7 +73,7 @@ export default function AreasContent() {
       {/* ── Hero ──────────────────────────────────────────────────── */}
       <section className="py-14 lg:py-28">
         <div className="max-w-7xl mx-auto px-6">
-          <motion.div
+          <m.div
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
@@ -89,7 +89,7 @@ export default function AreasContent() {
               Licensed to represent homeowners and businesses in all 67 Florida
               counties. Find your county below for local claim expertise.
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -97,7 +97,7 @@ export default function AreasContent() {
       <section className="py-14 lg:py-28 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-14 items-center">
-            <motion.div
+            <m.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
@@ -105,8 +105,8 @@ export default function AreasContent() {
               className="flex justify-center lg:col-span-3"
             >
               <FloridaMap />
-            </motion.div>
-            <motion.div
+            </m.div>
+            <m.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
@@ -160,7 +160,7 @@ export default function AreasContent() {
                 </svg>
                 Call (305) 733-1670
               </a>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -168,7 +168,7 @@ export default function AreasContent() {
       {/* ── County Accordions ─────────────────────────────────────── */}
       <section className="py-14 lg:py-28 border-t border-white/8">
         <div className="max-w-5xl mx-auto px-6">
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
@@ -179,7 +179,7 @@ export default function AreasContent() {
               label="Find your area"
               heading="Browse by county."
             />
-          </motion.div>
+          </m.div>
 
           <div className="flex flex-col gap-3">
             {orderedCounties.map((county) => {
@@ -187,7 +187,7 @@ export default function AreasContent() {
               const isOpen = openCounties.has(county);
 
               return (
-                <motion.div
+                <m.div
                   key={county}
                   initial="hidden"
                   whileInView="visible"
@@ -218,7 +218,7 @@ export default function AreasContent() {
                         </p>
                       </div>
                     </div>
-                    <motion.svg
+                    <m.svg
                       width="20"
                       height="20"
                       viewBox="0 0 24 24"
@@ -233,12 +233,12 @@ export default function AreasContent() {
                       aria-hidden="true"
                     >
                       <path d="M6 9l6 6 6-6" />
-                    </motion.svg>
+                    </m.svg>
                   </button>
 
                   <AnimatePresence initial={false}>
                     {isOpen && (
-                      <motion.div
+                      <m.div
                         key="content"
                         id={`county-${county.replace(/\s+/g, "-")}`}
                         initial={{ opacity: 0, height: 0 }}
@@ -272,10 +272,10 @@ export default function AreasContent() {
                             ))}
                           </div>
                         </div>
-                      </motion.div>
+                      </m.div>
                     )}
                   </AnimatePresence>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
@@ -285,7 +285,7 @@ export default function AreasContent() {
       {/* ── CTA ──────────────────────────────────────────────────── */}
       <section className="py-16 lg:py-20 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
@@ -311,7 +311,7 @@ export default function AreasContent() {
                 Call (305) 733-1670
               </a>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
     </div>

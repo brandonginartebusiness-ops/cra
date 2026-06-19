@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
 
@@ -43,7 +43,7 @@ export default function InstagramFeed() {
   return (
     <section className="py-16 lg:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -55,7 +55,7 @@ export default function InstagramFeed() {
             heading="@claimremedyadjusters"
             className="text-center [&_h2]:text-3xl [&_h2]:sm:text-5xl [&_h2]:md:text-7xl [&_h2]:lg:text-8xl [&_h2]:break-all"
           />
-        </motion.div>
+        </m.div>
 
         {/* Grid or placeholder hero */}
         {loading ? (
@@ -68,7 +68,7 @@ export default function InstagramFeed() {
             ))}
           </div>
         ) : isPlaceholder ? (
-          <motion.div
+          <m.div
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
@@ -95,9 +95,9 @@ export default function InstagramFeed() {
             <p className="text-sm text-[#5a5a72] max-w-sm">
               Follow along for before/after claim documentation, team updates, and Florida property-damage tips.
             </p>
-          </motion.div>
+          </m.div>
         ) : (
-          <motion.div
+          <m.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
             variants={staggerContainer}
             initial="hidden"
@@ -105,7 +105,7 @@ export default function InstagramFeed() {
             viewport={{ once: true, margin: "-60px" }}
           >
             {posts.map((post) => (
-              <motion.a
+              <m.a
                 key={post.id}
                 href={post.permalink}
                 target="_blank"
@@ -131,9 +131,9 @@ export default function InstagramFeed() {
                     </div>
                   </>
                 )}
-              </motion.a>
+              </m.a>
             ))}
-          </motion.div>
+          </m.div>
         )}
 
         {/* Follow button */}

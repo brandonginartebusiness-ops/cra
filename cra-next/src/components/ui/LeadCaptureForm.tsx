@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, type FormEvent, type ChangeEvent } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import { trackLead } from "@/lib/tracking";
 
@@ -232,7 +232,7 @@ export default function LeadCaptureForm({
 
   if (status === "success") {
     return (
-      <motion.div
+      <m.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         className="bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-8 text-center"
@@ -266,14 +266,14 @@ export default function LeadCaptureForm({
             (305) 733-1670
           </a>
         </div>
-      </motion.div>
+      </m.div>
     );
   }
 
   // ── Step 2 — optional enrichment after lead already captured ──
   if (status === "step2") {
     return (
-      <motion.form
+      <m.form
         onSubmit={handleStep2}
         method="post"
         initial={{ opacity: 0, y: 8 }}
@@ -486,13 +486,13 @@ export default function LeadCaptureForm({
         >
           Skip — we&apos;ll cover it on the call
         </button>
-      </motion.form>
+      </m.form>
     );
   }
 
   // ── Step 1 — phone + quick message, full-commitment CTA ──
   return (
-    <motion.form
+    <m.form
       onSubmit={handleStep1}
       method="post"
       initial="hidden"
@@ -601,6 +601,6 @@ export default function LeadCaptureForm({
       <p className="text-xs text-[#8888a0] leading-relaxed text-center">
         By submitting, you agree to receive calls and SMS from Claim Remedy Adjusters about your claim. Reply STOP to opt out. Msg &amp; data rates may apply. Your info is never shared.
       </p>
-    </motion.form>
+    </m.form>
   );
 }

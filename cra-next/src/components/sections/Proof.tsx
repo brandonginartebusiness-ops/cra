@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -33,7 +33,7 @@ export default function Proof() {
   return (
     <section className="py-16 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -45,9 +45,9 @@ export default function Proof() {
             heading="Evidence that wins claims."
             subheading="We build claim files insurers can't easily dispute — photos, engineering reports, and detailed Xactimate estimates that move the needle."
           />
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="grid grid-cols-1 md:grid-cols-3 gap-5"
           variants={staggerContainer}
           initial="hidden"
@@ -55,7 +55,7 @@ export default function Proof() {
           viewport={{ once: true, margin: "-60px" }}
         >
           {panels.map((p) => (
-            <motion.div
+            <m.div
               key={p.title}
               variants={fadeInUp}
               className="h-full flex flex-col bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl overflow-hidden"
@@ -79,9 +79,9 @@ export default function Proof() {
                 </h3>
                 <p className="text-sm text-[#5a5a72] leading-relaxed">{p.body}</p>
               </div>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
 
         <div className="mt-12 text-center">
           <a

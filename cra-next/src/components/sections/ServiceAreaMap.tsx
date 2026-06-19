@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import { slideInLeft, slideInRight } from "@/lib/animations";
 import FloridaMap from "@/components/ui/FloridaMap";
@@ -36,7 +36,7 @@ export default function ServiceAreaMap() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           {/* Map */}
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
@@ -44,10 +44,10 @@ export default function ServiceAreaMap() {
             className="flex justify-center"
           >
             <FloridaMap />
-          </motion.div>
+          </m.div>
 
           {/* Info */}
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
@@ -104,7 +104,7 @@ export default function ServiceAreaMap() {
               </svg>
               Call (305) 733-1670
             </a>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

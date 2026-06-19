@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import LeadCaptureForm from "@/components/ui/LeadCaptureForm";
 
@@ -8,7 +8,7 @@ export default function ContactForm() {
   return (
     <section className="bg-[#f0ede8] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
       <div className="max-w-xl mx-auto px-6">
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -21,7 +21,7 @@ export default function ContactForm() {
           <p className="text-base text-[#5a5a72]">
             Fill out the form below and our team will call you within the hour.
           </p>
-        </motion.div>
+        </m.div>
 
         <LeadCaptureForm servicePage="contact" />
       </div>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import { caseResults } from "@/data/results";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
@@ -27,7 +27,7 @@ export default function Results() {
   return (
     <section id="results" className="bg-[#f0ede8] py-16 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.div
+        <m.div
           className="flex flex-col items-center text-center gap-4 mb-14"
           initial="hidden"
           whileInView="visible"
@@ -42,10 +42,10 @@ export default function Results() {
             Six claim types. Six real recoveries for Florida homeowners and
             businesses we represented. Tap any card for the full story.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* ── Featured hero case ──────────────────────────────── */}
-        <motion.button
+        <m.button
           layoutId={featuredLayoutId}
           initial="hidden"
           whileInView="visible"
@@ -110,10 +110,10 @@ export default function Results() {
               </div>
             </div>
           </div>
-        </motion.button>
+        </m.button>
 
         {/* ── Supporting row ──────────────────────────────────── */}
-        <motion.div
+        <m.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3"
           variants={staggerContainer}
           initial="hidden"
@@ -123,7 +123,7 @@ export default function Results() {
           {supporting.map((r) => {
             const layoutId = `result-card-${r.type}`;
             return (
-              <motion.button
+              <m.button
                 key={r.type}
                 layoutId={layoutId}
                 variants={fadeInUp}
@@ -152,10 +152,10 @@ export default function Results() {
                 <span className="font-bebas font-extrabold text-2xl text-[#1a1a2e] leading-none tracking-tight tabular-nums">
                   {formatK(r.recovered)}
                 </span>
-              </motion.button>
+              </m.button>
             );
           })}
-        </motion.div>
+        </m.div>
 
         <p className="mt-10 text-center text-xs text-[#8888a0] max-w-2xl mx-auto leading-relaxed">
           Recoveries shown are illustrative outcomes from individual client

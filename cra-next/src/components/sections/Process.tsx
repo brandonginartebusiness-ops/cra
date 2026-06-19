@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import { processSteps } from "@/data/process";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -9,7 +9,7 @@ export default function Process() {
   return (
     <section id="process" className="py-16 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -20,9 +20,9 @@ export default function Process() {
             label="How it works"
             heading="Damage to recovery<br/>in four steps."
           />
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-2xl"
           variants={staggerContainer}
           initial="hidden"
@@ -30,7 +30,7 @@ export default function Process() {
           viewport={{ once: true, margin: "-60px" }}
         >
           {processSteps.map((step) => (
-            <motion.div
+            <m.div
               key={step.step}
               variants={fadeInUp}
               className="relative bg-white/[0.03] p-10 min-h-[320px] flex flex-col overflow-hidden"
@@ -63,9 +63,9 @@ export default function Process() {
                   {step.description}
                 </p>
               </div>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
 
         <div className="mt-12 flex flex-col items-center gap-4">
           <a

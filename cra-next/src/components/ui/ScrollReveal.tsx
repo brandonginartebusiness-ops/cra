@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import type { Variants } from "framer-motion";
 
@@ -18,7 +18,7 @@ export default function ScrollReveal({
   variants = fadeInUp,
 }: Props) {
   return (
-    <motion.div
+    <m.div
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
@@ -27,6 +27,6 @@ export default function ScrollReveal({
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

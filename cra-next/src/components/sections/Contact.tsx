@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
 
@@ -10,7 +10,7 @@ export default function Contact() {
   return (
     <section id="connect" className="py-16 lg:py-32">
       <div className="max-w-3xl mx-auto px-6">
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -22,9 +22,9 @@ export default function Contact() {
             heading="Choose the fastest way<br/>to reach Claim Remedy."
             subheading="Reach the Claim Remedy team directly and get clear guidance on the next step for your claim."
           />
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -32,7 +32,7 @@ export default function Contact() {
           className="flex flex-col gap-4"
         >
             {/* WhatsApp */}
-            <motion.a
+            <m.a
               variants={fadeInUp}
               href={WA_LINK}
               target="_blank"
@@ -52,10 +52,10 @@ export default function Contact() {
                   Start a free, pressure-free conversation
                 </p>
               </div>
-            </motion.a>
+            </m.a>
 
             {/* Call */}
-            <motion.a
+            <m.a
               variants={fadeInUp}
               href="tel:+13057331670"
               className="flex items-center gap-4 bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-6 hover:border-[#2563eb]/30 hover:shadow-[0_0_24px_rgba(37,99,235,0.10)] transition-[border-color,box-shadow] group"
@@ -71,10 +71,10 @@ export default function Contact() {
                 </p>
                 <p className="text-sm text-[#5a5a72]">Speak directly with the team</p>
               </div>
-            </motion.a>
+            </m.a>
 
             {/* Email */}
-            <motion.a
+            <m.a
               variants={fadeInUp}
               href="mailto:office@cradjusters.com?subject=Claim%20Review%20Request"
               className="flex items-center gap-4 bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-6 hover:border-[#0d9488]/30 hover:shadow-[0_0_24px_rgba(13,148,136,0.10)] transition-[border-color,box-shadow] group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0d9488]/60"
@@ -93,10 +93,10 @@ export default function Contact() {
                   Send claim details, photos, or policy documents
                 </p>
               </div>
-            </motion.a>
+            </m.a>
 
             {/* Address */}
-            <motion.div
+            <m.div
               variants={fadeInUp}
               className="flex items-center gap-4 bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-6"
             >
@@ -109,8 +109,8 @@ export default function Contact() {
                 <p className="font-semibold text-[#1a1a2e]">Miami Lakes Office</p>
                 <p className="text-sm text-[#5a5a72]">7900 Oak Ln, Suite 400, Miami Lakes, FL 33016</p>
               </div>
-            </motion.div>
-        </motion.div>
+            </m.div>
+        </m.div>
       </div>
     </section>
   );

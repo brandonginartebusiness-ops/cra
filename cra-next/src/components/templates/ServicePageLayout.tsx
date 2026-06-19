@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { fadeInUp, slideInLeft, slideInRight } from "@/lib/animations";
@@ -96,7 +96,7 @@ export default function ServicePageLayout({
       <section className="bg-[#faf8f5] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
-            <motion.div
+            <m.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
@@ -130,9 +130,9 @@ export default function ServicePageLayout({
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
@@ -154,7 +154,7 @@ export default function ServicePageLayout({
                   </span>
                 </div>
               )}
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -162,7 +162,7 @@ export default function ServicePageLayout({
       {/* ─── Section 3: Case Result Card ─── */}
       <section className="bg-[#f0ede8] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-2xl mx-auto px-6">
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
@@ -174,15 +174,15 @@ export default function ServicePageLayout({
               heading="Real recovery.<br/>Real review."
               className="text-center"
             />
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
             variants={fadeInUp}
           >
-            <motion.button
+            <m.button
               layoutId={cardLayoutId}
               onClick={() =>
                 setModalResult({
@@ -229,8 +229,8 @@ export default function ServicePageLayout({
               <p className="text-[0.7rem] text-[#8888a0] mt-1">
                 Google Review &middot; {caseResult.review.timeAgo}
               </p>
-            </motion.button>
-          </motion.div>
+            </m.button>
+          </m.div>
 
           <p className="mt-8 text-center text-xs text-[#8888a0] leading-relaxed">
             Recovery shown is an illustrative outcome from an individual client
@@ -245,7 +245,7 @@ export default function ServicePageLayout({
       {/* ─── Section 4: Lead Capture Form ─── */}
       <section className="bg-[#faf8f5] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-xl mx-auto px-6">
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
@@ -258,7 +258,7 @@ export default function ServicePageLayout({
             <p className="text-base text-[#5a5a72]">
               Fill out the form below and our team will call you within the hour.
             </p>
-          </motion.div>
+          </m.div>
           <LeadCaptureForm servicePage={serviceSlug} ctaText={ctaText} />
         </div>
       </section>
@@ -266,7 +266,7 @@ export default function ServicePageLayout({
       {/* ─── Section 5: CTA Banner ─── */}
       <section className="bg-[#faf8f5] py-16 lg:py-20 border-t border-[#1a1a2e]/8">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
@@ -297,7 +297,7 @@ export default function ServicePageLayout({
                 Call (305) 733-1670
               </a>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
     </div>

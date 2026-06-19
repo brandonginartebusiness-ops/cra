@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import { faqs } from "@/data/faq";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -13,7 +13,7 @@ export default function FAQ() {
     <section id="faq" className="py-16 lg:py-32">
       {/* max-w-3xl intentional — narrow container improves Q&A readability; don't widen to 7xl */}
       <div className="max-w-3xl mx-auto px-6">
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -24,11 +24,11 @@ export default function FAQ() {
             label="Common questions"
             heading="Everything you<br/>need to know."
           />
-        </motion.div>
+        </m.div>
 
         <div className="flex flex-col gap-2">
           {faqs.map((faq, i) => (
-            <motion.div
+            <m.div
               key={i}
               initial="hidden"
               whileInView="visible"
@@ -43,7 +43,7 @@ export default function FAQ() {
                 aria-expanded={open === i}
               >
                 <span className="text-sm md:text-base">{faq.question}</span>
-                <motion.svg
+                <m.svg
                   animate={{ rotate: open === i ? 45 : 0 }}
                   transition={{ duration: 0.2 }}
                   className="shrink-0 ml-4 text-[#2563eb]"
@@ -57,12 +57,12 @@ export default function FAQ() {
                 >
                   <line x1="12" y1="5" x2="12" y2="19" />
                   <line x1="5" y1="12" x2="19" y2="12" />
-                </motion.svg>
+                </m.svg>
               </button>
 
               <AnimatePresence initial={false}>
                 {open === i && (
-                  <motion.div
+                  <m.div
                     key="content"
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
@@ -73,10 +73,10 @@ export default function FAQ() {
                     <p className="px-6 pb-5 text-sm text-[#5a5a72] leading-relaxed">
                       {faq.answer}
                     </p>
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 

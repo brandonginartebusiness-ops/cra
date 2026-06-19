@@ -7,7 +7,7 @@ import Accreditations from "@/components/sections/Accreditations";
 import Pricing from "@/components/sections/Pricing";
 import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
-import InstagramFeed from "@/components/sections/InstagramFeed";
+import InstagramFeedLazy from "@/components/sections/InstagramFeedLazy";
 import FAQSchema from "@/components/seo/FAQSchema";
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
       <Pricing />
       <FAQ />
       <Contact />
-      <InstagramFeed />
+      <InstagramFeedLazy />
     </>
   );
 }

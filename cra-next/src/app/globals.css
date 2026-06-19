@@ -94,6 +94,34 @@ body::before {
 }
 
 /* ───────────────────────────────────────────────────────────────────
+   HERO ENTRANCE — CSS-only so the LCP element (headline/stats) paints
+   in server-rendered HTML at FCP instead of waiting on JS hydration.
+   ─────────────────────────────────────────────────────────────────── */
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-fade {
+  animation: hero-fade-up 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+.hero-fade-delay-1 { animation-delay: 0.07s; }
+.hero-fade-delay-2 { animation-delay: 0.14s; }
+.hero-fade-delay-3 { animation-delay: 0.21s; }
+.hero-fade-delay-4 { animation-delay: 0.28s; }
+.hero-fade-delay-5 { animation-delay: 0.35s; }
+.hero-fade-delay-6 { animation-delay: 0.42s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade,
+  .hero-fade-delay-1,
+  .hero-fade-delay-2,
+  .hero-fade-delay-3,
+  .hero-fade-delay-4,
+  .hero-fade-delay-5,
+  .hero-fade-delay-6 { animation: none; }
+}
+
+/* ───────────────────────────────────────────────────────────────────
    GLOBAL DARK-BG SWEEP
    Strip light section backgrounds → let the body's dark gradient show.
    Flip dark-text utilities → light variants by default.

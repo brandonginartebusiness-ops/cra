@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import CaseResultModal, { type ModalResult } from "@/components/ui/CaseResultModal";
 import StarRating from "@/components/ui/StarRating";
@@ -29,7 +29,7 @@ export default function CityCaseResultCard({ citySlug, caseResult }: Props) {
 
   return (
     <>
-      <motion.button
+      <m.button
         layoutId={layoutId}
         onClick={() =>
           setModalResult({
@@ -72,7 +72,7 @@ export default function CityCaseResultCard({ citySlug, caseResult }: Props) {
         <p className="text-[0.7rem] text-[#8888a0] mt-1">
           Google Review · {caseResult.review.timeAgo}
         </p>
-      </motion.button>
+      </m.button>
       <CaseResultModal result={modalResult} onClose={() => setModalResult(null)} />
     </>
   );

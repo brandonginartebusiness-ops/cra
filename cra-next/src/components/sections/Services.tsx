@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import { services } from "@/data/services";
@@ -11,7 +11,7 @@ export default function Services() {
   return (
     <section id="services" className="py-16 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -23,9 +23,9 @@ export default function Services() {
             heading="Property damage claims handled<br/>with Florida-specific experience."
             subheading="We focus exclusively on property damage insurance claims in Florida. Claim Remedy is built to move quickly, document thoroughly, and fight for the recovery your policy should support."
           />
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
           variants={staggerContainer}
           initial="hidden"
@@ -33,7 +33,7 @@ export default function Services() {
           viewport={{ once: true, margin: "-60px" }}
         >
           {services.map((s, i) => (
-            <motion.div key={s.title} variants={fadeInUp} className="h-full">
+            <m.div key={s.title} variants={fadeInUp} className="h-full">
               <Link
                 href={s.href}
                 className="group block h-full flex flex-col bg-[#ffffff] rounded-2xl overflow-hidden border border-[#1a1a2e]/8 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(37,99,235,0.12)] hover:border-[#2563eb]/20 transition-[transform,box-shadow,border-color] duration-300"
@@ -73,9 +73,9 @@ export default function Services() {
                   </span>
                 </div>
               </Link>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
 
         <div className="mt-10 text-center">
           <Link

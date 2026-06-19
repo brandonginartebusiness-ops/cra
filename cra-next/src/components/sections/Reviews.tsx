@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import StarRating from "@/components/ui/StarRating";
 import { allReviews, googleReviewsUrl, totalGoogleReviewCount } from "@/data/reviews";
@@ -32,7 +32,7 @@ export default function Reviews() {
     <section id="testimonials" className="bg-[#f5f3f0] py-16 lg:py-32 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* Trust header */}
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -69,10 +69,10 @@ export default function Reviews() {
               Powered by Google
             </span>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Hero pull-quote */}
-        <motion.figure
+        <m.figure
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -103,10 +103,10 @@ export default function Reviews() {
               </span>
             </figcaption>
           </div>
-        </motion.figure>
+        </m.figure>
 
         {/* 3 supporting cards */}
-        <motion.div
+        <m.div
           className="grid grid-cols-1 md:grid-cols-3 gap-3"
           initial="hidden"
           whileInView="visible"
@@ -138,7 +138,7 @@ export default function Reviews() {
               </div>
             </article>
           ))}
-        </motion.div>
+        </m.div>
 
         <div className="mt-10 text-center">
           <a

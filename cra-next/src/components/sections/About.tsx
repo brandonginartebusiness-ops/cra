@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { slideInLeft, slideInRight } from "@/lib/animations";
 
@@ -31,7 +31,7 @@ export default function About() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-14 lg:gap-20 items-start">
           {/* Left: portrait, name, title, bio */}
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
@@ -65,10 +65,10 @@ export default function About() {
               commercial property owners during the insurance claims process —
               never the insurance company.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Right: statement + ledger */}
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
@@ -101,7 +101,7 @@ export default function About() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

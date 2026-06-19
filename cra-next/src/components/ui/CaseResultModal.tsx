@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import StarRating from "@/components/ui/StarRating";
@@ -60,7 +60,7 @@ export default function CaseResultModal({ result, onClose }: Props) {
       {result && (
         <>
           {/* Backdrop */}
-          <motion.div
+          <m.div
             key="modal-backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -72,7 +72,7 @@ export default function CaseResultModal({ result, onClose }: Props) {
 
           {/* Centering wrapper */}
           <div className="fixed inset-0 z-[101] flex items-center justify-center p-4 pointer-events-none">
-            <motion.div
+            <m.div
               key="modal-card"
               layoutId={result.layoutId}
               className="relative bg-[#ffffff] border border-[#1a1a2e]/10 rounded-2xl p-8 w-full max-w-[500px] pointer-events-auto shadow-[0_32px_80px_rgba(0,0,0,0.2)]"
@@ -158,7 +158,7 @@ export default function CaseResultModal({ result, onClose }: Props) {
                   Free Claim Review
                 </Link>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </>
       )}

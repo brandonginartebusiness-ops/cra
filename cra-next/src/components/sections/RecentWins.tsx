@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import StarRating from "@/components/ui/StarRating";
@@ -31,7 +31,7 @@ export default function RecentWins() {
     <section id="recent-wins" className="py-16 lg:py-32 bg-[#111118]">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -48,10 +48,10 @@ export default function RecentWins() {
             Real outcomes for Florida policyholders. The insurer made the first
             offer — we recovered what the claim was actually worth.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Trust-stat strip */}
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
@@ -84,14 +84,14 @@ export default function RecentWins() {
               <p className="text-sm text-[#9999aa] mt-2 leading-snug">{stat.label}</p>
             </div>
           ))}
-        </motion.div>
+        </m.div>
 
         {/* Win cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {wins.map((c, i) => {
             const mult = multiplier(c);
             return (
-              <motion.div
+              <m.div
                 key={c.type}
                 initial="hidden"
                 whileInView="visible"
@@ -161,7 +161,7 @@ export default function RecentWins() {
                     · {c.review.timeAgo}
                   </p>
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

@@ -9,6 +9,7 @@ import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import TransitionWrapper from "@/components/ui/TransitionWrapper";
 import { Analytics } from "@vercel/analytics/next";
 import TrackingScripts from "@/components/analytics/TrackingScripts";
+import MotionProvider from "@/components/ui/MotionProvider";
 
 const montserrat = DM_Serif_Display({
   subsets: ["latin"],
@@ -80,13 +81,15 @@ export default function RootLayout({
           Skip to content
         </a>
         <LocalBusinessSchema />
-        <Navbar />
-        <main id="main-content">
-          <TransitionWrapper>{children}</TransitionWrapper>
-        </main>
-        <Footer />
-        <WhatsAppFAB />
-        <ChatWidget />
+        <MotionProvider>
+          <Navbar />
+          <main id="main-content">
+            <TransitionWrapper>{children}</TransitionWrapper>
+          </main>
+          <Footer />
+          <WhatsAppFAB />
+          <ChatWidget />
+        </MotionProvider>
         <Analytics />
       </body>
     </html>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import StarRating from "@/components/ui/StarRating";
 import { caseResults } from "@/data/results";
@@ -33,7 +33,7 @@ export default function SocialProof() {
     <section id="social-proof" className="py-16 lg:py-32">
       <div className="max-w-6xl mx-auto px-6">
         {/* Section header */}
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -46,10 +46,10 @@ export default function SocialProof() {
           <h2 className="font-bebas text-4xl md:text-5xl lg:text-6xl text-[#f0f0f5] leading-none tracking-tight">
             What clients say.<br className="md:hidden" /> What we recover.
           </h2>
-        </motion.div>
+        </m.div>
 
         {/* Main proof card */}
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
@@ -92,7 +92,7 @@ export default function SocialProof() {
                       className="grid grid-cols-[1fr_auto] items-center gap-4 text-sm"
                     >
                       <div className="h-2.5 bg-[#1a1a2e]/5 rounded-full overflow-hidden">
-                        <motion.div
+                        <m.div
                           initial={{ width: 0 }}
                           whileInView={{ width: `${pct}%` }}
                           viewport={{ once: true, margin: "-40px" }}
@@ -182,7 +182,7 @@ export default function SocialProof() {
               </svg>
             </a>
           </div>
-        </motion.div>
+        </m.div>
 
         <p className="text-center text-xs text-[#8888a0] mt-6 max-w-2xl mx-auto">
           Recoveries shown are illustrative outcomes from recent client cases. Individual results vary by policy, coverage, and the facts of each claim.

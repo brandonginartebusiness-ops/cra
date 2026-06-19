@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { slideInLeft, slideInRight, fadeInUp } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
 
@@ -8,7 +8,7 @@ export default function Pricing() {
   return (
     <section className="py-16 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -19,11 +19,11 @@ export default function Pricing() {
             label="Why Claim Remedy?"
             heading="Simple, transparent pricing."
           />
-        </motion.div>
+        </m.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* Without */}
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
@@ -62,10 +62,10 @@ export default function Pricing() {
                 ))}
               </ul>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* With CRA */}
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
@@ -100,7 +100,7 @@ export default function Pricing() {
                 ))}
               </ul>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         <p className="mt-8 max-w-3xl text-xs leading-relaxed text-[#8888a0]">

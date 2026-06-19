@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
@@ -15,7 +15,7 @@ export default function ServicesContent() {
       <div className="pt-24">
         <section className="py-14 lg:py-28">
           <div className="max-w-7xl mx-auto px-6">
-            <motion.div
+            <m.div
               initial="hidden"
               animate="visible"
               variants={fadeInUp}
@@ -27,16 +27,16 @@ export default function ServicesContent() {
                 subheading="We focus exclusively on property damage insurance claims in Florida. Claim Remedy is built to move quickly, document thoroughly, and fight for the recovery your policy should support."
                 dark
               />
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
               variants={staggerContainer}
               initial="hidden"
               animate="visible"
             >
               {services.map((s) => (
-                <motion.div
+                <m.div
                   key={s.title}
                   variants={fadeInUp}
                   whileHover={{ y: -4 }}
@@ -91,9 +91,9 @@ export default function ServicesContent() {
                       </span>
                     </div>
                   </Link>
-                </motion.div>
+                </m.div>
               ))}
-            </motion.div>
+            </m.div>
           </div>
         </section>
         <ServiceAreaMap />
