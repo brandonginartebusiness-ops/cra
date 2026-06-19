@@ -39,6 +39,8 @@ const VALID_HELP_TYPES = new Set(['denied', 'underpaid', 'new_claim', 'protect',
 const VALID_SERVICE_PAGES = new Set([
   // service pages
   'storm-hurricane', 'water-damage', 'fire-smoke', 'roof-claims', 'appraisal', 'contact', 'homepage',
+  // spanish (/es) pages
+  'es-homepage', 'es-contact',
   // city area pages
   'miami-lakes', 'hialeah', 'miami', 'doral', 'miami-gardens', 'homestead', 'kendall',
   'coral-gables', 'north-miami', 'miami-beach', 'fort-lauderdale', 'hollywood',
@@ -125,6 +127,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid service_page' }, { status: 400 });
     }
 
+    // Locale tag — only 'en'/'es' supported; default 'en'. Lets the team know to
+    // call a /es lead back in Spanish.
+    const locale = body.locale === 'es' ? 'es' : 'en';
+
     // Validate attachments shape if provided
     let attachments: Array<{ name: string; path: string; size: number; type: string }> = [];
     if (Array.isArray(body.attachments) && body.attachments.length > 0) {
@@ -192,6 +198,7 @@ export async function POST(request: NextRequest) {
       help_type: body.help_type || 'other',
       message: composeLeadMessage(body),
       service_page: body.service_page,
+      locale,
       status: 'new',
       attachments,
     };
@@ -347,6 +354,8 @@ async function sendEmailNotification(
     'roof-claims': 'Roof Claims',
     appraisal: 'Appraisal Services',
     contact: 'Contact Page',
+    'es-homepage': 'Spanish — Homepage',
+    'es-contact': 'Spanish — Contact',
   };
 
   // Escape all user-supplied fields before HTML interpolation
@@ -466,7 +475,7 @@ async function sendEmailNotification(
     body: JSON.stringify({
       from: 'Claim Remedy Leads <leads@claimremedyadjusters.com>',
       to: ['brandonginartebusiness@gmail.com', 'office@cradjusters.com'],
-      subject: `${opts.dbFailed ? '⚠️ DB DOWN (unsaved) — ' : ''}New Lead: ${name} — ${servicePageLabel}`,
+      subject: `${opts.dbFailed ? '⚠️ DB DOWN (unsaved) — ' : ''}${lead.locale === 'es' ? '[ES] ' : ''}New Lead: ${name} — ${servicePageLabel}`,
       html: emailHtml,
     }),
   });

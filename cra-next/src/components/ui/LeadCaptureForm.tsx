@@ -4,10 +4,12 @@ import { useState, useRef, type FormEvent, type ChangeEvent } from "react";
 import { m } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import { trackLead } from "@/lib/tracking";
+import { getDict, type Locale } from "@/i18n/dictionaries";
 
 interface LeadCaptureFormProps {
   servicePage: string;
   ctaText?: string;
+  locale?: Locale;
 }
 
 type FormStatus = "idle" | "submitting" | "step2" | "success" | "error";
@@ -50,8 +52,12 @@ const inputClass =
 
 export default function LeadCaptureForm({
   servicePage,
-  ctaText = "Get my free review",
+  ctaText,
+  locale = "en",
 }: LeadCaptureFormProps) {
+  const t = getDict(locale).leadForm;
+  const ctaLabel = ctaText ?? t.ctaDefault;
+
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     phone: "",
@@ -72,9 +78,9 @@ export default function LeadCaptureForm({
   const validateStep1 = (): boolean => {
     const newErrors: FieldErrors = {};
     if (!formData.phone.trim()) {
-      newErrors.phone = "Phone number is required so we can call you back";
+      newErrors.phone = t.errPhoneRequired;
     } else if (formData.phone.replace(/\D/g, "").length < 10) {
-      newErrors.phone = "Please enter a valid phone number";
+      newErrors.phone = t.errPhoneInvalid;
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -97,13 +103,13 @@ export default function LeadCaptureForm({
 
     const remainingSlots = MAX_FILES - attachments.length;
     if (picked.length > remainingSlots) {
-      setUploadError(`You can attach up to ${MAX_FILES} files. ${remainingSlots} slot${remainingSlots === 1 ? "" : "s"} remaining.`);
+      setUploadError(t.errSlots(MAX_FILES, remainingSlots));
       e.target.value = "";
       return;
     }
     for (const f of picked) {
       if (f.size > MAX_FILE_SIZE) {
-        setUploadError(`${f.name} is over 10 MB. Try compressing or splitting it.`);
+        setUploadError(t.errTooBig(f.name));
         e.target.value = "";
         return;
       }
@@ -116,13 +122,13 @@ export default function LeadCaptureForm({
       const res = await fetch("/api/leads/upload", { method: "POST", body: fd });
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
-        setUploadError(err.error || "Upload failed");
+        setUploadError(err.error || t.errUploadFailed);
       } else {
         const { attachments: uploaded } = (await res.json()) as { attachments: Attachment[] };
         setAttachments((prev) => [...prev, ...uploaded]);
       }
     } catch {
-      setUploadError("Upload failed. Please try again.");
+      setUploadError(t.errUploadRetry);
     } finally {
       setUploadingFiles(false);
       e.target.value = "";
@@ -152,6 +158,7 @@ export default function LeadCaptureForm({
           zip: formData.zip || undefined,
           filed_claim: formData.filedClaim || undefined,
           service_page: servicePage,
+          locale,
           event_id: eventId,
           step: final ? "complete" : "initial",
           attachments: attachments.length > 0 ? attachments : undefined,
@@ -243,13 +250,14 @@ export default function LeadCaptureForm({
           </svg>
         </div>
         <h3 className="font-bebas text-2xl text-[#1a1a2e] mb-2">
-          Got it — we&apos;ll call within the hour.
+          {t.successHeading}
         </h3>
         <p className="text-sm text-[#5a5a72] mb-6">
-          Your claim review request is in. Eddy or a team member will ring{" "}
-          {formData.phone || "you"} shortly.
+          {t.successBodyPre}{" "}
+          {formData.phone || t.youWord}{" "}
+          {t.successBodyPost}
         </p>
-        <p className="text-xs text-[#8888a0] mb-3">Need us sooner? Reach out directly:</p>
+        <p className="text-xs text-[#8888a0] mb-3">{t.successNeedSooner}</p>
         <div className="flex items-center justify-center gap-4">
           <a
             href="https://wa.me/13057331670"
@@ -284,22 +292,22 @@ export default function LeadCaptureForm({
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M20 6L9 17l-5-5" />
           </svg>
-          Got it — we&apos;ll call within the hour
+          {t.step2Badge}
         </div>
         <h3 className="font-bebas text-2xl text-[#1a1a2e] leading-tight">
-          A few{" "}
+          {t.step2HeadingPre}{" "}
           <em className="font-serif italic font-medium text-[#2563eb]">
-            optional details
+            {t.step2HeadingEm}
           </em>{" "}
-          to speed things up
+          {t.step2HeadingPost}
         </h3>
         <p className="text-sm text-[#5a5a72] -mt-2">
-          All optional — skip anything you&apos;d rather tell us on the phone.
+          {t.step2Sub}
         </p>
 
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
-            Email
+            {t.emailLabel}
           </label>
           <input
             type="email"
@@ -308,13 +316,13 @@ export default function LeadCaptureForm({
             value={formData.email}
             onChange={handleChange}
             className={`${inputClass} border-[#1a1a2e]/12`}
-            placeholder="you@email.com"
+            placeholder={t.emailPlaceholder}
           />
         </div>
 
         <div>
           <label htmlFor="helpType" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
-            What kind of help?
+            {t.helpTypeLabel}
           </label>
           <select
             id="helpType"
@@ -323,13 +331,13 @@ export default function LeadCaptureForm({
             onChange={handleChange}
             className={`${inputClass} border-[#1a1a2e]/12 appearance-none`}
           >
-            <option value="">Select an option…</option>
-            <option value="denied">My claim was denied</option>
-            <option value="underpaid">My claim was underpaid</option>
-            <option value="new_claim">I need someone to handle my claim from the start</option>
-            <option value="protect">I want to protect myself for a better settlement</option>
-            <option value="appraisal">I need appraisal services</option>
-            <option value="other">Other</option>
+            <option value="">{t.helpSelect}</option>
+            <option value="denied">{t.helpDenied}</option>
+            <option value="underpaid">{t.helpUnderpaid}</option>
+            <option value="new_claim">{t.helpNewClaim}</option>
+            <option value="protect">{t.helpProtect}</option>
+            <option value="appraisal">{t.helpAppraisal}</option>
+            <option value="other">{t.helpOther}</option>
           </select>
         </div>
 
@@ -337,7 +345,7 @@ export default function LeadCaptureForm({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="zip-2" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
-              Property ZIP
+              {t.zipLabel}
             </label>
             <input
               type="text"
@@ -349,17 +357,17 @@ export default function LeadCaptureForm({
               autoComplete="postal-code"
               maxLength={10}
               className={`${inputClass} border-[#1a1a2e]/12`}
-              placeholder="e.g. 33016"
+              placeholder={t.zipPlaceholder}
             />
           </div>
           <div>
             <span className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
-              Filed a claim yet?
+              {t.filedLabel}
             </span>
-            <div role="radiogroup" aria-label="Have you filed a claim yet?" className="flex gap-2">
+            <div role="radiogroup" aria-label={t.filedAria} className="flex gap-2">
               {[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: "yes", label: t.yes },
+                { value: "no", label: t.no },
               ].map((opt) => {
                 const active = formData.filedClaim === opt.value;
                 return (
@@ -391,10 +399,10 @@ export default function LeadCaptureForm({
         {/* File uploads — denial letters, claim photos, policy documents */}
         <div>
           <label className="block text-sm font-medium text-[#1a1a2e]">
-            Attach documents
+            {t.attachLabel}
           </label>
           <p className="text-xs text-[#8888a0] mb-2">
-            Denial letters, photos, your policy — speeds up the call.
+            {t.attachHint}
           </p>
 
           {attachments.length > 0 && (
@@ -414,7 +422,7 @@ export default function LeadCaptureForm({
                     type="button"
                     onClick={() => removeAttachment(a.path)}
                     className="text-[#5a5a72] hover:text-red-500 transition-colors p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded"
-                    aria-label={`Remove ${a.name}`}
+                    aria-label={t.removeAria(a.name)}
                   >
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="18" y1="6" x2="6" y2="18" />
@@ -448,7 +456,7 @@ export default function LeadCaptureForm({
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
-                    Uploading…
+                    {t.uploading}
                   </>
                 ) : (
                   <>
@@ -457,12 +465,12 @@ export default function LeadCaptureForm({
                       <polyline points="17 8 12 3 7 8" />
                       <line x1="12" y1="3" x2="12" y2="15" />
                     </svg>
-                    {attachments.length === 0 ? "Choose files" : "Add more"}
+                    {attachments.length === 0 ? t.chooseFiles : t.addMore}
                   </>
                 )}
               </label>
               <p className="text-xs text-[#8888a0] mt-1.5">
-                PDF, JPG, PNG, DOC · 10 MB max · {MAX_FILES - attachments.length} left
+                {t.fileMeta(MAX_FILES - attachments.length)}
               </p>
             </>
           )}
@@ -477,14 +485,14 @@ export default function LeadCaptureForm({
           disabled={uploadingFiles}
           className="w-full bg-[#2563eb] text-white font-semibold py-3.5 rounded-lg hover:opacity-90 hover:shadow-[0_0_24px_rgba(37,99,235,0.25)] transition-[opacity,box-shadow] duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          {attachments.length > 0 ? `Send details + ${attachments.length} file${attachments.length === 1 ? "" : "s"}` : "Send these details"}
+          {t.sendButton(attachments.length)}
         </button>
         <button
           type="button"
           onClick={skipStep2}
           className="text-xs text-[#8888a0] underline hover:text-[#5a5a72] self-center"
         >
-          Skip — we&apos;ll cover it on the call
+          {t.skip}
         </button>
       </m.form>
     );
@@ -507,15 +515,16 @@ export default function LeadCaptureForm({
 
       {status === "error" && (
         <div className="bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-3 text-sm text-red-600">
-          Something went wrong. Please try again or call us directly at{" "}
-          <a href="tel:+13057331670" className="underline font-semibold">(305) 733-1670</a>.
+          {t.errBannerPre}
+          <a href="tel:+13057331670" className="underline font-semibold">(305) 733-1670</a>
+          {t.errBannerPost}
         </div>
       )}
 
       {/* Name (optional, helps personalize the callback) */}
       <div>
         <label htmlFor="fullName" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
-          Your Name <span className="text-[#8888a0] font-normal">(optional)</span>
+          {t.nameLabel} <span className="text-[#8888a0] font-normal">{t.optional}</span>
         </label>
         <input
           type="text"
@@ -526,14 +535,14 @@ export default function LeadCaptureForm({
           disabled={status === "submitting"}
           autoComplete="name"
           className={`${inputClass} border-[#1a1a2e]/12`}
-          placeholder="First name is fine"
+          placeholder={t.namePlaceholder}
         />
       </div>
 
       {/* Phone */}
       <div>
         <label htmlFor="phone" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
-          Phone Number
+          {t.phoneLabel}
         </label>
         <input
           type="tel"
@@ -544,7 +553,7 @@ export default function LeadCaptureForm({
           disabled={status === "submitting"}
           autoComplete="tel"
           className={`${inputClass} ${errors.phone ? "border-red-500/50" : "border-[#1a1a2e]/12"}`}
-          placeholder="(555) 123-4567"
+          placeholder={t.phonePlaceholder}
         />
         {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
       </div>
@@ -552,7 +561,7 @@ export default function LeadCaptureForm({
       {/* Quick message — one optional line of context, nothing more on step 1 */}
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
-          What happened? <span className="text-[#8888a0] font-normal">(optional)</span>
+          {t.messageLabel} <span className="text-[#8888a0] font-normal">{t.optional}</span>
         </label>
         <textarea
           id="message"
@@ -562,13 +571,13 @@ export default function LeadCaptureForm({
           onChange={handleChange}
           disabled={status === "submitting"}
           className={`${inputClass} border-[#1a1a2e]/12 resize-none`}
-          placeholder="A roof leak, a denied claim, water damage…"
+          placeholder={t.messagePlaceholder}
         />
       </div>
 
       {/* Trust line */}
       <p className="text-center text-sm font-semibold text-[#1a1a2e] -mb-1">
-        No recovery, no fee. Licensed Florida public adjusters.
+        {t.trustLine}
       </p>
 
       {/* Submit — two-line promise button */}
@@ -583,15 +592,15 @@ export default function LeadCaptureForm({
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
             </svg>
-            Submitting...
+            {t.submitting}
           </span>
         ) : (
           <>
             <span className="font-semibold text-sm uppercase tracking-[0.08em]">
-              {ctaText}
+              {ctaLabel}
             </span>
             <span className="text-xs font-normal text-white/80">
-              Called back within the hour.
+              {t.ctaSub}
             </span>
           </>
         )}
@@ -599,7 +608,7 @@ export default function LeadCaptureForm({
 
       {/* TCPA opt-in */}
       <p className="text-xs text-[#8888a0] leading-relaxed text-center">
-        By submitting, you agree to receive calls and SMS from Claim Remedy Adjusters about your claim. Reply STOP to opt out. Msg &amp; data rates may apply. Your info is never shared.
+        {t.tcpa}
       </p>
     </m.form>
   );

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { services } from "@/data/services";
 import { cities } from "@/data/cities";
+import LangToggle from "@/components/layout/LangToggle";
 
 // Featured cities surfaced directly in the Areas dropdown (the rest live on /areas).
 const FEATURED_CITY_SLUGS = [
@@ -274,6 +275,7 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-3">
+            <LangToggle />
             <Link
               href="/contact"
               className="hidden sm:inline-flex items-center gap-2 bg-[#2563eb] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 transition-[opacity,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
