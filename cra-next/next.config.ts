@@ -10,6 +10,13 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig: NextConfig = {
   // Don't advertise the framework via the X-Powered-By response header.
   poweredByHeader: false,
+  experimental: {
+    // Inline the global Tailwind stylesheet into the initial HTML response
+    // instead of a render-blocking <link>. The atomic CSS is small (~14KB)
+    // and this site lives or dies on first-time mobile visitors, so the
+    // first-load win matters more than repeat-visit stylesheet caching.
+    inlineCss: true,
+  },
   turbopack: {
     root: import.meta.dirname,
   },
