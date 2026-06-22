@@ -53,6 +53,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://claimremedyadjusters.com",
+    languages: {
+      "en-US": "https://claimremedyadjusters.com",
+      "es-US": "https://claimremedyadjusters.com/es",
+    },
   },
   verification: {
     google: "tJrfTZx85bkJy-0dfJ9sC9n0hfYLXGzoIwvhI0oAJEg",

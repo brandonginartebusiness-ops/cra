@@ -14,7 +14,13 @@ export const metadata: Metadata = {
     url: "https://claimremedyadjusters.com/contact",
     images: ["/opengraph-image"],
   },
-  alternates: { canonical: "https://claimremedyadjusters.com/contact" },
+  alternates: {
+    canonical: "https://claimremedyadjusters.com/contact",
+    languages: {
+      "en-US": "https://claimremedyadjusters.com/contact",
+      "es-US": "https://claimremedyadjusters.com/es/contact",
+    },
+  },
 };
 
 export default function ContactPage() {

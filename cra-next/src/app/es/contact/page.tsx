@@ -8,7 +8,14 @@ const meta = getDict("es").meta;
 export const metadata: Metadata = {
   title: meta.contactTitle,
   description: meta.contactDescription,
-  alternates: { canonical: "https://claimremedyadjusters.com/es/contact" },
+  alternates: {
+    canonical: "https://claimremedyadjusters.com/es/contact",
+    languages: {
+      "en-US": "https://claimremedyadjusters.com/contact",
+      "es-US": "https://claimremedyadjusters.com/es/contact",
+    },
+  },
+  openGraph: { locale: "es_US" },
 };
 
 export default function EsContactPage() {

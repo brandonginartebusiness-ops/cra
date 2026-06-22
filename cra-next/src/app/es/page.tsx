@@ -10,7 +10,14 @@ export const metadata: Metadata = {
   // Spanish home title already carries the brand (matches the English homepage).
   title: { absolute: meta.homeTitle },
   description: meta.homeDescription,
-  alternates: { canonical: "https://claimremedyadjusters.com/es" },
+  alternates: {
+    canonical: "https://claimremedyadjusters.com/es",
+    languages: {
+      "en-US": "https://claimremedyadjusters.com",
+      "es-US": "https://claimremedyadjusters.com/es",
+    },
+  },
+  openGraph: { locale: "es_US" },
 };
 
 export default function EsHome() {
