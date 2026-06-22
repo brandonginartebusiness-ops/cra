@@ -10,6 +10,7 @@ import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import TransitionWrapper from "@/components/ui/TransitionWrapper";
 import { Analytics } from "@vercel/analytics/next";
 import TrackingScripts from "@/components/analytics/TrackingScripts";
+import PreconnectHints from "@/components/analytics/PreconnectHints";
 import MotionProvider from "@/components/ui/MotionProvider";
 
 const montserrat = DM_Serif_Display({
@@ -79,6 +80,7 @@ export default function RootLayout({
       <body className="overflow-x-clip pb-20 md:pb-0">
         <div className="cra-aurora" aria-hidden="true" />
         <TrackingScripts />
+        <PreconnectHints />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-[#3b82f6] focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold"

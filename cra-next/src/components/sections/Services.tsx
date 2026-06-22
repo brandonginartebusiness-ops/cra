@@ -43,7 +43,6 @@ export default function Services() {
                     images={s.images ?? [s.image]}
                     alt={s.alt}
                     index={i}
-                    priority={i < 4}
                   />
                 </div>
                 <div className="p-5 flex flex-col flex-1">

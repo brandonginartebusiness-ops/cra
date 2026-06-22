@@ -242,6 +242,7 @@ export default function Navbar() {
               height={35}
               style={{ height: 35, width: "auto" }}
               priority
+              fetchPriority="high"
             />
           </Link>
 

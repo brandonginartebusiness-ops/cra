@@ -63,6 +63,7 @@ export default function ServicePageLayout({
               sizes="100vw"
               className="object-cover opacity-[0.08]"
               priority
+              fetchPriority="high"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#faf8f5]/60 via-[#faf8f5]/80 to-[#faf8f5]" />
           </div>
