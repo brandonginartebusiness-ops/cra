@@ -2,19 +2,87 @@
 
 import { useState, useRef, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
+import { WA_LINK, WhatsAppIcon } from "@/components/layout/WhatsAppFAB";
 
 interface Message {
   role: "user" | "assistant";
   content: string;
 }
 
+// Shared X / chat-bubble icon swap used by both the desktop trigger and the
+// mobile launcher (the launcher reuses it for two different "closed" states:
+// closing the chat panel vs. closing the expanded dial).
+function ToggleIcon({ closed }: { closed: boolean }) {
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      {closed ? (
+        <m.svg
+          key="close"
+          initial={{ rotate: -90, opacity: 0 }}
+          animate={{ rotate: 0, opacity: 1 }}
+          exit={{ rotate: 90, opacity: 0 }}
+          transition={{ duration: 0.15 }}
+          className="w-5 h-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2.5}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </m.svg>
+      ) : (
+        <m.svg
+          key="chat"
+          initial={{ rotate: 90, opacity: 0 }}
+          animate={{ rotate: 0, opacity: 1 }}
+          exit={{ rotate: -90, opacity: 0 }}
+          transition={{ duration: 0.15 }}
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+          />
+        </m.svg>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
+  const [dialOpen, setDialOpen] = useState(false);
+  const [scrollHidden, setScrollHidden] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  // Mobile only: hide the contact launcher while someone is actively
+  // scrolling down through a page (it sits on top of content on small
+  // screens), and bring it back the moment they scroll up or stop.
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        setScrollHidden(y > lastY && y > 160);
+        lastY = y;
+        ticking = false;
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Opening greeting
   useEffect(() => {
@@ -101,65 +169,115 @@ export default function ChatWidget() {
       .replace(/\n/g, "<br />");
   }
 
+  function toggleMainButton() {
+    if (open) {
+      setOpen(false);
+      return;
+    }
+    setDialOpen((d) => !d);
+  }
+
+  const dialClosedIcon = open || dialOpen;
+  const mobileHidden = scrollHidden && !dialOpen && !open;
+
   return (
     <>
-      {/* Floating button */}
-      <div className="fixed bottom-[84px] right-6 md:bottom-6 z-50 w-14 h-14">
+      <style>{`
+        @keyframes chat-ping {
+          0% { transform: scale(1); opacity: 0.2; }
+          80%, 100% { transform: scale(1.7); opacity: 0; }
+        }
+      `}</style>
+
+      {/* Desktop floating button — unchanged behavior, own corner */}
+      <div className="hidden md:block fixed bottom-6 right-6 z-50 w-14 h-14">
         {!open && (
           <>
             <span className="absolute inset-0 rounded-full bg-[#2563eb] opacity-20 animate-[chat-ping_3.5s_ease-out_infinite]" />
             <span className="absolute inset-0 rounded-full bg-[#2563eb] opacity-10 animate-[chat-ping_3.5s_ease-out_1s_infinite]" />
           </>
         )}
-        <style>{`
-          @keyframes chat-ping {
-            0% { transform: scale(1); opacity: 0.2; }
-            80%, 100% { transform: scale(1.7); opacity: 0; }
-          }
-        `}</style>
-      <button
-        onClick={() => setOpen(!open)}
-        aria-label={open ? "Close chat" : "Open chat"}
-        className="relative w-14 h-14 rounded-full bg-[#2563eb] text-white shadow-[0_4px_24px_rgba(37,99,235,0.35)] flex items-center justify-center hover:scale-105 hover:opacity-90 transition-transform duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+        <button
+          onClick={() => setOpen(!open)}
+          aria-label={open ? "Close chat" : "Open chat"}
+          className="relative w-14 h-14 rounded-full bg-[#2563eb] text-white shadow-[0_4px_24px_rgba(37,99,235,0.35)] flex items-center justify-center hover:scale-105 hover:opacity-90 transition-transform duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+        >
+          <ToggleIcon closed={open} />
+        </button>
+      </div>
+
+      {/* Mobile merged contact launcher — single button at rest (was two
+          separate 56px circles pinned to opposite corners, permanently
+          covering content). Tap expands WhatsApp + Chat as labeled pills;
+          the whole cluster slides out of the way while scrolling down and
+          returns on scroll-up so it stops blocking what people are reading. */}
+      <div
+        className={`md:hidden fixed bottom-[84px] right-6 z-50 flex flex-col-reverse items-end gap-3 transition-[transform,opacity] duration-300 ${
+          mobileHidden ? "translate-y-20 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
+        }`}
       >
-        <AnimatePresence mode="wait" initial={false}>
-          {open ? (
-            <m.svg
-              key="close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2.5}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </m.svg>
-          ) : (
-            <m.svg
-              key="chat"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
-              className="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-              />
-            </m.svg>
+        <div className="relative w-14 h-14">
+          {!open && !dialOpen && (
+            <>
+              <span className="absolute inset-0 rounded-full bg-[#2563eb] opacity-20 animate-[chat-ping_3.5s_ease-out_infinite]" />
+              <span className="absolute inset-0 rounded-full bg-[#2563eb] opacity-10 animate-[chat-ping_3.5s_ease-out_1s_infinite]" />
+            </>
+          )}
+          <button
+            onClick={toggleMainButton}
+            aria-label={open ? "Close chat" : dialOpen ? "Close contact options" : "Contact us"}
+            aria-expanded={dialOpen}
+            className="relative w-14 h-14 rounded-full bg-[#2563eb] text-white shadow-[0_4px_24px_rgba(37,99,235,0.35)] flex items-center justify-center hover:scale-105 hover:opacity-90 transition-transform duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+          >
+            <ToggleIcon closed={dialClosedIcon} />
+          </button>
+        </div>
+
+        <AnimatePresence>
+          {dialOpen && !open && (
+            <>
+              <m.a
+                key="wa-pill"
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 8 }}
+                transition={{ duration: 0.15 }}
+                className="flex items-center gap-2.5 h-12 pl-3 pr-4 rounded-full bg-white text-[#1a1a2e] shadow-[0_4px_20px_rgba(0,0,0,0.18)] text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25d366]/60"
+              >
+                <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[#25d366] text-white flex items-center justify-center">
+                  <WhatsAppIcon className="w-4 h-4" />
+                </span>
+                WhatsApp
+              </m.a>
+              <m.button
+                key="chat-pill"
+                onClick={() => {
+                  setOpen(true);
+                  setDialOpen(false);
+                }}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 8 }}
+                transition={{ duration: 0.15, delay: 0.04 }}
+                className="flex items-center gap-2.5 h-12 pl-3 pr-4 rounded-full bg-white text-[#1a1a2e] shadow-[0_4px_20px_rgba(0,0,0,0.18)] text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
+              >
+                <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[#2563eb] text-white flex items-center justify-center">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    />
+                  </svg>
+                </span>
+                Chat with us
+              </m.button>
+            </>
           )}
         </AnimatePresence>
-      </button>
       </div>
 
       {/* Chat panel */}
