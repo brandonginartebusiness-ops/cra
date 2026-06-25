@@ -9,6 +9,7 @@ import ChatWidget from "@/components/ui/ChatWidget";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import TransitionWrapper from "@/components/ui/TransitionWrapper";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import TrackingScripts from "@/components/analytics/TrackingScripts";
 import PreconnectHints from "@/components/analytics/PreconnectHints";
 import MotionProvider from "@/components/ui/MotionProvider";
@@ -99,6 +100,7 @@ export default function RootLayout({
         </MotionProvider>
         <StickyMobileCTA />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

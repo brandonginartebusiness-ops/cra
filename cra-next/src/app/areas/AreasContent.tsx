@@ -302,7 +302,7 @@ export default function AreasContent() {
                 href="/contact"
                 className="inline-flex items-center gap-2 bg-[#2563eb] text-white font-semibold px-7 py-3.5 rounded-full hover:opacity-90 hover:shadow-[0_0_24px_rgba(37,99,235,0.3)] transition-[opacity,box-shadow] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
               >
-                Get Your Free Claim Review
+                Get My Free Claim Review
               </Link>
               <a
                 href="tel:+13057331670"
@@ -311,6 +311,7 @@ export default function AreasContent() {
                 Call (305) 733-1670
               </a>
             </div>
+            <p className="text-xs text-[#9999aa] mt-4">No recovery, no fee.</p>
           </m.div>
         </div>
       </section>

@@ -108,7 +108,7 @@ export default function CityPageLayout({ city }: Props) {
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2 bg-cra-blue text-white font-semibold px-7 py-3.5 rounded-full hover:opacity-90 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)] transition-[opacity,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cra-blue/60"
               >
-                Get Your Free Claim Review
+                Get My Free Claim Review
               </Link>
               <a
                 href="tel:+13057331670"
@@ -117,6 +117,7 @@ export default function CityPageLayout({ city }: Props) {
                 Call (305) 733-1670
               </a>
             </div>
+            <p className="text-xs text-[#8888a0] mt-3">No recovery, no fee.</p>
           </div>
         </div>
       </section>
@@ -256,7 +257,7 @@ export default function CityPageLayout({ city }: Props) {
               Our team will call you within the hour. No recovery, no fee.
             </p>
           </div>
-          <LeadCaptureForm servicePage={city.slug} ctaText="Get Your Free Claim Review" />
+          <LeadCaptureForm servicePage={city.slug} ctaText="Get My Free Claim Review" />
         </div>
       </section>
 

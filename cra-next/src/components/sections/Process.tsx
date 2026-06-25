@@ -72,8 +72,9 @@ export default function Process() {
             href="/contact"
             className="inline-flex items-center gap-2 bg-[#2563eb] text-white font-semibold text-sm uppercase tracking-wider px-7 py-3.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)] transition-[opacity,transform,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
           >
-            Get Your Free Claim Review
+            Get My Free Claim Review
           </a>
+          <p className="text-xs text-[#8888a0] -mt-1">No recovery, no fee.</p>
           <a
             href="/do-i-need-a-public-adjuster"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-[#60a5fa] hover:text-[#93c5fd] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm"

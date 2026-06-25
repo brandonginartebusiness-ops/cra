@@ -41,7 +41,7 @@ export default function ServicePageLayout({
   description,
   handles,
   caseResult,
-  ctaText = "Get Your Free Claim Review",
+  ctaText = "Get My Free Claim Review",
   serviceSlug,
 }: ServicePageProps) {
   const [modalResult, setModalResult] = useState<ModalResult | null>(null);

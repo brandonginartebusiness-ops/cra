@@ -166,13 +166,14 @@ export default function RecentWins() {
           })}
         </div>
 
-        <div className="mt-10 flex justify-center">
+        <div className="mt-10 flex flex-col items-center gap-3">
           <a
             href="/contact"
             className="inline-flex items-center gap-2 bg-[#2563eb] text-white font-semibold text-sm uppercase tracking-wider px-7 py-3.5 rounded-full hover:opacity-90 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)] transition-[opacity,transform,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
           >
-            Get Your Free Claim Review
+            Get My Free Claim Review
           </a>
+          <p className="text-xs text-[#8888a0]">No recovery, no fee.</p>
         </div>
 
         <p className="text-center text-xs text-[#8888a0] mt-8 max-w-2xl mx-auto">
