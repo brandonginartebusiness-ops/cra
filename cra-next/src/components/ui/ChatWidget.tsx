@@ -310,7 +310,7 @@ export default function ChatWidget() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto bg-[#faf8f5] px-4 py-4 flex flex-col gap-3">
+            <div role="log" aria-label="Chat messages" className="flex-1 overflow-y-auto bg-[#faf8f5] px-4 py-4 flex flex-col gap-3">
               {messages.map((msg, i) => (
                 <div
                   key={i}

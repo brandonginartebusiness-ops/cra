@@ -240,6 +240,8 @@ export default function LeadCaptureForm({
   if (status === "success") {
     return (
       <m.div
+        role="status"
+        aria-live="polite"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         className="bg-[#ffffff] border border-[#1a1a2e]/8 rounded-2xl p-8 text-center"
@@ -313,6 +315,7 @@ export default function LeadCaptureForm({
             type="email"
             id="email"
             name="email"
+            autoComplete="email"
             value={formData.email}
             onChange={handleChange}
             className={`${inputClass} border-[#1a1a2e]/12`}
@@ -421,7 +424,7 @@ export default function LeadCaptureForm({
                   <button
                     type="button"
                     onClick={() => removeAttachment(a.path)}
-                    className="text-[#5a5a72] hover:text-red-500 transition-colors p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded"
+                    className="text-[#5a5a72] hover:text-red-500 transition-colors p-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded"
                     aria-label={t.removeAria(a.name)}
                   >
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -514,7 +517,7 @@ export default function LeadCaptureForm({
       <input type="text" name="company" tabIndex={-1} aria-hidden="true" style={{ display: "none" }} />
 
       {status === "error" && (
-        <div className="bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-3 text-sm text-red-600">
+        <div role="alert" aria-atomic="true" className="bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-3 text-sm text-red-600">
           {t.errBannerPre}
           <a href="tel:+13057331670" className="underline font-semibold">(305) 733-1670</a>
           {t.errBannerPost}

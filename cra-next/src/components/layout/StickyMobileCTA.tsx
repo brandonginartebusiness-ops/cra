@@ -3,9 +3,9 @@
 // driver on paid traffic. This keeps "Call" and "Free Claim Review" one tap
 // away on every page. Server component (just links — no client JS).
 //
-// Hidden on md+ (desktop shows the form beside the hero copy). The two floating
-// buttons (WhatsApp / chat) are lifted above this bar on mobile so nothing
-// overlaps — see WhatsAppFAB and ChatWidget.
+// Hidden on md+ (desktop shows the form beside the hero copy). The merged
+// mobile contact launcher (WhatsApp + chat) is lifted above this bar on
+// mobile so nothing overlaps — see ChatWidget.
 
 const PHONE = "+13057331670";
 
