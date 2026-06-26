@@ -712,3 +712,40 @@ No payment/legal/compliance copy, lead-form validation, or licensing claims were
 16. **Operational note:** this cycle fully resolved a 10-cycle-old backlog item (the 3-file INP audit) into a concrete, narrow fix candidate (item 10) plus two confirmed non-issues — a net reduction in vague carry-forward items even though the list length is similar. Items 1+3 remain the strongest low-risk, zero-compliance-surface bundle for the next open-gate cycle; item 10 is the best candidate specifically for the CWV/perf lane.
 
 ---
+
+## 2026-06-26 02:14 UTC — Cycle 23
+
+**Focus area:** #3 Accessibility, third-pass (per rotation: cycles 1-10 once each, 11-20 second pass, 21=#1, 22=#2, so 23=#3).
+
+**Deploy gating:** `git fetch origin main` then `git log --oneline --grep="^auto-improve:" --since="20 hours ago" main` returned empty — last `auto-improve:` commit (`ae68533`) was ~22h old. Gate **open**. Shipped a bundle this cycle (commit `55016c0`).
+
+**Method:** Re-verified the standing a11y backlog items carried since cycles 3/13/19 (item 5 and item 11 above) by re-reading each target file fresh rather than assuming the prior cycles' analysis still held: `globals.css` `@theme` tokens, `StarRating.tsx` (16 lines, full read), `LeadCaptureForm.tsx` (attachment-list/remove-button block, error-banner block, success-state block, step-2 email field — 4 separate reads), `ChatWidget.tsx` (header/message-list/typing-indicator block), and `StickyMobileCTA.tsx` (header comment, to check it against the owner's out-of-band `3bf86d3` commit that merged the WhatsApp FAB and chat launcher into one mobile widget). Verified with `npx tsc --noEmit`, `npm run build`, `npm run lint`, then did pre-ship visual QA via a scratchpad Puppeteer/Chromium screenshot of the homepage `RecentWins` section and `/contact` against the local dev server.
+
+**Key findings:**
+- All items from the standing backlog (cycle 19's item 5, cycle-22-list's item 11) were re-confirmed unchanged and still valid: `--color-cra-dim: #8888a0` on white is ≈3.45:1 contrast, fails WCAG AA's 4.5:1 normal-text threshold; `#6e6e86` is ≈4.96:1 and passes. `StarRating.tsx`'s decorative `★` glyphs had no `aria-hidden`, so screen readers were announcing literal star characters. The lead-form error banner had no `role="alert"`, so validation errors weren't reliably announced to assistive tech. `ChatWidget.tsx`'s message list had no live-region role, so new AI/user messages weren't announced as they streamed in.
+- **New, previously-unlisted finding this cycle:** the lead form's success-state container (the "thank you" confirmation block) also lacked any live-region role — same category of issue as the error banner, just on the opposite (success) branch. Added `role="status" aria-live="polite"` to match (polite, not assertive, since it's not an error).
+- **Process note / gotcha for future cycles:** `ChatWidget.tsx` does NOT have an i18n/translation dictionary object (no `const t = {...}` anywhere in the file) — it uses plain literal JSX strings throughout. An early edit attempt incorrectly assumed an `aria-label={t.title}` pattern by analogy with `LeadCaptureForm.tsx`; caught via `grep` before any build step and fixed to a plain string literal. Worth remembering before pattern-matching across these two files again.
+- Confirmed `StickyMobileCTA.tsx`'s header comment was stale — it still described "two floating buttons (WhatsApp / chat)" from before the owner's own `3bf86d3` commit merged them into a single mobile contact launcher. Verified via `WhatsAppFAB.tsx` (now `hidden md:block`, desktop-only) that the comment, not the code, was wrong. Fixed as a zero-risk doc-only change.
+- Deliberately left out of this bundle (kept queued, see below): the `text-sm`→`text-base` iOS-zoom fix and the `Navbar.tsx` hamburger tap-target bump. Both are valid and low-risk, but read more as "mobile UX" than core accessibility, and the routine's own standing advice (cycles 14-22) is to keep each shipped bundle in one coherent lane for an easier diff to review.
+
+**Shipped this cycle:** Yes — commit `55016c0`, `auto-improve: accessibility fixes — AA contrast, ARIA roles, tap target, autocomplete`. Six changes across 5 files: (1) `globals.css` — darkened `--color-cra-dim` to `#6e6e86` for AA contrast; (2) `StarRating.tsx` — `aria-hidden="true"` on the `★` glyphs; (3) `LeadCaptureForm.tsx` — bumped the attachment-remove button's padding `p-1`→`p-1.5` to clear the 24×24px AA tap-target minimum; (4) `LeadCaptureForm.tsx` — `role="alert" aria-atomic="true"` on the error banner; (5) `LeadCaptureForm.tsx` — `role="status" aria-live="polite"` on the success-state container (new, not previously listed); (6) `LeadCaptureForm.tsx` — `autoComplete="email"` on the step-2 email field; (7) `ChatWidget.tsx` — `role="log" aria-label="Chat messages"` on the message-list container; (8) `StickyMobileCTA.tsx` — fixed the stale dual-FAB comment. All verified clean: `tsc --noEmit` no output, `npm run build` succeeded (all 64 routes), `npm run lint` showed only the 4 pre-existing unrelated `Navbar.tsx` errors + 1 pre-existing unrelated `recolor.mjs` warning (confirmed since cycles 1/3). Visual QA via Puppeteer screenshots of the homepage `RecentWins` section and `/contact` showed no regression (all changes are ARIA-attribute-only or a sub-pixel padding bump on a small icon button).
+
+**Queued / flagged for next eligible cycle, in priority order:**
+1. `text-sm`→`text-base` (or equivalent ≥16px) on `LeadCaptureForm.tsx`'s text inputs to stop iOS Safari auto-zoom-on-focus — deliberately excluded from this cycle's a11y bundle, categorized as mobile UX.
+2. `Navbar.tsx` hamburger-menu tap-target bump — same reasoning as above.
+3. Unchanged top candidate, now 13 cycles old: wire `Reviews.tsx` onto the homepage between `RecentWins` and `About` (cycle 10).
+4. Footer "★ 5.0 (45+ reviews)" badge next to the `/reviews` link in `Footer.tsx` (cycle 20).
+5. `ChatWidget.tsx`'s textarea `onChange` (lines 354-358) layout-thrashing pattern — batch the `style.height` read/write via `requestAnimationFrame`, or a CSS-only auto-grow (cycle 22's CWV finding).
+6. Owner decision required: supply 2-3 additional real, verifiable case results per high-volume claim type (Hurricane, Roof first) for testimonial rotation (cycle 20).
+7. Carried from cycle 18: PAS-style `CityPageLayout.tsx` hero subhead rewrite.
+8. Carried from cycle 14: fix the 12-page `<title>` duplication/overlength bug.
+9. Carried from cycle 16: `tel:`/`/contact` quick-action row in `ChatWidget.tsx`.
+10. Carried from cycle 15: `leads/route.ts` `event_id` dedup cache + `fetchWithTimeout` helper.
+11. Carried from many prior cycles: remove ineligible `review`/`aggregateRating` from `LocalBusinessSchema.tsx`; in-memory rate limiting on `leads/route.ts`/`leads/upload/route.ts`.
+12. Carried from cycle 19: `viewport-fit=cover` + `Navbar.tsx`/mobile-menu safe-area padding (multi-file, needs visual QA).
+13. Owner-facing, requires Vercel dashboard access: WAF rate-limit rule on `/api/leads`, `/api/leads/upload`, `/api/chat`.
+14. Owner decision pending: exit-intent popup; claim-filing-deadline urgency copy (legal sign-off); real adjuster photo near the lead form; abandonment-recovery capture; booking flow; missed-call text-back.
+15. Owner-facing, not auto-fixable: root `screenshot.mjs` has no installed dependencies.
+16. **Operational note:** this cycle closed out the bulk of the long-standing core accessibility backlog (contrast, decorative-glyph hiding, live-region roles, tap targets, autocomplete) in one bundle — the a11y lane is now mostly down to mobile-UX-adjacent items (queue 1-2 above) rather than core WCAG gaps. The next #3-Accessibility pass (cycle 33, if the rotation holds) should likely re-audit focus-order/keyboard-trap behavior in the multi-step `LeadCaptureForm.tsx` and the `ChatWidget.tsx` open/close panel, which haven't been checked yet in any prior cycle.
+
+---
