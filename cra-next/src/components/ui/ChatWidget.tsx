@@ -63,6 +63,8 @@ export default function ChatWidget() {
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const desktopTriggerRef = useRef<HTMLButtonElement>(null);
+  const mobileTriggerRef = useRef<HTMLButtonElement>(null);
 
   // Mobile only: hide the contact launcher while someone is actively
   // scrolling down through a page (it sits on top of content on small
@@ -107,6 +109,21 @@ export default function ChatWidget() {
   // Focus input when opened
   useEffect(() => {
     if (open) setTimeout(() => inputRef.current?.focus(), 350);
+  }, [open]);
+
+  // Escape closes the panel and returns focus to whichever trigger button
+  // is visible — the panel isn't a focus trap, but it still needs a
+  // keyboard-only way to dismiss it and somewhere for focus to land after.
+  useEffect(() => {
+    if (!open) return;
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      desktopTriggerRef.current?.focus();
+      mobileTriggerRef.current?.focus();
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [open]);
 
   async function handleSend() {
@@ -198,6 +215,7 @@ export default function ChatWidget() {
           </>
         )}
         <button
+          ref={desktopTriggerRef}
           onClick={() => setOpen(!open)}
           aria-label={open ? "Close chat" : "Open chat"}
           className="relative w-14 h-14 rounded-full bg-[#2563eb] text-white shadow-[0_4px_24px_rgba(37,99,235,0.35)] flex items-center justify-center hover:scale-105 hover:opacity-90 transition-transform duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
@@ -224,6 +242,7 @@ export default function ChatWidget() {
             </>
           )}
           <button
+            ref={mobileTriggerRef}
             onClick={toggleMainButton}
             aria-label={open ? "Close chat" : dialOpen ? "Close contact options" : "Contact us"}
             aria-expanded={dialOpen}

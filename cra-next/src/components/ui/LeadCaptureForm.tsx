@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, type FormEvent, type ChangeEvent } from "react";
+import { useState, useRef, useEffect, type FormEvent, type ChangeEvent } from "react";
 import { m } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import { trackLead } from "@/lib/tracking";
@@ -74,6 +74,15 @@ export default function LeadCaptureForm({
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [leadId, setLeadId] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const step2HeadingRef = useRef<HTMLHeadingElement>(null);
+  const successHeadingRef = useRef<HTMLHeadingElement>(null);
+
+  // Move focus to the new step's heading so keyboard/screen-reader users
+  // aren't silently dropped when one <form> unmounts and the next mounts.
+  useEffect(() => {
+    if (status === "step2") step2HeadingRef.current?.focus();
+    if (status === "success") successHeadingRef.current?.focus();
+  }, [status]);
 
   const validateStep1 = (): boolean => {
     const newErrors: FieldErrors = {};
@@ -251,7 +260,11 @@ export default function LeadCaptureForm({
             <path d="M20 6L9 17l-5-5" />
           </svg>
         </div>
-        <h3 className="font-bebas text-2xl text-[#1a1a2e] mb-2">
+        <h3
+          ref={successHeadingRef}
+          tabIndex={-1}
+          className="font-bebas text-2xl text-[#1a1a2e] mb-2"
+        >
           {t.successHeading}
         </h3>
         <p className="text-sm text-[#5a5a72] mb-6">
@@ -296,7 +309,11 @@ export default function LeadCaptureForm({
           </svg>
           {t.step2Badge}
         </div>
-        <h3 className="font-bebas text-2xl text-[#1a1a2e] leading-tight">
+        <h3
+          ref={step2HeadingRef}
+          tabIndex={-1}
+          className="font-bebas text-2xl text-[#1a1a2e] leading-tight"
+        >
           {t.step2HeadingPre}{" "}
           <em className="font-serif italic font-medium text-[#2563eb]">
             {t.step2HeadingEm}
