@@ -9,6 +9,8 @@ interface Props {
   className?: string;
   /** Set to true when the section background is dark */
   dark?: boolean;
+  /** Heading level to render. Defaults to h2; use h1 when this is the page title. */
+  as?: "h1" | "h2";
   /** @deprecated — kept for backwards compat; light is always true now */
   light?: boolean;
 }
@@ -20,6 +22,7 @@ export default function SectionHeading({
   accent = "blue",
   className,
   dark = true,
+  as: HeadingTag = "h2",
 }: Props) {
   const labelColor = accent === "teal" ? "text-[#0d9488]" : "text-[#2563eb]";
   const headingColor = dark ? "text-[#f0f0f5]" : "text-[#1a1a2e]";
@@ -32,7 +35,7 @@ export default function SectionHeading({
           {label}
         </p>
       )}
-      <h2 className={`font-bebas font-extrabold text-2xl md:text-3xl leading-snug tracking-tight ${headingColor}`}>
+      <HeadingTag className={`font-bebas font-extrabold text-2xl md:text-3xl leading-snug tracking-tight ${headingColor}`}>
         {typeof heading === "string" ? (
           /* Internal-only strings may contain <br/> and <span> for styling.
              All values are hardcoded in our own components — never user input. */
@@ -40,7 +43,7 @@ export default function SectionHeading({
         ) : (
           heading
         )}
-      </h2>
+      </HeadingTag>
       {subheading && (
         <p className={`mt-4 text-lg md:text-xl leading-relaxed ${subheadingColor} max-w-2xl mx-auto`}>
           {subheading}

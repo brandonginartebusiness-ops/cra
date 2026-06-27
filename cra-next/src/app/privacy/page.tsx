@@ -87,11 +87,37 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="font-bebas text-2xl text-[#1a1a2e] mb-3">6. Cookies</h2>
+            <h2 className="font-bebas text-2xl text-[#1a1a2e] mb-3">6. Cookies and Tracking Technologies</h2>
             <p>
               We use session storage (not cookies) to manage the site loading experience. We may use
               third-party analytics tools (such as Google Analytics) that place cookies to help us
               understand site traffic. You can disable cookies in your browser settings.
+            </p>
+            <p className="mt-3">
+              We also use advertising and conversion-measurement tools, including the Meta (Facebook)
+              Pixel and the Meta Conversions API, to measure the performance of our ads and to show
+              relevant ads on Meta platforms (Facebook and Instagram). These tools may collect
+              information such as pages viewed, actions taken on our site, and a hashed identifier
+              derived from contact details you submit, which is used solely to match conversions. We
+              do not sell this information. You can manage ad personalization in your{" "}
+              <a
+                href="https://www.facebook.com/settings?tab=ads"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cra-blue underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cra-blue/60"
+              >
+                Meta ad preferences
+              </a>{" "}
+              and opt out of interest-based advertising through the{" "}
+              <a
+                href="https://optout.aboutads.info/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cra-blue underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cra-blue/60"
+              >
+                Digital Advertising Alliance
+              </a>
+              .
             </p>
           </section>
 

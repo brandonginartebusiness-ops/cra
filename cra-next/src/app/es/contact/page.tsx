@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function EsContactPage() {
   return (
     <>
-      <EsContact />
+      <EsContact headingAs="h1" />
       <EsContactForm />
     </>
   );

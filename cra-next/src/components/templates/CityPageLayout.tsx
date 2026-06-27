@@ -97,7 +97,7 @@ export default function CityPageLayout({ city }: Props) {
               {city.county} · {city.region}
             </span>
             <h1 className="font-bebas font-extrabold text-5xl md:text-6xl lg:text-7xl text-[#1a1a2e] leading-none tracking-tight mb-5">
-              Public Adjuster in {city.city}, Florida
+              {`Public Adjuster in ${city.city}, Florida`}
             </h1>
             <p className="text-lg text-[#5a5a72] leading-relaxed mb-8 max-w-xl">
               Licensed public adjusters serving {city.city} homeowners and businesses.

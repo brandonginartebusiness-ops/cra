@@ -10,7 +10,12 @@ import { getDict } from "@/i18n/dictionaries";
 const t = getDict("es").contact;
 const WA_LINK = `https://wa.me/13057331670?text=${encodeURIComponent(t.waMessage)}`;
 
-export default function EsContact() {
+export default function EsContact({
+  headingAs = "h2",
+}: {
+  /** Use "h1" when EsContact is the page's primary heading (e.g. /es/contact). */
+  headingAs?: "h1" | "h2";
+} = {}) {
   return (
     <section id="connect" className="py-16 lg:py-32">
       <div className="max-w-3xl mx-auto px-6">
@@ -25,6 +30,7 @@ export default function EsContact() {
             label={t.label}
             heading={t.heading}
             subheading={t.subheading}
+            as={headingAs}
           />
         </m.div>
 

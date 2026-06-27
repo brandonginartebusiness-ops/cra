@@ -4,7 +4,7 @@ import PageTransition from "@/components/ui/PageTransition";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
-  title: "About Our Florida Public Adjuster — Claim Remedy Adjusters",
+  title: "About Our Florida Public Adjuster",
   description:
     "Meet Eddy D Gomez, licensed Florida public adjuster. Claim Remedy represents homeowners and commercial property owners — never the insurance company.",
   openGraph: {

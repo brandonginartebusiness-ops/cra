@@ -14,11 +14,20 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
+// Trim to a clean whole-word phrase under `max` chars — never cut mid-word and
+// never leave a dangling "…" (which reads as machine-generated in the SERP).
+function toWholeWords(text: string, max: number): string {
+  if (text.length <= max) return text.replace(/[\s,.;:]+$/, "");
+  const clipped = text.slice(0, max);
+  const lastSpace = clipped.lastIndexOf(" ");
+  return clipped.slice(0, lastSpace > 0 ? lastSpace : max).replace(/[\s,.;:]+$/, "");
+}
+
 function buildCityDescription(city: ReturnType<typeof getCityBySlug>): string {
   if (!city) return "";
   const risks = city.localFacts.uniqueRisks;
   if (risks) {
-    const shortRisk = risks.length > 70 ? risks.slice(0, 67).trim() + "…" : risks;
+    const shortRisk = toWholeWords(risks, 70);
     return `${city.city}, Florida public adjusters. Local expertise on ${shortRisk}. No recovery, no fee. Call (305) 733-1670.`;
   }
   const storm = city.localFacts.stormHistory;

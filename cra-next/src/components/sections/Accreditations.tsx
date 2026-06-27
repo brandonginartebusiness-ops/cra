@@ -35,12 +35,10 @@ const BADGES: Badge[] = [
     name: "National Association of Public Insurance Adjusters",
     logo: "/brand_assets/badges/napia.png",
   },
-  {
-    abbr: "BBB",
-    name: "Better Business Bureau Accredited",
-    // BBB Accredited seal should come from the firm's BBB account (account-tied,
-    // links to the profile) — text seal until that's supplied.
-  },
+  // BBB badge intentionally removed: do not display a "Better Business Bureau
+  // Accredited" claim until accreditation is confirmed in writing on the firm's
+  // public BBB profile. Re-add { abbr: "BBB", name: "...", logo, href } here once
+  // verified, pointing href at the firm's BBB Accredited Business profile.
 ];
 
 function BadgeInner({ badge }: { badge: Badge }) {
@@ -78,7 +76,7 @@ export default function Accreditations() {
       <div className="max-w-7xl mx-auto px-6 text-center">
         <div className="flex items-center justify-center gap-3 mb-8 text-[0.55rem] font-bold uppercase tracking-[0.22em] text-[#2563eb]">
           <span className="w-8 h-px bg-[#2563eb]" />
-          Member &amp; accredited
+          Association memberships
           <span className="w-8 h-px bg-[#2563eb]" />
         </div>
 
@@ -106,9 +104,8 @@ export default function Accreditations() {
         </div>
 
         <p className="mt-7 text-xs text-[#8888a0] max-w-2xl mx-auto leading-relaxed">
-          Claim Remedy Adjusters maintains active membership and accreditation
-          with leading public-adjusting associations and the Better Business
-          Bureau.
+          Claim Remedy Adjusters maintains active membership with leading
+          public-adjusting associations.
         </p>
       </div>
     </section>

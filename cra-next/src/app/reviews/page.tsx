@@ -4,7 +4,7 @@ import PageTransition from "@/components/ui/PageTransition";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
-  title: "Florida Public Adjuster Reviews & Case Results — Claim Remedy Adjusters",
+  title: "Florida Public Adjuster Reviews & Case Results",
   description:
     "Verified Google reviews and real case recoveries from Florida homeowners and businesses represented by Claim Remedy Adjusters. Hurricane, water, roof, mold, commercial, and denied claim results.",
   openGraph: {
