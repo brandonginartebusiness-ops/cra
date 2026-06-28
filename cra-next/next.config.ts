@@ -46,11 +46,21 @@ const nextConfig: NextConfig = {
         destination: "/reviews#case-results",
         permanent: true,
       },
+      // Canonical host: send www.* to the bare apex so the site is only served
+      // from one origin (avoids duplicate-host indexing; www currently serves a
+      // 200). Host-conditioned so it only fires for the www hostname.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.claimremedyadjusters.com" }],
+        destination: "https://claimremedyadjusters.com/:path*",
+        permanent: true,
+      },
     ];
   },
   // Baseline security headers — conservative, non-breaking defaults on every
-  // route. (CSP and HSTS preload/includeSubDomains are intentionally omitted;
-  // they need manual review/testing before going live.)
+  // route. CSP is shipped in Report-Only mode (below): it observes violations
+  // via /api/csp-report without blocking anything, so it can be tuned before
+  // enforcing. HSTS preload/includeSubDomains stay omitted pending review.
   async headers() {
     return [
       {
@@ -65,10 +75,40 @@ const nextConfig: NextConfig = {
           },
           { key: "Strict-Transport-Security", value: "max-age=31536000" },
           { key: "X-DNS-Prefetch-Control", value: "on" },
+          // Routes violation reports to the Reporting API endpoint below.
+          { key: "Reporting-Endpoints", value: 'csp-endpoint="/api/csp-report"' },
+          {
+            key: "Content-Security-Policy-Report-Only",
+            value: CSP_REPORT_ONLY,
+          },
         ],
       },
     ];
   },
 };
+
+// Report-Only Content Security Policy. Encodes the third-party origins the site
+// actually uses (analytics, ads, pixels, Instagram media, Vercel telemetry) so
+// any report points to a genuinely missing source rather than noise. Because it
+// is Report-Only it CANNOT block resources — flipping to an enforcing
+// `Content-Security-Policy` should only happen after the logs are clean.
+const CSP_REPORT_ONLY = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "frame-ancestors 'self'",
+  "form-action 'self'",
+  // 'unsafe-inline' covers the inline analytics/pixel bootstraps and Next's
+  // inline runtime; 'unsafe-eval' covers libraries that compile at runtime.
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://analytics.tiktok.com https://www.clarity.ms https://cdn.callrail.com https://va.vercel-scripts.com https://www.googleadservices.com https://googleads.g.doubleclick.net",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https://www.facebook.com https://*.cdninstagram.com https://*.fbcdn.net https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com https://*.clarity.ms https://analytics.tiktok.com https://googleads.g.doubleclick.net https://www.google.com",
+  "font-src 'self' data:",
+  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com https://analytics.tiktok.com https://*.clarity.ms https://api.callrail.com https://cdn.callrail.com https://vitals.vercel-insights.com https://va.vercel-scripts.com",
+  "frame-src 'self' https://www.facebook.com https://td.doubleclick.net",
+  "worker-src 'self' blob:",
+  "report-uri /api/csp-report",
+  "report-to csp-endpoint",
+].join("; ");
 
 export default withBundleAnalyzer(nextConfig);
