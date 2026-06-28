@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ServicePageLayout from "@/components/templates/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Hurricane Damage Claim Help Florida — Storm & Hurricane Claims",
+  title: "Hurricane Damage Claim Help Florida",
   description:
     "Licensed Florida public adjusters specializing in hurricane and storm damage claims. We deploy within 24 hours, document every loss, and fight for the full recovery your policy supports.",
   openGraph: {

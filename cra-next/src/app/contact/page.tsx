@@ -4,7 +4,7 @@ import ContactForm from "./ContactForm";
 import PageTransition from "@/components/ui/PageTransition";
 
 export const metadata: Metadata = {
-  title: "Free Claim Review — Contact a Miami Public Adjuster",
+  title: "Contact a Miami Public Adjuster",
   description:
     "Get a free claim review from Claim Remedy Adjusters. Call, WhatsApp, or visit our Miami Lakes office. Licensed Florida public adjusters — no recovery, no fee.",
   openGraph: {

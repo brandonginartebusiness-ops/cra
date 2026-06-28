@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ServicePageLayout from "@/components/templates/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Mold Damage Insurance Claim Florida — Public Adjuster Help",
+  title: "Mold Damage Insurance Claim Florida",
   description:
     "Florida mold claims are routinely denied as 'maintenance.' We tie the mold back to a covered water event and document the full remediation so your insurer pays what your policy owes.",
   openGraph: {

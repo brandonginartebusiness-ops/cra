@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ServicePageLayout from "@/components/templates/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Denied Insurance Claim Help Florida — Public Adjuster",
+  title: "Denied Insurance Claim Help Florida",
   description:
     "A denied or underpaid Florida claim is not the end. We review the denial, find what the insurer missed or misapplied, and re-document the loss to fight for the payout you're owed. No recovery, no fee.",
   openGraph: {

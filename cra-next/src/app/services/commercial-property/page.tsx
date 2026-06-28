@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ServicePageLayout from "@/components/templates/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Commercial Property Claim Help Florida — Public Adjuster",
+  title: "Commercial Property Claim Florida",
   description:
     "Florida commercial property claims carry higher stakes: business interruption, complex valuations, and tougher carrier scrutiny. We handle commercial losses end to end so your business recovers fully. No recovery, no fee.",
   openGraph: {

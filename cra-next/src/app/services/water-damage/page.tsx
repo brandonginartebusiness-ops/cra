@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ServicePageLayout from "@/components/templates/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Water Damage Insurance Claim Florida — Public Adjuster Help",
+  title: "Water Damage Insurance Claim Florida",
   description:
     "Expert water damage claim representation for Florida homeowners. Burst pipes, hidden moisture, appliance failures — we document every loss and fight for your full recovery.",
   openGraph: {

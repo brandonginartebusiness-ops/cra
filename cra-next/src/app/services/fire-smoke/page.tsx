@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ServicePageLayout from "@/components/templates/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Fire & Smoke Damage Claim Florida — Public Adjuster Representation",
+  title: "Fire & Smoke Damage Claim Florida",
   description:
     "Licensed Florida public adjusters for fire and smoke damage claims. We document structural, content, and environmental damage to secure full replacement value — no recovery, no fee.",
   openGraph: {

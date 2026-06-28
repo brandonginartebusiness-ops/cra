@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ServicePageLayout from "@/components/templates/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Roof Damage Insurance Claim Florida — Fight Your Insurer",
+  title: "Roof Damage Insurance Claim Florida",
   description:
     "Florida public adjuster for roof damage claims. Engineering reports, Xactimate estimates, and NOAA storm data — we prove your roof damage and fight for full replacement value.",
   openGraph: {

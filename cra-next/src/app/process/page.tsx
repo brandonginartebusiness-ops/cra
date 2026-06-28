@@ -4,7 +4,7 @@ import PageTransition from "@/components/ui/PageTransition";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
-  title: "How We Handle Your Florida Insurance Claim — Our Process",
+  title: "How We Handle Your Insurance Claim",
   description:
     "From damage to recovery in four steps. Learn how Claim Remedy's licensed public adjusters handle your Florida property insurance claim from inspection to settlement.",
   openGraph: {

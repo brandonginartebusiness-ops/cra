@@ -4,7 +4,7 @@ import FAQSchema from "@/components/seo/FAQSchema";
 import PageTransition from "@/components/ui/PageTransition";
 
 export const metadata: Metadata = {
-  title: "Public Adjuster FAQ — Florida Insurance Claim Questions Answered",
+  title: "Florida Public Adjuster FAQ",
   description:
     "Common questions about working with a licensed Florida public adjuster. Learn about costs, timelines, denied claims, and what to expect from Claim Remedy Adjusters.",
   openGraph: {

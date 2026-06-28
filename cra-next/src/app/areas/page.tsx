@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import AreasContent from "./AreasContent";
 
 export const metadata: Metadata = {
-  title: "Service Areas — Public Adjusters Across Florida",
+  title: "Public Adjuster Service Areas FL",
   description:
     "Licensed public adjusters serving all 67 Florida counties. We handle hurricane, water, fire, roof, and mold damage claims in Miami, Fort Lauderdale, Tampa, Orlando, and every major Florida city.",
   openGraph: {
