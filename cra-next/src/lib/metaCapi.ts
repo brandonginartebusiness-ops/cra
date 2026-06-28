@@ -1,5 +1,6 @@
 import { createHash } from "crypto";
 import { META_PIXEL_ID } from "./meta";
+import { fetchWithTimeout } from "./fetchWithTimeout";
 
 export interface CapiLeadInput {
   full_name: string;
@@ -120,7 +121,7 @@ export async function sendMetaCapiLead(args: SendMetaCapiArgs): Promise<void> {
   };
 
   try {
-    const res = await fetch(
+    const res = await fetchWithTimeout(
       `https://graph.facebook.com/v21.0/${pixelId}/events?access_token=${accessToken}`,
       {
         method: "POST",

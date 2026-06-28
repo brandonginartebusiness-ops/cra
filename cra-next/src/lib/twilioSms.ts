@@ -1,3 +1,5 @@
+import { fetchWithTimeout } from "./fetchWithTimeout";
+
 export interface LeadSmsInput {
   full_name: string;
   phone: string;
@@ -47,7 +49,7 @@ async function twilioSend(
   params.append("Body", body);
 
   const basic = Buffer.from(`${accountSid}:${authToken}`).toString("base64");
-  const res = await fetch(
+  const res = await fetchWithTimeout(
     `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`,
     {
       method: "POST",

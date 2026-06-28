@@ -3,6 +3,12 @@ import { supabaseServer } from '@/lib/supabaseServer';
 import { sendMetaCapiLead } from '@/lib/metaCapi';
 import { sendLeadSms } from '@/lib/twilioSms';
 import { buildReviewRequestUrl } from '@/lib/reviewRequest';
+import { fetchWithTimeout } from '@/lib/fetchWithTimeout';
+
+// Default Hobby/Pro ceiling is 10-15s — this route awaits an outbound email
+// send before falling back to a best-effort SMS/CAPI fan-out, so give it
+// headroom (each outbound call below is itself capped at 10s).
+export const maxDuration = 30;
 
 const UUID_REGEX =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -466,7 +472,7 @@ async function sendEmailNotification(
     </div>
   `;
 
-  const response = await fetch('https://api.resend.com/emails', {
+  const response = await fetchWithTimeout('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

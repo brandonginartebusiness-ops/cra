@@ -2,7 +2,16 @@ import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest, NextResponse } from "next/server";
 import { systemPrompt } from "@/lib/system-prompt";
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+// Explicit timeout below the route's own maxDuration so a slow upstream
+// response hits this SDK's timeout (and the route's friendly error message)
+// instead of being hard-killed by the platform at the duration ceiling.
+const client = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+  timeout: 25_000,
+});
+
+// Default Hobby/Pro ceiling is 10-15s, well under the 25s client timeout above.
+export const maxDuration = 30;
 
 // In-memory rate limiter: max 20 requests per IP per 10 minutes
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
