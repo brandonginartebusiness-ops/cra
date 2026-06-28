@@ -14,12 +14,17 @@ export default function TrackingScripts() {
 
   return (
     <>
+      {/* GA4 + Meta Pixel load lazily (post-load/idle) rather than
+          afterInteractive: on throttled mobile, loading them in the
+          interactive window contends for the main thread/network and inflates
+          LCP. PageView still fires reliably on load; server-side Conversions
+          API remains the durable attribution path for actual leads. */}
       <Script
         id="gtag-src"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
-      <Script id="gtag-init" strategy="afterInteractive">
+      <Script id="gtag-init" strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -31,7 +36,7 @@ export default function TrackingScripts() {
 
       {metaPixelId ? (
         <>
-          <Script id="meta-pixel" strategy="afterInteractive">
+          <Script id="meta-pixel" strategy="lazyOnload">
             {`
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
