@@ -344,9 +344,13 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
+        {/* Hidden below md, where the StickyMobileCTA already pins a Call button
+            to the bottom of the screen (avoids the duplicate "Call" the audit
+            flagged on phones). Shown 768–1023px, where the sticky bar is hidden
+            but this drawer still renders, so tablet users keep a call action. */}
         <a
           href="tel:+13057331670"
-          className="mt-10 inline-flex items-center justify-center bg-[#2563eb] text-white font-semibold py-4 rounded-full text-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
+          className="mt-10 hidden md:inline-flex items-center justify-center bg-[#2563eb] text-white font-semibold py-4 rounded-full text-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
         >
           Call Now
         </a>

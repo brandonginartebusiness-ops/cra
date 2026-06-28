@@ -34,7 +34,7 @@ const footerCities = FOOTER_CITY_SLUGS.map((slug) =>
 const linkClass =
   "text-sm text-white/50 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm break-words";
 const headingClass =
-  "text-[0.65rem] font-semibold uppercase tracking-widest text-white/30 mb-3";
+  "text-[0.65rem] font-semibold uppercase tracking-widest text-white/55 mb-3";
 
 function FooterColumn({
   heading,
@@ -93,7 +93,7 @@ export default function Footer() {
               height={36}
               style={{ height: 36, width: "auto", maxWidth: 160 }}
             />
-            <p className="text-xs text-white/40 leading-relaxed max-w-[220px]">
+            <p className="text-xs text-white/55 leading-relaxed max-w-[220px]">
               Licensed Florida public adjusters. We fight for homeowners — never insurance companies. No recovery, no fee.
             </p>
           </div>
@@ -142,7 +142,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            className="text-white/40 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm"
+            className="text-white/55 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm"
           >
             <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" />
@@ -155,7 +155,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
-            className="text-white/40 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm"
+            className="text-white/55 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60 rounded-sm"
           >
             <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
@@ -165,10 +165,10 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-4 flex flex-col gap-3">
-          <p className="text-[11px] text-white/40 leading-relaxed max-w-4xl">
+          <p className="text-[11px] text-white/55 leading-relaxed max-w-4xl">
             <strong className="text-white/60">Disclaimer:</strong> Case results referenced on this website (including any specific recovery amounts) describe outcomes for individual clients in specific circumstances. Individual case results vary based on the facts of the claim, the insurance policy, applicable law, and other factors. Past results do not guarantee future outcomes. This website does not provide legal advice. No attorney-client relationship is created by use of this site.
           </p>
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-1 text-xs text-white/30">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-1 text-xs text-white/55">
             <p>&copy; {new Date().getFullYear()} Claim Remedy Adjusters. All rights reserved.</p>
             <p>License W549958 &mdash; Licensed Florida Public Adjuster</p>
           </div>
