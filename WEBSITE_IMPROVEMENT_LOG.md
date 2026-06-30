@@ -2356,3 +2356,27 @@ Sources for this cycle's external research: [web.dev — Core Web Vitals thresho
 Sources for this cycle's external research: [W3C WAI-ARIA APG — Dialog (Modal) Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
 
 ---
+
+## 2026-06-30 UTC — Cycle 66
+
+**Focus area:** #4 Technical SEO audit, seventh-pass depth follow-up (cycles 4/14/24/34/44/56 each covered this lane once before; cycle 63=#1, 64=#2, 65=#3 in this seventh pass, so this cycle continues it at #4).
+
+**Deploy gating:** Local `main` was stale at session start (same recurring shallow-clone artifact logged in 10+ prior cycles) — resynced via `git fetch origin main && git checkout -B main origin/main` (advanced from `4a44880` to `5803db0`, cycle 65's log commit). `git log --oneline --grep="^auto-improve:" --since="20 hours ago" main` returned **nothing** — last `auto-improve:` commit (`dd1a69e`, cycle 64's `PageTransition` CWV fix) was timestamped 2026-06-29 21:24 UTC, outside the 20h window. **Gate open — shipped this cycle.**
+
+**Method:** Re-verified the top SEO backlog item from cycle 56 (missing `BreadcrumbSchema` on 4 static pages) directly against current source, not the log. Confirmed all 4 pages still lacked the component. Read `BreadcrumbSchema.tsx` and confirmed its API (unchanged). Cross-referenced the existing usage pattern against `about/page.tsx`, `process/page.tsx`, `reviews/page.tsx`, `services/page.tsx`, and `do-i-need-a-public-adjuster/page.tsx` (all confirmed correct with the same 2-item `Home → Page` items array). Also re-ran `npm install && npx tsc --noEmit && npm run build` in a fresh sandbox (no prior `node_modules`) to confirm clean build baseline before and after the change.
+
+**Key findings:**
+- **Re-confirmed, not drifted — shipped verbatim:** `contact/page.tsx`, `faq/page.tsx`, `areas/page.tsx`, and `privacy/page.tsx` all still lacked `BreadcrumbSchema` — the exact gap cycle 56 identified 10 cycles ago. The component, its import path, and the items-array API are all unchanged from cycle 56's spec. No new SEO defects found this cycle beyond closing this standing item.
+- **Build health verified:** `npm run build` generates 64 routes (same count as cycle 56's clean build), no TypeScript errors, no new lint errors. Pre-existing 4 `Navbar.tsx` `react-hooks/static-components` errors are unchanged (confirmed via comparison against a stale-stash baseline; unrelated to any file touched this cycle).
+- **`areas/page.tsx` required a fragment wrapper** — unlike the other three pages (which wrap content in `PageTransition` or a `<main>`, giving a natural parent element), `AreasPage` previously returned `<AreasContent />` bare; wrapped in `<>...</>` to add the sibling `BreadcrumbSchema` script tag. Zero behavior or rendering change.
+- **No new external research needed this cycle** — the cycle 56 finding was specific, fully-spec'd, and confirmed unchanged; researching it again would add no new information. This is exactly the scenario where re-reading cycle 56's cited sources would be wasted effort per the log's standing "don't redo already-researched topics" rule.
+
+**Shipped this cycle:** `auto-improve: add BreadcrumbSchema to contact, faq, areas, and privacy pages` — commit `023d1ea`, pushed to main. Closes cycle 56's top SEO backlog item, which has sat at the top of the SEO queue for 10 cycles (gate-closed on every prior SEO-focused cycle since it was found). Now 9 of the 9 eligible static top-level pages carry `BreadcrumbList` structured data (the remaining pages — service-detail and city pages — are correctly handled by `ServicePageSchema`/`CityServiceSchema` inside their shared layout components, not page files).
+
+**Queued / flagged for next eligible cycle:**
+1. **Closed this cycle:** the cycle-56 missing-BreadcrumbSchema finding is now shipped across all 4 remaining pages.
+2. **Owner action required, still open, moderate priority:** set `VERCEL_DEEP_CLONE=true` on the `cra-opal` Vercel project so `sitemap.ts`'s per-route `git log` lookup correctly reads past the default 10-commit shallow clone. Until set, most routes' `lastModified` values are likely silently wrong (shallow-boundary-commit date, not true per-file date) on every production build.
+3. **Owner judgment call, no code change needed:** verify that `LocalBusinessSchema.tsx`'s `openingHoursSpecification` (Mon-Fri 08:00-18:00) still matches the live Google Business Profile — the only place business hours are stated in the codebase, with no on-page cross-check possible from this sandbox.
+4. All other backlog items from cycle 48's consolidated list (carried through cycles 49-65) remain open and unchanged — see those entries for the full list, including the standing a11y items from cycle 65 (WhatsApp contrast, `privacy/page.tsx` duplicate `<main>`, `CaseResultModal` focus trap, etc.) and the CWV items from cycle 64 (`LeadCaptureForm.tsx` `whileInView`-gated form flicker, remaining layered `whileInView` gates on inner-section components).
+
+---
