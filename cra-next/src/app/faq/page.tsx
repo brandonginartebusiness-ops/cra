@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import FAQ from "@/components/sections/FAQ";
 import FAQSchema from "@/components/seo/FAQSchema";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import PageTransition from "@/components/ui/PageTransition";
 
 export const metadata: Metadata = {
@@ -21,6 +22,12 @@ export default function FAQPage() {
   return (
     <PageTransition>
       <FAQSchema />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "FAQ", path: "/faq" },
+        ]}
+      />
       <div className="pt-24 bg-[#f0ede8]">
         <h1 className="sr-only">Florida Public Adjuster — Frequently Asked Questions</h1>
         <FAQ />

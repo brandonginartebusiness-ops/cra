@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AreasContent from "./AreasContent";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Public Adjuster Service Areas FL",
@@ -16,5 +17,15 @@ export const metadata: Metadata = {
 };
 
 export default function AreasPage() {
-  return <AreasContent />;
+  return (
+    <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Service Areas", path: "/areas" },
+        ]}
+      />
+      <AreasContent />
+    </>
+  );
 }
