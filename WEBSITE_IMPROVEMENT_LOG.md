@@ -2604,3 +2604,41 @@ Source for this cycle's external research: [Landing Page Message Match: Why Ad-t
 Sources for this cycle's external research: [Next.js Performance Optimization: The 2026 Complete Guide](https://dev.to/bean_bean/nextjs-performance-optimization-the-2026-complete-guide-1a9k).
 
 ---
+
+## 2026-06-30 18:10 UTC — Cycle 75
+
+**Focus area:** #3 Accessibility, eighth-pass depth follow-up (cycles 3/13/23/33/43/55/65 each covered this lane once before; cycle 73=#1, cycle 74=#2 in this eighth pass, so this cycle continues it at #3).
+
+**Deploy gating:** `git fetch origin main && git checkout main && git pull origin main` fast-forwarded `4a44880` → `be4e22a` cleanly (13 commits, cycles 67-74's work, already on `origin/main`). `git log --oneline --grep="^auto-improve:" --since="20 hours ago" main` returned `023d1ea` (the `BreadcrumbSchema` fix from cycle 66), timestamped 2026-06-30 00:09:59 UTC — **~18 hours before this cycle's 18:10 UTC start, inside the 20h window.** **Gate closed — research-only cycle, no code pushed regardless of findings.**
+
+**Method:** Re-verified every standing accessibility backlog item (first consolidated cycle 48, last fully re-verified cycle 65) directly against current source rather than trusting the log, to catch any drift from the 9 intervening cycles. Also ran one fresh check not yet covered in any prior accessibility pass: WCAG 2.2 SC 2.5.8 Target Size (Minimum), since the site predates that criterion's mainstream adoption and no prior cycle had checked tap-target dimensions against it.
+
+**Key findings — re-verified against live source, line numbers current as of this commit:**
+- **Confirmed STILL OPEN, unchanged, now 27 cycles unshipped (first flagged cycle 43):** white-on-WhatsApp-green contrast (`bg-[#25d366]` + `text-white`, ≈1.99:1) at all 5 known call sites — `WhatsAppFAB.tsx:29`, `CityPageLayout.tsx:306`, `ServicePageLayout.tsx:284`, `do-i-need-a-public-adjuster/page.tsx:393`, `ChatWidget.tsx:269`. Still the oldest, lowest-risk, highest-reach item in the entire backlog (5 one-line swaps, zero compliance surface).
+- **Confirmed STILL OPEN:** `privacy/page.tsx:13` still renders a redundant `<main>` nested inside the root layout's `<main id="main-content">` (`layout.tsx:94`) — still the only page doing this, still a 4-character fix.
+- **Confirmed STILL OPEN:** `StarRating.tsx`'s outer `<span aria-label="N stars">` (line 8) still lacks `role="img"`.
+- **Confirmed STILL OPEN:** `LeadCaptureForm.tsx:622`'s `text-white/80` submit sub-label (≈3.9:1, fails AA) on `bg-[#2563eb]` — fix is `text-white/95` (≈4.83:1), drives both English and Spanish copy via `t.ctaSub`.
+- **Confirmed STILL OPEN:** `ServicePageLayout.tsx` skips `<h1>` (line 88) straight to `<h3>` (line 115), no `<h2>` between — heading-order violation, all 8 service-detail pages.
+- **Confirmed STILL OPEN, scope corrected this cycle:** the unwrapped-landmark item applies to only **2** of the 3 components previously listed, not 3. Re-read all three outer containers directly: `WhatsAppFAB.tsx:16`'s outer `<div>` and `ChatWidget.tsx:210/232`'s outer `<div>`s are still bare siblings of `<main>`/`<Footer>` with no role or label. But `StickyMobileCTA.tsx:14-15` already has `role="region" aria-label="Quick contact"` on its outer container — confirmed via direct read, this was incorrectly carried as still-open since cycle 43/65. Correcting the backlog: fix scope is 2 files (`WhatsAppFAB.tsx`, `ChatWidget.tsx`), not 3.
+- **Confirmed STILL OPEN, unchanged:** zero `MotionConfig`/`reducedMotion` usage anywhere in `src/` (fresh grep, zero matches) — Framer Motion entrance variants in `src/lib/animations.ts` still don't honor `prefers-reduced-motion`.
+- **Confirmed STILL OPEN, unchanged:** `CaseResultModal.tsx` still has zero ARIA dialog semantics (`role="dialog"`/`aria-modal`/`aria-labelledby`), no focus-in-on-open, no focus trap, no focus-restore-on-close (fresh grep, zero matches across all relevant attributes). Implementation spec from cycle 65 (label the existing visible `<p>{result.type}</p>` at lines 101-103, point `aria-labelledby` at it, mirror `ChatWidget.tsx`'s cycle-33 focus-management pattern) still applies unchanged. Still recommending its own dedicated cycle with keyboard-only QA given it touches 42 live pages (8 service + 34 city).
+- **Confirmed correctly left untouched per this routine's own guardrail:** `LeadCaptureForm.tsx` still has zero `aria-invalid`/`aria-describedby` on phone-field validation errors — still flagged for human/owner review since it's lead-form-validation-adjacent, not auto-fixed.
+- **New this cycle — clean result, no fix needed:** Audited tap-target sizing against WCAG 2.2 SC 2.5.8 Target Size (Minimum), a 24×24 CSS-pixel AA floor not previously checked by any accessibility pass on this site (the criterion postdates most of the original build). Checked the smallest interactive elements: `Navbar.tsx`'s mobile hamburger button (`p-2` padding + 3×`h-0.5` bars with `gap-1.5`) computes to ≈36×34 CSS px — clears the 24×24 floor with margin. `WhatsAppFAB`/`ChatWidget` FABs are 56×56px (`w-14 h-14`). `StickyMobileCTA`'s "Call"/"Free Claim Review" buttons use `py-3` (12px vertical padding) plus text line-height, comfortably over 24px. No undersized targets found — closing this as a verified-clean check, not carrying it forward as an open item.
+
+**Shipped this cycle:** Nothing — blocked by deploy gating (`023d1ea`, ~18h old, inside the 20h window). No source files modified; all work was read-only `Read`/`Grep`/`Bash` plus one `WebSearch` query for current WCAG 2.2 SC 2.5.8 guidance.
+
+**Queued / flagged for next eligible cycle, in priority order (backlog re-verified this cycle, one scope correction applied — see above):**
+1. **Top priority, ready to ship verbatim, zero compliance surface, 27 cycles unshipped:** swap `text-white`→a dark token on the 5 WhatsApp-green call sites listed above.
+2. **Smallest diff available, ready to ship verbatim:** `privacy/page.tsx:13` — `<main>`→`<div>` (same className).
+3. **One-line, ready to ship:** add `role="img"` to `StarRating.tsx`'s outer `<span>` (line 8).
+4. **One-line, ready to ship:** `LeadCaptureForm.tsx:622` — `text-white/80`→`text-white/95`.
+5. **One-line, ready to ship:** `ServicePageLayout.tsx:115` — `<h3>`→`<h2>`.
+6. **Two-file (corrected from three), ready to ship, no restructuring:** `role="complementary"` + `aria-label` on `WhatsAppFAB.tsx:16` and `ChatWidget.tsx:210/232`'s outer containers only — `StickyMobileCTA.tsx` already has equivalent markup, drop it from this item's scope.
+7. **Single-file, sitewide:** `<MotionConfig reducedMotion="user">` in `MotionProvider.tsx`.
+8. **Needs its own dedicated cycle with keyboard-only QA, not a bundle item:** `role="dialog" aria-modal="true" aria-labelledby` + focus management + focus trap on `CaseResultModal.tsx`, affecting 42 live pages. Implementation spec finalized cycle 65, unchanged.
+9. **Closed, no longer open:** WCAG 2.2 SC 2.5.8 target-size audit — verified clean, do not re-check unless interactive markup changes.
+10. All other items from cycle 48's consolidated backlog (carried through cycles 49-74) remain open and unchanged — see those entries for the full list.
+
+Sources for this cycle's external research: [Understanding SC 2.5.8: Target Size (Minimum) — W3C WAI](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
+
+---
