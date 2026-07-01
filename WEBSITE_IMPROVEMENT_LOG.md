@@ -2960,3 +2960,33 @@ Commit: `auto-improve: iOS input zoom fix, hamburger tap target, active-voice CT
 5. All other prior backlog items from cycles 80–84 remain open and unchanged.
 
 Sources: [WebFX — Ultimate Guide to Lead Generation for Contractors 2026](https://www.webfx.com/blog/home-services/contractor-lead-generation-guide/); [VinzoTech — Home Services Lead Generation 15 Proven Strategies](https://vinzotech.com/home-services-lead-generation/); [GravityCerts — Improve Insurance Website Conversion Rate](https://gravitycerts.com/blog/improve-insurance-website-conversion-rate/); [ConvertCart — Insurance CRO 32 Time-Tested Ideas](https://www.convertcart.com/blog/insurance-conversion-rate-optimization); [DesignRush — CRO Statistics 2026](https://www.designrush.com/agency/conversion-optimization/trends/cro-statistics); [WebFX — CRO Trends 2026](https://www.webfx.com/blog/conversion-rate-optimization/cro-trends/); [CausalFunnel — 10 Hero Section Mistakes 2026](https://www.causalfunnel.com/blog/10-hero-section-mistakes-you-must-avoid-in-2026/); [VentureHarbour — 9 CRO Fixes for Better Landing Page Results 2026](https://ventureharbour.com/simple-cro-big-results/); [NetPartners — Landing Page Optimization Tactics 2026 18-Point Checklist](https://netpartners.marketing/landing-page-optimization-tactics-2026-cro-conversion-checklist/).
+
+## 2026-07-01 16:20 UTC — Cycle 86
+
+**Focus area:** #2 Core Web Vitals / page-speed benchmarking (ninth-pass depth — prior passes: cycles 2/12/22/32/42/54/64/74/82).
+
+**Deploy gating:** `git log --oneline --grep="^auto-improve:" --since="20 hours ago" origin/main` → `39d9bde` (auto-improve: iOS input zoom fix, hamburger tap target, active-voice CTA copy — Cycle 84, ~4h ago). **Gate closed — research-only cycle; no code pushed.**
+
+**Note on session state:** Local `main` was stale at session start (synced only to cycle 63 instead of cycle 85, a recurring shallow-clone artifact). The deploy gate check was incorrectly run against the stale local ref and returned "gate open." Two changes were committed and a log entry written before `git push` surfaced the non-fast-forward rejection. Upon `git fetch`, confirmed `39d9bde` is within the 20h window. Both commits were discarded via `git reset --hard origin/main`. No code was pushed to origin. This session's log entry now correctly reflects research-only status. Fix: always run the gate check against `origin/main` directly, not the local ref.
+
+**Method:** WebSearch (2 queries) on Next.js 16 CWV best practices and `dvh` viewport units for mobile hero sections (2026); code inspection of `Hero.tsx`, `ServiceImageCarousel.tsx`, `next.config.ts`, `layout.tsx`, `PreconnectHints.tsx`.
+
+**Key findings:**
+
+- **`@vercel/speed-insights` confirmed live in `layout.tsx`** — wired in a prior cycle, real-user CWV field data flowing. No action needed.
+- **`min-h-screen` → `min-h-[100dvh]` on Hero.tsx still unshipped** (lines 21–22, confirmed by reading origin/main directly). `100vh` in some mobile browsers equals the large-viewport height (address bar retracted), so on initial paint with the address bar visible the hero slightly overflows the visible area. `100dvh` matches the current visible viewport at paint time. Browser support is 95%+ as of 2026. **Ready to ship — smallest possible diff (2 class name changes), no compliance surface. Code change prepared and tested locally this cycle; reverted from push due to gate closure.** Push next eligible cycle.
+- **`ServiceImageCarousel.tsx` autoplay pause-on-hover still unshipped** — WCAG 2.2.2 requires pausable auto-advancing content > 5s. Carousel runs indefinitely; already respects `prefers-reduced-motion` but no pause on hover/focus. **Ready to ship — local fix prepared this cycle: `useRef` for `pausedRef`, checked inside `setInterval` callback, `onMouseEnter`/`onMouseLeave`/`onFocus`/`onBlur` handlers added to carousel container.** Push next eligible cycle, bundled with `dvh` fix.
+- **2026 CWV guidance** confirms: LCP ≤ 2.5s, INP ≤ 200ms, CLS ≤ 0.1 (thresholds unchanged). INP most-failed (43% of sites), typically from over-client-boundaried trees. CRA's architecture is already sound — server-rendered Hero, inlineCss, deferred Framer Motion, AVIF/WebP, preconnect hints. No new gaps found.
+- **`next.config.ts` is well-optimized** — AVIF/WebP, inline CSS, security headers, www→apex redirect, CSP Report-Only mode. No action needed this pass.
+
+**Shipped this cycle:** Nothing — gate closed. No source files modified on origin.
+
+**Queued / flagged for next eligible cycle, in priority order (first two are confirmed ready from local testing this session):**
+1. **READY — `Hero.tsx` lines 21–22: `min-h-screen` → `min-h-[100dvh]`** — spec-level mobile viewport fix, build and tsc verified this session.
+2. **READY — `ServiceImageCarousel.tsx`: add `pausedRef` + pause-on-hover/focus handlers** — WCAG 2.2.2 fix, build and tsc verified this session. Bundle with #1.
+3. **[OWNER DECISION NEEDED] Add `SocialProof.tsx` to homepage** between `RecentWins` and `About` — single import + one JSX line, highest-ROI unimplemented change per 6+ passes of research.
+4. All other backlog items from Cycle 85 queue remain open and unchanged.
+
+Sources: [DEV Community — Fix LCP, INP & CLS in 2026](https://dev.to/dharanidharan_d_tech/fix-lcp-inp-cls-in-2026-the-complete-core-web-vitals-guide-with-real-benchmarks-54cl); [DigitalApplied — Core Web Vitals 2026](https://www.digitalapplied.com/blog/core-web-vitals-2026-inp-lcp-cls-optimization-guide); [Medium — Mobile Viewport Units dvh/svh/lvh](https://medium.com/@tharunbalaji110/understanding-mobile-viewport-units-a-complete-guide-to-svh-lvh-and-dvh-0c905d96e21a); [ishadeed.com — New Viewport Units](https://ishadeed.com/article/new-viewport-units/).
+
+---
