@@ -2990,3 +2990,52 @@ Sources: [WebFX — Ultimate Guide to Lead Generation for Contractors 2026](http
 Sources: [DEV Community — Fix LCP, INP & CLS in 2026](https://dev.to/dharanidharan_d_tech/fix-lcp-inp-cls-in-2026-the-complete-core-web-vitals-guide-with-real-benchmarks-54cl); [DigitalApplied — Core Web Vitals 2026](https://www.digitalapplied.com/blog/core-web-vitals-2026-inp-lcp-cls-optimization-guide); [Medium — Mobile Viewport Units dvh/svh/lvh](https://medium.com/@tharunbalaji110/understanding-mobile-viewport-units-a-complete-guide-to-svh-lvh-and-dvh-0c905d96e21a); [ishadeed.com — New Viewport Units](https://ishadeed.com/article/new-viewport-units/).
 
 ---
+
+---
+
+## 2026-07-01 18:13 UTC — Cycle 87
+
+**Focus area:** #3 Accessibility audit — ninth-pass depth (per rotation: cycles 85=#1, 86=#2, so this cycle continues at #3; prior Accessibility passes: cycles 3/13/23/33/43/53/63/73/83).
+
+**Deploy gating:** `git fetch origin main` pulled 31 new commits; gate check run against `origin/main` directly (not the local ref — standing practice since cycle 86's stale-ref false-clear). `git log --oneline --grep="^auto-improve:" --since="20 hours ago" origin/main` returned 5 commits (`39d9bde`, `93b6619`, `8cb77fe`, `87642ac`, `4a5a787`) — most recent `39d9bde` (cycle 84's mobile/copy bundle) well within the 20h window. **Gate closed — research-only cycle, no code pushed.**
+
+**Method:** Fresh `Read`/`grep` of each file in the standing a11y backlog (cycle 82 items #2–#7): `privacy/page.tsx`, `StarRating.tsx`, `LeadCaptureForm.tsx` (line 622), `ServicePageLayout.tsx` (line 115), `WhatsAppFAB.tsx`, `ChatWidget.tsx`, `MotionProvider.tsx`. Separately, executed the long-queued focus-order/keyboard-trap audit of `LeadCaptureForm.tsx`'s multi-step flow and `ChatWidget.tsx`'s open/close panel that cycle 23's operational note flagged for "cycle 33+" and that no prior cycle had actually completed (54 cycles later). Also read `globals.css` lines 88–130 to understand the existing `prefers-reduced-motion` CSS coverage and determine whether Framer Motion's JS-driven animations are also covered.
+
+**Key findings:**
+
+- **Long-queued focus-order audit completed — both components pass, no gap.** `LeadCaptureForm.tsx` already correctly manages focus across the multi-step flow: `step2HeadingRef` and `successHeadingRef` (lines 77-78) are focused via a `useEffect` keyed on `status` (lines 82-85) — the correct WCAG-compliant pattern for a single-page form where one `<form>` replaces another without a page reload. `ChatWidget.tsx` also correctly manages focus: on open, `inputRef.current?.focus()` fires after 350ms (line 111); on Escape, focus is explicitly returned to the `desktopTriggerRef`/`mobileTriggerRef` button (lines 119-126). Neither component has a focus trap — both handle keyboard dismiss correctly instead, which is appropriate for non-modal widgets. **This item is now closed.**
+
+- **New, meaningful finding: `MotionProvider.tsx` has no `MotionConfig reducedMotion="user"` — Framer Motion JS animations do not respect the OS `prefers-reduced-motion` setting.** `globals.css` does include two `@media (prefers-reduced-motion: reduce)` blocks (lines 92–94 and 120–130) that cover the site's CSS-animation-only classes (`.cra-aurora`, `.hero-fade`, `.page-fade`). But all Framer Motion `<m.div>` / `<m.section>` animated elements across the site (~30 components using `fadeInUp`/`slideInLeft`/etc.) are driven by JavaScript and bypass those CSS media queries entirely. Confirmed via repo-wide grep: no `MotionConfig`, no `reducedMotion` prop, no `useReducedMotion` hook appears anywhere in `src/`. WCAG 2.3.3 (Animation from Interactions, Level AAA — but also a usability baseline for vestibular-disorder users) requires that animations triggered by interaction can be disabled. For a site whose entire scroll-reveal design relies on Framer Motion, this is a real gap. **Concrete, low-risk fix:** add `MotionConfig` to the import in `MotionProvider.tsx` and wrap `{children}` inside a `<MotionConfig reducedMotion="user">` element (4-line change). This takes effect globally — every `<m.*>` component sitewide will immediately read and honor the user's OS motion-sensitivity preference.
+
+- **`StarRating.tsx:8` — outer `<span>` has `aria-label` but no `role="img"` — confirmed still absent.** A `<span>` has the `generic` ARIA role by default; `aria-label` on a `generic` element is allowed by ARIA 1.2 but is not guaranteed to be exposed as an accessible name by all browser/screen-reader combinations (some AT implementations suppress accessible names on generic roles unless they have an explicit role). Adding `role="img"` makes the element an image landmark with an accessible name ("5 stars") — the unambiguous correct pattern for decorative star-rating markup per ARIA authoring practices. Fix: add `role="img"` to `StarRating.tsx:8`.
+
+- **`ServicePageLayout.tsx:115` — `<h3>` skips a heading level — confirmed unchanged.** Section 2 of every service page uses `<h1>` at line 88 (the page title) then jumps directly to `<h3>` "What We Handle" at line 115 with no `<h2>` in between. The next two `<h2>` elements (lines 256 and 276) correctly use `<h2>` for later sections — the skip is isolated to this one "What We Handle" heading. WCAG 1.3.1 (Info and Relationships, Level A — not AAA). Fix: change `<h3>` at line 115 to `<h2>`.
+
+- **`LeadCaptureForm.tsx:622` — `text-white/80` contrast 3.87:1 on 12px `ctaSub` text — confirmed unchanged.** 80% opacity white on `#2563eb` blue computes to approximately `#D3E0FB`, which against `#2563eb` yields 3.87:1 — below the 4.5:1 WCAG AA threshold for normal text; 12px is not large text. Fix: `text-white/95` → approximately `#F4F7FE` → 4.79:1 (passes AA).
+
+- **`privacy/page.tsx:14` — nested `<main>` — confirmed.** `layout.tsx:94` renders `<main id="main-content">` globally; `privacy/page.tsx:14` wraps its entire content in a second `<main>`. HTML5 spec and ARIA both state that a `<main>` landmark must be unique per page; nested `<main>` elements make the landmark structure ambiguous for screen readers that use landmark navigation. Fix: change `<main>` → `<div>` at the outer wrapper in `privacy/page.tsx` (and its matching closing tag at the end of the file — the `<div className="max-w-3xl ...">` at line 21 is already a `<div>`, so only the outer `<main>` needs to change).
+
+- **`role="complementary"` on `WhatsAppFAB.tsx`/`ChatWidget.tsx` outer containers — re-assessed, dropping from active queue.** Read both files in full. `WhatsAppFAB.tsx` is a single `<a>` with `aria-label="Chat on WhatsApp"` inside a `<div>` — the link is already accessible via tab navigation and its label. `ChatWidget.tsx`'s trigger buttons already have descriptive `aria-label` attributes (`"Open chat"`, `"Contact us"`, `"Close chat"`). Adding `role="complementary"` would be a landmark-navigation enhancement, not a WCAG requirement. Removing from the active queue to reduce noise — can be revisited in a dedicated a11y-enhancement pass if desired.
+
+- **No regressions found in cycle 84's shipped changes.** Re-confirmed: `LeadCaptureForm.tsx:51` reads `text-base` (iOS auto-zoom fix shipped); `Navbar.tsx:290` has `min-h-[44px] min-w-[44px] items-center justify-center` (tap target shipped); `Hero.tsx:70` reads "Prefer to talk? Call (305) 733-1670"; `dictionaries.ts:146` reads "We call you within the hour." All four cycle-84 changes are intact.
+
+**Shipped this cycle:** Nothing — gate closed (5 auto-improve commits within the 20h window).
+
+**Queued / flagged for next eligible cycle, in priority order:**
+
+1. **Recommended a11y bundle for the next open-gate cycle (5 files, all small isolated edits, zero compliance surface):**
+   - `MotionProvider.tsx` — add `MotionConfig` import + `<MotionConfig reducedMotion="user">` wrapper around `{children}` (4-line change; closes WCAG 2.3.3 gap for all Framer Motion animations sitewide).
+   - `StarRating.tsx:8` — add `role="img"` to the outer `<span>` (1-character addition).
+   - `ServicePageLayout.tsx:115` — `<h3>` → `<h2>` (1-character change, WCAG 1.3.1 Level A).
+   - `LeadCaptureForm.tsx:622` — `text-white/80` → `text-white/95` (3-character change, AA contrast fix).
+   - `privacy/page.tsx:14` — outer `<main>` → `<div>` (and its closing tag; nested landmark fix).
+2. Carried from cycle 86, confirmed ready from local testing in that cycle: `Hero.tsx:21–22` `min-h-screen` → `min-h-[100dvh]`; `ServiceImageCarousel.tsx` pause-on-hover/focus handlers (WCAG 2.2.2). CWV lane.
+3. Carried from cycle 14/27, still the oldest item in the full backlog: fix the 12-page `<title>` duplication/overlength bug (cycle 14). SEO lane.
+4. Carried from cycle 4, now 83 cycles old: remove ineligible `review`/`aggregateRating` from `LocalBusinessSchema.tsx`. SEO lane. Items 3+4 should ship as one SEO-only commit.
+5. Carried from cycle 84, still the highest-value owner-decision item: `[OWNER DECISION NEEDED]` add `SocialProof.tsx` between `RecentWins` and `About` in `page.tsx` — single import + one JSX line, research-confirmed highest-ROI unimplemented change.
+6. Backend cluster, carried from cycle 25/27: `export const maxDuration` on `leads/route.ts` and `chat/route.ts`; `event_id` dedup on the Step-1 INSERT; `fetchWithTimeout` wrapper on Resend/Twilio/Meta CAPI calls; in-memory or Upstash-backed rate limiting.
+7. Owner-facing, requires Vercel dashboard access: WAF rate-limit rule on `/api/leads`, `/api/leads/upload`, `/api/chat`.
+8. Owner decision pending: exit-intent popup; Florida claim-filing-deadline urgency copy (legal sign-off); real adjuster photo near the lead form; abandonment-recovery capture (TCPA questions); booking/scheduling flow; missed-call text-back telephony decision.
+9. Owner-facing, not auto-fixable: root `screenshot.mjs` has no installed dependencies.
+10. **Closed this cycle — do not re-audit:** focus-order/keyboard-trap in `LeadCaptureForm.tsx` (multi-step) and `ChatWidget.tsx` — both pass; no gap found; cycle 23's standing "audit in cycle 33+" note is now satisfied.
+
