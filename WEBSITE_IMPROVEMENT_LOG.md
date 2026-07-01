@@ -2854,3 +2854,35 @@ Sources for this cycle's external research: [Copywriting Formulas: AIDA, PAS & M
 9. **Flagged for owner:** Hero sub-headline close — "That's what an advocate does." → "That's the gap we close." (owner to confirm $18K/$147K case is current before exposing 8× multiplier); Pricing section FAB benefit-language reframe (requires owner sign-off on each bullet).
 10. All prior cycle backlog items remain open and unchanged.
 
+
+---
+
+## 2026-07-01 10:10 UTC — Cycle 83
+
+**Focus area:** #9 Mobile UX — ninth-pass depth (cycles 9/19/29/39/49/59/69/79 each covered this lane; cycles 73–82 ran the eighth pass at #1–#8; this cycle extends it to #9).
+
+**Deploy gating:** `git fetch origin main` → fetched 24 previously-orphaned commits (Cycles 73–82, including Cycle 82's WhatsApp-contrast `auto-improve` at `93b6619`). `git log --oneline --grep="^auto-improve:" --since="20 hours ago" origin/main` returned 4 commits (most recent: `93b6619` from Cycle 82, ~2h before this cycle). **Gate closed — research-only cycle.**
+
+**Method:** Read all 4 key mobile-path components in full — `StickyMobileCTA.tsx`, `Navbar.tsx`, `Hero.tsx`, `LeadCaptureForm.tsx` — and traced the mobile user journey from landing to form submit. Confirmed open backlog items against current source before logging new findings. Subagent research queries hit network blocks (403 Forbidden on multiple fetch targets); relied on code-level analysis + practitioner-known standards for findings this cycle.
+
+**Key findings (code-level, all verified against current source):**
+
+- **iOS auto-zoom on all form inputs — confirmed still open.** `LeadCaptureForm.tsx:51` — `inputClass` constant includes `text-sm` (14px). iOS Safari auto-zooms any input focused at <16px font-size; this interrupts the form flow on all iPhones and is the #1 source of "the site feels broken on mobile" user feedback class. Fix: change `text-sm` → `text-base` in `inputClass` (one character delta, affects all 6 field types across Step 1 and Step 2 uniformly). Confirmed as backlog item since Cycle 43; still unshipped. **Ready to ship on next eligible cycle.**
+- **Hamburger tap target is below WCAG 2.5.5 minimum — new finding this cycle.** Navbar.tsx hamburger button (line 288) has `p-2` (8px padding). Inner bar area: 3 bars × `h-0.5` (2px) + 2 gaps × `gap-1.5` (6px) = 18px; plus `2×8px` padding = **34px total height, 36px total width** — both below the 44×44px AA minimum target size. On high-DPI phones (375px viewport) this is a frequent miss-tap driver. Fix: add `min-h-[44px] min-w-[44px] items-center justify-center` to the button's className (purely additive CSS, no layout impact). **New item, ready to ship.**
+- **Hero on mobile: form is below fold — by design, StickyMobileCTA is the mobile conversion path.** On a 375px viewport the `grid-cols-1 lg:grid-cols-[...]` hero stacks copy (headline, subtext, phone CTA, scorecard) above the form. The sticky bar (`md:hidden fixed bottom-0`) provides persistent "Call" and "Free Claim Review" CTAs on every scroll position. This is the correct architecture for this site — no change needed.
+- **Mobile menu has no phone CTA on phones — intentional and correct.** The mobile drawer's "Call Now" button is `hidden md:inline-flex` (hidden below 768px) with a comment explaining the StickyMobileCTA deduplication logic. Correct — no change needed.
+- **StickyMobileCTA tap targets are adequate.** Both buttons use `py-3` (12px vertical padding); combined with `text-sm` line-height (~20px), total ≈ 44px — meets WCAG 2.5.5. Both have `focus-visible:ring-2` states. ✓
+- **Cycle 81 copy fixes re-confirmed as unshipped.** `Hero.tsx:70` still has "Or call (305) 733-1670"; `dictionaries.ts:146` still has `ctaSub: "Called back within the hour."`. Both ready to ship alongside the iOS fix next eligible cycle — all three are in the same 2-file change set.
+
+**Shipped this cycle:** Nothing — gate closed. No source files modified; `git status` clean.
+
+**Queued / flagged for next eligible cycle, in priority order:**
+1. **Three-fix bundle, all confirmed ready to ship verbatim (2 files, ~5 lines total, zero compliance surface):**
+   - `cra-next/src/components/ui/LeadCaptureForm.tsx:51` — `text-sm` → `text-base` in `inputClass` (iOS auto-zoom fix)
+   - `cra-next/src/components/layout/Navbar.tsx:290` — add `min-h-[44px] min-w-[44px] items-center justify-center` to hamburger button className (WCAG 2.5.5 tap target fix, new this cycle)
+   - `cra-next/src/i18n/dictionaries.ts:146` — `"Called back within the hour."` → `"We call you within the hour."` (active-voice copy, Cycle 81)
+   - Plus `cra-next/src/components/sections/Hero.tsx:70` — `"Or call (305) 733-1670"` → `"Prefer to talk? Call (305) 733-1670"` (CTA positioning, Cycle 81)
+   - All 4 changes can ship in a single `auto-improve` commit; build-verify required before push.
+2. **Strongest remaining single action:** wire `Reviews.tsx` onto the homepage between `RecentWins` and `About` (PASTOR T-layer, WikiJob proximity lift, 20+ cycles old, framework-backed from Cycle 81).
+3. All prior backlog items from Cycles 80–82 remain unchanged and open — see Cycle 82 queue for full ordered list.
+
