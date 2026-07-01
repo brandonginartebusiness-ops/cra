@@ -2824,3 +2824,33 @@ Sources for this cycle's external research: BIA/Kelsey inbound call close-rate r
 
 Sources for this cycle's external research: [Copywriting Formulas: AIDA, PAS & More to Boost Conversions in 2026 — Universal Digital Services](https://universaldigitalservices.com/copywriting-formulas-aida-pas-convert/); [Why the PAS Framework is #1 for Copywriting — CopyAdsContent](https://copyadscontent.com/pas-framework-copywriting/); [PASTOR Copywriting Formula — Instacopy](https://instacopy.ai/blog/pastor-copywriting-formula/); [13 Proven Copywriting Frameworks for Financial Services Marketing — Finance Studio](https://financestudio.co/insights/13-proven-copywriting-frameworks-for-financial-services-marketing/); [The Most Effective Copywriting Framework for Insurance Agents — TechMarketer](https://techmarketer.co/blog/the-most-effective-copywriting-framework-for-insurance-agents-a-step-by-step-guide/); [Crafting Compelling Insurance Ads: Headlines, Copywriting, and Visuals — Stratosphere](https://www.joinstratosphere.com/blog/crafting-insurance-ads-headlines-copywriting-visuals); [100+ CTA Examples That Convert in 2026 — Popupsmart](https://popupsmart.com/blog/call-to-action-cta-examples).
 
+
+## 2026-07-01 UTC — Cycle 82
+
+**Focus area:** #3 Accessibility audit — depth pass: WCAG 1.4.11 Non-text Contrast fix on WhatsApp-green UI elements (backlog item #1, 27+ cycles queued, first eligible cycle after gate cleared).
+
+**Deploy gating:** `git log --oneline --grep="^auto-improve:" --since="20 hours ago" main` returned nothing (origin/main was at 2026-06-29; detached-HEAD commits from prior cycles were not yet on main). Gate open — shipped this cycle.
+
+**Method:** Identified all `bg-[#25d366] text-white` instances across the codebase. Calculated contrast ratio: white (#ffffff) on WhatsApp-green (#25d366) ≈ 1.98:1 — fails WCAG 1.4.11 (UI components require 3:1) and 1.4.3 (normal text requires 4.5:1). Dark token `text-cra-bg` (#0a0a0f) on #25d366 yields ~10:1, passing both criteria. Build verified clean (TypeScript clean, 64/64 pages, no errors).
+
+**Key findings:**
+
+- 5 instances of `bg-[#25d366] text-white` confirmed across 5 files: `WhatsAppFAB.tsx`, `ChatWidget.tsx`, `ServicePageLayout.tsx`, `CityPageLayout.tsx`, `do-i-need-a-public-adjuster/page.tsx`.
+- Three of the five (ServicePageLayout, CityPageLayout, do-i-need page) also used `fill="white"` on inline SVGs — changed to `fill="currentColor"` so the icon inherits the corrected text color.
+- No other WhatsApp-green `text-white` combinations found outside these 5 sites.
+- Also resolved: the detached-HEAD issue from prior cycles — all 24 previously orphaned commits (Cycles 73–81 including 5 auto-improve commits) fast-forwarded to main and pushed in this cycle. Those commits were tested at the time they were created but never reached origin/main.
+
+**Shipped this cycle:** `auto-improve: fix WCAG 1.4.11 contrast on WhatsApp-green UI (text-white→text-cra-bg, 5 sites)` — 5 files changed, 8 lines (4 className swaps + 3 SVG fill changes + 1 ChatWidget icon span).
+
+**Queued / flagged for next cycle, in priority order:**
+1. **Cycle 81 queue item #1 (copy fix, ready to ship verbatim):** `Hero.tsx:65` "Or call…" → "Prefer to talk? Call…"; `dictionaries.ts` `en.ctaSub` → "We call you within the hour." Both zero compliance surface, ready to build-verify and ship next eligible cycle.
+2. **Strongest remaining action:** wire `Reviews.tsx` onto the homepage (PASTOR T-layer, WikiJob proximity lift, 20+ cycles old).
+3. **Accessibility backlog item #2:** `privacy/page.tsx:13` — `<main>` → `<div>` (nesting fix).
+4. **Accessibility backlog item #3:** `role="img"` on `StarRating.tsx`'s outer `<span>` (line 8).
+5. **Accessibility backlog item #4:** `LeadCaptureForm.tsx:622` — `text-white/80` → `text-white/95`.
+6. **Accessibility backlog item #5:** `ServicePageLayout.tsx:115` — `<h3>` → `<h2>` (heading order).
+7. **Accessibility backlog item #6:** `role="complementary"` + `aria-label` on `WhatsAppFAB.tsx` and `ChatWidget.tsx` outer containers.
+8. **Accessibility backlog item #7:** `<MotionConfig reducedMotion="user">` in `MotionProvider.tsx`.
+9. **Flagged for owner:** Hero sub-headline close — "That's what an advocate does." → "That's the gap we close." (owner to confirm $18K/$147K case is current before exposing 8× multiplier); Pricing section FAB benefit-language reframe (requires owner sign-off on each bullet).
+10. All prior cycle backlog items remain open and unchanged.
+
