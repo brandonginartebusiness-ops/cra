@@ -13,6 +13,35 @@ export const maxDuration = 30;
 const UUID_REGEX =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
+// Per-instance in-memory rate limiter: max 5 lead submissions per IP per 10 min.
+// Each outbound call (Resend + Twilio + Meta CAPI) costs real money, so we're
+// stricter here than the chat route's 20/10min. Per-instance caveat: Vercel can
+// run multiple warm instances — this catches the common single-instance bot/retry
+// case, not a cross-instance global guarantee. Pair with a Vercel WAF rule for
+// cross-instance enforcement.
+const leadsRateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const LEADS_RATE_LIMIT = 5;
+const LEADS_RATE_WINDOW_MS = 10 * 60 * 1000;
+
+function checkLeadsRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const entry = leadsRateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    leadsRateLimitMap.set(ip, { count: 1, resetAt: now + LEADS_RATE_WINDOW_MS });
+    return true;
+  }
+  if (entry.count >= LEADS_RATE_LIMIT) return false;
+  entry.count++;
+  return true;
+}
+
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, entry] of leadsRateLimitMap) {
+    if (now > entry.resetAt) leadsRateLimitMap.delete(ip);
+  }
+}, LEADS_RATE_WINDOW_MS);
+
 function parseCookies(header: string | null): Record<string, string> {
   if (!header) return {};
   const out: Record<string, string> = {};
@@ -82,6 +111,18 @@ export async function POST(request: NextRequest) {
     const contentLength = request.headers.get('content-length');
     if (contentLength && parseInt(contentLength, 10) > 32_768) {
       return NextResponse.json({ error: 'Payload too large' }, { status: 413 });
+    }
+
+    // Rate limit before parsing the body to minimize work for bot traffic
+    const clientIpForRateLimit =
+      firstIp(request.headers.get('x-forwarded-for')) ??
+      request.headers.get('x-real-ip') ??
+      'unknown';
+    if (!checkLeadsRateLimit(clientIpForRateLimit)) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please wait a few minutes and try again.' },
+        { status: 429 }
+      );
     }
 
     const body = await request.json();
