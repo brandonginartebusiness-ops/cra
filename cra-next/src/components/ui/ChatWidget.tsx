@@ -266,7 +266,7 @@ export default function ChatWidget() {
                 transition={{ duration: 0.15 }}
                 className="flex items-center gap-2.5 h-12 pl-3 pr-4 rounded-full bg-white text-[#1a1a2e] shadow-[0_4px_20px_rgba(0,0,0,0.18)] text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25d366]/60"
               >
-                <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[#25d366] text-white flex items-center justify-center">
+                <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[#25d366] text-cra-bg flex items-center justify-center">
                   <WhatsAppIcon className="w-4 h-4" />
                 </span>
                 WhatsApp
