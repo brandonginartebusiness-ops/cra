@@ -2929,3 +2929,34 @@ Commit: `auto-improve: iOS input zoom fix, hamburger tap target, active-voice CT
 4. **`InstagramFeed.tsx` hover-caption gap** — cosmetic (confirmed open since Cycle 9).
 5. All other prior backlog items from cycles 80–83 remain open and unchanged.
 
+
+
+---
+
+## 2026-07-01 ~14:00 UTC — Cycle 85
+
+**Focus area:** #1 CRO — ninth-pass depth (cycles 1/11/21/31/41/51/61/71 were prior passes at this lane; cycle 85 continues it after all 10 lanes were visited in the eighth and now-complete ninth pass).
+
+**Deploy gating:** `git log --oneline --grep="^auto-improve:" --since="20 hours ago" origin/main` returned `39d9bde` (Cycle 84's iOS input zoom / hamburger / copy commit, within the 20h window). **Gate closed — research-only cycle.**
+
+**Method:** Read current state of `Hero.tsx`, `LeadCaptureForm.tsx` (Step 1 and Step 2 JSX blocks), and `dictionaries.ts` to establish baseline post-Cycle-84 ships. Ran 4 WebSearch queries: (1) local-service lead gen CRO above-the-fold best practices 2026; (2) public adjuster website trust signals / CRO 2026; (3) hero 5-second test clarity conversion lift home services 2025–2026; (4) exit-intent / sticky CTA / progress-bar form-completion A/B test data 2026.
+
+**Key findings:**
+
+- **Hero passes the 5-second test — no change needed.** "We recover what your insurer won't pay." is unambiguous at a glance. The $18K→$147K contrast immediately communicates the value gap; "Free Claim Review" CTA is visible without scrolling on desktop; scorecard includes "FL / Licensed statewide," "$0 upfront, ever," and "5.0 / 5 Google rating." All three trust categories (outcome proof, geographic scope, social proof meta-score) are above the fold. Static layout outperforms sliders by 25-40% CTR per 2026 practitioner data — CRA already uses a static hero. ✓
+- **Multi-step form lacks Step 1 progress orientation text — new finding, LOW priority.** Step 1 has no "Step 1 of 2" label; the 2-step nature of the form is invisible to the user before they submit. However, this is deliberate architecture: hiding the 2-step nature reduces pre-fill anxiety (users see a short form, not a multi-step commitment). Adding "Step 1 of 2" would set expectations but risks signaling complexity to a prospect who sees a quick-fill form. Net verdict: do NOT add "Step 1 of 2" to Step 1 — the current light-touch architecture is correct. Step 2 already has the "Got it — we'll call within the hour" confirmation badge that anchors commitment and reframes Step 2 as optional enrichment rather than a mandatory second gate. No change needed.
+- **`min-h-screen` → `min-h-[100dvh]` confirmed still unshipped in `Hero.tsx`.** Both line 21 and line 22 still use `min-h-screen`. This fix has been queued since Cycle 83 addendum (spec-level `dvh` unit corrects for dynamic browser chrome on iOS/Android; `100vh` overestimates viewport height when the address bar is visible and slightly cuts off the bottom of the hero). Two-character delta per instance (`screen` → `[100dvh]`), zero compliance surface. **Ready to ship next eligible cycle.**
+- **Sticky CTA architecture validated by 2026 A/B data.** Long-form sticky CTAs show 8–15% lift on pages over 2 fold-heights (ConvertCart, Shopify CRO 2026). CRA's `StickyMobileCTA` covers mobile; desktop users rely on the in-view form (which is above the fold). Post-Cycle-84 hamburger fix raised tap targets to 44×44px. Architecture is optimal — no change needed.
+- **Trust-signal specificity rule confirmed.** 2026 CRO research across GravityCerts, ConvertCart, Stratosphere, DesignRush: "specificity in trust signals matters — generic claims perform poorly compared to proof tied to how customers evaluate service providers." CRA's $18K→$147K is specific and quantified. The closing "That's what an advocate does." remains the one weak link — editorial, third-person, and dilutes the quantified contrast. Owner-flagged change from Cycle 81 remains the highest-value copy fix pending sign-off.
+- **Social proof gap confirmed again via 2026 research.** "93% of consumers read reviews before engaging a service business" (Nudgify, Infinity Web Coders). CRA still has zero review text visible on the homepage at any scroll depth. `SocialProof.tsx` is production-ready; adding it between `RecentWins` and `About` is one import + one JSX line in `page.tsx`. Still the #1 unimplemented action — still requires owner approval per CLAUDE.md's "Do not add sections not requested" guardrail.
+
+**Shipped this cycle:** Nothing — gate closed. No source files modified.
+
+**Queued / flagged for next eligible cycle, in priority order:**
+1. **`Hero.tsx` lines 21–22: `min-h-screen` → `min-h-[100dvh]`** — two-character delta, spec-level correctness fix, ready to build-verify and ship. Can bundle with any other ready items in one `auto-improve` commit.
+2. **[OWNER DECISION NEEDED] Add `SocialProof.tsx` between `RecentWins` and `About` in `src/app/page.tsx`** — single import + one JSX line, highest-ROI unimplemented change.
+3. **[OWNER DECISION NEEDED] Hero sub-headline close:** "That's what an advocate does." → "That's the gap we close." (owner to confirm $18K/$147K case is current; 8× multiplier framing also pending owner confirmation).
+4. **Accessibility backlog items #2–#7** from Cycle 82 queue — all confirmed still open.
+5. All other prior backlog items from cycles 80–84 remain open and unchanged.
+
+Sources: [WebFX — Ultimate Guide to Lead Generation for Contractors 2026](https://www.webfx.com/blog/home-services/contractor-lead-generation-guide/); [VinzoTech — Home Services Lead Generation 15 Proven Strategies](https://vinzotech.com/home-services-lead-generation/); [GravityCerts — Improve Insurance Website Conversion Rate](https://gravitycerts.com/blog/improve-insurance-website-conversion-rate/); [ConvertCart — Insurance CRO 32 Time-Tested Ideas](https://www.convertcart.com/blog/insurance-conversion-rate-optimization); [DesignRush — CRO Statistics 2026](https://www.designrush.com/agency/conversion-optimization/trends/cro-statistics); [WebFX — CRO Trends 2026](https://www.webfx.com/blog/conversion-rate-optimization/cro-trends/); [CausalFunnel — 10 Hero Section Mistakes 2026](https://www.causalfunnel.com/blog/10-hero-section-mistakes-you-must-avoid-in-2026/); [VentureHarbour — 9 CRO Fixes for Better Landing Page Results 2026](https://ventureharbour.com/simple-cro-big-results/); [NetPartners — Landing Page Optimization Tactics 2026 18-Point Checklist](https://netpartners.marketing/landing-page-optimization-tactics-2026-cro-conversion-checklist/).
