@@ -3039,3 +3039,50 @@ Sources: [DEV Community — Fix LCP, INP & CLS in 2026](https://dev.to/dharanidh
 9. Owner-facing, not auto-fixable: root `screenshot.mjs` has no installed dependencies.
 10. **Closed this cycle — do not re-audit:** focus-order/keyboard-trap in `LeadCaptureForm.tsx` (multi-step) and `ChatWidget.tsx` — both pass; no gap found; cycle 23's standing "audit in cycle 33+" note is now satisfied.
 
+
+---
+
+## 2026-07-01 20:20 UTC — Cycle 88
+
+**Focus area:** #4 Technical SEO audit — ninth-pass depth (prior passes: cycles 4/14/24/34/44/56/66/76; cycles 85–87 ran the ninth pass at #1–#3; this cycle continues at #4).
+
+**Deploy gating:** `git fetch origin main` pulled 31 new commits. Gate check run against `origin/main` directly. `git log --oneline --grep="^auto-improve:" --since="20 hours ago" origin/main` returned `39d9bde` (Cycle 84's mobile/copy bundle, 2026-07-01 12:15 UTC — ~7.75h before this cycle). **Gate closed — research-only cycle, no code pushed beyond this log entry.**
+
+**Method:** Read `LocalBusinessSchema.tsx` in full; grepped all service and top-level page.tsx files for `metadata.title` and `openGraph.title`; checked BreadcrumbSchema coverage across all route types; checked robots.txt and sitemap.ts; ran external research (WebSearch subagent) on 2026 title tag length best practices. Analyzed results of prior-cycle "oldest backlog items" for closed vs. open status.
+
+**Key findings:**
+
+- **Prior-cycle "oldest backlog items" are already resolved — closing them.** (a) `aggregateRating`/`review` removal from `LocalBusinessSchema.tsx` (queued since Cycle 4): confirmed absent from the current file — already removed in a prior cycle. (b) 12-page `<title>` duplication bug (Cycle 14): confirmed no duplication exists — all `metadata.title` fields across 19 pages are correctly brand-free (brand suffix added by template `"%s | Claim Remedy Adjusters"`); OG/Twitter titles include the brand explicitly, which is correct and separate from the HTML `<title>`. Both items are fully closed; removing from active queue.
+
+- **NEW finding: 3 pages have overlength title tags (>60 chars) — 99.9% SERP rewrite probability for the worst case.** Template is `%s | Claim Remedy Adjusters` (+25 chars). Pages where the base title exceeds 35 chars:
+  1. Homepage default (`layout.tsx:33`) — "Public Adjuster Miami | Claim Remedy Adjusters — Your Claim. Our Fight." = **71 chars** (99.9% Google-rewrite probability per Zyppy 2026 study; 71+ chars almost always rewritten)
+  2. `/services/appraisal` (`page.tsx:5`) — "Public Adjuster Insurance Appraisal FL" = 38 chars → **63 chars** with template
+  3. `/do-i-need-a-public-adjuster` (`page.tsx:10`) — "Do I Need a Public Adjuster in Florida?" = 39 chars → **64 chars** with template
+  
+  Research confirms: overlength titles are NOT a direct ranking penalty — Google reads the full HTML title for indexing regardless of display truncation. However, truncated SERP titles reduce CTR (the truncated display reduces user click-through, indirectly affecting rankings). All three fixes are 1-line metadata string changes, zero compliance surface. Build verified clean locally before reverting due to gate closure.
+
+- **Fixes confirmed ready to ship verbatim (exact strings, build-verified this session):**
+  1. `layout.tsx:33`: `"Public Adjuster Miami | Claim Remedy Adjusters — Your Claim. Our Fight."` → `"Miami Public Adjuster | Claim Remedy Adjusters"` (47 chars; geo-modifier first for local SEO; removes tagline from title tag where it belongs in content)
+  2. `src/app/services/appraisal/page.tsx:5`: `"Public Adjuster Insurance Appraisal FL"` → `"Public Adjuster Appraisal Florida"` (58 chars with template; preserves all core keywords)
+  3. `src/app/do-i-need-a-public-adjuster/page.tsx:10`: `"Do I Need a Public Adjuster in Florida?"` → `"Do I Need a Public Adjuster in FL?"` (59 chars with template; abbreviates state to stay under 60)
+
+- **BreadcrumbList confirmed comprehensive — no gap.** Top-level pages use standalone `BreadcrumbSchema`; service detail pages use `ServicePageSchema` which embeds `BreadcrumbList` in its `@graph`; city pages use `CityServiceSchema` which likewise embeds `BreadcrumbList`. All route types covered.
+
+- **robots.txt confirmed clean.** `User-agent: * / Allow: /` + sitemap reference. No `Disallow` directives — all content crawlable. Correct.
+
+- **Sitemap confirmed comprehensive.** All 20 static routes + N city area routes with git-dated `lastmod` values. Already includes the `VERCEL_DEEP_CLONE=true` caveat (shallow CI checkout may flatten dates — still owner-actionable, still open).
+
+- **`/services/water-damage` title is 61 chars — borderline, not shipping.** "Water Damage Insurance Claim Florida" = 36 chars; 61-char titles face ~76% rewrite probability per Zyppy data. However, 1 char over is borderline and changing "Insurance Claim" would reduce keyword specificity. Not worth the tradeoff.
+
+**Shipped this cycle:** Nothing — gate closed. Code changes built and verified locally but reverted before push.
+
+**Queued / flagged for next eligible cycle, in priority order:**
+
+1. **NEW this cycle, confirmed ready to ship verbatim, build-verified (3 files, 3 one-line metadata string changes):** overlength title tag fix bundle — `layout.tsx:33`, `services/appraisal/page.tsx:5`, `do-i-need-a-public-adjuster/page.tsx:10` (exact replacement strings above). Ship as one `auto-improve: shorten overlength title tags (homepage 71→47, appraisal 63→58, do-i-need 64→59 chars)` commit.
+2. Carried from cycle 87 queue item #1: **Recommended a11y bundle** — `MotionProvider.tsx` (`MotionConfig reducedMotion="user"`), `StarRating.tsx:8` (`role="img"`), `ServicePageLayout.tsx:115` (`<h3>` → `<h2>`), `LeadCaptureForm.tsx:622` (`text-white/80` → `text-white/95`), `privacy/page.tsx:14` (outer `<main>` → `<div>`).
+3. Carried from cycle 86, confirmed ready from local testing: `Hero.tsx:21–22` `min-h-screen` → `min-h-[100dvh]`; `ServiceImageCarousel.tsx` pause-on-hover/focus (WCAG 2.2.2).
+4. **[OWNER DECISION NEEDED]:** Add `SocialProof.tsx` between `RecentWins` and `About` in `src/app/page.tsx` — research-confirmed highest-ROI unimplemented change; requires owner sign-off per CLAUDE.md "do not add sections not requested" guardrail.
+5. Owner-facing: `VERCEL_DEEP_CLONE=true` on Vercel dashboard so sitemap `lastmod` dates reflect actual git history.
+6. All other prior backlog items from cycles 85–87 remain open and unchanged.
+
+Sources for this cycle's external research: [Meta Title Length Best Practices 2026 — Scalenut](https://www.scalenut.com/blogs/meta-title-length-best-practices-2026); [Google Rewrites 61% of Page Title Tags — Zyppy Study](https://zyppy.com/seo/google-title-rewrite-study/); [Ideal Title Tag Length for Google SEO — Zyppy](https://zyppy.com/title-tags/meta-title-tag-length/); [Next.js Metadata & SEO Guide — Stanza.dev](https://www.stanza.dev/concepts/nextjs-metadata-seo); [Local SEO Guide to Miami Search Results — VIP Tech Consulting](https://viptechconsulting.com/miami-local-seo-guide/).
