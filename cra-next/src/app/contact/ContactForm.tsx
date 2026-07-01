@@ -16,7 +16,7 @@ export default function ContactForm() {
           className="text-center mb-10"
         >
           <h2 className="font-bebas text-4xl md:text-5xl text-[#1a1a2e] leading-none tracking-tight mb-3">
-            Or Submit a Claim Review Request
+            Submit a Free Claim Review Request
           </h2>
           <p className="text-base text-[#5a5a72]">
             Fill out the form below and our team will call you within the hour.

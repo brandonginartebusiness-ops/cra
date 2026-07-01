@@ -105,7 +105,7 @@ export default function CityPageLayout({ city }: Props) {
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
-                href="/contact"
+                href="#lead-form"
                 className="inline-flex items-center justify-center gap-2 bg-cra-blue text-white font-semibold px-7 py-3.5 rounded-full hover:opacity-90 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)] transition-[opacity,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cra-blue/60"
               >
                 Get My Free Claim Review
@@ -247,7 +247,7 @@ export default function CityPageLayout({ city }: Props) {
       </section>
 
       {/* ── Section 5: Lead Form ──────────────────────────────────────── */}
-      <section className="bg-[#faf8f5] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
+      <section id="lead-form" className="bg-[#faf8f5] py-14 lg:py-28 border-t border-[#1a1a2e]/8">
         <div className="max-w-xl mx-auto px-6">
           <div className="text-center mb-10">
             <h2 className="font-bebas font-extrabold text-4xl md:text-5xl text-[#1a1a2e] leading-none tracking-tight mb-3">

@@ -35,8 +35,8 @@ export default function ContactPage() {
       />
       <div className="pt-24">
         <h1 className="sr-only">Contact a Miami Public Adjuster — Free Claim Review</h1>
-        <Contact />
         <ContactForm />
+        <Contact />
       </div>
     </PageTransition>
   );
