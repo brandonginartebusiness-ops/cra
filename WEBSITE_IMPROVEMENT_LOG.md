@@ -2895,3 +2895,37 @@ Sources for this cycle's external research: [Copywriting Formulas: AIDA, PAS & M
 4. **Multi-step form architecture confirmed correct:** Research shows multi-step forms average 86% higher conversion than single-step. CRA's form is already multi-step (Step 1: phone-only capture, Step 2: optional enrichment). No change needed.
 5. **Click-to-call data confirms existing architecture:** 10–15× conversion advantage for calls over forms (Invoca/BIA Kelsey vendor data, medium confidence). CRA already has `tel:` links in 17+ files, hero, navbar, and StickyMobileCTA. No gaps found.
 
+
+---
+
+## 2026-07-01 12:12 UTC — Cycle 84
+
+**Focus area:** #10 Social proof / reviews placement optimization (first pass at this lane; cycles 1–9 and their depth passes covered lanes 1–9; this is the first time #10 is covered).
+
+**Deploy gating:** `git log --oneline --grep="^auto-improve:" --since="20 hours ago" main` returned nothing — gate open. Shipped this cycle.
+
+**Research method:** WebSearch on social proof placement best practices for local-service/contractor lead-gen sites (2025–2026 practitioner sources: Clutch, Trustmary, PipelineOn, Gatorworks, SiteTuners, Nudgify). Compared findings against CRA's actual homepage section order and existing components.
+
+**Key findings:**
+
+- **Reviews and SocialProof components exist but are NOT on the homepage — biggest gap found this cycle.** `src/app/page.tsx` renders: Hero → Services → RecentWins → About → Accreditations → Process → Pricing → FAQ → Contact → InstagramFeedLazy. Neither `Reviews.tsx` nor `SocialProof.tsx` is imported or rendered in that file. A standalone `/reviews` page exists, but the vast majority of visitors never navigate there organically.
+- **Research consensus on placement:** Social proof should appear "without scrolling" or immediately after the hero on local-service sites. For contractor/home-service lead-gen, "3–5 pieces of real social proof visible within the first scroll" is a documented 2026 best practice (PipelineOn contractor-landing-page tips, Gatorworks roofing site anatomy guide). Currently CRA has zero review text visible on the homepage at any scroll depth.
+- **SocialProof.tsx vs Reviews.tsx analysis:** Both components are polished and production-ready. `SocialProof.tsx` combines the 5.0 rating display, recovery bar chart by claim type, claim-type rating chips, and 4 review cards in one compact card — integrates proof-of-results (recovery amounts) with proof-of-sentiment (star reviews). `Reviews.tsx` is a lighter-weight alternative: hero pull-quote + 3 supporting cards. `SocialProof.tsx` is the stronger homepage candidate because it co-locates the two most salient decision signals for a public-adjuster prospect: "Will I get paid?" and "Have others been helped?"
+- **Recommended placement — flagged for owner decision:** Between `RecentWins` and `About` in `page.tsx` (the PASTOR T-layer position, flagged since Cycle 63). `RecentWins` establishes claim-result credibility; `SocialProof` amplifies it with verified client voices; `About` then introduces the team behind the results. This ordering mirrors the high-converting sequence in top-ranked public-adjuster competitor sites. Adding a section to `page.tsx` requires owner sign-off per CLAUDE.md's "Do not add sections not requested" guardrail — not shipped; logged as priority recommendation.
+- **Hero already has micro social proof (scorecard), but lacks any review text.** `SocialProof.tsx` provides the "voice of a real client" layer that research shows reduces hesitation for high-consideration local services.
+- **93% of consumers read reviews before engaging a service business** (multiple 2026 sources: Genesys Growth, Nudgify, Infinity Web Coders). CRA collects and displays reviews on `/reviews` but surfaces none of them to any visitor who doesn't already know to look.
+
+**Shipped this cycle:** 4 micro-fixes from the Cycle 83 queue (all gate-eligible, verified against current source before commit, build confirmed clean before push):
+- `LeadCaptureForm.tsx:51` — `text-sm` → `text-base` on all form inputs (iOS Safari auto-zoom prevention; 16px is spec-level browser behavior, not a heuristic)
+- `Navbar.tsx:290` — hamburger button `min-h-[44px] min-w-[44px] items-center justify-center` (raises tap target from ~34×36px to 44×44px per Apple HIG and Material Design guidelines; passes WCAG 2.5.8 AA at 24px, now also passes platform recommendations)
+- `dictionaries.ts:146` — `"Called back within the hour."` → `"We call you within the hour."` (active voice, subject-first for scanning)
+- `Hero.tsx:70` — `"Or call (305) 733-1670"` → `"Prefer to talk? Call (305) 733-1670"` (positions phone as preference option)
+Commit: `auto-improve: iOS input zoom fix, hamburger tap target, active-voice CTA copy` — build verified (64 static pages, TypeScript clean, 0 errors), pushed to main.
+
+**Queued / flagged for next eligible cycle, in priority order:**
+1. **[OWNER DECISION NEEDED] Add `SocialProof.tsx` between `RecentWins` and `About` in `src/app/page.tsx`** — single import + one JSX line. Research strongly supports this as the highest-ROI unimplemented change on the site; requires owner approval before shipping.
+2. **`min-h-screen` → `min-h-[100dvh]` in `Hero.tsx`** — corrects mobile viewport height when browser chrome toggles on scroll (flagged in Cycle 83 addendum; tiny CSS change, low-risk).
+3. **`ServiceImageCarousel.tsx` autoplay-no-pause** — no pause-on-hover/focus for accessibility (confirmed open since Cycle 9).
+4. **`InstagramFeed.tsx` hover-caption gap** — cosmetic (confirmed open since Cycle 9).
+5. All other prior backlog items from cycles 80–83 remain open and unchanged.
+
