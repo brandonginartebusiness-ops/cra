@@ -2732,3 +2732,27 @@ Sources for this cycle's external research: [Node.js API Rate Limiting: In-Memor
 Sources for this cycle's external research: [Elena Gonzalez - Fire Damage Testimonial — Alconero & Associates](https://alconeroandassociates.com/testimonials/elena-gonzalez-perez/), [Testimonials — All Pro Adjusters](https://allproadjusters.com/testimonials), [Public Adjuster Results — Claim Concepts](https://claimconcepts.com/public-adjuster-results/), [Insurance Video Marketing Ideas — Ease.com](https://www.ease.com/blog/insurance-video-marketing-ideas/), [6 Insurance Agency Video Marketing Ideas — Trusted Choice](https://www.trustedchoice.com/advantage/blog/insurance-agency-video-marketing-ideas/), [Residential — Stellar Public Adjuster Florida](https://www.stellaradjusting.com/).
 
 ---
+
+## Cycle 79 — 2026-07-01 ~08:00 UTC
+**Focus area:** CRO / contact page UX — closing 33-cycle-old backlog item #4
+
+**Method:** Implemented the two lowest-risk, longest-standing items from the backlog without additional research (facts already established in prior cycles):
+1. Swapped `<ContactForm />` before `<Contact />` in `src/app/contact/page.tsx` — the lead form now appears first on `/contact`, above the "choose a channel" contact options. Primary conversion action is above the fold.
+2. Updated `ContactForm.tsx` heading from "Or Submit a Claim Review Request" → "Submit a Free Claim Review Request" (removed the "Or" which became semantically wrong once the form is first).
+3. Added `id="lead-form"` to Section 5 of `CityPageLayout.tsx` and changed the hero CTA `href` from `/contact` to `#lead-form` — city pages now scroll in-page to the form instead of navigating away to `/contact`, reducing drop-off for high-intent city page visitors.
+
+**Key findings / rationale:**
+- Contact pages where the form is below a long "ways to contact us" list consistently underperform vs. pages where the form is immediately visible (CRO best practice since at least cycle 1).
+- City page users arriving via local search are high-intent; sending them to a separate `/contact` page breaks momentum and adds a navigation step before they can convert.
+- In-page anchor (`#lead-form`) keeps the user on the page they searched for; scroll is instant and the form has city-specific context ("Free Claim Review in [City]").
+- Build passed cleanly: `npx next build` — 64 pages, 0 TypeScript errors, 0 compile warnings related to these changes.
+
+**Shipped this cycle:** Yes — `auto-improve: promote lead form above contact options + city CTA in-page anchor` (3 files, 4-line net diff). Deploy gate was clear (no auto-improve commit in last 20h).
+
+**Queued / flagged for next eligible cycle, in priority order:**
+1. De-gate `whileInView`/mount-triggered `m.div` wrappers on `Contact.tsx` (second gate, contact-method cards), `FAQ.tsx` (heading), `Process.tsx` (steps grid), `About.tsx` (headshot block), `ReviewsContent.tsx` (independent h1 gate), `ServicesContent.tsx` (heading + redundant internal `PageTransition` wrap) — one route per future cycle.
+2. `ServicePageLayout.tsx` Section 2's `whileInView` gate on `/services/*` description text (cycle 42's original finding).
+3. AI-chatbot disclosure copy for `ChatWidget.tsx` (cycle 59 — CA SB 1001 / Maine Title 10 §1500-Y exposure) — FLAGGED FOR OWNER/COUNSEL, not code-shippable.
+4. `Contact.tsx` now appears second on `/contact` — consider updating its heading from "Choose the fastest way to reach Claim Remedy" to "Or reach us directly" to better reflect its new secondary position (low priority, low risk).
+
+---
