@@ -2886,3 +2886,12 @@ Sources for this cycle's external research: [Copywriting Formulas: AIDA, PAS & M
 2. **Strongest remaining single action:** wire `Reviews.tsx` onto the homepage between `RecentWins` and `About` (PASTOR T-layer, WikiJob proximity lift, 20+ cycles old, framework-backed from Cycle 81).
 3. All prior backlog items from Cycles 80–82 remain unchanged and open — see Cycle 82 queue for full ordered list.
 
+
+**Addendum (research agent completed after log commit):** Key correction and supplementary findings from the mobile UX research agent:
+
+1. **WCAG level correction:** WCAG 2.5.5 (44×44px) is Level **AAA**, not AA. The Level AA standard is WCAG 2.5.8 from WCAG 2.2, which requires only **24×24 CSS pixels** minimum. The hamburger button (~34×36px with `p-2`) **passes WCAG AA** but misses the Apple HIG (44pt) and Material Design (48dp) platform recommendations. The fix (raise to 44px) is still worth shipping for CRO and platform-guideline compliance — just re-categorized from WCAG AA to platform-UX recommendation.
+2. **iOS auto-zoom corroborated at HIGH confidence:** 16px minimum on form inputs is spec-level browser behavior (not just practitioner consensus) — confirms `text-sm` → `text-base` fix is the right call.
+3. **`min-h-screen` (100vh) vs. `dvh`:** Research confirms that on mobile, `100vh` overestimates viewport height because it ignores dynamic browser chrome (address bar show/hide). CRA's `Hero.tsx` uses `min-h-screen`. Replacing with `min-h-[100dvh]` would be more accurate. Minor enhancement — queued for a future mobile UX cycle.
+4. **Multi-step form architecture confirmed correct:** Research shows multi-step forms average 86% higher conversion than single-step. CRA's form is already multi-step (Step 1: phone-only capture, Step 2: optional enrichment). No change needed.
+5. **Click-to-call data confirms existing architecture:** 10–15× conversion advantage for calls over forms (Invoca/BIA Kelsey vendor data, medium confidence). CRA already has `tel:` links in 17+ files, hero, navbar, and StickyMobileCTA. No gaps found.
+
