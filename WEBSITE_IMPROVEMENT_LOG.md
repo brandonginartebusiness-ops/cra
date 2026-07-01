@@ -3086,3 +3086,47 @@ Sources: [DEV Community — Fix LCP, INP & CLS in 2026](https://dev.to/dharanidh
 6. All other prior backlog items from cycles 85–87 remain open and unchanged.
 
 Sources for this cycle's external research: [Meta Title Length Best Practices 2026 — Scalenut](https://www.scalenut.com/blogs/meta-title-length-best-practices-2026); [Google Rewrites 61% of Page Title Tags — Zyppy Study](https://zyppy.com/seo/google-title-rewrite-study/); [Ideal Title Tag Length for Google SEO — Zyppy](https://zyppy.com/title-tags/meta-title-tag-length/); [Next.js Metadata & SEO Guide — Stanza.dev](https://www.stanza.dev/concepts/nextjs-metadata-seo); [Local SEO Guide to Miami Search Results — VIP Tech Consulting](https://viptechconsulting.com/miami-local-seo-guide/).
+
+
+---
+
+## 2026-07-01 22:14 UTC — Cycle 89
+
+**Focus area:** #5 Backend/infra best practices — ninth-pass depth (prior passes: cycles 5/15/25/35/45/55/65/75; cycles 85–88 ran the ninth pass at #1–#4; this cycle continues at #5).
+
+**Deploy gating:** `git fetch origin main` pulled latest. Gate check run against `origin/main` directly. `git log --oneline --grep="^auto-improve:" --since="20 hours ago" origin/main` returned `39d9bde` (Cycle 84's mobile/copy bundle, 2026-07-01 12:15 UTC — ~10h before this cycle's 22:14 UTC start). **Gate closed — research-only cycle, no code pushed beyond this log entry.** All code changes built and build-verified locally, then reverted before the log commit.
+
+**Method:** Read all 7 API route files in full (`/api/chat`, `/api/csp-report`, `/api/instagram`, `/api/instagram/refresh`, `/api/leads`, `/api/leads/upload`, `/api/review-request`); read `src/lib/supabaseServer.ts`; checked all routes for `maxDuration` and `runtime` exports. Ran a WebSearch subagent (medium depth, 21 tool uses, 5 web searches) covering: (1) edge vs Node.js runtime for Supabase-connected Next.js routes; (2) in-memory vs Upstash rate limiting for serverless; (3) Vercel `maxDuration` current limits post-Fluid Compute; (4) Supabase connection pooling best practices for Vercel serverless; (5) `@supabase/ssr` vs `createClient` for server-side auth.
+
+**Key findings:**
+
+- **`/api/review-request/route.ts` is the only API route missing `export const maxDuration`** — it makes sequential external calls (Supabase lookup → Twilio SMS → Resend email via `sendReviewRequest`) and could silently timeout on slow external services using the platform default. Fix: add `export const maxDuration = 30` (1 line, matches `/api/leads` and `/api/chat`). **Ready to ship. Build verified clean locally this cycle.**
+- **In-memory rate limiters on `/api/leads` and `/api/chat` are per-instance** — already documented in code comments, already a backlog item from Cycle 25. Upstash Redis (`@upstash/ratelimit`) is the 2026 recommended replacement: HTTP-based (no persistent TCP), edge-compatible, built-in in-process caching so Redis isn't hit on every warm request. However, switching requires: (1) Upstash account + Redis database, (2) two new env vars (`UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`), (3) `npm install @upstash/ratelimit @upstash/redis`. **Flagged for owner setup. Cannot auto-ship without Upstash credentials.**
+- **Edge runtime is explicitly incompatible with Supabase** — `supabase-js` accesses `process.version` at module load time, breaking Edge Runtime builds as of v2.52.1+. CRA's routes correctly default to Node.js runtime. No change needed. ✓
+- **`maxDuration` ceilings have changed with Fluid Compute (mid-2025):** Hobby plans can now run up to 300s (was 60s); Pro can run up to 800s (default 300s). CRA's current `maxDuration = 30` on leads and chat is conservative and correct for its workload (external calls each capped at 10s via `fetchWithTimeout`). The review-request route needs 30s added to match.
+- **Supabase client is correctly configured:** `persistSession: false`, `autoRefreshToken: false`, module-level singleton via `Proxy`. Since CRA uses the Supabase REST API (not a direct Postgres connection), Supavisor port 6543 connection-pooling considerations do not apply — the REST layer handles connection management internally. ✓
+- **`@supabase/ssr` not applicable here:** CRA's server-side client uses the service-role key for admin operations (no user auth flow). `@supabase/ssr` / `createServerClient` is for user-session auth patterns. Existing `createClient(url, key)` is the correct pattern for a service-role admin client. ✓
+- **No `runtime = 'edge'` on any route** — correct for all Supabase-connected routes. `/api/csp-report` is the only route where edge might be appropriate (stateless, no DB), but it's a low-traffic collector and not worth the migration. No change.
+
+**Shipped this cycle:** Nothing — gate closed. Build verified locally:
+- `cra-next/src/app/api/review-request/route.ts`: `export const maxDuration = 30` added (1 line after imports)
+- `cra-next/src/app/layout.tsx`: `"Public Adjuster Miami | Claim Remedy Adjusters — Your Claim. Our Fight."` → `"Miami Public Adjuster | Claim Remedy Adjusters"` (47 chars, SEO fix from Cycle 88 queue)
+- `cra-next/src/app/services/appraisal/page.tsx`: `"Public Adjuster Insurance Appraisal FL"` → `"Public Adjuster Appraisal Florida"` (58 chars with template, SEO fix from Cycle 88 queue)
+- `cra-next/src/app/do-i-need-a-public-adjuster/page.tsx`: `"Do I Need a Public Adjuster in Florida?"` → `"Do I Need a Public Adjuster in FL?"` (59 chars with template, SEO fix from Cycle 88 queue)
+- Build: TypeScript clean, 64 static pages, 0 errors, 0 warnings — all reverted after gate check confirmed closed.
+
+**Queued / flagged for next eligible cycle, in priority order:**
+
+1. **READY — exact strings build-verified (4 files, 4-line net diff, zero compliance surface):**
+   - `cra-next/src/app/api/review-request/route.ts`: add `export const maxDuration = 30` after the imports block (new finding this cycle)
+   - `cra-next/src/app/layout.tsx:33`: `"Public Adjuster Miami | Claim Remedy Adjusters — Your Claim. Our Fight."` → `"Miami Public Adjuster | Claim Remedy Adjusters"`
+   - `cra-next/src/app/services/appraisal/page.tsx:5`: `"Public Adjuster Insurance Appraisal FL"` → `"Public Adjuster Appraisal Florida"`
+   - `cra-next/src/app/do-i-need-a-public-adjuster/page.tsx:10`: `"Do I Need a Public Adjuster in Florida?"` → `"Do I Need a Public Adjuster in FL?"`
+   - Commit: `auto-improve: shorten overlength title tags (3 pages) + review-request maxDuration`
+2. **Accessibility bundle (5 files, all confirmed ready since Cycle 87):** `MotionProvider.tsx` MotionConfig reducedMotion; `StarRating.tsx:8` role="img"; `ServicePageLayout.tsx:115` h3→h2; `LeadCaptureForm.tsx:622` text-white/80→text-white/95; `privacy/page.tsx:14` main→div.
+3. **CWV bundle (2 files, confirmed ready since Cycle 86):** `Hero.tsx:21–22` min-h-screen→min-h-[100dvh]; `ServiceImageCarousel.tsx` pause-on-hover/focus.
+4. **[FLAGGED FOR OWNER — infra setup required]:** Replace in-memory rate limiters on `/api/leads` and `/api/chat` with Upstash Redis (`@upstash/ratelimit`). Requires: Upstash account + Redis DB, two new env vars in Vercel, `npm install @upstash/ratelimit @upstash/redis`. Research confirms this is the standard Vercel-recommended pattern for cross-instance rate limiting. Current in-memory limiters provide per-instance defense only.
+5. **[OWNER DECISION NEEDED]:** Add `SocialProof.tsx` between `RecentWins` and `About` in `src/app/page.tsx` — single import + one JSX line, research-confirmed highest-ROI unimplemented change, 20+ cycles in backlog.
+6. All other prior backlog items from Cycles 85–88 remain open and unchanged.
+
+Sources for this cycle's external research: [Rate Limiting Next.js API Routes using Upstash Redis — Upstash Blog](https://upstash.com/blog/nextjs-ratelimiting); [Rate Limiting with Upstash Redis — Vercel Official Template](https://vercel.com/templates/next.js/ratelimit-with-upstash-redis); [Add Rate Limiting with Vercel — Vercel Knowledge Base](https://vercel.com/kb/guide/add-rate-limiting-vercel); [Configuring Maximum Duration for Vercel Functions — Vercel Docs](https://vercel.com/docs/functions/configuring-functions/duration); [Higher defaults for Vercel Functions (Fluid Compute) — Vercel Changelog](https://vercel.com/changelog/higher-defaults-and-limits-for-vercel-functions-running-fluid-compute); [supabase-js edge runtime incompatibility — GitHub Issue #1552](https://github.com/supabase/supabase-js/issues/1552); [Supabase Connection Pooler deprecating Session Mode port 6543 — Supabase Changelog](https://supabase.com/changelog/32755-supabase-connection-pooler-deprecating-session-mode-on-port-6543-on-february-28); [Creating a Supabase client for SSR — Supabase Docs](https://supabase.com/docs/guides/auth/server-side/creating-a-client).
