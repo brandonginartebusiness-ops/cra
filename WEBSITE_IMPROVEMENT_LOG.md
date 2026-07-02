@@ -3280,3 +3280,24 @@ Sources: [SaaS Funnel Lab: PAS conversion lift](https://www.saasfunnellab.com/es
 6. **[FLAGGED FOR OWNER — infra]:** Replace in-memory rate limiters with Upstash Redis.
 7. All other prior backlog items from Cycles 85–92 remain open and unchanged.
 
+
+**Research agent findings (appended after code inspection):**
+
+- **CRITICAL: `viewport-fit=cover` is absent from both root layouts — `env(safe-area-inset-bottom)` is currently a no-op.** Both `(site)/layout.tsx` and `(es)/layout.tsx` export no `viewport` constant. Next.js App Router's default viewport meta does not include `viewport-fit=cover`. Without it, `env(safe-area-inset-bottom)` resolves to `0px` on all devices — meaning `StickyMobileCTA.tsx`'s `pb-[calc(0.75rem+env(safe-area-inset-bottom))]` is identical to `pb-3` and the iPhone home indicator overlaps the bottom bar. **Fix: add `export const viewport: Viewport = { width: 'device-width', initialScale: 1, viewportFit: 'cover' }` to both root layouts.** 2-file change, zero visual impact on non-notch devices. Adding to priority queue as item 1.5.
+- **`min-h-screen` → `min-h-svh` is the correct fix (not `min-h-[100dvh]` as previously queued).** Research confirms `dvh` (dynamic viewport height) causes continuous style recalculations and CLS because it updates as iOS Safari's address bar animates during scroll. `svh` (small viewport height) is calculated against the viewport with all browser chrome visible — stable, never changes, zero CLS. Tailwind v4 ships `min-h-svh` natively. **Updating CWV bundle: `min-h-screen` → `min-h-svh` in `Hero.tsx` (×2) and `EsHero.tsx` (×2).** Prior queue entry said `min-h-[100dvh]` — this is corrected here.
+- **Phone input `inputMode="tel"` is absent.** `LeadCaptureForm.tsx` phone field at line 568: has `type="tel"` and `autoComplete="tel"` but no `inputMode="tel"`. Research confirms the "attribute trinity" (`type`, `inputMode`, `autoComplete`) is needed for full compatibility across iOS Safari, Chrome Android, and Samsung Internet. Without `inputMode="tel"`, some Android browsers display a text keyboard instead of the numeric phone pad. Low-effort 1-attribute addition. Adding to phone input fix queue.
+- **Sticky CTA hero-sentinel IntersectionObserver trigger:** The current `StickyMobileCTA` is always visible on mobile (no show/hide logic). Research shows show-after-hero-CTA-leaves-viewport (via IntersectionObserver) performs better than always-visible, but this requires a client component + state. Medium complexity — not auto-shippable without design decision.
+- **Phone-first conversion data confirmed for this vertical:** Inbound calls convert at 46% for home services (Invoca 2025, 1,000+ companies). Web forms convert at 2–3%. For emergency/storm-damage intent, the phone link is the primary conversion path — the form is secondary. CRA's sticky bar already has phone as left/primary slot ✓.
+
+**Updated queue / flagged for next eligible cycle, in priority order:**
+
+1. **`viewport-fit=cover` fix (CRITICAL, 2-file change, zero visual impact on non-notch devices):** Add `export const viewport: Viewport = { width: 'device-width', initialScale: 1, viewportFit: 'cover' }` to `(site)/layout.tsx` and `(es)/layout.tsx`. Without this, `env(safe-area-inset-bottom)` in `StickyMobileCTA.tsx` and `Navbar.tsx` returns 0. Build-verify before shipping.
+2. **CWV bundle (3 files — updated from `min-h-[100dvh]` to `min-h-svh`):** `Hero.tsx:21–22` `min-h-screen` → `min-h-svh`; `EsHero.tsx:22–23` same; `ServiceImageCarousel.tsx` pause-on-hover/focus. Tailwind v4 ships `min-h-svh` natively. Build-verify before shipping.
+3. **Phone field `inputMode="tel"` (1-attribute addition):** `LeadCaptureForm.tsx:568` — add `inputMode="tel"` to the phone `<input>`. Ensures numeric phone pad on all Android browsers, not just iOS.
+4. **[LOW PRIORITY — cosmetic consistency]:** `StickyMobileCTA.tsx:34` `"Free Claim Review"` → `"Claim my free review"` to match updated dictionaries.ts CTA wording.
+5. **[OWNER DECISION NEEDED] Response-time SLA sharpening:** `ctaSub: "We call you within the hour."` — if real SLA ≤15 min, sharpen. Research: 5-min promise is 21× more effective than 30-min. Do not change without owner SLA confirmation.
+6. **[OWNER DECISION NEEDED] Damage-type Step 0 selector** (Hurricane / Water / Fire / Wind / Other) in `LeadCaptureForm.tsx`. Research-validated highest-uplift unimplemented form pattern.
+7. **[OWNER DECISION NEEDED]** Add `SocialProof.tsx` between `RecentWins` and `About` — 20+ cycles in backlog.
+8. **[FLAGGED FOR OWNER — infra]:** Replace in-memory rate limiters with Upstash Redis.
+9. All other prior backlog items from Cycles 85–92 remain open and unchanged.
+
