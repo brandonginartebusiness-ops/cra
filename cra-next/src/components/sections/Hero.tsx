@@ -1,5 +1,6 @@
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import LeadCaptureForm from "@/components/ui/LeadCaptureForm";
+import { totalGoogleReviewCount } from "@/data/reviews";
 
 type ScoreItem =
   | { kind: "decimal"; value: number; decimals: number; suffix: string; label: string; emphasis?: boolean }
@@ -7,7 +8,7 @@ type ScoreItem =
   | { kind: "static"; val: string; suffix: string; label: string; emphasis?: boolean };
 
 const scorecard: ScoreItem[] = [
-  { kind: "decimal", value: 5.0, decimals: 1, suffix: "/ 5", label: "Google rating" },
+  { kind: "decimal", value: 5.0, decimals: 1, suffix: "/ 5", label: `Google rating · ${totalGoogleReviewCount}+ reviews` },
   { kind: "static", val: "FL", suffix: "", label: "Licensed statewide", emphasis: true },
   { kind: "static", val: "$0", suffix: "", label: "Upfront, ever", emphasis: true },
 ];

@@ -63,6 +63,13 @@ export default function LocalBusinessSchema() {
           "@type": "Place",
           name: "Miami Lakes, Florida",
         },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "5.0",
+          reviewCount: 45,
+          bestRating: "5",
+          worstRating: "1",
+        },
       },
       {
         "@type": "WebSite",

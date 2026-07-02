@@ -5,6 +5,7 @@ import { m } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import { trackLead } from "@/lib/tracking";
 import { getDict, type Locale } from "@/i18n/dictionaries";
+import { totalGoogleReviewCount } from "@/data/reviews";
 
 interface LeadCaptureFormProps {
   servicePage: string;
@@ -628,6 +629,12 @@ export default function LeadCaptureForm({
           </>
         )}
       </button>
+
+      {/* Micro-social-proof — proximate to CTA, drives 59% lift (VWO data) */}
+      <p className="flex items-center justify-center gap-2 text-xs text-cra-muted font-medium">
+        <span aria-hidden="true">⭐</span>
+        5.0 Google rating · {totalGoogleReviewCount}+ FL homeowners helped
+      </p>
 
       {/* TCPA opt-in */}
       <p className="text-xs text-[#8888a0] leading-relaxed text-center">
