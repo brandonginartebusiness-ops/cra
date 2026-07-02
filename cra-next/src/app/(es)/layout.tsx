@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "../globals.css";
 import { fontVariables } from "@/lib/fonts";
 import SiteShell from "@/components/layout/SiteShell";
@@ -34,6 +34,12 @@ export const metadata: Metadata = {
   other: {
     "facebook-domain-verification": "wqv0ywr7k59nzmutvu18bcvlej74b2",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function EsRootLayout({

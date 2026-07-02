@@ -18,8 +18,8 @@ const scorecard: ScoreItem[] = [
 // stay as client islands.
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen">
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-14 pt-32 pb-16 min-h-screen grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center">
+    <section id="hero" className="relative min-h-svh">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-14 pt-32 pb-16 min-h-svh grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center">
         {/* LEFT — copy + trust */}
         <div className="flex flex-col items-start text-left">
           <div className="hero-fade inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full bg-white/5 border border-white/12 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#c0c0d0]">
