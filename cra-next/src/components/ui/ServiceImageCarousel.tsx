@@ -20,9 +20,11 @@ export default function ServiceImageCarousel({
   priority = false,
 }: Props) {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     if (images.length <= 1) return;
+    if (paused) return;
     if (
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -35,10 +37,18 @@ export default function ServiceImageCarousel({
       interval,
     );
     return () => window.clearInterval(id);
-  }, [images.length, index]);
+  }, [images.length, index, paused]);
 
   return (
-    <div className="absolute inset-0 overflow-hidden group-hover:scale-105 transition-transform duration-500">
+    <div
+      className="absolute inset-0 overflow-hidden group-hover:scale-105 transition-transform duration-500"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+      tabIndex={images.length > 1 ? 0 : undefined}
+      aria-label={images.length > 1 ? `${alt} — auto-advancing photos, pauses on focus` : undefined}
+    >
       <AnimatePresence initial={false}>
         <m.div
           key={active}

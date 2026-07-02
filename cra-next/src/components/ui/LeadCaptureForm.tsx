@@ -572,10 +572,13 @@ export default function LeadCaptureForm({
           onChange={handleChange}
           disabled={status === "submitting"}
           autoComplete="tel"
+          inputMode="tel"
+          aria-invalid={errors.phone ? true : undefined}
+          aria-describedby={errors.phone ? "phone-error" : undefined}
           className={`${inputClass} ${errors.phone ? "border-red-500/50" : "border-[#1a1a2e]/12"}`}
           placeholder={t.phonePlaceholder}
         />
-        {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
+        {errors.phone && <p id="phone-error" className="text-xs text-red-500 mt-1">{errors.phone}</p>}
       </div>
 
       {/* Quick message — one optional line of context, nothing more on step 1 */}
