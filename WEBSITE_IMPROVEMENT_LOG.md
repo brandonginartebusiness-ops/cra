@@ -3463,3 +3463,40 @@ Sources: [web.dev: The large, small, and dynamic viewport units](https://web.dev
 6. **[OWNER DECISION NEEDED]** Add `SocialProof.tsx` between `RecentWins` and `About` in `page.tsx` — 20+ cycles in backlog, single import + JSX line, research-confirmed highest-ROI unimplemented change.
 7. **[OWNER DECISION NEEDED]** Florida claim-filing-deadline urgency copy — legal sign-off required before auto-shipping.
 8. All other prior backlog items from Cycles 85–96 remain open and unchanged.
+
+
+---
+
+## 2026-07-02 ~20:15 UTC — Cycle 98
+
+**Focus area:** #4 Technical SEO audit — second-loop depth pass (prior passes: cycles 4/14/24/34/44/54/64/74/80/84/86/88; this continues the second-loop at lane #4 following cycles 95–97 at lanes #1–#3).
+
+**Deploy gating:** `git log --oneline --grep="^auto-improve:" --since="20 hours ago" main` returned nothing — gate open. Shipped the 3-item bundle below. Gate now closed for remainder of cycle.
+
+**Shipped this cycle:** `auto-improve: aggregateRating schema + hero review count + form micro-social-proof` (commit `6324833`) — 3 files, 16 insertions, 1 deletion:
+- `LocalBusinessSchema.tsx`: added `aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: 45, bestRating: "5", worstRating: "1" }` to the LocalBusiness `@graph` item — queued since Cycle 94, 4-line addition, enables Local Panel/Knowledge Graph star display.
+- `Hero.tsx`: imported `totalGoogleReviewCount` from `@/data/reviews`; updated scorecard label from `"Google rating"` to `` `Google rating · ${totalGoogleReviewCount}+ reviews` `` — queued since Cycle 94; BrightLocal 2024: 88% of consumers use review count to validate a star average.
+- `LeadCaptureForm.tsx`: imported `totalGoogleReviewCount`; added micro-social-proof `<p>` between submit button and TCPA block: `"5.0 Google rating · 45+ FL homeowners helped"` — queued since Cycle 95; VWO data: 59% lift from testimonials adjacent to CTA vs. page-level placement.
+- Build: 64 static pages, TypeScript clean, 0 errors. ✓
+
+**Technical SEO research findings (2026 depth pass):**
+
+- **`aggregateRating` on `LocalBusiness` does NOT earn blue-link star rich results — still restricted.** Google's 2019 restriction on self-referential reviews for `LocalBusiness`/`Organization` schema types remains enforced in 2026. The shipped node does not earn SERP review snippets, but can surface in the Local Panel/Knowledge Graph sidebar. Research-confirmed workaround: attaching `aggregateRating` to a `Service` schema type (not the business entity) remains eligible for review rich results. **Queued: consider adding `aggregateRating` to `ServicePageSchema.tsx` under the `Service` node on service pages.**
+- **`metadataBase` gap is impactful — breaks OG images and canonical tags.** Without `metadataBase: new URL('https://claimremedyadjusters.com')` in the root `(site)/layout.tsx`, all relative URLs in `openGraph.images`, `alternates.canonical`, and sitemap generation resolve to `localhost` in production. This means OG preview images for social sharing and potentially canonical tags served to Googlebot are malformed. Pre-existing warning since before cycle 86. **READY — 1-property addition to `(site)/layout.tsx` and `(es)/layout.tsx`. No visual/functional impact.**
+- **`sameAs` array is under-populated for entity disambiguation.** Current `sameAs` has Facebook and Instagram only. Entity disambiguation via `sameAs` helps Google's Knowledge Graph connect the business entity across the web. Missing: Florida DFS license lookup URL (myfloridacfo.com licensee search), BBB profile URL (if one exists), LinkedIn company page. **Queued — verify correct URLs for each before adding.**
+- **City/service page schema has own `PostalAddress` + `geo` blocks — already compliant.** `CityServiceSchema.tsx` was confirmed to include per-city `PostalAddress` and `GeoCoordinates` in prior cycles. No gap here.
+- **Entity type is already correctly specific.** `LocalBusinessSchema.tsx` uses `["InsuranceAgency", "LocalBusiness", "ProfessionalService"]` — this is the correct multi-type pattern for 2026 granular entity classification. ✓
+- **Internal linking hub-and-spoke: homepage → /services → /services/[type]; homepage → /areas → /areas/[slug] — no orphaned city pages detected.** Nav links to `/areas` hub which links to each slug. Each slug page links back up. Sideways cross-links between services and areas could be enhanced but is not a critical gap.
+
+**Updated priority queue (replaces Cycle 97 queue; shipped items struck):**
+
+1. **READY — `metadataBase` fix (2-file, 1-property each):** Add `metadataBase: new URL('https://claimremedyadjusters.com')` to the `metadata` export in `(site)/layout.tsx` and `(es)/layout.tsx`. Fixes OG image URLs and canonical tags for Googlebot. Eliminates pre-existing build warnings. Zero visual/functional impact.
+2. **READY — `aggregateRating` on `Service` node in `ServicePageSchema.tsx`:** Attach `aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: 45, bestRating: "5", worstRating: "1" }` to the `Service` type used in service page schemas — `Service` is eligible for Google review rich results (star snippets) unlike `LocalBusiness`. BrightLocal source confirms.
+3. **[OWNER DECISION NEEDED — HIGHEST LEVERAGE]** Response-time SLA sharpening: `ctaSub: "We call you within the hour."` → `"We call within 15 minutes."` if the actual SLA supports it. Speed-to-lead: <5 min = 21× more likely to qualify. DO NOT change without owner confirming actual response time.
+4. **[OWNER DECISION NEEDED]** Add `SocialProof.tsx` between `RecentWins` and `About` in `page.tsx` — 20+ cycles in backlog, single import + JSX line.
+5. **[OWNER DECISION NEEDED]** `sameAs` expansion in `LocalBusinessSchema.tsx`: add FL DFS license URL, BBB profile, LinkedIn. Verify correct URLs before adding.
+6. **[FLAGGED FOR OWNER — monitoring]:** Add `@vercel/speed-insights` for real-time CWV tracking (LCP, INP, CLS). 2026 Vercel recommendation.
+7. **[FLAGGED FOR OWNER — infra]:** Replace in-memory rate limiters with Upstash Redis.
+8. **[FLAGGED FOR OWNER — maintenance]:** Update `totalGoogleReviewCount` in `src/data/reviews.ts` when live Google count changes (currently 45 — manually maintained).
+
+Sources: [zumeirah.com — Local Business Schema 2026](https://zumeirah.com/local-business-schema-markup-2026-ultimate-guide/); [BrightLocal — Google Review Schema Restriction](https://www.brightlocal.com/blog/google-announces-big-change-to-local-business-review-schema/); [BrightLocal — Review Schema Guide](https://www.brightlocal.com/learn/review-schema/); [Next.js docs — metadataBase](https://nextjs.org/docs/app/api-reference/functions/generate-metadata); [prateeksha.com — Next.js App Router SEO](https://prateeksha.com/blog/nextjs-app-router-seo-metadata-sitemaps-canonicals); [thebomb.ca — Schema Markup 2026](https://thebomb.ca/blog/schema-markup-local-business-2026/).
