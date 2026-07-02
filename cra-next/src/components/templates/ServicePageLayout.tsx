@@ -112,9 +112,9 @@ export default function ServicePageLayout({
                 </p>
               ))}
 
-              <h3 className="font-bebas font-bold text-2xl text-[#1a1a2e] mb-4">
+              <h2 className="font-bebas font-bold text-2xl text-[#1a1a2e] mb-4">
                 What We Handle
-              </h3>
+              </h2>
               <ul className="flex flex-col gap-2.5">
                 {handles.map((item, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm text-[#5a5a72]">

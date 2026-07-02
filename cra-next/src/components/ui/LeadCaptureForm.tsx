@@ -619,7 +619,7 @@ export default function LeadCaptureForm({
             <span className="font-semibold text-sm uppercase tracking-[0.08em]">
               {ctaLabel}
             </span>
-            <span className="text-xs font-normal text-white/80">
+            <span className="text-xs font-normal text-white/95">
               {t.ctaSub}
             </span>
           </>

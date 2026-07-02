@@ -1,6 +1,6 @@
 "use client";
 
-import { LazyMotion, type FeatureBundle } from "framer-motion";
+import { LazyMotion, MotionConfig, type FeatureBundle } from "framer-motion";
 
 /**
  * Wraps the app so `m.*` components work without pulling Framer Motion's full
@@ -27,7 +27,9 @@ export default function MotionProvider({
 }) {
   return (
     <LazyMotion features={loadFeatures} strict>
-      {children}
+      <MotionConfig reducedMotion="user">
+        {children}
+      </MotionConfig>
     </LazyMotion>
   );
 }

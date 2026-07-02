@@ -11,7 +11,7 @@ export default function PrivacyPage() {
   const updated = "April 28, 2026";
 
   return (
-    <main className="bg-[#faf8f5] min-h-screen pt-32 pb-24">
+    <div className="bg-[#faf8f5] min-h-screen pt-32 pb-24">
       <BreadcrumbSchema
         items={[
           { name: "Home", path: "/" },
@@ -182,6 +182,6 @@ export default function PrivacyPage() {
 
         </div>
       </div>
-    </main>
+    </div>
   );
 }
