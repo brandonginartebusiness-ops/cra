@@ -3204,3 +3204,44 @@ Sources: AllCity Adjusting (allcityadjusting.com); The Greenspan Co. (greenspana
 7. All other prior backlog items from Cycles 85–90 remain open and unchanged.
 
 Sources: [Growform: Multi-Step Forms +100% Conversion](https://www.growform.co/how-multi-step-forms-can-increase-your-conversion-rate-by-100/); [VentureHarbour: Multi-Step Forms +300%](https://ventureharbour.com/multi-step-lead-forms-get-300-conversions/); [Unbounce: Breadcrumb Technique](https://unbounce.com/conversion-rate-optimization/call-to-action-examples/); [CaseyResponse: 5-Minute Lead Response Rule](https://caseyresponse.com/blog/lead-response-time-statistics); [Sona: Google Ads for Insurance Adjuster](https://www.sona.com/blog/google-ads-for-insurance-adjuster-a-comprehensive-setup-guide); [SmartLifeRadar: Storm Damage Lead Gen 2026](https://smartliferadar.com/blog/roofer-lead-generation-storm-damage-leads-2026-guide); [BekindLocal: High-Converting Home Service Landing Pages 2026](https://bekindlocal.com/the-high-converting-checklist-for-home-service-landing-pages-in-2026/).
+
+
+---
+
+## 2026-07-02 ~09:30 UTC — Cycle 92
+
+**Focus area:** #8 Copywriting/headline frameworks — tenth-pass (prior passes: cycles 8/18/28/38/48/58/68/76/79; this cycle continues the tenth pass started at Cycle 85).
+
+**Deploy gating:** `git log --oneline --grep="^auto-improve:" --since="20 hours ago" main` returned empty at cycle start — gate open. Shipped the accessibility bundle (top of queue since Cycle 87). Gate closed for remainder of cycle after that commit.
+
+**Shipped this cycle:** `auto-improve: accessibility bundle (MotionConfig reducedMotion, heading order, contrast, duplicate main)` (commit `9a6da0b`) — 4 files, 9-line net diff:
+- `MotionProvider.tsx`: Added `MotionConfig` import and wrapped `{children}` in `<MotionConfig reducedMotion="user">`. All Framer Motion animations now honor OS `prefers-reduced-motion` setting (WCAG 2.3.3). Previously confirmed: no `MotionConfig`/`reducedMotion` anywhere in the codebase.
+- `ServicePageLayout.tsx:115`: `<h3>` → `<h2>` for "What We Handle." Heading order was h1 → h3 (skipping h2), violating WCAG 1.3.1 info and relationships. The section-level `<h2>` elements appear at lines 256/276; "What We Handle" is a sibling-level section and belongs at `<h2>` too.
+- `LeadCaptureForm.tsx:622`: `text-white/80` → `text-white/95` on the CTA sub-label ("We call you within the hour."). White at 80% opacity against the blue button background falls below WCAG 1.4.3 AA contrast minimum for small text; 95% opacity passes.
+- `privacy/page.tsx:14`: Outer `<main>` → `<div>`. `SiteShell.tsx` already wraps all `(site)/` pages in `<main id="main-content">`. A second `<main>` inside the same document violates HTML spec (only one `<main>` landmark per page) and creates duplicate landmark regions for screen reader users. Confirmed by reading `src/components/layout/SiteShell.tsx:32`. Build: 64 static pages, TypeScript clean, 0 errors. ✓
+- **StarRating.tsx `role="img"` item closed — already done in a prior cycle.** Grepped the current file: `role="img"` and `aria-label` are present at line 8. No change needed.
+
+**Copywriting research method:** WebSearch subagent (31 tool uses, 5+ searches) covering PAS vs. AIDA framework comparison data, statement vs. question headline A/B tests, first-person CTA evidence, high-agency verb conversion lifts, "no recovery no fee" competitive saturation, and micro-copy placement data.
+
+**Key findings:**
+
+- **PAS framework outperforms AIDA for CRA's audience.** AIDA assumes awareness-stage visitors who need attention captured first. CRA's visitors arrive problem-aware (damaged home, stalled claim). PAS (Problem→Agitate→Solve) generated 49% paid conversion lift in Joanna Wiebe's rewrite; a 2026 12,400-page analysis found PAS pages convert 22% higher than feature-list pages. CRA's existing hero ("We recover what your insurer won't pay.") is already PAS-structured — a strength. No change needed.
+- **CRA's headline is correctly a declarative statement, not a question.** Statement/formula headlines beat question alternatives 2:1 in lead-gen (88% of cases per BDOW research). "We recover what your insurer won't pay." is declarative. ✓ No change needed.
+- **CRA already uses first-person "my" on CTAs.** `cta: "Get my free claim review"` and `ctaDefault: "Get my free review"` both use "my." The ContentVerve test (90% CTR lift for "my" over "your") is already captured. ✓
+- **Highest-uplift remaining gap: verb choice.** A 2026 Optimizely analysis of 14,000 A/B tests found "Claim," "Unlock," and "Grab" outperformed passive verbs by 27%, with "Claim your spot" generating 31% higher CTR. CRA currently uses "Get" (passive). **Confirmed ready to ship in next eligible cycle:** `dictionaries.ts` → `cta: "Claim my free review"` and `ctaDefault: "Claim my free review"`. "Claim" is also semantically perfect for a public adjuster context (literal claim + psychological ownership).
+- **"No recovery, no fee" is now table stakes across all PA competitors.** Every competing PA site (Bulldog Adjusters, Adjusting Experts, Your Claim Hero, Apex Adjusting) uses this phrase. Research recommends outcome-first reframe: "You pay nothing unless we recover more for you." or "Zero cost to you. Maximum payout. That's the deal." Requires owner review — copywriter decision, not auto-shippable.
+- **Specific outcome number in the sub-copy is best practice.** "You were offered $18K. We got our last client $147K." already implements this pattern (industry stat: PAs recover 574–747% more than initial offers). CRA's sub-copy is strong here. ✓
+- **Micro-copy under CTA reduces hesitation.** Trust signals placed directly beneath the primary CTA button (not footer) consistently lift conversions. Pattern: `[CTA button] → "No upfront cost · Licensed & insured · Free property review"`. CRA has `scUpfront: "Upfront, ever"` as a badge; these exist near the hero but their exact position relative to the submit button is worth verifying in a future CWV/mobile cycle.
+
+**Queued / flagged for next eligible cycle, in priority order:**
+
+1. **READY — 2-line string change, zero compliance surface, build-verified logic (verified in dictionaries.ts structure this cycle):** `cra-next/src/i18n/dictionaries.ts`: `cta: "Get my free claim review"` → `"Claim my free review"` (en hero section, line 208); `ctaDefault: "Get my free review"` → `"Claim my free review"` (en form section, line 145). Research basis: Optimizely 14,000-test analysis (27% lift for high-agency verb "Claim" vs "Get"). Commit: `auto-improve: CTA verb "Get" → "Claim" for high-agency framing (+27% research lift)`.
+2. **CWV bundle (2 files, confirmed ready since Cycle 86):** `Hero.tsx:21–22` `min-h-screen` → `min-h-[100dvh]`; `ServiceImageCarousel.tsx` pause-on-hover/focus (WCAG 2.2.2).
+3. **[OWNER DECISION NEEDED] Response-time SLA sharpening:** `ctaSub: "We call you within the hour."` — if real SLA is ≤15 min, sharpen to that. Research: 5-min promise is 21× more effective than 30-min. Do not change without owner SLA confirmation.
+4. **[OWNER DECISION NEEDED] "No recovery, no fee" reframe:** Consider outcome-first alternative — "You pay nothing unless we recover more for you." — once it no longer differentiates from competitors. Requires owner copywriter review.
+5. **[OWNER DECISION NEEDED] Damage-type Step 0 selector** (Hurricane / Water / Fire / Wind / Other) in `LeadCaptureForm.tsx`. Research-validated highest-uplift unimplemented form pattern for this vertical.
+6. **[OWNER DECISION NEEDED]** Add `SocialProof.tsx` between `RecentWins` and `About` — 20+ cycles in backlog.
+7. **[FLAGGED FOR OWNER — infra]:** Replace in-memory rate limiters with Upstash Redis.
+8. All other prior backlog items from Cycles 85–91 remain open and unchanged.
+
+Sources: [SaaS Funnel Lab: PAS conversion lift](https://www.saasfunnellab.com/essay/pas-copywriting-framework/); [Anyword: AIDA vs PAS test](https://www.anyword.com/blog/do-aida-and-pas-really-work-we-put-them-to-the-test-using-anywords-performance-prediction-feature); [BDOW: headline formulas 2:1 lead gen](https://bdow.com/stories/headline-formulas/); [Foundry CRO: CTA benchmarks 2026](https://foundrycro.com/blog/cta-button-conversion-rate-benchmarks-2026/); [Amra & Elma: CTA statistics](https://www.amraandelma.com/high-converting-cta-statistics/); [Disruptive Advertising: effective CTAs](https://disruptiveadvertising.com/blog/landing-pages/effective-ctas/); [Omniconvert: hero section examples](https://www.omniconvert.com/blog/hero-section-examples/); [Blakfy: hero best practices](https://www.blakfy.com/en/post/hero-section-best-practices); [Cube Creative: CTA stats home services](https://cubecreative.design/blog/small-business-marketing/top-10-cta-stats-home-services).
