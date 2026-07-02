@@ -3301,3 +3301,42 @@ Sources: [SaaS Funnel Lab: PAS conversion lift](https://www.saasfunnellab.com/es
 8. **[FLAGGED FOR OWNER — infra]:** Replace in-memory rate limiters with Upstash Redis.
 9. All other prior backlog items from Cycles 85–92 remain open and unchanged.
 
+
+
+---
+
+## 2026-07-02 ~12:00 UTC — Cycle 94
+
+**Focus area:** #10 Social proof / reviews placement optimization — tenth-pass (prior passes: cycles 10/20/30/40/50/60/70/78/81; this cycle completes the tenth pass of the full 10-lane rotation).
+
+**Deploy gating:** `git log --oneline --grep="^auto-improve:" --since="20 hours ago" main` returned 3 matches — `4ee8751` (Cycle 93, CTA verb), `9a6da0b` (Cycle 92, accessibility bundle), `7df2289` (Cycle 90, title tags). **Gate closed — research-only cycle, no code pushed beyond this log entry.**
+
+**Method:** Full code inspection of all social proof components (`Reviews.tsx`, `SocialProof.tsx`, `Proof.tsx`, `RecentWins.tsx`, `ReviewsContent.tsx`, `StarRating.tsx`), data sources (`/data/reviews.ts`, `/data/results.ts`), all SEO schema files (`LocalBusinessSchema.tsx`, `ServicePageSchema.tsx`, `CityServiceSchema.tsx`), and homepage page composition (`page.tsx`). Cross-referenced with social proof placement research (Nielsen Norman Group, CXL/ConversionXL, Baymard Institute, VWO, Orbit Media studies on review placement, aggregateRating schema SEO impact).
+
+**Key findings:**
+
+- **`LocalBusinessSchema.tsx` has no `aggregateRating` — Google rich results not eligible.** CRA has 45 verified 5.0 Google reviews but the `LocalBusiness` schema node (`cra-next/src/components/seo/LocalBusinessSchema.tsx`) contains no `aggregateRating` property. Without it, Google's structured data rich results eligibility for star ratings in SERPs and the Local Pack is not signaled programmatically. Fix: add `aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: 45, bestRating: "5", worstRating: "1" }` to the schema object. 4-line change, zero visual impact, zero compliance risk. Keep `totalGoogleReviewCount` in sync when the count changes. **READY — queued for next eligible cycle. Exact strings verified against schema spec.**
+- **`SocialProof.tsx` and `Reviews.tsx` exist but neither appears on the homepage.** `page.tsx` renders: Hero → Services → RecentWins → About → Accreditations → Process → Pricing → FAQ → Contact → InstagramFeedLazy. `SocialProof.tsx` (rating summary + recovery bar chart + 4 review cards) and `Reviews.tsx` (hero pull-quote + 3 supporting cards) are fully built but unused on the homepage. `RecentWins.tsx` provides partial social proof via before/after case cards with embedded star ratings and named testimonials — good but positioned 3rd in page order and doesn't include an aggregate rating summary. This is the 20+ cycle backlog item. **[OWNER DECISION NEEDED] — Adding `SocialProof.tsx` between RecentWins and About is a single import + one JSX line in `page.tsx`.**
+- **`/reviews` page is comprehensive and correctly linked from both navbar and footer — no gap there.** `ReviewsContent.tsx` has filterable reviews by claim type, animated case result cards with modal detail views, and a CTA. Both the nav (`Navbar.tsx:34`) and footer include `Reviews` → `/reviews` links. No navigation gap exists.
+- **Named testimonials with claim type labels are already implemented in `RecentWins.tsx` and `ReviewsContent.tsx`.** Each case result card in `RecentWins` shows the claim type, before/after dollars, and an attributed testimonial with author name + timeAgo. `ReviewsContent.tsx` shows `claimType` as a colored badge per review card. This matches the "named testimonials with specific claim details" pattern research identifies as highest-performing format for distress-purchase categories. ✓ Already compliant.
+- **Star aggregate near the lead form: present in `RecentWins` trust-stat strip but not immediately adjacent to the form.** The form (`Contact.tsx` section) appears at position 9/10 in the page — far below `RecentWins`. No star or review signal appears next to or beneath the form CTA. Research (CXL, Orbit Media) consistently shows a micro-social-proof line immediately below the submit button (e.g., "45 homeowners helped this month · 5.0 ★ on Google") is a high-ROI friction reducer. Implementing this in `LeadCaptureForm.tsx` or `Contact.tsx` is low effort. **Queued.**
+- **Review schema.org `Review` markup is absent from `/reviews` page** — individual `Review` objects with `author`, `reviewRating`, and `reviewBody` could be emitted as JSON-LD from `ReviewsContent.tsx`, surfacing individual reviews in Google's review rich results. Medium effort, strong SEO upside. **Queued.**
+- **`SocialProof.tsx` and `Reviews.tsx` use hardcoded light-mode hex colors** (e.g., `bg-[#f5f3f0]`, `text-[#1a1a2e]`) instead of design token classes. This is pre-existing and consistent with those components' light-mode aesthetic — no change needed. Documented as a design system note.
+- **`totalGoogleReviewCount` in `reviews.ts:15` is a manually-maintained constant (`45`).** No automation for this — when new reviews arrive it must be updated manually to keep the schema and display counts in sync. **Flagged for owner: update this when the live Google count changes.**
+
+**Shipped this cycle:** Nothing — gate closed (3 auto-improve commits within the 20h window).
+
+**Queued / flagged for next eligible cycle, in priority order:**
+
+1. **READY — `aggregateRating` in `LocalBusinessSchema.tsx` (4-line addition, zero visual/compliance impact):** Add `aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: 45, bestRating: "5", worstRating: "1" }` to the `LocalBusiness` node (after the `knowsAbout` array, before closing brace of the first graph item). Commit: `auto-improve: add aggregateRating to LocalBusiness schema for Google rich results`.
+2. **`viewport-fit=cover` fix (CRITICAL, 2-file):** Add `export const viewport: Viewport = { width: 'device-width', initialScale: 1, viewportFit: 'cover' }` to `(site)/layout.tsx` and `(es)/layout.tsx`. Without this, `env(safe-area-inset-bottom)` in `StickyMobileCTA.tsx` and `Navbar.tsx` is a no-op on all iPhones. Build-verified before commit.
+3. **CWV bundle (3 files):** `Hero.tsx:21–22` `min-h-screen` → `min-h-svh`; `EsHero.tsx:22–23` same; `ServiceImageCarousel.tsx` pause-on-hover/focus.
+4. **Phone field `inputMode="tel"` (1-attribute):** `LeadCaptureForm.tsx:568`.
+5. **Micro-social-proof beneath form CTA:** Add `"45 homeowners helped · 5.0 ★ on Google"` line immediately below the submit button in `LeadCaptureForm.tsx`. Research: proximity to CTA is the most impactful placement variable for trust signals. Drives star ratings from data already in `reviews.ts`. Zero compliance risk.
+6. **[OWNER DECISION NEEDED]** Add `SocialProof.tsx` between `RecentWins` and `About` in `page.tsx` — single import + one JSX line. 20+ cycle backlog.
+7. **[OWNER DECISION NEEDED]** Response-time SLA sharpening in `dictionaries.ts` — `ctaSub: "We call you within the hour."` → sharpen if real SLA is ≤15 min.
+8. **[FLAGGED FOR OWNER — infra]:** Replace in-memory rate limiters with Upstash Redis.
+9. **[FLAGGED FOR OWNER — maintenance]:** Update `totalGoogleReviewCount` in `src/data/reviews.ts` when the live Google review count changes (currently 45 — manually maintained).
+10. All other prior backlog items from Cycles 85–93 remain open and unchanged.
+
+Sources: Schema.org `AggregateRating` spec (schema.org/AggregateRating); Google Structured Data: Local Business (developers.google.com/search/docs/appearance/structured-data/local-business); CXL Institute: Social Proof Placement Testing (cxl.com/blog/social-proof/); Nielsen Norman Group: Testimonials in UX (nngroup.com); Orbit Media: Homepage Social Proof Study; Baymard Institute: Trust Signals Near CTA; VWO: Review Proximity A/B Data.
