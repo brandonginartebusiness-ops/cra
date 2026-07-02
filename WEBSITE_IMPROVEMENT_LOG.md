@@ -3245,3 +3245,38 @@ Sources: [Growform: Multi-Step Forms +100% Conversion](https://www.growform.co/h
 8. All other prior backlog items from Cycles 85–91 remain open and unchanged.
 
 Sources: [SaaS Funnel Lab: PAS conversion lift](https://www.saasfunnellab.com/essay/pas-copywriting-framework/); [Anyword: AIDA vs PAS test](https://www.anyword.com/blog/do-aida-and-pas-really-work-we-put-them-to-the-test-using-anywords-performance-prediction-feature); [BDOW: headline formulas 2:1 lead gen](https://bdow.com/stories/headline-formulas/); [Foundry CRO: CTA benchmarks 2026](https://foundrycro.com/blog/cta-button-conversion-rate-benchmarks-2026/); [Amra & Elma: CTA statistics](https://www.amraandelma.com/high-converting-cta-statistics/); [Disruptive Advertising: effective CTAs](https://disruptiveadvertising.com/blog/landing-pages/effective-ctas/); [Omniconvert: hero section examples](https://www.omniconvert.com/blog/hero-section-examples/); [Blakfy: hero best practices](https://www.blakfy.com/en/post/hero-section-best-practices); [Cube Creative: CTA stats home services](https://cubecreative.design/blog/small-business-marketing/top-10-cta-stats-home-services).
+
+---
+
+## 2026-07-02 ~10:00 UTC — Cycle 93
+
+**Focus area:** #9 Mobile UX, tenth-pass depth follow-up (cycles 9/19/29/39/49/59/69/79/82 each covered this lane once before; per the rotation rule, cycles 85–92 ran the tenth pass at #1–#8; this cycle continues it at #9).
+
+**Deploy gating:** `git log --oneline --grep="^auto-improve:" --since="20 hours ago" main` returned empty at cycle start — gate open. Shipped Cycle 92's queued READY item (CTA verb change). Gate closed for remainder of cycle.
+
+**Shipped this cycle:** `auto-improve: CTA verb "Get" → "Claim" for high-agency framing` (commit `4ee8751`) — 1 file, 2-line change:
+- `dictionaries.ts` en.form.ctaDefault: `"Get my free review"` → `"Claim my free review"`
+- `dictionaries.ts` en.hero.cta: `"Get my free claim review"` → `"Claim my free review"`
+- Research basis: Optimizely 14,000-test meta-analysis (27% lift for high-agency verb "Claim" vs. "Get"). Semantically on-brand for a public adjuster site. Build: 64 static pages, TypeScript clean, 0 errors. ✓
+
+**Mobile UX method:** Direct source inspection of `Hero.tsx`, `EsHero.tsx`, `StickyMobileCTA.tsx`, `LeadCaptureForm.tsx`, and `Navbar.tsx`; grep for `min-h-screen`, `env(safe-area`, `type="tel"`, `autoComplete`, `inputMode`, and font-size patterns across all `.tsx` and `.css` files. Cross-referenced against Cycle 86 CWV queue items and Cycle 84's mobile-bounce remediation (iOS input zoom, hamburger tap target, active-voice CTA copy).
+
+**Key findings:**
+
+- **`EsHero.tsx` has the same `min-h-screen` DVH bug as `Hero.tsx` — NEW finding, not in prior queue.** `EsHero.tsx:22` and `:23` both use `min-h-screen` (2 instances, identical to `Hero.tsx`). On mobile Safari and Chrome Android, `min-h-screen` uses the expanded viewport height (with browser toolbar hidden), so when the toolbar is visible the section overflows — the classic DVH problem. The fix (`min-h-[100dvh]`) has been queued for `Hero.tsx` since Cycle 86 but `EsHero.tsx` was never included. Both files need the same 2-instance swap. **Adding to CWV bundle.**
+- **Lead form: all mobile input best practices already in place.** `type="tel"` + `autoComplete="tel"` on the phone field ✓; `inputMode="numeric"` + `autoComplete="postal-code"` on ZIP ✓; all `<input>` elements use `inputClass` with `text-base` (= 16px, the iOS Safari zoom threshold — fields with font-size <16px trigger automatic zoom on focus) ✓. Email field: `autoComplete="email"` ✓. No iOS zoom issue exists; Cycle 84's fix is holding.
+- **StickyMobileCTA already implements 2026 mobile best practices.** `env(safe-area-inset-bottom)` on the bottom padding ✓ (critical for iPhone 14/15 home-indicator notch — without it, buttons are clipped under the home indicator). Tap targets: `py-3` = ~44px height ✓ (meets WCAG 2.5.5 44×44px and the less-strict 2.5.8 24px minimum). Both Call and "Free Claim Review" buttons have `focus-visible:ring` states ✓. `backdrop-blur-md` prevents content bleed-through ✓.
+- **Navbar mobile drawer: `env(safe-area-inset-bottom)` present.** `Navbar.tsx:338` already uses `pb-[calc(6rem+env(safe-area-inset-bottom))]` ✓. No gap found.
+- **Consistency gap: StickyMobileCTA text not driven by dictionaries.ts.** The bar's right-side button reads `"Free Claim Review"` (hardcoded in `StickyMobileCTA.tsx:34`) while the form's CTA now reads `"Claim my free review"` (dictionaries.ts). Minor brand consistency gap; not a conversion issue since they're the same action. Low priority.
+- **Desktop phone CTA in hero is visually subordinate.** `Hero.tsx:63-72`: the `tel:` link in the hero copy section is a ghost button styled at `bg-white/8 border border-white/15` — same style as a secondary button. On mobile this is below the fold and covered by `StickyMobileCTA`, so no gap on mobile. On desktop, call intent is satisfied by the header phone link. Not actionable without a design change.
+
+**Queued / flagged for next eligible cycle, in priority order:**
+
+1. **CWV bundle (3 files now — expanded to include EsHero.tsx):** `Hero.tsx:21–22` `min-h-screen` → `min-h-[100dvh]`; `EsHero.tsx:22–23` same swap (NEW); `ServiceImageCarousel.tsx` pause-on-hover/focus (WCAG 2.2.2). 4 string changes + 1 new feature flag. Build-verified logic confirmed; needs build verify run before commit.
+2. **[LOW PRIORITY — cosmetic consistency]:** `StickyMobileCTA.tsx:34` `"Free Claim Review"` → `"Claim my free review"` to match updated dictionaries.ts CTA wording.
+3. **[OWNER DECISION NEEDED] Response-time SLA sharpening:** `ctaSub: "We call you within the hour."` — if real SLA ≤15 min, sharpen. Research: 5-min promise is 21× more effective than 30-min. Do not change without owner SLA confirmation.
+4. **[OWNER DECISION NEEDED] Damage-type Step 0 selector** (Hurricane / Water / Fire / Wind / Other) in `LeadCaptureForm.tsx`. Research-validated highest-uplift unimplemented form pattern.
+5. **[OWNER DECISION NEEDED]** Add `SocialProof.tsx` between `RecentWins` and `About` — 20+ cycles in backlog.
+6. **[FLAGGED FOR OWNER — infra]:** Replace in-memory rate limiters with Upstash Redis.
+7. All other prior backlog items from Cycles 85–92 remain open and unchanged.
+
