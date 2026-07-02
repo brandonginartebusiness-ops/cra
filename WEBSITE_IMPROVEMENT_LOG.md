@@ -3435,3 +3435,31 @@ Sources: [VWO — Lead Generation Forms 18 Examples](https://vwo.com/blog/lead-g
 10. All other prior backlog items from Cycles 85–95 remain open and unchanged.
 
 Sources: [web.dev: The large, small, and dynamic viewport units](https://web.dev/blog/viewport-units); [Polypane: Using safe-area-inset to build mobile-safe layouts](https://polypane.app/blog/using-safe-area-inset-to-build-mobile-safe-layouts/); [Vercel Academy: Core Web Vitals + Measurement](https://vercel.com/academy/nextjs-foundations/core-web-vitals-and-measurement); [DEV: The New CSS Viewport Units That Finally Fix Mobile Layouts](https://dev.to/web_dev-usman/the-new-css-viewport-units-that-finally-fix-mobile-layouts-2cjd); [DEV: Mastering Modern Viewport Units: SVH, LVH, and DVH](https://dev.to/softheartengineer/mastering-modern-viewport-units-svh-lvh-and-dvh-for-responsive-web-design-5de9); [Next.js Performance Optimization: The 2026 Complete Guide](https://dev.to/bean_bean/nextjs-performance-optimization-the-2026-complete-guide-1a9k).
+
+---
+
+## 2026-07-02 ~18:15 UTC — Cycle 97
+
+**Focus area:** #3 Accessibility audit — second-loop depth pass (prior passes: cycles 3/13/23/33/43/53/63/73/83/87/82; this cycle continues the second-loop pass at lane #3 following the second-loop completions at lanes #1–#2 in cycles 95–96).
+
+**Deploy gating:** `git fetch origin main && git reset --hard origin/main` run unconditionally before gate check (standing practice since cycle 86 to avoid stale-ref false-clears). `git log --oneline --grep="^auto-improve:" --since="20 hours ago" origin/main` returned nothing — gate open.
+
+**Method:** Verified current state of all prior a11y backlog items via grep and file reads; confirmed cycle 87's a11y bundle (`9a6da0b`: MotionConfig reducedMotion, heading order, ctaSub contrast, duplicate-main fix) and `StarRating.tsx` `role="img"` + `aria-hidden` are all in place. Identified two remaining open items: phone field a11y and carousel WCAG 2.2.2. Ran a targeted sub-agent research check to confirm the correct ARIA patterns and WCAG 2.2.2 keyboard-focus requirement before implementing.
+
+**Key findings:**
+- **Phone field WCAG 3.3.1/4.1.2 gap confirmed still open.** `LeadCaptureForm.tsx:567-578` showed `type="tel"` and an existing `errors.phone` display `<p>` but no `inputMode="tel"`, no `aria-invalid`, and no `aria-describedby`/`id` linking the error message to the input. Screen readers have no programmatic way to associate the error `<p>` with the `<input>`, and the explicit keyboard hint attribute was missing. Fix: `inputMode="tel"` (additive over `type="tel"`, covers older browsers and Samsung Internet); `aria-invalid={errors.phone ? true : undefined}` (undefined when no error, not `false`, to avoid older AT announcing "invalid: false"); `aria-describedby={errors.phone ? "phone-error" : undefined}`; `id="phone-error"` on the error `<p>`. This is purely additive ARIA markup — no validation logic, field requirements, or error messages touched.
+- **ServiceImageCarousel.tsx WCAG 2.2.2 gap confirmed still open.** The carousel already correctly short-circuits on `prefers-reduced-motion`, but WCAG 2.2.2 (Pause, Stop, Hide) requires a mechanism accessible to ALL users, including keyboard-only users — pointer-only hover is not sufficient. The carousel (auto-advances every 4.2s+, > 5s total for any card with 2+ images) had no hover or focus pause. Fix: added `paused` state wired to `onMouseEnter`/`onMouseLeave` and `onFocus`/`onBlur`; included `paused` in the `useEffect` dependency array so the interval teardown/restart is correct; added `tabIndex={images.length > 1 ? 0 : undefined}` and a descriptive `aria-label` so keyboard users can tab to the container and trigger the pause via focus.
+- **No new a11y gaps found beyond the two shipped.** Re-confirmed via grep: `role="status" aria-live="polite"` on form success/error regions ✓; `role="alert" aria-atomic="true"` on submission error ✓; `MotionConfig reducedMotion="user"` ✓; skip-to-content + `<main id="main-content">` in layout ✓; all `next/image` call sites have real `alt` ✓; no duplicate `<main>` landmarks ✓; heading order on service pages fixed ✓.
+
+**Shipped this cycle:** `auto-improve: phone input aria-invalid/describedby + carousel WCAG 2.2.2 pause` (commit `7032abe`) — 2 files, 16 insertions, 3 deletions. Build: 64 static pages, TypeScript clean, 0 errors. ✓
+
+**Updated priority queue:**
+
+1. **[READY — from cycle 96 queue, not yet shipped]** Micro-social-proof line below submit button in `LeadCaptureForm.tsx` (~line 628): `<p className="flex items-center justify-center gap-2 text-xs text-cra-muted font-medium"><span aria-hidden="true">⭐</span> 5.0 Google rating · {totalGoogleReviewCount}+ FL homeowners helped</p>` — CRO lane #1.
+2. **[READY — from cycle 96 queue]** Hero review count: add `` · ${totalGoogleReviewCount}+ reviews`` suffix to the `"Google rating"` scorecard label in `Hero.tsx` — CRO lane #1.
+3. **[READY — from cycle 96 queue]** `aggregateRating` node in `LocalBusinessSchema.tsx` — SEO lane #4.
+4. **[READY — from cycle 96 queue]** `inputMode="tel"` on phone field — **shipped this cycle** ✓.
+5. **[OWNER DECISION NEEDED — highest leverage]** Response-time SLA sharpening (`ctaSub` "We call you within the hour." → "We call within 15 minutes.") if the actual SLA supports it. Speed-to-lead research: <5 min = 21× more likely to qualify. DO NOT change without owner confirming.
+6. **[OWNER DECISION NEEDED]** Add `SocialProof.tsx` between `RecentWins` and `About` in `page.tsx` — 20+ cycles in backlog, single import + JSX line, research-confirmed highest-ROI unimplemented change.
+7. **[OWNER DECISION NEEDED]** Florida claim-filing-deadline urgency copy — legal sign-off required before auto-shipping.
+8. All other prior backlog items from Cycles 85–96 remain open and unchanged.
