@@ -48,7 +48,7 @@ function formatBytes(bytes: number): string {
 }
 
 const inputClass =
-  "w-full bg-[#faf8f5] border rounded-lg px-4 py-3 text-sm text-[#1a1a2e] placeholder-[#8888a0] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/40 focus:border-[#2563eb]/50 transition-colors";
+  "w-full bg-[#faf8f5] border rounded-lg px-4 py-3 text-base text-[#1a1a2e] placeholder-[#8888a0] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/40 focus:border-[#2563eb]/50 transition-colors";
 
 export default function LeadCaptureForm({
   servicePage,

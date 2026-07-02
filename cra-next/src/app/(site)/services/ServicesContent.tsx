@@ -54,7 +54,7 @@ export default function ServicesContent() {
                           alt={s.alt}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          sizes="(min-width: 1024px) calc((100vw - 110px) / 3), (min-width: 640px) calc((100vw - 85px) / 2), calc(100vw - 60px)"
                         />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-[#1a1a2e] to-white flex items-center justify-center">

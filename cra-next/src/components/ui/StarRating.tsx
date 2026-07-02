@@ -5,7 +5,7 @@ interface Props {
 
 export default function StarRating({ count = 5, className }: Props) {
   return (
-    <span className={className} aria-label={`${count} stars`}>
+    <span className={className} role="img" aria-label={`${count} stars`}>
       {Array.from({ length: count }).map((_, i) => (
         <span key={i} className="text-cra-blue" aria-hidden="true">
           ★

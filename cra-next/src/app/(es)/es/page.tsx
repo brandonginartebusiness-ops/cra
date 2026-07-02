@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://claimremedyadjusters.com/es",
     languages: {
+      "x-default": "https://claimremedyadjusters.com",
       "en-US": "https://claimremedyadjusters.com",
       "es-US": "https://claimremedyadjusters.com/es",
     },

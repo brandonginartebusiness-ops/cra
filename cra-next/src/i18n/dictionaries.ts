@@ -143,7 +143,7 @@ const en: Dict = {
     messagePlaceholder: "A roof leak, a denied claim, water damage…",
     trustLine: "No recovery, no fee. Licensed Florida public adjusters.",
     ctaDefault: "Get my free review",
-    ctaSub: "Called back within the hour.",
+    ctaSub: "We call you within the hour.",
     submitting: "Submitting...",
     tcpa: "By submitting, you agree to receive calls and SMS from Claim Remedy Adjusters about your claim. Reply STOP to opt out. Msg & data rates may apply. Your info is never shared.",
     successHeading: "Got it — we'll call within the hour.",

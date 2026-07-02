@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Contact from "@/components/sections/Contact";
 import ContactForm from "./ContactForm";
 import PageTransition from "@/components/ui/PageTransition";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Contact a Miami Public Adjuster",
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://claimremedyadjusters.com/contact",
     languages: {
+      "x-default": "https://claimremedyadjusters.com/contact",
       "en-US": "https://claimremedyadjusters.com/contact",
       "es-US": "https://claimremedyadjusters.com/es/contact",
     },
@@ -26,10 +28,16 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <PageTransition>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ]}
+      />
       <div className="pt-24">
         <h1 className="sr-only">Contact a Miami Public Adjuster — Free Claim Review</h1>
-        <Contact />
         <ContactForm />
+        <Contact />
       </div>
     </PageTransition>
   );

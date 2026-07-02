@@ -111,6 +111,12 @@ body::before {
 .hero-fade-delay-5 { animation-delay: 0.35s; }
 .hero-fade-delay-6 { animation-delay: 0.42s; }
 
+/* Page-level entrance (PageTransition.tsx) — same CSS-only approach so the
+   page's LCP element paints at FCP instead of waiting on JS hydration. */
+.page-fade {
+  animation: hero-fade-up 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-fade,
   .hero-fade-delay-1,
@@ -118,7 +124,8 @@ body::before {
   .hero-fade-delay-3,
   .hero-fade-delay-4,
   .hero-fade-delay-5,
-  .hero-fade-delay-6 { animation: none; }
+  .hero-fade-delay-6,
+  .page-fade { animation: none; }
 }
 
 /* ───────────────────────────────────────────────────────────────────
@@ -231,4 +238,16 @@ body::before {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   MOBILE MENU OPEN — hide floating launchers behind the nav drawer.
+   Navbar toggles `.mobile-menu-open` on <body> while the full-screen
+   mobile drawer (z-40) is open. The sticky bottom CTA and the floating
+   contact/WhatsApp launchers sit at z-40/z-50 and would otherwise stack
+   on top of the drawer, so hide any element tagged `.floating-cta`.
+   `display:none` (not opacity/transform) — this is a hide, not a motion.
+   ─────────────────────────────────────────────────────────────────── */
+body.mobile-menu-open .floating-cta {
+  display: none !important;
 }

@@ -66,7 +66,7 @@ export default function Proof() {
                   alt={p.title}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(min-width: 768px) calc((100vw - 110px) / 3), calc(100vw - 60px)"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 <span className="absolute bottom-3 left-3 text-xs bg-black/60 text-white border border-white/10 px-3 py-1 rounded-full">

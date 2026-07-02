@@ -9,7 +9,7 @@ import SiteShell from "@/components/layout/SiteShell";
 // is the right behavior for a language switch.
 export const metadata: Metadata = {
   title: {
-    default: "Public Adjuster Miami | Claim Remedy Adjusters — Your Claim. Our Fight.",
+    default: "Miami Public Adjuster | Claim Remedy Adjusters",
     template: "%s | Claim Remedy Adjusters",
   },
   description:
@@ -35,6 +35,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://claimremedyadjusters.com",
     languages: {
+      "x-default": "https://claimremedyadjusters.com",
       "en-US": "https://claimremedyadjusters.com",
       "es-US": "https://claimremedyadjusters.com/es",
     },

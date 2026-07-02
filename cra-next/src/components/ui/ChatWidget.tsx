@@ -207,7 +207,7 @@ export default function ChatWidget() {
       `}</style>
 
       {/* Desktop floating button — unchanged behavior, own corner */}
-      <div className="hidden md:block fixed bottom-6 right-6 z-50 w-14 h-14">
+      <div className="floating-cta hidden md:block fixed bottom-6 right-6 z-50 w-14 h-14">
         {!open && (
           <>
             <span className="absolute inset-0 rounded-full bg-[#2563eb] opacity-20 animate-[chat-ping_3.5s_ease-out_infinite]" />
@@ -230,7 +230,7 @@ export default function ChatWidget() {
           the whole cluster slides out of the way while scrolling down and
           returns on scroll-up so it stops blocking what people are reading. */}
       <div
-        className={`md:hidden fixed bottom-[84px] right-6 z-50 flex flex-col-reverse items-end gap-3 transition-[transform,opacity] duration-300 ${
+        className={`floating-cta md:hidden fixed bottom-[84px] right-6 z-50 flex flex-col-reverse items-end gap-3 transition-[transform,opacity] duration-300 ${
           mobileHidden ? "translate-y-20 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
         }`}
       >
@@ -266,7 +266,7 @@ export default function ChatWidget() {
                 transition={{ duration: 0.15 }}
                 className="flex items-center gap-2.5 h-12 pl-3 pr-4 rounded-full bg-white text-[#1a1a2e] shadow-[0_4px_20px_rgba(0,0,0,0.18)] text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25d366]/60"
               >
-                <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[#25d366] text-white flex items-center justify-center">
+                <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[#25d366] text-cra-bg flex items-center justify-center">
                   <WhatsAppIcon className="w-4 h-4" />
                 </span>
                 WhatsApp

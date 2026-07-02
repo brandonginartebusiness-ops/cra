@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -62,6 +62,7 @@ export default function Navbar() {
   const [mobileGroup, setMobileGroup] = useState<string | null>(null); // mobile accordion
   const [previousPathname, setPreviousPathname] = useState<string | null>(null);
   const pathname = usePathname();
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   if (pathname !== previousPathname) {
     setPreviousPathname(pathname);
@@ -83,6 +84,21 @@ export default function Navbar() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
+
+  // While the mobile drawer is open, mark <body> so the floating contact
+  // launcher and the sticky bottom CTA hide themselves (they sit above the
+  // drawer otherwise — see globals.css `.mobile-menu-open`).
+  useEffect(() => {
+    document.body.classList.toggle("mobile-menu-open", open);
+    return () => document.body.classList.remove("mobile-menu-open");
+  }, [open]);
+
+  // Reset the drawer scroll to the top when it opens or when a group is
+  // expanded/collapsed, so a newly-revealed submenu never starts scrolled
+  // partway behind the fixed header.
+  useEffect(() => {
+    if (open && drawerRef.current) drawerRef.current.scrollTop = 0;
+  }, [open, mobileGroup]);
 
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(href + "/");
@@ -287,7 +303,7 @@ export default function Navbar() {
             {/* Hamburger */}
             <button
               onClick={() => setOpen(!open)}
-              className="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
+              className="lg:hidden flex flex-col gap-1.5 p-2 min-h-[44px] min-w-[44px] items-center justify-center cursor-pointer rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/60"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               aria-controls="mobile-menu"
@@ -306,15 +322,20 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — outer element is the scroll container; the inner wrapper
+          centers the menu when it fits and grows (scrollable from the top) when
+          it doesn't, instead of clipping behind the header the way a single
+          `justify-center` + `overflow` element does. */}
       <div
         id="mobile-menu"
+        ref={drawerRef}
         aria-hidden={!open}
         inert={!open}
-        className={`fixed inset-0 z-40 bg-[#1a1a2e] flex flex-col justify-center px-8 overflow-y-auto py-24 transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-[#1a1a2e] overflow-y-auto transition-opacity duration-300 lg:hidden ${
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
+        <div className="min-h-full flex flex-col justify-center px-8 pt-24 pb-[calc(6rem+env(safe-area-inset-bottom))]">
         <ul className="flex flex-col gap-6">
           <MobileGroup
             id="services"
@@ -354,6 +375,7 @@ export default function Navbar() {
         >
           Call Now
         </a>
+        </div>
       </div>
     </>
   );

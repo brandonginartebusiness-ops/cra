@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ServicePageLayout from "@/components/templates/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Public Adjuster Insurance Appraisal FL",
+  title: "Public Adjuster Appraisal Florida",
   description:
     "Licensed public adjuster appraisal representation for Florida homeowners. When you and your insurer disagree on the value of your claim, invoke the appraisal clause and let Claim Remedy fight for you.",
   openGraph: {
