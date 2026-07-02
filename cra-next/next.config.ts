@@ -108,7 +108,12 @@ const CSP_REPORT_ONLY = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://www.facebook.com https://*.cdninstagram.com https://*.fbcdn.net https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com https://*.clarity.ms https://analytics.tiktok.com https://googleads.g.doubleclick.net https://www.google.com",
   "font-src 'self' data:",
-  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com https://analytics.tiktok.com https://*.clarity.ms https://api.callrail.com https://cdn.callrail.com https://vitals.vercel-insights.com https://va.vercel-scripts.com",
+  // The fh-*.ecs.us-west-2.on.aws origin is the Meta Conversions API Gateway
+  // endpoint from pixel 939105465792094's config — fbevents.js dual-sends events
+  // there. The hash-named host is deployment-specific, so if Meta redeploys the
+  // gateway the host changes and will reappear as a connect-src violation in
+  // /api/csp-report logs. Exact host only — *.on.aws would be far too broad.
+  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com https://analytics.tiktok.com https://*.clarity.ms https://api.callrail.com https://cdn.callrail.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://fh-118116076e9a4c2a96a99fbb70bea2a0.ecs.us-west-2.on.aws",
   "frame-src 'self' https://www.facebook.com https://td.doubleclick.net",
   "worker-src 'self' blob:",
   "report-uri /api/csp-report",
