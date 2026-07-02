@@ -7,7 +7,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 const CANONICAL = "https://claimremedyadjusters.com/do-i-need-a-public-adjuster";
 
 export const metadata: Metadata = {
-  title: "Do I Need a Public Adjuster in Florida?",
+  title: "Do I Need a Public Adjuster in FL?",
   description:
     "Honest guide to whether you need a public adjuster in Florida — the signs that you do, when you may not, and exactly what it costs. Florida fee caps explained (20% / 10% post-emergency). No recovery, no fee.",
   openGraph: {

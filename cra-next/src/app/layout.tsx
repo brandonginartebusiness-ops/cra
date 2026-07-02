@@ -30,7 +30,7 @@ const roboto = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Public Adjuster Miami | Claim Remedy Adjusters — Your Claim. Our Fight.",
+    default: "Miami Public Adjuster | Claim Remedy Adjusters",
     template: "%s | Claim Remedy Adjusters",
   },
   description:

@@ -2,6 +2,8 @@ import { NextRequest } from "next/server";
 import { supabaseServer } from "@/lib/supabaseServer";
 import { verifyLeadToken, sendReviewRequest } from "@/lib/reviewRequest";
 
+export const maxDuration = 30;
+
 /**
  * GET /api/review-request?lead=<id>&t=<hmac>
  *
