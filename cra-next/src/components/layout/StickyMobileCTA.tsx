@@ -12,7 +12,7 @@ const PHONE = "+13057331670";
 export default function StickyMobileCTA() {
   return (
     <div
-      className="md:hidden fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#14141c]/95 backdrop-blur-md px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]"
+      className="floating-cta md:hidden fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#14141c]/95 backdrop-blur-md px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]"
       role="region"
       aria-label="Quick contact"
     >

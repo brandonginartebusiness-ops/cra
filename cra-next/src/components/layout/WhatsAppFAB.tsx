@@ -16,7 +16,7 @@ export function WhatsAppIcon({ className }: { className?: string }) {
 // pinned 56px circles ate too much of small viewports).
 export default function WhatsAppFAB() {
   return (
-    <div className="hidden md:block fixed bottom-6 left-6 z-50 w-14 h-14">
+    <div className="floating-cta hidden md:block fixed bottom-6 left-6 z-50 w-14 h-14">
       {/* Pulse rings */}
       <span className="absolute inset-0 rounded-full bg-[#25d366] opacity-20 animate-[wa-ping_3.5s_ease-out_infinite]" />
       <span className="absolute inset-0 rounded-full bg-[#25d366] opacity-10 animate-[wa-ping_3.5s_ease-out_1s_infinite]" />

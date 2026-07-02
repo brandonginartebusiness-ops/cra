@@ -239,3 +239,15 @@ body::before {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* ───────────────────────────────────────────────────────────────────
+   MOBILE MENU OPEN — hide floating launchers behind the nav drawer.
+   Navbar toggles `.mobile-menu-open` on <body> while the full-screen
+   mobile drawer (z-40) is open. The sticky bottom CTA and the floating
+   contact/WhatsApp launchers sit at z-40/z-50 and would otherwise stack
+   on top of the drawer, so hide any element tagged `.floating-cta`.
+   `display:none` (not opacity/transform) — this is a hide, not a motion.
+   ─────────────────────────────────────────────────────────────────── */
+body.mobile-menu-open .floating-cta {
+  display: none !important;
+}

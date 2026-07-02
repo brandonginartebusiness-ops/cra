@@ -207,7 +207,7 @@ export default function ChatWidget() {
       `}</style>
 
       {/* Desktop floating button — unchanged behavior, own corner */}
-      <div className="hidden md:block fixed bottom-6 right-6 z-50 w-14 h-14">
+      <div className="floating-cta hidden md:block fixed bottom-6 right-6 z-50 w-14 h-14">
         {!open && (
           <>
             <span className="absolute inset-0 rounded-full bg-[#2563eb] opacity-20 animate-[chat-ping_3.5s_ease-out_infinite]" />
@@ -230,7 +230,7 @@ export default function ChatWidget() {
           the whole cluster slides out of the way while scrolling down and
           returns on scroll-up so it stops blocking what people are reading. */}
       <div
-        className={`md:hidden fixed bottom-[84px] right-6 z-50 flex flex-col-reverse items-end gap-3 transition-[transform,opacity] duration-300 ${
+        className={`floating-cta md:hidden fixed bottom-[84px] right-6 z-50 flex flex-col-reverse items-end gap-3 transition-[transform,opacity] duration-300 ${
           mobileHidden ? "translate-y-20 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
         }`}
       >

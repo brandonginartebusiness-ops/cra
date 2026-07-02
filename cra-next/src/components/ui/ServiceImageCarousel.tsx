@@ -53,7 +53,7 @@ export default function ServiceImageCarousel({
             alt={alt}
             fill
             className="object-cover"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            sizes="(min-width: 1024px) calc((100vw - 135px) / 4), (min-width: 640px) calc((100vw - 85px) / 2), calc(100vw - 60px)"
             priority={priority && active === 0}
           />
         </m.div>
