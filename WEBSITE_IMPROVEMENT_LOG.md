@@ -3130,3 +3130,43 @@ Sources for this cycle's external research: [Meta Title Length Best Practices 20
 6. All other prior backlog items from Cycles 85–88 remain open and unchanged.
 
 Sources for this cycle's external research: [Rate Limiting Next.js API Routes using Upstash Redis — Upstash Blog](https://upstash.com/blog/nextjs-ratelimiting); [Rate Limiting with Upstash Redis — Vercel Official Template](https://vercel.com/templates/next.js/ratelimit-with-upstash-redis); [Add Rate Limiting with Vercel — Vercel Knowledge Base](https://vercel.com/kb/guide/add-rate-limiting-vercel); [Configuring Maximum Duration for Vercel Functions — Vercel Docs](https://vercel.com/docs/functions/configuring-functions/duration); [Higher defaults for Vercel Functions (Fluid Compute) — Vercel Changelog](https://vercel.com/changelog/higher-defaults-and-limits-for-vercel-functions-running-fluid-compute); [supabase-js edge runtime incompatibility — GitHub Issue #1552](https://github.com/supabase/supabase-js/issues/1552); [Supabase Connection Pooler deprecating Session Mode port 6543 — Supabase Changelog](https://supabase.com/changelog/32755-supabase-connection-pooler-deprecating-session-mode-on-port-6543-on-february-28); [Creating a Supabase client for SSR — Supabase Docs](https://supabase.com/docs/guides/auth/server-side/creating-a-client).
+
+---
+
+## 2026-07-02 ~02:00 UTC — Cycle 90
+
+**Focus area:** #6 Competitor analysis — how other public adjuster / insurance claim lead-gen sites present trust signals and capture leads (tenth-pass first entry at this lane).
+
+**Deploy gating:** `git log --oneline --grep="^auto-improve:" --since="20 hours ago" main` returned empty — gate open. Shipped the build-verified READY bundle from Cycle 89 queue as the auto-improve commit for this cycle.
+
+**Shipped this cycle:** `auto-improve: shorten overlength title tags (3 pages) + review-request maxDuration` (commit `7df2289`)
+- `cra-next/src/app/layout.tsx`: default title `"Public Adjuster Miami | Claim Remedy Adjusters — Your Claim. Our Fight."` (73 chars) → `"Miami Public Adjuster | Claim Remedy Adjusters"` (47 chars). Removes tagline, leads with keyword in natural-language order. Build: ✓
+- `cra-next/src/app/services/appraisal/page.tsx`: `"Public Adjuster Insurance Appraisal FL"` → `"Public Adjuster Appraisal Florida"`. Cleaner keyword phrase, full state name. Build: ✓
+- `cra-next/src/app/do-i-need-a-public-adjuster/page.tsx`: `"Do I Need a Public Adjuster in Florida?"` → `"Do I Need a Public Adjuster in FL?"`. Under 60-char limit with template suffix. Build: ✓
+- `cra-next/src/app/api/review-request/route.ts`: Added `export const maxDuration = 30` to prevent silent serverless timeout on sequential external calls (Supabase → Twilio → Resend). Matches `/api/leads` and `/api/chat`. Build: ✓
+
+**Competitor analysis method:** WebSearch subagent covering AllCity Adjusting, The Greenspan Co., Noble Public Adjusting Group, Connecticut Claims Adjusters, FL-market firms, NAPIA/FAPIA listings, and industry conversion research.
+
+**Key findings:**
+
+- **Multiple before/after case study cards — missing from CRA.** Top competitors show 3–4 named damage-type examples side-by-side (carrier offer vs. recovered). A FL state study found unrepresented policyholders averaged $2,029 vs. $17,187 with a PA (747% gap). CRA shows one "$18K→$147K" example only. A "Recent Results" row with 3–4 cards is the highest-ROI trust addition in this category. **Queued.**
+- **Percentage multiplier missing from hero.** AllCity leads with "200%–840% More." CRA's hero implies ~8x but never states it. A one-liner subhead like "Clients typically recover 3–8x the insurer's initial offer" would amplify without redesign. **Queued — copywriting only.**
+- **Response-time promise under the CTA is near-universal — CRA lacks it.** "We respond within 2 business hours" or "Same-day response" reduces form friction for distressed post-storm homeowners. **Queued — 1-line copy addition to LeadCaptureForm.**
+- **NAPIA/FAPIA/BBB industry badges.** Established firms display Florida Association of Public Insurance Adjusters (FAPIA) and NAPIA membership logos on every page. CRA shows license number badge only. **Flagged for owner — add if CRA holds these memberships.**
+- **Phone equal to or above form.** AllCity, Greenspan, and most FL-market leaders use a large click-to-call number as the primary CTA on every page, form is secondary. CRA's call link is present but styled as a ghost button below the form. Phone leads in this industry have higher close rates per practitioner data. **Queued — visual emphasis, not new section.**
+- **Named testimonials with claim details + review count.** "Maria R., Tampa, roof damage — $0 to $94K" outperforms anonymous stars. CRA has 5-star rating but review count and named-claim testimonials aren't visible. **Queued — Reviews section enhancement.**
+- **Fee transparency framing.** Sites that explain the contingency model ("our fee is a percentage of what we recover — you still net far more than the insurer offered") convert better than those that say nothing. CRA says "no recovery, no fee" but doesn't close the "what's your cut?" objection. **Queued — 1 sentence in hero sub-copy, owner approval needed before compliance surface.**
+- **Damage-type entry selector as form step 1.** Several FL PA sites open with icon-row segmentation (Hurricane / Water / Fire / Mold / Roof) before contact fields. CRA has a 2-step form; adding damage type as step 0 would segment leads and reduce perceived friction. **Queued as medium complexity — step flow redesign.**
+
+**Queued / flagged for next eligible cycle, in priority order:**
+
+1. **Accessibility bundle (5 files, confirmed ready since Cycle 87):** `MotionProvider.tsx` MotionConfig reducedMotion; `StarRating.tsx:8` role="img"; `ServicePageLayout.tsx:115` h3→h2; `LeadCaptureForm.tsx:622` text-white/80→text-white/95; `privacy/page.tsx:14` main→div.
+2. **CWV bundle (2 files, confirmed ready since Cycle 86):** `Hero.tsx:21–22` min-h-screen→min-h-[100dvh]; `ServiceImageCarousel.tsx` pause-on-hover/focus.
+3. **Response-time promise under lead form CTA** — 1-line copy addition ("We respond within 2 business hours") to `LeadCaptureForm.tsx`. Competitor-validated, zero compliance surface. Low effort.
+4. **[OWNER DECISION NEEDED]:** Add percentage multiplier to hero subhead ("clients typically recover 3–8x the insurer's initial offer"). Cite source if available; do not add without owner sign-off since it's a statistical claim.
+5. **[OWNER DECISION NEEDED]:** Add `SocialProof.tsx` between `RecentWins` and `About` in `src/app/page.tsx` — single import + one JSX line, research-confirmed highest-ROI unimplemented change, 20+ cycles in backlog.
+6. **[FLAGGED FOR OWNER — credentials required]:** NAPIA/FAPIA/BBB badge display in footer/Accreditations section. Add only if CRA holds these memberships.
+7. **[FLAGGED FOR OWNER — infra setup required]:** Replace in-memory rate limiters on `/api/leads` and `/api/chat` with Upstash Redis. Requires Upstash account + 2 env vars.
+8. Fee transparency framing in hero — requires owner approval before touching compliance-adjacent copy.
+
+Sources: AllCity Adjusting (allcityadjusting.com); The Greenspan Co. (greenspanai.com); Noble Public Adjusting Group (noblepagroup.com); Excela Adjusters impact study (exceladjusters.com); Claim Concepts FL results (claimconcepts.com); NAPIA find-a-PA directory (napia.com); FAPIA licensee lookup (fapia.net); Insurance Claim Recovery Support fee transparency article; Get More Claims (getmoreclaims.com).
