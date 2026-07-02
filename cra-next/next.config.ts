@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
     // and this site lives or dies on first-time mobile visitors, so the
     // first-load win matters more than repeat-visit stylesheet caching.
     inlineCss: true,
+    // With two root layouts (the English `(site)` and Spanish `(es)` groups)
+    // there is no single layout to compose a global 404 from, so render it via
+    // app/global-not-found.tsx, which owns its own <html>/<body>.
+    globalNotFound: true,
   },
   turbopack: {
     root: import.meta.dirname,
