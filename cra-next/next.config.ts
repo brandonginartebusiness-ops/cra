@@ -62,9 +62,12 @@ const nextConfig: NextConfig = {
     ];
   },
   // Baseline security headers — conservative, non-breaking defaults on every
-  // route. CSP is shipped in Report-Only mode (below): it observes violations
-  // via /api/csp-report without blocking anything, so it can be tuned before
-  // enforcing. HSTS preload/includeSubDomains stay omitted pending review.
+  // route. CSP is now ENFORCING (below). It was shipped Report-Only first and
+  // tuned against live-site violation reports (a Playwright sweep of /, /contact,
+  // /es, /services/storm-hurricane, /areas/miami on 2026-07-03 surfaced only the
+  // GA4 www.google.com/g/collect beacon, since whitelisted). report-uri/report-to
+  // are kept so violations keep being reported after enforcement.
+  // HSTS preload/includeSubDomains stay omitted pending review.
   async headers() {
     return [
       {
@@ -82,8 +85,8 @@ const nextConfig: NextConfig = {
           // Routes violation reports to the Reporting API endpoint below.
           { key: "Reporting-Endpoints", value: 'csp-endpoint="/api/csp-report"' },
           {
-            key: "Content-Security-Policy-Report-Only",
-            value: CSP_REPORT_ONLY,
+            key: "Content-Security-Policy",
+            value: CSP,
           },
         ],
       },
@@ -91,12 +94,12 @@ const nextConfig: NextConfig = {
   },
 };
 
-// Report-Only Content Security Policy. Encodes the third-party origins the site
-// actually uses (analytics, ads, pixels, Instagram media, Vercel telemetry) so
-// any report points to a genuinely missing source rather than noise. Because it
-// is Report-Only it CANNOT block resources — flipping to an enforcing
-// `Content-Security-Policy` should only happen after the logs are clean.
-const CSP_REPORT_ONLY = [
+// Enforcing Content Security Policy. Encodes the third-party origins the site
+// actually uses (analytics, ads, pixels, Instagram media, Vercel telemetry).
+// This is now served as an enforcing `Content-Security-Policy` (was Report-Only);
+// resources outside these directives are BLOCKED. Add an origin here before it
+// can be used on the site, and watch /api/csp-report for any new violations.
+const CSP = [
   "default-src 'self'",
   "base-uri 'self'",
   "object-src 'none'",
@@ -113,7 +116,11 @@ const CSP_REPORT_ONLY = [
   // there. The hash-named host is deployment-specific, so if Meta redeploys the
   // gateway the host changes and will reappear as a connect-src violation in
   // /api/csp-report logs. Exact host only — *.on.aws would be far too broad.
-  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com https://analytics.tiktok.com https://*.clarity.ms https://api.callrail.com https://cdn.callrail.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://fh-118116076e9a4c2a96a99fbb70bea2a0.ecs.us-west-2.on.aws",
+  // https://www.google.com is GA4's regional collect endpoint (/g/collect) that
+  // fbevents/gtag beacons user_engagement events to — confirmed as the only
+  // connect-src violation in the 2026-07-03 live Playwright sweep. Not covered by
+  // *.google-analytics.com, so it's listed explicitly.
+  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://www.google.com https://connect.facebook.net https://www.facebook.com https://analytics.tiktok.com https://*.clarity.ms https://api.callrail.com https://cdn.callrail.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://fh-118116076e9a4c2a96a99fbb70bea2a0.ecs.us-west-2.on.aws",
   "frame-src 'self' https://www.facebook.com https://td.doubleclick.net",
   "worker-src 'self' blob:",
   "report-uri /api/csp-report",
