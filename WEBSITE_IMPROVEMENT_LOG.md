@@ -3565,3 +3565,40 @@ Sources: [Vercel KB — Bypass 4.5MB body size limit](https://vercel.com/kb/guid
 8. All other prior backlog items from Cycles 85–99 remain open and unchanged.
 
 Sources: [flbestpublicadjusters.com](https://www.flbestpublicadjusters.com/); [famewall.io — Video testimonial stats 2026](https://famewall.io/statistics/video-testimonial-stats/); [wiserreview.com — Video vs text testimonial](https://wiserreview.com/blog/video-vs-text-testimonial/); [searchscaleai.com — Schema Markup 2026](https://www.searchscaleai.com/blog/schema-markup-complete-guide-on-page-seo-2026/); [discoverability.co — Schema Markup Guide 2026](https://discoverability.co/resources/schema-markup-guide/).
+
+## 2026-07-03 ~02:30 UTC — Cycle 101
+
+**Focus area:** #7 Forum/community research — proven conversion tactics for local-service lead gen from HN / Reddit / r/PPC / r/Entrepreneur / IndieHackers-style discussions.
+
+**Deploy gating:** Repo initially presented a detached HEAD (53 commits ahead of origin/main from prior sessions), then origin/main was force-updated mid-session to c762b0e (Cycle 100). Resynced cleanly to origin/main. `git log --oneline --grep="^auto-improve:" --since="20 hours ago" main` → empty (most recent auto-improve commit `6324833` at 2026-07-02 20:14 UTC, ~6h prior). **Gate open — code change shipped this cycle.**
+
+**Note on prior cycle log (orphaned):** The detached HEAD included cycle entries 64-100 that were at some point pushed to origin/main (visible as forced update from 4a44880 → c762b0e). The Cycle 100 log entry flagged `ServicePageSchema.tsx` aggregateRating as the top READY item (build-verified twice on detached HEAD) but never shipped due to the gate being closed. This cycle ships it.
+
+**Correction from detached-HEAD log:** Cycle 100 incorrectly flagged `FAQPage` schema on `/faq` as missing. Confirmed this cycle by reading both files: `/faq/page.tsx` already imports and renders `<FAQSchema />`, which emits correct `@type: FAQPage` JSON-LD with `mainEntity` Question/Answer nodes. No work needed there.
+
+**Method:** Three `WebSearch` queries on: (1) local service lead-gen conversion tactics discussed on HN/Reddit/r/PPC 2025-2026; (2) r/Entrepreneur and r/PPC landing page tips for local service businesses; (3) speed-to-lead statistics and home-services practitioner context. Also implemented the top READY backlog item from Cycle 100.
+
+**Key findings:**
+
+- **Speed-to-lead is the single most-cited conversion lever for local service businesses in practitioner communities.** The 5-minute rule: contacting a lead within 5 minutes yields 21× the conversion rate vs. 30 minutes; 78% of buyers choose the first company to respond. Public adjusting carries the same emergency-urgency profile as roofing/HVAC/water-restoration where this research is clearest. CRA's existing CTA sub copy says "we'll call you within the hour" — tightening to minutes (if operationally accurate) is the most corroborated CRO lever not yet shipped. **Flagged for owner decision** — timing promise must match actual SLA.
+- **Mobile form abandonment benchmark: ~90 seconds.** Community consensus (r/PPC, conversion practitioners): 5-field forms lose ~50% of mobile users vs. a 3-field first-touch form. CRA's `LeadCaptureForm` has 5 required fields. **Flagged for owner decision** — hard rule prohibits touching required-field validation without explicit instruction.
+- **"First responder" positioning as a copywriting frame.** Forum practitioners consistently frame rapid response as a feature in the headline/sub-head, not just an ops promise: "A licensed adjuster contacts you in minutes, not days." This is compatible with existing hero structure and corroborates Cycle 63's `ctaSub` sharpening backlog item.
+- **No HN/Reddit threads specifically on public adjuster lead gen** — category too niche; results from adjacent high-urgency home services categories (roofing, water restoration) transfer directly.
+- **FAQPage schema already live** — no gap; confirmed by reading `/faq/page.tsx` and `FAQSchema.tsx` this session.
+
+**Shipped this cycle:** `auto-improve: add aggregateRating to Service schema for rich-result eligibility` — added `AggregateRating` node (`ratingValue: "5.0"`, `reviewCount: 45`) to the `Service` JSON-LD on all `/services/*` detail pages. The `LocalBusiness` node already had this from `6324833`; the per-service `Service` nodes did not. Build: 64 routes, TypeScript clean. Commit: `14ce027`.
+
+**Updated priority queue:**
+
+1. **[OWNER DECISION — highest conversion leverage]** Sharpen CTA sub copy: `"We call you within the hour"` → `"A licensed adjuster calls you within [X] minutes"` (if SLA supports it). Corroborated by this cycle's forum research and Cycle 63's backlog item.
+2. **READY — smallest diff, most reconfirmed:** swap `<Contact />`/`<ContactForm />` render order in `src/app/contact/page.tsx` (Cycles 41/50/53/63 confirmed, no drift).
+3. **READY:** point `CityPageLayout.tsx:108`'s hero CTA at an in-page anchor for its own Section 5 form instead of `/contact` (Cycles 41/50/53/63 confirmed).
+4. **READY:** capture UTM params / `gclid` / `fbclid` from `window.location.search` into `sessionStorage`; pass as optional hidden fields in `LeadCaptureForm.tsx` POST body; append to `composeLeadMessage()` extras in `route.ts` (Cycle 63 spec, zero new DB columns).
+5. **READY:** add `<StarRating />` + `{totalGoogleReviewCount}+ Google reviews` trust line to `ContactForm.tsx` and `EsContactForm.tsx` above the form heading (Cycle 62/63 spec).
+6. **[OWNER DECISION]** Wire `SocialProof.tsx` into homepage `page.tsx` between `RecentWins` and `About`.
+7. **[OWNER DECISION — LIVE RISK]** `/api/leads/upload` allows 10 MB but Vercel hard-limits at 4.5 MB — modern phone photos silently 413.
+8. **[OWNER DECISION — medium priority]** Single video testimonial embedded in `Reviews.tsx` — 34% trust lift vs. text-only (requires video production).
+
+Sources: [amarketforce.com — Local Lead Generation 2026](https://www.amarketforce.com/blog/from-search-to-conversion-local-lead-generation-2026/); [rework.com — Lead Response Time](https://resources.rework.com/libraries/lead-management/lead-response-time); [kixie.com — Speed to Lead Statistics](https://www.kixie.com/sales-blog/speed-to-lead-response-time-statistics-that-drive-conversions/); [verse.ai — 25 Speed to Lead Statistics](https://verse.ai/blog/speed-to-lead-statistics); [scorpion.co — Speed Wins in Home Services](https://www.scorpion.co/home-services/insights/blog/verticals/home-services/why-speed-wins-the-critical-role-of-response-tim/).
+
+---
