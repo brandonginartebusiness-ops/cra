@@ -1,3 +1,5 @@
+import { totalGoogleReviewCount } from "@/data/reviews";
+
 interface Props {
   /** Service page title, e.g. "Water Damage Claims" */
   title: string;
@@ -35,6 +37,13 @@ export default function ServicePageSchema({ title, slug, description }: Props) {
             priceCurrency: "USD",
             description: "No recovery, no fee — contingency basis",
           },
+        },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "5.0",
+          reviewCount: totalGoogleReviewCount,
+          bestRating: "5",
+          worstRating: "1",
         },
       },
       {
