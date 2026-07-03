@@ -3,6 +3,8 @@
 import { m } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import LeadCaptureForm from "@/components/ui/LeadCaptureForm";
+import StarRating from "@/components/ui/StarRating";
+import { totalGoogleReviewCount } from "@/data/reviews";
 
 export default function ContactForm() {
   return (
@@ -15,6 +17,10 @@ export default function ContactForm() {
           variants={fadeInUp}
           className="text-center mb-10"
         >
+          <div className="flex items-center justify-center gap-1.5 mb-3">
+            <StarRating />
+            <span className="text-sm font-semibold text-[#5a5a72]">{totalGoogleReviewCount}+ Google reviews</span>
+          </div>
           <h2 className="font-bebas text-4xl md:text-5xl text-[#1a1a2e] leading-none tracking-tight mb-3">
             Submit a Free Claim Review Request
           </h2>
