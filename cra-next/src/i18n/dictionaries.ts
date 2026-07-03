@@ -177,7 +177,7 @@ const en: Dict = {
     uploading: "Uploading…",
     chooseFiles: "Choose files",
     addMore: "Add more",
-    fileMeta: (left) => `PDF, JPG, PNG, DOC · 10 MB max · ${left} left`,
+    fileMeta: (left) => `PDF, JPG, PNG, DOC · up to 4 MB per file · ${left} left`,
     removeAria: (name) => `Remove ${name}`,
     sendButton: (count) =>
       count > 0
@@ -186,7 +186,7 @@ const en: Dict = {
     skip: "Skip — we'll cover it on the call",
     errSlots: (max, remaining) =>
       `You can attach up to ${max} files. ${remaining} slot${remaining === 1 ? "" : "s"} remaining.`,
-    errTooBig: (name) => `${name} is over 10 MB. Try compressing or splitting it.`,
+    errTooBig: (name) => `${name} is over 4 MB — please choose a smaller file.`,
     errUploadFailed: "Upload failed",
     errUploadRetry: "Upload failed. Please try again.",
   },
@@ -288,7 +288,7 @@ const es: Dict = {
     chooseFiles: "Elegir archivos",
     addMore: "Agregar más",
     fileMeta: (left) =>
-      `PDF, JPG, PNG, DOC · máx. 10 MB · ${left} ${left === 1 ? "restante" : "restantes"}`,
+      `PDF, JPG, PNG, DOC · hasta 4 MB por archivo · ${left} ${left === 1 ? "restante" : "restantes"}`,
     removeAria: (name) => `Quitar ${name}`,
     sendButton: (count) =>
       count > 0
@@ -297,7 +297,7 @@ const es: Dict = {
     skip: "Omitir — lo vemos en la llamada",
     errSlots: (max, remaining) =>
       `Puede adjuntar hasta ${max} archivos. ${remaining} ${remaining === 1 ? "espacio disponible" : "espacios disponibles"}.`,
-    errTooBig: (name) => `${name} supera los 10 MB. Intente comprimirlo o dividirlo.`,
+    errTooBig: (name) => `${name} supera los 4 MB — elija un archivo más pequeño.`,
     errUploadFailed: "La carga falló",
     errUploadRetry: "La carga falló. Inténtelo de nuevo.",
   },

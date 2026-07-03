@@ -4,8 +4,11 @@ import { supabaseServer } from "@/lib/supabaseServer";
 export const runtime = "nodejs";
 
 const BUCKET = "lead-attachments";
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
-const MAX_FILES_PER_REQUEST = 5;
+// Vercel hard-rejects any request body over 4.5 MB with a 413 BEFORE this route
+// runs, so cap a single file at 4 MB and accept only one file per request. The
+// client uploads files one-at-a-time to stay under the platform body limit.
+const MAX_FILE_SIZE = 4 * 1024 * 1024; // 4 MB
+const MAX_FILES_PER_REQUEST = 1;
 const ALLOWED_MIME = new Set([
   "application/pdf",
   "image/jpeg",
@@ -38,7 +41,7 @@ export async function POST(request: NextRequest) {
     }
     if (files.length > MAX_FILES_PER_REQUEST) {
       return NextResponse.json(
-        { error: `Up to ${MAX_FILES_PER_REQUEST} files per upload` },
+        { error: `Upload one file per request` },
         { status: 400 }
       );
     }
@@ -55,7 +58,7 @@ export async function POST(request: NextRequest) {
     for (const file of files) {
       if (file.size > MAX_FILE_SIZE) {
         return NextResponse.json(
-          { error: `${file.name}: exceeds 10 MB limit` },
+          { error: `${file.name}: exceeds 4 MB limit` },
           { status: 413 }
         );
       }

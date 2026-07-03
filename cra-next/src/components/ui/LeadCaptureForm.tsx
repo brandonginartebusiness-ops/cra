@@ -38,7 +38,9 @@ interface Attachment {
 }
 
 const MAX_FILES = 5;
-const MAX_FILE_SIZE = 10 * 1024 * 1024;
+// Vercel rejects request bodies over 4.5 MB with a 413 before our route runs,
+// so cap each file at 4 MB and upload one file per request (see handleFileChange).
+const MAX_FILE_SIZE = 4 * 1024 * 1024;
 const ACCEPT =
   ".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif,.doc,.docx,.txt,application/pdf,image/jpeg,image/png,image/webp,image/heic,image/heif,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain";
 
@@ -127,15 +129,30 @@ export default function LeadCaptureForm({
 
     setUploadingFiles(true);
     try {
-      const fd = new FormData();
-      picked.forEach((f) => fd.append("files", f));
-      const res = await fetch("/api/leads/upload", { method: "POST", body: fd });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        setUploadError(err.error || t.errUploadFailed);
-      } else {
+      // Upload one file per request. Batching several phone photos into a single
+      // request can exceed Vercel's 4.5 MB body limit and 413 before the route
+      // runs — a silent failure. Sequential single-file uploads stay well under.
+      const uploadedAll: Attachment[] = [];
+      for (const f of picked) {
+        const fd = new FormData();
+        fd.append("files", f);
+        const res = await fetch("/api/leads/upload", { method: "POST", body: fd });
+        if (!res.ok) {
+          // 413 = body too large (may not carry a JSON body). Show the size error
+          // rather than failing silently.
+          if (res.status === 413) {
+            setUploadError(t.errTooBig(f.name));
+          } else {
+            const err = await res.json().catch(() => ({}));
+            setUploadError(err.error || t.errUploadFailed);
+          }
+          break;
+        }
         const { attachments: uploaded } = (await res.json()) as { attachments: Attachment[] };
-        setAttachments((prev) => [...prev, ...uploaded]);
+        uploadedAll.push(...uploaded);
+      }
+      if (uploadedAll.length > 0) {
+        setAttachments((prev) => [...prev, ...uploadedAll]);
       }
     } catch {
       setUploadError(t.errUploadRetry);
